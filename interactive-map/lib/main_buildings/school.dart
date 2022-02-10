@@ -3,6 +3,7 @@ import 'package:interactive_map/main_buildings/home.dart';
 import 'package:interactive_map/main_buildings/inside_school/motor.dart';
 import 'package:interactive_map/main_buildings/inside_school/school_main_screens.dart';
 import 'package:interactive_map/main_buildings/inside_school/temporary.dart';
+import 'package:interactive_map/widgets/shared_widgets.dart';
 import 'package:video_player/video_player.dart';
 
 class SchoolVideo extends StatefulWidget {
@@ -25,7 +26,14 @@ class _SchoolVideoState extends State<SchoolVideo> {
   int index = 0;
   bool show = false;
   bool _isPlaying = false;
-  String url = 'assets/videos/school_REV_v001.mp4';
+
+  final String url = 'assets/videos/school_REV_v001.mp4';
+
+  final String motorVideoImage = 'assets/videos/school_MOTOR.mp4';
+  final String temporaryVideoImage = 'assets/videos/datacentre_v001.mp4';
+  final String insideVideoImage = 'assets/videos/school_MAP_v003.mp4';
+
+  final String schoolImage = 'assets/images/school.jpg';
 
   setIndex(value) {
     index = value;
@@ -45,12 +53,12 @@ class _SchoolVideoState extends State<SchoolVideo> {
     setState(() {
       loading = true;
     });
-    // Create and store the VideoPlayerController. The VideoPlayerController
-    // offers several different constructors to play videos from assets, files,
-    // or the internet.
+
     index = 0;
     show = true;
+
     videoHandler();
+
     super.initState();
   }
 
@@ -60,35 +68,30 @@ class _SchoolVideoState extends State<SchoolVideo> {
     setState(() {
       _controller.setVolume(0);
       _controller.setLooping(false);
-      //setShow();
     });
 
-    _motorVideoController =
-        VideoPlayerController.asset("assets/videos/school_MOTOR.mp4")
-          ..initialize().then((_) => {
-                setState(() {
-                  _motorVideoController.setVolume(0);
-                  _motorVideoController.setLooping(false);
-                })
-              });
-    _temporaryVideoController =
-        VideoPlayerController.asset("assets/videos/datacentre_v001.mp4")
-          ..initialize().then((_) => {
-                setState(() {
-                  _temporaryVideoController.setVolume(0);
-                  _temporaryVideoController.setLooping(false);
-                })
-              });
-    _insideVideoController =
-        VideoPlayerController.asset("assets/videos/school_MAP_v003.mp4")
-          ..initialize().then((_) => {
-                setState(() {
-                  _insideVideoController.setVolume(0);
-                  _insideVideoController.setLooping(false);
-                })
-              });
-    // Use the controller to loop the video.
-    //await Future.delayed(Duration(seconds: 2));
+    _motorVideoController = VideoPlayerController.asset(motorVideoImage)
+      ..initialize().then((_) => {
+            setState(() {
+              _motorVideoController.setVolume(0);
+              _motorVideoController.setLooping(false);
+            })
+          });
+    _temporaryVideoController = VideoPlayerController.asset(temporaryVideoImage)
+      ..initialize().then((_) => {
+            setState(() {
+              _temporaryVideoController.setVolume(0);
+              _temporaryVideoController.setLooping(false);
+            })
+          });
+    _insideVideoController = VideoPlayerController.asset(insideVideoImage)
+      ..initialize().then((_) => {
+            setState(() {
+              _insideVideoController.setVolume(0);
+              _insideVideoController.setLooping(false);
+            })
+          });
+
     setState(() {
       loading = false;
     });
@@ -96,7 +99,6 @@ class _SchoolVideoState extends State<SchoolVideo> {
 
   @override
   void dispose() {
-    // Ensure disposing of the VideoPlayerController to free up resources.
     _controller.dispose();
     _motorVideoController.dispose();
     _temporaryVideoController.dispose();
@@ -109,14 +111,11 @@ class _SchoolVideoState extends State<SchoolVideo> {
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      // Use a FutureBuilder to display a loading spinner while waiting for the
-      // VideoPlayerController to finish initializing.
       body: SingleChildScrollView(
         child: Stack(
           children: [
             AspectRatio(
               aspectRatio: _controller.value.aspectRatio,
-              // Use the VideoPlayer widget to display the video.
               child: VideoPlayer(_controller),
             ),
             show ? motor() : Container(),
@@ -127,21 +126,18 @@ class _SchoolVideoState extends State<SchoolVideo> {
             _motorVideoPlaying
                 ? AspectRatio(
                     aspectRatio: _motorVideoController.value.aspectRatio,
-                    // Use the VideoPlayer widget to display the video.
                     child: VideoPlayer(_motorVideoController),
                   )
                 : Container(),
             _temporaryVideoPlaying
                 ? AspectRatio(
                     aspectRatio: _temporaryVideoController.value.aspectRatio,
-                    // Use the VideoPlayer widget to display the video.
                     child: VideoPlayer(_temporaryVideoController),
                   )
                 : Container(),
             _insideVideoPlaying
                 ? AspectRatio(
                     aspectRatio: _insideVideoController.value.aspectRatio,
-                    // Use the VideoPlayer widget to display the video.
                     child: VideoPlayer(_insideVideoController),
                   )
                 : Container(),
@@ -150,7 +146,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
                     width: screenSize.width,
                     child: Expanded(
                       child: Image.asset(
-                        "assets/images/school.jpg",
+                        schoolImage,
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -183,20 +179,8 @@ class _SchoolVideoState extends State<SchoolVideo> {
                 });
                 if (index > 1) {
                   _controller.removeListener(() {});
-                  Navigator.pushReplacement(
-                    context,
-                    PageRouteBuilder(
-                      pageBuilder: (context, animation1, animation2) =>
-                          const HomeVideo(),
-                      transitionDuration: const Duration(seconds: 2),
-                      transitionsBuilder:
-                          (context, animation, secondaryAnimation, child) =>
-                              FadeTransition(
-                        opacity: animation,
-                        child: child,
-                      ),
-                    ),
-                  );
+
+                  customPushReplacement(context, const HomeVideo());
                 }
               }
             });
@@ -245,20 +229,8 @@ class _SchoolVideoState extends State<SchoolVideo> {
                 });
                 if (index > 1) {
                   _controller.removeListener(() {});
-                  Navigator.pushReplacement(
-                    context,
-                    PageRouteBuilder(
-                      pageBuilder: (context, animation1, animation2) =>
-                          const HomeVideo(),
-                      transitionDuration: const Duration(seconds: 2),
-                      transitionsBuilder:
-                          (context, animation, secondaryAnimation, child) =>
-                              FadeTransition(
-                        opacity: animation,
-                        child: child,
-                      ),
-                    ),
-                  );
+
+                  customPushReplacement(context, const HomeVideo());
                 }
               }
             });
@@ -313,20 +285,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
                     if (index > 1) {
                       _motorVideoController.removeListener(() {});
 
-                      Navigator.pushReplacement(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder: (context, animation1, animation2) =>
-                              Motor(),
-                          transitionDuration: Duration(seconds: 2),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) =>
-                                  FadeTransition(
-                            opacity: animation,
-                            child: child,
-                          ),
-                        ),
-                      );
+                      customPushReplacement(context, const Motor());
                     }
                   }
                 });
@@ -390,20 +349,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
                     if (index > 1) {
                       _temporaryVideoController.removeListener(() {});
 
-                      Navigator.pushReplacement(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder: (context, animation1, animation2) =>
-                              Temporary(),
-                          transitionDuration: Duration(seconds: 2),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) =>
-                                  FadeTransition(
-                            opacity: animation,
-                            child: child,
-                          ),
-                        ),
-                      );
+                      customPushReplacement(context, const Temporary());
                     }
                   }
                 });
@@ -466,20 +412,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
                     if (index > 1) {
                       _insideVideoController.removeListener(() {});
 
-                      Navigator.pushReplacement(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder: (context, animation1, animation2) =>
-                              SchoolMainScreens(),
-                          transitionDuration: Duration(seconds: 2),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) =>
-                                  FadeTransition(
-                            opacity: animation,
-                            child: child,
-                          ),
-                        ),
-                      );
+                      customPushReplacement(context, const SchoolMainScreens());
                     }
                   }
                 });
