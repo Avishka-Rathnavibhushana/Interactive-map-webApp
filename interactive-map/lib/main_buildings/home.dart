@@ -1,4 +1,3 @@
-import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:interactive_map/main_buildings/bank.dart';
 import 'package:interactive_map/main_buildings/datacentre.dart';
@@ -7,9 +6,7 @@ import 'package:interactive_map/main_buildings/groceryshop.dart';
 import 'package:interactive_map/main_buildings/retail.dart';
 import 'package:interactive_map/main_buildings/school.dart';
 import 'package:interactive_map/main_buildings/warehouse.dart';
-import 'package:interactive_map/widgets/custom_container_text_row.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
-import 'package:interactive_map/widgets/squre_shaped_custom_container.dart';
 import 'package:video_player/video_player.dart';
 
 class HomeVideo extends StatefulWidget {
@@ -20,6 +17,7 @@ class HomeVideo extends StatefulWidget {
 
 class _HomeVideoState extends State<HomeVideo> {
   bool loading = false;
+
   late VideoPlayerController _timerVideoController;
 
   late VideoPlayerController _bankVideoController;
@@ -38,20 +36,22 @@ class _HomeVideoState extends State<HomeVideo> {
   bool _fastFoodVideoPlaying = false;
 
   bool _isPlaying = false;
-
   int index = 0;
-
   bool show = false;
 
   final String timerVideoUrl = 'assets/videos/Buildings_menu_looping_v001.mp4';
-  // final _urls = [
-  //   'assets/videos/1_MAIN_MAP.mp4',
-  //   'assets/videos/2_MOVE_TO_DIGGER.mp4',
-  //   'assets/videos/3_DIGGER_BATTERY.mp4'
-  // ];
+
+  final String bankVideoUrl = 'assets/videos/bank_v001.mp4';
+  final String dataCentreVideoUrl = 'assets/videos/datacentre_v001.mp4';
+  final String schoolVideoUrl = 'assets/videos/school_v001.mp4';
+  final String retailVideoUrl = 'assets/videos/retail_v001.mp4';
+  final String warehouseVideoUrl = 'assets/videos/warehouse_v001.mp4';
+  final String groceryShopVideoUrl = 'assets/videos/groceryshop_v001.mp4';
+  final String fastFoodVideoUrl = 'assets/videos/fastfood_v001.mp4';
+
+  final String buildingImage = 'assets/images/buildings.jpg';
 
   bool timerOFF = false;
-  // late FlickManager flickManager;
 
   setIndex(value) {
     index = value;
@@ -69,9 +69,12 @@ class _HomeVideoState extends State<HomeVideo> {
     setState(() {
       loading = true;
     });
+
     index = 0;
     show = true;
+
     videoHandler();
+
     super.initState();
   }
 
@@ -81,74 +84,63 @@ class _HomeVideoState extends State<HomeVideo> {
     setState(() {
       _timerVideoController.setVolume(0);
       _timerVideoController.play();
+      _timerVideoController.setLooping(true);
       setShow();
     });
 
-    _bankVideoController =
-        VideoPlayerController.asset("assets/videos/bank_v001.mp4")
-          ..initialize().then((_) => {
-                setState(() {
-                  _bankVideoController.setVolume(0);
-                  _bankVideoController.setLooping(false);
-                })
-              });
-    _dataCentreVideoController =
-        VideoPlayerController.asset("assets/videos/datacentre_v001.mp4")
-          ..initialize().then((_) => {
-                setState(() {
-                  _dataCentreVideoController.setVolume(0);
-                  _dataCentreVideoController.setLooping(false);
-                })
-              });
-    _schoolVideoController =
-        VideoPlayerController.asset("assets/videos/school_v001.mp4")
-          ..initialize().then((_) => {
-                setState(() {
-                  _schoolVideoController.setVolume(0);
-                  _schoolVideoController.setLooping(false);
-                })
-              });
-    _retailVideoController =
-        VideoPlayerController.asset("assets/videos/retail_v001.mp4")
-          ..initialize().then((_) => {
-                setState(() {
-                  _retailVideoController.setVolume(0);
-                  _retailVideoController.setLooping(false);
-                })
-              });
-    _warehouseVideoController =
-        VideoPlayerController.asset("assets/videos/warehouse_v001.mp4")
-          ..initialize().then((_) => {
-                setState(() {
-                  _warehouseVideoController.setVolume(0);
-                  _warehouseVideoController.setLooping(false);
-                })
-              });
+    _bankVideoController = VideoPlayerController.asset(bankVideoUrl)
+      ..initialize().then((_) => {
+            setState(() {
+              _bankVideoController.setVolume(0);
+              _bankVideoController.setLooping(false);
+            })
+          });
+    _dataCentreVideoController = VideoPlayerController.asset(dataCentreVideoUrl)
+      ..initialize().then((_) => {
+            setState(() {
+              _dataCentreVideoController.setVolume(0);
+              _dataCentreVideoController.setLooping(false);
+            })
+          });
+    _schoolVideoController = VideoPlayerController.asset(schoolVideoUrl)
+      ..initialize().then((_) => {
+            setState(() {
+              _schoolVideoController.setVolume(0);
+              _schoolVideoController.setLooping(false);
+            })
+          });
+    _retailVideoController = VideoPlayerController.asset(retailVideoUrl)
+      ..initialize().then((_) => {
+            setState(() {
+              _retailVideoController.setVolume(0);
+              _retailVideoController.setLooping(false);
+            })
+          });
+    _warehouseVideoController = VideoPlayerController.asset(warehouseVideoUrl)
+      ..initialize().then((_) => {
+            setState(() {
+              _warehouseVideoController.setVolume(0);
+              _warehouseVideoController.setLooping(false);
+            })
+          });
     _groceryShopVideoController =
-        VideoPlayerController.asset("assets/videos/groceryshop_v001.mp4")
+        VideoPlayerController.asset(groceryShopVideoUrl)
           ..initialize().then((_) => {
                 setState(() {
                   _groceryShopVideoController.setVolume(0);
                   _groceryShopVideoController.setLooping(false);
                 })
               });
-    _fastFoodVideoController =
-        VideoPlayerController.asset("assets/videos/fastfood_v001.mp4")
-          ..initialize().then((_) => {
-                setState(() {
-                  _fastFoodVideoController.setVolume(0);
-                  _fastFoodVideoController.setLooping(false);
-                })
-              });
+    _fastFoodVideoController = VideoPlayerController.asset(fastFoodVideoUrl)
+      ..initialize().then((_) => {
+            setState(() {
+              _fastFoodVideoController.setVolume(0);
+              _fastFoodVideoController.setLooping(false);
+            })
+          });
 
-    // Use the controller to loop the video.
-    _timerVideoController.setLooping(true);
+    await Future.delayed(const Duration(seconds: 2));
 
-    // flickManager = FlickManager(
-    //   videoPlayerController:
-    //       VideoPlayerController.asset('assets/videos/bank_v001.mp4'),
-    // );
-    await Future.delayed(Duration(seconds: 2));
     setState(() {
       loading = false;
     });
@@ -156,7 +148,6 @@ class _HomeVideoState extends State<HomeVideo> {
 
   @override
   void dispose() {
-    // Ensure disposing of the VideoPlayerController to free up resources.
     _timerVideoController.dispose();
     _bankVideoController.dispose();
     _dataCentreVideoController.dispose();
@@ -173,8 +164,6 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      // Use a FutureBuilder to display a loading spinner while waiting for the
-      // VideoPlayerController to finish initializing.
       body: SingleChildScrollView(
         child: Stack(
           children: [
@@ -185,11 +174,6 @@ class _HomeVideoState extends State<HomeVideo> {
                 child: VideoPlayer(_timerVideoController),
               ),
             ),
-            // Container(
-            //   width: 500,
-            //   height: 500,
-            //   color: Colors.red[500],
-            // ),
             show ? Container() : bank(),
             show ? Container() : dataCentre(),
             show ? Container() : school(),
@@ -202,7 +186,6 @@ class _HomeVideoState extends State<HomeVideo> {
                 _bankVideoPlaying
                     ? AspectRatio(
                         aspectRatio: _bankVideoController.value.aspectRatio,
-                        // Use the VideoPlayer widget to display the video.
                         child: VideoPlayer(_bankVideoController),
                       )
                     : Container(),
@@ -210,21 +193,18 @@ class _HomeVideoState extends State<HomeVideo> {
                     ? AspectRatio(
                         aspectRatio:
                             _dataCentreVideoController.value.aspectRatio,
-                        // Use the VideoPlayer widget to display the video.
                         child: VideoPlayer(_dataCentreVideoController),
                       )
                     : Container(),
                 _schoolVideoPlaying
                     ? AspectRatio(
                         aspectRatio: _schoolVideoController.value.aspectRatio,
-                        // Use the VideoPlayer widget to display the video.
                         child: VideoPlayer(_schoolVideoController),
                       )
                     : Container(),
                 _retailVideoPlaying
                     ? AspectRatio(
                         aspectRatio: _retailVideoController.value.aspectRatio,
-                        // Use the VideoPlayer widget to display the video.
                         child: VideoPlayer(_retailVideoController),
                       )
                     : Container(),
@@ -232,7 +212,6 @@ class _HomeVideoState extends State<HomeVideo> {
                     ? AspectRatio(
                         aspectRatio:
                             _warehouseVideoController.value.aspectRatio,
-                        // Use the VideoPlayer widget to display the video.
                         child: VideoPlayer(_warehouseVideoController),
                       )
                     : Container(),
@@ -240,14 +219,12 @@ class _HomeVideoState extends State<HomeVideo> {
                     ? AspectRatio(
                         aspectRatio:
                             _groceryShopVideoController.value.aspectRatio,
-                        // Use the VideoPlayer widget to display the video.
                         child: VideoPlayer(_groceryShopVideoController),
                       )
                     : Container(),
                 _fastFoodVideoPlaying
                     ? AspectRatio(
                         aspectRatio: _fastFoodVideoController.value.aspectRatio,
-                        // Use the VideoPlayer widget to display the video.
                         child: VideoPlayer(_fastFoodVideoController),
                       )
                     : Container(),
@@ -258,58 +235,42 @@ class _HomeVideoState extends State<HomeVideo> {
                     width: screenSize.width,
                     child: Expanded(
                       child: Image.asset(
-                        "assets/images/buildings.jpg",
+                        buildingImage,
                         fit: BoxFit.fill,
                       ),
                     ),
                   )
                 : Container(),
-            Container(
-              color: Colors.red[100],
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomPaint(
-                    size: Size(screenSize.width * 0.35,
-                        400), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
-                    painter: SqureShapedCustomContainer(),
-                    child: Container(
-                      color: Colors.red[400],
-                      width: screenSize.width * 0.35,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // CustomContainerTextRow(
-                          //   screenSize: screenSize,
-                          //   text: '',
-                          // ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  // textArea(
-                  //   context,
-                  //   [
-                  //     'Optimal efficiency switch reluctance motor',
-                  //     'Standered NEMA dimensions',
-                  //     'Available in 1-10 HP',
-                  //   ],
-                  // ),
-                ],
-              ),
-            ),
-            textArea(
-              context,
-              [
-                'Optimal efficiency switch reluctance motor',
-                'Standered NEMA dimensions',
-                'Available in 1-10 HP',
-              ],
-            ),
+            // Container(
+            //   color: Colors.red[100],
+            //   child: Column(
+            //     mainAxisSize: MainAxisSize.max,
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       // CustomPaint(
+            //       //   size: Size(screenSize.width * 0.35,
+            //       //       400), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+            //       //   painter: SqureShapedCustomContainer(),
+            //       //   child: Container(
+            //       //     color: Colors.red[400],
+            //       //     width: screenSize.width * 0.35,
+            //       //     child: Column(
+            //       //       mainAxisSize: MainAxisSize.max,
+            //       //       mainAxisAlignment: MainAxisAlignment.center,
+            //       //       crossAxisAlignment: CrossAxisAlignment.start,
+            //       //       children: [
+            //       //         // CustomContainerTextRow(
+            //       //         //   screenSize: screenSize,
+            //       //         //   text: '',
+            //       //         // ),
+            //       //       ],
+            //       //     ),
+            //       //   ),
+            //       // ),
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       ),
@@ -350,20 +311,7 @@ class _HomeVideoState extends State<HomeVideo> {
                       if (index > 1) {
                         _bankVideoController.removeListener(() {});
 
-                        Navigator.pushReplacement(
-                          context,
-                          PageRouteBuilder(
-                            pageBuilder: (context, animation1, animation2) =>
-                                BankVideo(),
-                            transitionDuration: Duration(seconds: 2),
-                            transitionsBuilder: (context, animation,
-                                    secondaryAnimation, child) =>
-                                FadeTransition(
-                              opacity: animation,
-                              child: child,
-                            ),
-                          ),
-                        );
+                        customPushReplacement(context, BankVideo());
                       }
                     }
                   });
@@ -425,20 +373,7 @@ class _HomeVideoState extends State<HomeVideo> {
                     if (index > 1) {
                       _dataCentreVideoController.removeListener(() {});
 
-                      Navigator.pushReplacement(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder: (context, animation1, animation2) =>
-                              DataCentreVideo(),
-                          transitionDuration: Duration(seconds: 2),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) =>
-                                  FadeTransition(
-                            opacity: animation,
-                            child: child,
-                          ),
-                        ),
-                      );
+                      customPushReplacement(context, const DataCentreVideo());
                     }
                   }
                 });
@@ -499,20 +434,7 @@ class _HomeVideoState extends State<HomeVideo> {
                     if (index > 1) {
                       _warehouseVideoController.removeListener(() {});
 
-                      Navigator.pushReplacement(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder: (context, animation1, animation2) =>
-                              WarehouseVideo(),
-                          transitionDuration: Duration(seconds: 2),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) =>
-                                  FadeTransition(
-                            opacity: animation,
-                            child: child,
-                          ),
-                        ),
-                      );
+                      customPushReplacement(context, const WarehouseVideo());
                     }
                   }
                 });
@@ -550,7 +472,6 @@ class _HomeVideoState extends State<HomeVideo> {
             ElevatedButton(
               onPressed: () async {
                 setShow();
-                setShow();
                 setState(() {
                   timerOFF = true;
                 });
@@ -573,20 +494,7 @@ class _HomeVideoState extends State<HomeVideo> {
                     if (index > 1) {
                       _schoolVideoController.removeListener(() {});
 
-                      Navigator.pushReplacement(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder: (context, animation1, animation2) =>
-                              SchoolVideo(),
-                          transitionDuration: Duration(seconds: 2),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) =>
-                                  FadeTransition(
-                            opacity: animation,
-                            child: child,
-                          ),
-                        ),
-                      );
+                      customPushReplacement(context, const SchoolVideo());
                     }
                   }
                 });
@@ -646,20 +554,7 @@ class _HomeVideoState extends State<HomeVideo> {
                     if (index > 1) {
                       _retailVideoController.removeListener(() {});
 
-                      Navigator.pushReplacement(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder: (context, animation1, animation2) =>
-                              RetailVideo(),
-                          transitionDuration: Duration(seconds: 2),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) =>
-                                  FadeTransition(
-                            opacity: animation,
-                            child: child,
-                          ),
-                        ),
-                      );
+                      customPushReplacement(context, const RetailVideo());
                     }
                   }
                 });
@@ -720,20 +615,7 @@ class _HomeVideoState extends State<HomeVideo> {
                     if (index > 1) {
                       _groceryShopVideoController.removeListener(() {});
 
-                      Navigator.pushReplacement(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder: (context, animation1, animation2) =>
-                              GroceryShopVideo(),
-                          transitionDuration: Duration(seconds: 2),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) =>
-                                  FadeTransition(
-                            opacity: animation,
-                            child: child,
-                          ),
-                        ),
-                      );
+                      customPushReplacement(context, const GroceryShopVideo());
                     }
                   }
                 });
@@ -795,20 +677,7 @@ class _HomeVideoState extends State<HomeVideo> {
                     if (index > 1) {
                       _fastFoodVideoController.removeListener(() {});
 
-                      Navigator.pushReplacement(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder: (context, animation1, animation2) =>
-                              FastFoodVideo(),
-                          transitionDuration: Duration(seconds: 2),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) =>
-                                  FadeTransition(
-                            opacity: animation,
-                            child: child,
-                          ),
-                        ),
-                      );
+                      customPushReplacement(context, const FastFoodVideo());
                     }
                   }
                 });
