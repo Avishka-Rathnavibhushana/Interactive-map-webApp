@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/main_buildings/bank.dart';
 import 'package:interactive_map/main_buildings/datacentre.dart';
 import 'package:interactive_map/main_buildings/fastfood.dart';
@@ -6,7 +7,13 @@ import 'package:interactive_map/main_buildings/groceryshop.dart';
 import 'package:interactive_map/main_buildings/retail.dart';
 import 'package:interactive_map/main_buildings/school.dart';
 import 'package:interactive_map/main_buildings/warehouse.dart';
+import 'package:interactive_map/widgets/custom_button_label.dart';
+import 'package:interactive_map/widgets/custom_text_container.dart';
+import 'package:interactive_map/widgets/custom_topic.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
+import 'package:interactive_map/widgets/text_area.dart';
+import 'package:interactive_map/widgets/text_area_small.dart';
+import 'package:interactive_map/widgets/text_area_with_QR.dart';
 import 'package:video_player/video_player.dart';
 
 class HomeVideo extends StatefulWidget {
@@ -39,19 +46,25 @@ class _HomeVideoState extends State<HomeVideo> {
   int index = 0;
   bool show = false;
 
-  final String timerVideoUrl = 'assets/videos/Buildings_menu_looping_v001.mp4';
+  final String timerVideoUrl = 'assets/videos/Buildings_menu_loop.mp4';
 
-  final String bankVideoUrl = 'assets/videos/bank_v001.mp4';
-  final String dataCentreVideoUrl = 'assets/videos/datacentre_v001.mp4';
-  final String schoolVideoUrl = 'assets/videos/school_v001.mp4';
-  final String retailVideoUrl = 'assets/videos/retail_v001.mp4';
-  final String warehouseVideoUrl = 'assets/videos/warehouse_v001.mp4';
-  final String groceryShopVideoUrl = 'assets/videos/groceryshop_v001.mp4';
-  final String fastFoodVideoUrl = 'assets/videos/fastfood_v001.mp4';
+  final String bankVideoUrl = 'assets/videos/bank.mp4';
+  final String dataCentreVideoUrl = 'assets/videos/datacentre.mp4';
+  final String schoolVideoUrl = 'assets/videos/school.mp4';
+  final String retailVideoUrl = 'assets/videos/retail.mp4';
+  final String warehouseVideoUrl = 'assets/videos/warehouse.mp4';
+  final String groceryShopVideoUrl = 'assets/videos/groceryshop.mp4';
+  final String fastFoodVideoUrl = 'assets/videos/fastfood.mp4';
 
-  final String buildingImage = 'assets/images/buildings.jpg';
+  final String buildingImage = 'assets/tempory images/Buildings_menu_still.png';
+  final String schoolSelected = 'assets/tempory images/school_SELECTED.png';
 
   bool timerOFF = false;
+
+  bool showQR = false;
+  bool showTextAreaSmall = false;
+
+  double width = 0;
 
   setIndex(value) {
     index = value;
@@ -181,6 +194,7 @@ class _HomeVideoState extends State<HomeVideo> {
             show ? Container() : warehouse(),
             show ? Container() : groceryShop(),
             show ? Container() : fastFood(),
+
             Stack(
               children: [
                 _bankVideoPlaying
@@ -241,6 +255,40 @@ class _HomeVideoState extends State<HomeVideo> {
                     ),
                   )
                 : Container(),
+            // showQR
+            //     ? Container(
+            //         width: screenSize.width,
+            //         child: Expanded(
+            //           child: Image.asset(
+            //             schoolSelected,
+            //             fit: BoxFit.fill,
+            //           ),
+            //         ),
+            //       )
+            //     : Container(),
+            showQR
+                ? Positioned(
+                    bottom: screenSize.height * (0.2),
+                    child: TextAreaWithQR(
+                      screenSize: screenSize,
+                      width: width,
+                      height: screenSize.width * (0.2),
+                    ),
+                  )
+                : Container(),
+            showTextAreaSmall
+                ? Positioned(
+                    bottom: screenSize.height * (0.2),
+                    child: TextAreaSmall(
+                      width: width,
+                      screenSize: screenSize,
+                      prefixText: "64%",
+                      description:
+                          "of energy in school is used by HVAC and lightning",
+                    ),
+                  )
+                : Container(),
+
             // Container(
             //   color: Colors.red[100],
             //   child: Column(
@@ -280,14 +328,13 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget bank() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.545),
-        top: screenSize.width * (0.401),
-        width: 100,
+        left: screenSize.width * (0.61),
+        top: screenSize.width * (0.42),
         child: Stack(
           children: [
             Center(
-              child: ElevatedButton(
-                onPressed: () async {
+              child: InkWell(
+                onTap: () async {
                   setShow();
                   setState(() {
                     timerOFF = true;
@@ -316,24 +363,12 @@ class _HomeVideoState extends State<HomeVideo> {
                     }
                   });
                 },
-                child: const Icon(Icons.circle, size: 8, color: Colors.red),
-                style: ButtonStyle(
-                  shape: MaterialStateProperty.all(const CircleBorder()),
-                  padding: MaterialStateProperty.all(const EdgeInsets.all(5)),
-                  backgroundColor: MaterialStateProperty.all(
-                      Colors.transparent), // <-- Button color
-                  overlayColor:
-                      MaterialStateProperty.resolveWith<Color?>((states) {
-                    if (states.contains(MaterialState.pressed))
-                      return Colors.red; // <-- Splash color
-                  }),
+                child: CustomButtonLabel(
+                  screenSize: screenSize,
+                  text: "Banks",
+                  type: 0,
                 ),
               ),
-            ),
-            const Positioned(
-              left: 60,
-              top: 7,
-              child: Text('Bank'),
             ),
           ],
         ));
@@ -342,13 +377,12 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget dataCentre() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.092),
-        top: screenSize.width * (0.238),
-        width: 150,
+        left: screenSize.width * (0.12),
+        top: screenSize.width * (0.26),
         child: Stack(
           children: [
-            ElevatedButton(
-              onPressed: () async {
+            InkWell(
+              onTap: () async {
                 setShow();
                 setState(() {
                   timerOFF = true;
@@ -378,23 +412,11 @@ class _HomeVideoState extends State<HomeVideo> {
                   }
                 });
               },
-              child: const Icon(Icons.circle, size: 8, color: Colors.red),
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all(const CircleBorder()),
-                padding: MaterialStateProperty.all(const EdgeInsets.all(5)),
-                backgroundColor: MaterialStateProperty.all(
-                    Colors.transparent), // <-- Button color
-                overlayColor:
-                    MaterialStateProperty.resolveWith<Color?>((states) {
-                  if (states.contains(MaterialState.pressed))
-                    return Colors.red; // <-- Splash color
-                }),
+              child: CustomButtonLabel(
+                screenSize: screenSize,
+                text: "Data Centers",
+                type: 0,
               ),
-            ),
-            const Positioned(
-              left: 40,
-              top: 7,
-              child: Text('Data Centre'),
             ),
           ],
         ));
@@ -403,13 +425,12 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget warehouse() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.248),
-        top: screenSize.width * (0.151),
-        width: 120,
+        left: screenSize.width * (0.28),
+        top: screenSize.width * (0.125),
         child: Stack(
           children: [
-            ElevatedButton(
-              onPressed: () async {
+            InkWell(
+              onTap: () async {
                 setShow();
                 setState(() {
                   timerOFF = true;
@@ -439,23 +460,11 @@ class _HomeVideoState extends State<HomeVideo> {
                   }
                 });
               },
-              child: const Icon(Icons.circle, size: 8, color: Colors.red),
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all(const CircleBorder()),
-                padding: MaterialStateProperty.all(const EdgeInsets.all(5)),
-                backgroundColor: MaterialStateProperty.all(
-                    Colors.transparent), // <-- Button color
-                overlayColor:
-                    MaterialStateProperty.resolveWith<Color?>((states) {
-                  if (states.contains(MaterialState.pressed))
-                    return Colors.red; // <-- Splash color
-                }),
+              child: CustomButtonLabel(
+                screenSize: screenSize,
+                text: "Warehouses",
+                type: 0,
               ),
-            ),
-            const Positioned(
-              left: 40,
-              top: 7,
-              child: Text('Warehouse'),
             ),
           ],
         ));
@@ -465,12 +474,11 @@ class _HomeVideoState extends State<HomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
         left: screenSize.width * (0.445),
-        top: screenSize.width * (0.411),
-        width: 120,
+        top: screenSize.width * (0.46),
         child: Stack(
           children: [
-            ElevatedButton(
-              onPressed: () async {
+            InkWell(
+              onTap: () async {
                 setShow();
                 setState(() {
                   timerOFF = true;
@@ -480,8 +488,33 @@ class _HomeVideoState extends State<HomeVideo> {
 
                 setState(() {
                   _schoolVideoPlaying = true;
+                  showQR = true;
                 });
+
+                await Future.delayed(const Duration(milliseconds: 200));
+
+                setState(() {
+                  width = screenSize.width * 0.2;
+                });
+
+                await Future.delayed(const Duration(seconds: 3));
+
+                setState(() {
+                  width = 0;
+                  showQR = false;
+                });
+
                 _schoolVideoController.play();
+
+                setState(() {
+                  showTextAreaSmall = true;
+                });
+
+                await Future.delayed(const Duration(milliseconds: 200));
+
+                setState(() {
+                  width = screenSize.width * 0.25;
+                });
 
                 _schoolVideoController.addListener(() {
                   final bool isPlaying = _schoolVideoController.value.isPlaying;
@@ -499,23 +532,11 @@ class _HomeVideoState extends State<HomeVideo> {
                   }
                 });
               },
-              child: const Icon(Icons.circle, size: 8, color: Colors.red),
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all(const CircleBorder()),
-                padding: MaterialStateProperty.all(const EdgeInsets.all(5)),
-                backgroundColor: MaterialStateProperty.all(
-                    Colors.transparent), // <-- Button color
-                overlayColor:
-                    MaterialStateProperty.resolveWith<Color?>((states) {
-                  if (states.contains(MaterialState.pressed))
-                    return Colors.red; // <-- Splash color
-                }),
+              child: CustomButtonLabel(
+                screenSize: screenSize,
+                text: "Schools",
+                type: 0,
               ),
-            ),
-            const Positioned(
-              left: 40,
-              top: 7,
-              child: Text('School'),
             ),
           ],
         ));
@@ -524,13 +545,12 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget retail() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.612),
-        top: screenSize.width * (0.052),
-        width: 130,
+        left: screenSize.width * (0.618),
+        top: screenSize.width * (0.073),
         child: Stack(
           children: [
-            ElevatedButton(
-              onPressed: () async {
+            InkWell(
+              onTap: () async {
                 setShow();
                 setState(() {
                   timerOFF = true;
@@ -559,23 +579,11 @@ class _HomeVideoState extends State<HomeVideo> {
                   }
                 });
               },
-              child: const Icon(Icons.circle, size: 8, color: Colors.red),
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all(const CircleBorder()),
-                padding: MaterialStateProperty.all(const EdgeInsets.all(5)),
-                backgroundColor: MaterialStateProperty.all(
-                    Colors.transparent), // <-- Button color
-                overlayColor:
-                    MaterialStateProperty.resolveWith<Color?>((states) {
-                  if (states.contains(MaterialState.pressed))
-                    return Colors.red; // <-- Splash color
-                }),
+              child: CustomButtonLabel(
+                screenSize: screenSize,
+                text: "Retail Stores",
+                type: 0,
               ),
-            ),
-            const Positioned(
-              left: 40,
-              top: 7,
-              child: Text('Retail'),
             ),
           ],
         ));
@@ -584,13 +592,12 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget groceryShop() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.728),
-        top: screenSize.width * (0.345),
-        width: 150,
+        left: screenSize.width * (0.755),
+        top: screenSize.width * (0.363),
         child: Stack(
           children: [
-            ElevatedButton(
-              onPressed: () async {
+            InkWell(
+              onTap: () async {
                 setShow();
                 setState(() {
                   timerOFF = true;
@@ -620,23 +627,11 @@ class _HomeVideoState extends State<HomeVideo> {
                   }
                 });
               },
-              child: const Icon(Icons.circle, size: 8, color: Colors.red),
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all(const CircleBorder()),
-                padding: MaterialStateProperty.all(const EdgeInsets.all(5)),
-                backgroundColor: MaterialStateProperty.all(
-                    Colors.transparent), // <-- Button color
-                overlayColor:
-                    MaterialStateProperty.resolveWith<Color?>((states) {
-                  if (states.contains(MaterialState.pressed))
-                    return Colors.red; // <-- Splash color
-                }),
+              child: CustomButtonLabel(
+                screenSize: screenSize,
+                text: "Grocery Stores",
+                type: 0,
               ),
-            ),
-            const Positioned(
-              left: 40,
-              top: 7,
-              child: Text('Grocery Shop'),
             ),
           ],
         ));
@@ -645,13 +640,12 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget fastFood() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.312),
-        top: screenSize.width * (0.201),
-        width: 120,
+        left: screenSize.width * (0.345),
+        top: screenSize.width * (0.195),
         child: Stack(
           children: [
-            ElevatedButton(
-              onPressed: () async {
+            InkWell(
+              onTap: () async {
                 setShow();
                 setShow();
                 setState(() {
@@ -682,23 +676,11 @@ class _HomeVideoState extends State<HomeVideo> {
                   }
                 });
               },
-              child: const Icon(Icons.circle, size: 8, color: Colors.red),
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all(const CircleBorder()),
-                padding: MaterialStateProperty.all(const EdgeInsets.all(5)),
-                backgroundColor: MaterialStateProperty.all(
-                    Colors.transparent), // <-- Button color
-                overlayColor:
-                    MaterialStateProperty.resolveWith<Color?>((states) {
-                  if (states.contains(MaterialState.pressed))
-                    return Colors.red; // <-- Splash color
-                }),
+              child: CustomButtonLabel(
+                screenSize: screenSize,
+                text: "Quick Serve Resturants",
+                type: 0,
               ),
-            ),
-            const Positioned(
-              left: 40,
-              top: 7,
-              child: Text('Fast Food'),
             ),
           ],
         ));

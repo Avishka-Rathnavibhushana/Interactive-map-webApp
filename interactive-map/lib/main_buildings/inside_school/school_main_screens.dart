@@ -3,6 +3,8 @@ import 'package:interactive_map/main_buildings/home.dart';
 import 'package:interactive_map/main_buildings/school.dart';
 import 'package:interactive_map/main_buildings/inside_school/screen_left.dart';
 import 'package:interactive_map/main_buildings/inside_school/screen_right.dart';
+import 'package:interactive_map/widgets/custom_button_label.dart';
+import 'package:interactive_map/widgets/text_area.dart';
 import 'package:video_player/video_player.dart';
 
 class SchoolMainScreens extends StatefulWidget {
@@ -23,7 +25,7 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
   bool _isPlaying = false;
   int index = 0;
   bool show = false;
-  final String url = 'assets/videos/school_MAP_REV_v003.mp4';
+  final String url = 'assets/videos/school_REV.mp4';
 
   setIndex(value) {
     index = value;
@@ -52,7 +54,7 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
             })
           });
     _leftScreenVideoController =
-        VideoPlayerController.asset("assets/videos/screen_LEFT_v001.mp4")
+        VideoPlayerController.asset("assets/videos/screen_LEFT.mp4")
           ..initialize().then((_) => {
                 setState(() {
                   _leftScreenVideoController.setVolume(0);
@@ -60,7 +62,7 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
                 })
               });
     _rightScreenVideoController =
-        VideoPlayerController.asset("assets/videos/screen_RIGHT_v001.mp4")
+        VideoPlayerController.asset("assets/videos/screen_RIGHT.mp4")
           ..initialize().then((_) => {
                 setState(() {
                   _rightScreenVideoController.setVolume(0);
@@ -87,9 +89,20 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
               // Use the VideoPlayer widget to display the video.
               child: VideoPlayer(_controller),
             ),
+            show
+                ? Container(
+                    width: screenSize.width,
+                    child: Expanded(
+                      child: Image.asset(
+                        'assets/tempory images/screen_MAIN.png',
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  )
+                : Container(),
             show ? screenLeft() : Container(),
             show ? screenRight() : Container(),
-            show ? backButton() : Container(),
+            //show ? backButton() : Container(),
             show ? menuButton() : Container(),
             _leftScreenVideoPlaying
                 ? AspectRatio(
@@ -105,6 +118,20 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
                     child: VideoPlayer(_rightScreenVideoController),
                   )
                 : Container(),
+
+            show
+                ? Positioned(
+                    bottom: screenSize.height * (0.2),
+                    left: 0,
+                    child: TextArea(
+                      screenSize: screenSize,
+                      texts: [],
+                      topic: "Trntide App for Mobile and Desktop",
+                      description:
+                          "Remotely monitor and manage HVAC equipment and yor entire building",
+                    ),
+                  )
+                : Container(),
           ],
         ),
       ),
@@ -116,7 +143,6 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
     return Positioned(
         left: screenSize.width * (0.382),
         top: screenSize.width * (0.264),
-        width: 150,
         child: Stack(
           children: [
             GestureDetector(
@@ -161,15 +187,10 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
                   }
                 });
               },
-              child: Container(
-                width: screenSize.width * 0.060,
-                height: screenSize.width * 0.060,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/graphics/POINT_plain.png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+              child: CustomButtonLabel(
+                screenSize: screenSize,
+                text: "Smart Building Operations",
+                type: 0,
               ),
             ),
           ],
@@ -181,7 +202,6 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
     return Positioned(
         left: screenSize.width * (0.732),
         top: screenSize.width * (0.265),
-        width: 150,
         child: Stack(
           children: [
             GestureDetector(
@@ -226,89 +246,84 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
                   }
                 });
               },
-              child: Container(
-                width: screenSize.width * 0.060,
-                height: screenSize.width * 0.060,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/graphics/POINT_plain.png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+              child: CustomButtonLabel(
+                screenSize: screenSize,
+                text: "Smart HVAC",
+                type: 0,
               ),
             ),
           ],
         ));
   }
 
-  Widget backButton() {
-    var screenSize = MediaQuery.of(context).size;
-    return SizedBox(
-      height: screenSize.height * 0.95,
-      child: Align(
-        alignment: Alignment.topRight,
-        child: GestureDetector(
-          onTap: () {
-            setShow();
-            _controller.play();
+  // Widget backButton() {
+  //   var screenSize = MediaQuery.of(context).size;
+  //   return SizedBox(
+  //     height: screenSize.height * 0.95,
+  //     child: Align(
+  //       alignment: Alignment.topRight,
+  //       child: GestureDetector(
+  //         onTap: () {
+  //           setShow();
+  //           _controller.play();
 
-            _controller.addListener(() {
-              final bool isPlaying = _controller.value.isPlaying;
+  //           _controller.addListener(() {
+  //             final bool isPlaying = _controller.value.isPlaying;
 
-              if (isPlaying != _isPlaying) {
-                setState(() {
-                  _isPlaying = isPlaying;
-                  setIndex(++index);
-                });
-                if (index > 1) {
-                  _controller.removeListener(() {});
-                  Navigator.pushReplacement(
-                    context,
-                    PageRouteBuilder(
-                      pageBuilder: (context, animation1, animation2) =>
-                          const SchoolVideo(),
-                      transitionDuration: const Duration(seconds: 2),
-                      transitionsBuilder:
-                          (context, animation, secondaryAnimation, child) =>
-                              FadeTransition(
-                        opacity: animation,
-                        child: child,
-                      ),
-                    ),
-                  );
-                }
-              }
-            });
-          },
-          child: Container(
-            width: screenSize.width * 0.050,
-            height: screenSize.width * 0.050,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: const Offset(0, 3), // changes position of shadow
-                ),
-              ],
-              image: const DecorationImage(
-                image: AssetImage('assets/graphics/back.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+  //             if (isPlaying != _isPlaying) {
+  //               setState(() {
+  //                 _isPlaying = isPlaying;
+  //                 setIndex(++index);
+  //               });
+  //               if (index > 1) {
+  //                 _controller.removeListener(() {});
+  //                 Navigator.pushReplacement(
+  //                   context,
+  //                   PageRouteBuilder(
+  //                     pageBuilder: (context, animation1, animation2) =>
+  //                         const SchoolVideo(),
+  //                     transitionDuration: const Duration(seconds: 2),
+  //                     transitionsBuilder:
+  //                         (context, animation, secondaryAnimation, child) =>
+  //                             FadeTransition(
+  //                       opacity: animation,
+  //                       child: child,
+  //                     ),
+  //                   ),
+  //                 );
+  //               }
+  //             }
+  //           });
+  //         },
+  //         child: Container(
+  //           width: screenSize.width * 0.050,
+  //           height: screenSize.width * 0.050,
+  //           decoration: BoxDecoration(
+  //             boxShadow: [
+  //               BoxShadow(
+  //                 color: Colors.grey.withOpacity(0.5),
+  //                 spreadRadius: 5,
+  //                 blurRadius: 7,
+  //                 offset: const Offset(0, 3), // changes position of shadow
+  //               ),
+  //             ],
+  //             image: const DecorationImage(
+  //               image: AssetImage('assets/graphics/back.png'),
+  //               fit: BoxFit.cover,
+  //             ),
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget menuButton() {
     var screenSize = MediaQuery.of(context).size;
     return SizedBox(
       height: screenSize.height * 0.95,
       child: Align(
-        alignment: Alignment.topLeft,
+        alignment: Alignment.topRight,
         child: GestureDetector(
           onTap: () {
             _controller.pause();
@@ -331,17 +346,9 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
           child: Container(
             width: screenSize.width * 0.050,
             height: screenSize.width * 0.050,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: const Offset(0, 3), // changes position of shadow
-                ),
-              ],
-              image: const DecorationImage(
-                image: AssetImage('assets/graphics/Home.png'),
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/graphics/HOME.png'),
                 fit: BoxFit.cover,
               ),
             ),

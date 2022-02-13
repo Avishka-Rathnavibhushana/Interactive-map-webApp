@@ -14,7 +14,6 @@ class CustomTopic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.smoke,
       padding: const EdgeInsets.symmetric(
         vertical: 10,
         horizontal: 10,

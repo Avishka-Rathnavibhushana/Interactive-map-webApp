@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:interactive_map/main_buildings/home.dart';
 import 'package:interactive_map/main_buildings/inside_school/motor.dart';
 import 'package:interactive_map/main_buildings/inside_school/school_main_screens.dart';
-import 'package:interactive_map/main_buildings/inside_school/temporary.dart';
+import 'package:interactive_map/main_buildings/inside_school/energy_saving.dart';
+import 'package:interactive_map/widgets/custom_button_label.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
+import 'package:interactive_map/widgets/text_area.dart';
+import 'package:interactive_map/widgets/text_area_small.dart';
 import 'package:video_player/video_player.dart';
 
 class SchoolVideo extends StatefulWidget {
@@ -18,8 +21,8 @@ class _SchoolVideoState extends State<SchoolVideo> {
 
   late VideoPlayerController _motorVideoController;
   bool _motorVideoPlaying = false;
-  late VideoPlayerController _temporaryVideoController;
-  bool _temporaryVideoPlaying = false;
+  late VideoPlayerController _energySavingVideoController;
+  bool _energySavingVideoPlaying = false;
   late VideoPlayerController _insideVideoController;
   bool _insideVideoPlaying = false;
 
@@ -27,13 +30,16 @@ class _SchoolVideoState extends State<SchoolVideo> {
   bool show = false;
   bool _isPlaying = false;
 
-  final String url = 'assets/videos/school_REV_v001.mp4';
+  final String url = 'assets/videos/school_REV.mp4';
 
   final String motorVideoImage = 'assets/videos/school_MOTOR.mp4';
-  final String temporaryVideoImage = 'assets/videos/datacentre_v001.mp4';
-  final String insideVideoImage = 'assets/videos/school_MAP_v003.mp4';
+  final String energySavingVideoImage = 'assets/videos/school_MOTOR.mp4';
+  final String insideVideoImage = 'assets/videos/school_MAP.mp4';
 
-  final String schoolImage = 'assets/images/school.jpg';
+  final String schoolImage = 'assets/tempory images/School_Plain.png';
+
+  bool showTextAreaSmall = true;
+  bool showEnergySaving = false;
 
   setIndex(value) {
     index = value;
@@ -55,7 +61,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
     });
 
     index = 0;
-    show = true;
+    show = false;
 
     videoHandler();
 
@@ -77,13 +83,14 @@ class _SchoolVideoState extends State<SchoolVideo> {
               _motorVideoController.setLooping(false);
             })
           });
-    _temporaryVideoController = VideoPlayerController.asset(temporaryVideoImage)
-      ..initialize().then((_) => {
-            setState(() {
-              _temporaryVideoController.setVolume(0);
-              _temporaryVideoController.setLooping(false);
-            })
-          });
+    _energySavingVideoController =
+        VideoPlayerController.asset(energySavingVideoImage)
+          ..initialize().then((_) => {
+                setState(() {
+                  _energySavingVideoController.setVolume(0);
+                  _energySavingVideoController.setLooping(false);
+                })
+              });
     _insideVideoController = VideoPlayerController.asset(insideVideoImage)
       ..initialize().then((_) => {
             setState(() {
@@ -101,7 +108,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
   void dispose() {
     _controller.dispose();
     _motorVideoController.dispose();
-    _temporaryVideoController.dispose();
+    _energySavingVideoController.dispose();
     _insideVideoController.dispose();
 
     super.dispose();
@@ -119,20 +126,20 @@ class _SchoolVideoState extends State<SchoolVideo> {
               child: VideoPlayer(_controller),
             ),
             show ? motor() : Container(),
-            show ? temporary() : Container(),
+            show ? energySaving() : Container(),
             show ? screenMan2() : Container(),
             show ? menuButton() : Container(),
-            show ? backButton() : Container(),
+            // show ? backButton() : Container(),
             _motorVideoPlaying
                 ? AspectRatio(
                     aspectRatio: _motorVideoController.value.aspectRatio,
                     child: VideoPlayer(_motorVideoController),
                   )
                 : Container(),
-            _temporaryVideoPlaying
+            _energySavingVideoPlaying
                 ? AspectRatio(
-                    aspectRatio: _temporaryVideoController.value.aspectRatio,
-                    child: VideoPlayer(_temporaryVideoController),
+                    aspectRatio: _energySavingVideoController.value.aspectRatio,
+                    child: VideoPlayer(_energySavingVideoController),
                   )
                 : Container(),
             _insideVideoPlaying
@@ -151,14 +158,120 @@ class _SchoolVideoState extends State<SchoolVideo> {
                       ),
                     ),
                   )
-                : Container()
+                : Container(),
+            show
+                ? Positioned(
+                    top: screenSize.height * (0.1),
+                    child: TextArea(
+                        screenSize: screenSize,
+                        texts: const [
+                          "Smart Motor System",
+                          "Smart HVAC",
+                          "Smart Building Operations"
+                        ],
+                        topic: "Turntide for Schools",
+                        description:
+                            "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights"),
+                  )
+                : Container(),
+            show
+                ? Positioned(
+                    left: screenSize.width * (0.495),
+                    child: Container(
+                      width: screenSize.width * 0.06,
+                      height: screenSize.width * 0.17,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(
+                              'assets/animations/Data_animation_512.gif'),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  )
+                : Container(),
+            showTextAreaSmall
+                ? Positioned(
+                    bottom: screenSize.height * (0.2),
+                    child: TextAreaSmall(
+                        width: screenSize.width * 0.25,
+                        screenSize: screenSize,
+                        prefixText: "64%",
+                        description:
+                            "of energy in school is used by HVAC and lightning"),
+                  )
+                : Container(),
+            showTextAreaSmall
+                ? Positioned(
+                    bottom: screenSize.height * (0.2),
+                    right: 0,
+                    child: GestureDetector(
+                      onTap: () {
+                        setShow();
+                        setState(() {
+                          showTextAreaSmall = false;
+                        });
+                      },
+                      child: Container(
+                        width: screenSize.width * 0.091,
+                        height: screenSize.width * 0.040,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('assets/graphics/Next.png'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                : Container(),
+            showEnergySaving
+                ? Positioned(
+                    top: screenSize.height * (0.1),
+                    child: TextArea(
+                        screenSize: screenSize,
+                        texts: const [
+                          "Improve energy efficiency",
+                          "Maintain a comfortable environment",
+                          "Automate lighting and HVAC",
+                          "Extent equipment life",
+                          "Prevent learning disruption"
+                        ],
+                        topic: "Stratergies for Sustainable Operations",
+                        description: ""),
+                  )
+                : Container(),
+            showEnergySaving
+                ? Positioned(
+                    bottom: screenSize.height * (0.2),
+                    right: 0,
+                    child: GestureDetector(
+                      onTap: () {
+                        setShow();
+                        setState(() {
+                          showEnergySaving = false;
+                        });
+                      },
+                      child: Container(
+                        width: screenSize.width * 0.091,
+                        height: screenSize.width * 0.040,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('assets/graphics/Next.png'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                : Container(),
           ],
         ),
       ),
     );
   }
 
-  Widget backButton() {
+  Widget menuButton() {
     var screenSize = MediaQuery.of(context).size;
     return SizedBox(
       height: screenSize.height * 0.95,
@@ -188,17 +301,9 @@ class _SchoolVideoState extends State<SchoolVideo> {
           child: Container(
             width: screenSize.width * 0.050,
             height: screenSize.width * 0.050,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: const Offset(0, 3), // changes position of shadow
-                ),
-              ],
-              image: const DecorationImage(
-                image: AssetImage('assets/graphics/back.png'),
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/graphics/HOME.png'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -208,66 +313,58 @@ class _SchoolVideoState extends State<SchoolVideo> {
     );
   }
 
-  Widget menuButton() {
-    var screenSize = MediaQuery.of(context).size;
-    return SizedBox(
-      height: screenSize.height * 0.95,
-      child: Align(
-        alignment: Alignment.topLeft,
-        child: GestureDetector(
-          onTap: () {
-            setShow();
-            _controller.play();
+  // Widget backButton() {
+  //   var screenSize = MediaQuery.of(context).size;
+  //   return SizedBox(
+  //     height: screenSize.height * 0.95,
+  //     child: Align(
+  //       alignment: Alignment.topLeft,
+  //       child: GestureDetector(
+  //         onTap: () {
+  //           setShow();
+  //           _controller.play();
 
-            _controller.addListener(() {
-              final bool isPlaying = _controller.value.isPlaying;
+  //           _controller.addListener(() {
+  //             final bool isPlaying = _controller.value.isPlaying;
 
-              if (isPlaying != _isPlaying) {
-                setState(() {
-                  _isPlaying = isPlaying;
-                  setIndex(++index);
-                });
-                if (index > 1) {
-                  _controller.removeListener(() {});
+  //             if (isPlaying != _isPlaying) {
+  //               setState(() {
+  //                 _isPlaying = isPlaying;
+  //                 setIndex(++index);
+  //               });
+  //               if (index > 1) {
+  //                 _controller.removeListener(() {});
 
-                  customPushReplacement(context, const HomeVideo());
-                }
-              }
-            });
-          },
-          child: Container(
-            width: screenSize.width * 0.050,
-            height: screenSize.width * 0.050,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: const Offset(0, 3), // changes position of shadow
-                ),
-              ],
-              image: const DecorationImage(
-                image: AssetImage('assets/graphics/Home.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+  //                 customPushReplacement(context, const HomeVideo());
+  //               }
+  //             }
+  //           });
+  //         },
+  //         child: Container(
+  //           width: screenSize.width * 0.050,
+  //           height: screenSize.width * 0.050,
+  //           decoration: const BoxDecoration(
+
+  //             image:  DecorationImage(
+  //               image: AssetImage('assets/graphics/HOME.png'),
+  //               fit: BoxFit.cover,
+  //             ),
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget motor() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.092),
-        top: screenSize.width * (0.138),
-        width: 150,
+        left: screenSize.width * (0.5),
+        top: screenSize.width * (0.18),
         child: Stack(
           children: [
-            ElevatedButton(
-              onPressed: () async {
+            InkWell(
+              onTap: () async {
                 setShow();
                 setState(() {
                   _motorVideoPlaying = true;
@@ -290,96 +387,56 @@ class _SchoolVideoState extends State<SchoolVideo> {
                   }
                 });
               },
-              child: Container(
-                width: screenSize.width * 0.058,
-                height: screenSize.width * 0.058,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/graphics/POINT_1.png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+              child: CustomButtonLabel(
+                screenSize: screenSize,
+                text: "Smart HVAC",
+                type: 2,
               ),
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all(const CircleBorder()),
-                padding: MaterialStateProperty.all(const EdgeInsets.all(0.4)),
-                backgroundColor: MaterialStateProperty.all(
-                    Colors.transparent), // <-- Button color
-                overlayColor:
-                    MaterialStateProperty.resolveWith<Color?>((states) {
-                  if (states.contains(MaterialState.pressed))
-                    return Colors.red; // <-- Splash color
-                }),
-              ),
-            ),
-            const Positioned(
-              left: 48,
-              top: 10,
-              child: Text('Motor'),
             ),
           ],
         ));
   }
 
-  Widget temporary() {
+  Widget energySaving() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.792),
-        top: screenSize.width * (0.155),
-        width: 150,
+        left: screenSize.width * (0.362),
+        top: screenSize.width * (0.428),
         child: Stack(
           children: [
-            ElevatedButton(
-              onPressed: () async {
+            InkWell(
+              onTap: () async {
                 setShow();
                 setState(() {
-                  _temporaryVideoPlaying = true;
+                  showEnergySaving = true;
                 });
-                _temporaryVideoController.play();
+                // setState(() {
+                //   _energySavingVideoPlaying = true;
+                // });
+                // _energySavingVideoController.play();
 
-                _temporaryVideoController.addListener(() {
-                  final bool isPlaying =
-                      _temporaryVideoController.value.isPlaying;
-                  print(isPlaying);
-                  if (isPlaying != _isPlaying) {
-                    setState(() {
-                      _isPlaying = isPlaying;
-                      setIndex(++index);
-                    });
-                    if (index > 1) {
-                      _temporaryVideoController.removeListener(() {});
+                // _energySavingVideoController.addListener(() {
+                //   final bool isPlaying =
+                //       _energySavingVideoController.value.isPlaying;
+                //   print(isPlaying);
+                //   if (isPlaying != _isPlaying) {
+                //     setState(() {
+                //       _isPlaying = isPlaying;
+                //       setIndex(++index);
+                //     });
+                //     if (index > 1) {
+                //       _energySavingVideoController.removeListener(() {});
 
-                      customPushReplacement(context, const Temporary());
-                    }
-                  }
-                });
+                //       customPushReplacement(context, const EnergySaving());
+                //     }
+                //   }
+                // });
               },
-              child: Container(
-                width: screenSize.width * 0.058,
-                height: screenSize.width * 0.058,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/graphics/POINT_2.png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+              child: CustomButtonLabel(
+                screenSize: screenSize,
+                text: "Energy-Saving Stratergies",
+                type: 1,
               ),
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all(const CircleBorder()),
-                padding: MaterialStateProperty.all(const EdgeInsets.all(0.4)),
-                backgroundColor: MaterialStateProperty.all(
-                    Colors.transparent), // <-- Button color
-                overlayColor:
-                    MaterialStateProperty.resolveWith<Color?>((states) {
-                  if (states.contains(MaterialState.pressed))
-                    return Colors.red; // <-- Splash color
-                }),
-              ),
-            ),
-            const Positioned(
-              left: 48,
-              top: 10,
-              child: Text('Temporary'),
             ),
           ],
         ));
@@ -388,13 +445,12 @@ class _SchoolVideoState extends State<SchoolVideo> {
   Widget screenMan2() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.342),
-        top: screenSize.width * (0.428),
-        width: 150,
+        left: screenSize.width * (0.55),
+        top: screenSize.width * (0.12),
         child: Stack(
           children: [
-            ElevatedButton(
-              onPressed: () async {
+            InkWell(
+              onTap: () async {
                 setShow();
                 setState(() {
                   _insideVideoPlaying = true;
@@ -417,32 +473,11 @@ class _SchoolVideoState extends State<SchoolVideo> {
                   }
                 });
               },
-              child: Container(
-                width: screenSize.width * 0.058,
-                height: screenSize.width * 0.058,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/graphics/POINT_3.png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+              child: CustomButtonLabel(
+                screenSize: screenSize,
+                text: "TurntideApp",
+                type: 3,
               ),
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all(const CircleBorder()),
-                padding: MaterialStateProperty.all(const EdgeInsets.all(0.4)),
-                backgroundColor: MaterialStateProperty.all(
-                    Colors.transparent), // <-- Button color
-                overlayColor:
-                    MaterialStateProperty.resolveWith<Color?>((states) {
-                  if (states.contains(MaterialState.pressed))
-                    return Colors.red; // <-- Splash color
-                }),
-              ),
-            ),
-            const Positioned(
-              left: 48,
-              top: 10,
-              child: Text('Inside'),
             ),
           ],
         ));

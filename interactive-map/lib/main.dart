@@ -24,6 +24,7 @@ class _InteractiveMapState extends State<InteractiveMap> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Video app',
       initialBinding: AppBinding(),
       home: const HomeVideo(),

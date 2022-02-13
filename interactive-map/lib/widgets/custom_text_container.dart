@@ -15,6 +15,7 @@ class CustomTextContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 200,
+      height: 125,
       color: AppColors.fern,
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Column(

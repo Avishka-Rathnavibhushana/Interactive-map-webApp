@@ -14,10 +14,10 @@ class CustomButtonLabel extends StatelessWidget {
   final int type;
 
   final List<String> prefixIcons = [
-    'assets/graphics/POINT_plain.png',
-    'assets/graphics/POINT_1.png',
-    'assets/graphics/POINT_2.png',
-    'assets/graphics/POINT_3.png'
+    'assets/graphics/Hot_Spot_plain.png',
+    'assets/graphics/Hot_Spot_1.png',
+    'assets/graphics/Hot_Spot_2.png',
+    'assets/graphics/Hot_Spot_3.png'
   ];
 
   @override
@@ -31,17 +31,17 @@ class CustomButtonLabel extends StatelessWidget {
           fit: StackFit.loose,
           children: [
             Container(
-              height: screenSize.width * 0.060 - screenSize.width * 0.030,
+              height: screenSize.width * 0.04 - screenSize.width * 0.02,
               margin: EdgeInsets.only(
-                left: screenSize.width * 0.060 / 2,
-                top: screenSize.width * 0.015,
+                left: screenSize.width * 0.04 / 2,
+                top: screenSize.width * 0.01,
               ),
               decoration: const BoxDecoration(
                 color: AppColors.night,
               ),
               child: Padding(
                 padding: EdgeInsets.only(
-                  left: screenSize.width * 0.060 / 2 + 10,
+                  left: screenSize.width * 0.04 / 2 + 10,
                   right: 30,
                 ),
                 child: Row(
@@ -63,8 +63,8 @@ class CustomButtonLabel extends StatelessWidget {
               ),
             ),
             Container(
-              width: screenSize.width * 0.060,
-              height: screenSize.width * 0.060,
+              width: screenSize.width * 0.04,
+              height: screenSize.width * 0.04,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(prefixIcons[type]),

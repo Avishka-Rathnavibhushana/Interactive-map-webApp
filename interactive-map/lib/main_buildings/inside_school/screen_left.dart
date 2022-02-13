@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:interactive_map/main_buildings/home.dart';
 import 'package:interactive_map/main_buildings/inside_school/motor.dart';
 import 'package:interactive_map/main_buildings/inside_school/school_main_screens.dart';
-import 'package:interactive_map/main_buildings/inside_school/temporary.dart';
+import 'package:interactive_map/main_buildings/inside_school/energy_saving.dart';
 import 'package:video_player/video_player.dart';
 
 class ScreenLeft extends StatefulWidget {
@@ -18,7 +18,7 @@ class _ScreenLeftState extends State<ScreenLeft> {
   bool show = false;
   bool _isPlaying = false;
   int nextIndex = 0;
-  String url = 'assets/videos/screen_LEFT_REV_v001.mp4';
+  String url = 'assets/videos/screen_LEFT_REV.mp4';
 
   setIndex(value) {
     index = value;
@@ -148,7 +148,7 @@ class _ScreenLeftState extends State<ScreenLeft> {
                 ),
               ],
               image: const DecorationImage(
-                image: AssetImage('assets/graphics/next.png'),
+                image: AssetImage('assets/graphics/Next.png'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -263,7 +263,7 @@ class _ScreenLeftState extends State<ScreenLeft> {
                 ),
               ],
               image: const DecorationImage(
-                image: AssetImage('assets/graphics/Home.png'),
+                image: AssetImage('assets/graphics/HOME.png'),
                 fit: BoxFit.cover,
               ),
             ),
