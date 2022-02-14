@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/main_buildings/bank.dart';
@@ -180,10 +182,11 @@ class _HomeVideoState extends State<HomeVideo> {
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            Align(
-              alignment: Alignment.topCenter,
-              child: AspectRatio(
-                aspectRatio: _timerVideoController.value.aspectRatio,
+            FittedBox(
+              fit: BoxFit.fitHeight,
+              child: Container(
+                width: 3840,
+                height: 2160,
                 child: VideoPlayer(_timerVideoController),
               ),
             ),
@@ -247,11 +250,9 @@ class _HomeVideoState extends State<HomeVideo> {
             loading
                 ? Container(
                     width: screenSize.width,
-                    child: Expanded(
-                      child: Image.asset(
-                        buildingImage,
-                        fit: BoxFit.fill,
-                      ),
+                    child: Image.asset(
+                      buildingImage,
+                      fit: BoxFit.fill,
                     ),
                   )
                 : Container(),

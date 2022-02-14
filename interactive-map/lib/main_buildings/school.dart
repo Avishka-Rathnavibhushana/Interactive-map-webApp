@@ -151,11 +151,9 @@ class _SchoolVideoState extends State<SchoolVideo> {
             loading
                 ? Container(
                     width: screenSize.width,
-                    child: Expanded(
-                      child: Image.asset(
-                        schoolImage,
-                        fit: BoxFit.fill,
-                      ),
+                    child: Image.asset(
+                      schoolImage,
+                      fit: BoxFit.fill,
                     ),
                   )
                 : Container(),
@@ -466,7 +464,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
                       setIndex(++index);
                     });
                     if (index > 1) {
-                      _insideVideoController.removeListener(() {});
+                      //_insideVideoController.removeListener(() {});
 
                       customPushReplacement(context, const SchoolMainScreens());
                     }
