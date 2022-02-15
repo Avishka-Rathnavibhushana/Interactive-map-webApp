@@ -27,6 +27,8 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
   bool show = false;
   final String url = 'assets/videos/school_REV.mp4';
 
+  String mapMainScreenImage = 'assets/tempory images/screen_MAIN.png';
+
   setIndex(value) {
     index = value;
     setState(() {});
@@ -38,21 +40,31 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
     });
   }
 
+  bool loading = true;
+
   @override
   void initState() {
-    // Create and store the VideoPlayerController. The VideoPlayerController
-    // offers several different constructors to play videos from assets, files,
-    // or the internet.
+    setState(() {
+      loading = true;
+    });
+
     index = 0;
     show = false;
-    _controller = VideoPlayerController.asset(url)
-      ..initialize().then((_) => {
-            setState(() {
-              _controller.setVolume(0);
-              _controller.setLooping(false);
-              show = true;
-            })
-          });
+
+    videoHandler();
+
+    super.initState();
+  }
+
+  videoHandler() async {
+    _controller = VideoPlayerController.asset(url);
+    await _controller.initialize();
+    setState(() {
+      _controller.setVolume(0);
+      _controller.setLooping(false);
+      show = true;
+    });
+
     _leftScreenVideoController =
         VideoPlayerController.asset("assets/videos/screen_LEFT.mp4")
           ..initialize().then((_) => {
@@ -69,10 +81,10 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
                   _rightScreenVideoController.setLooping(false);
                 })
               });
-    // Use the controller to loop the video.
-    _controller.setLooping(true);
 
-    super.initState();
+    setState(() {
+      loading = false;
+    });
   }
 
   @override
@@ -84,26 +96,26 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            AspectRatio(
-              aspectRatio: _controller.value.aspectRatio,
-              // Use the VideoPlayer widget to display the video.
-              child: VideoPlayer(_controller),
-            ),
             show
-                ? Container(
-                    width: screenSize.width,
-                    child: Expanded(
-                      child: Image.asset(
-                        'assets/tempory images/screen_MAIN.png',
-                        fit: BoxFit.fill,
-                      ),
-                    ),
+                ? AspectRatio(
+                    aspectRatio: _controller.value.aspectRatio,
+                    // Use the VideoPlayer widget to display the video.
+                    child: VideoPlayer(_controller),
                   )
                 : Container(),
+            Container(
+              width: screenSize.width,
+              child: Image.asset(
+                mapMainScreenImage,
+                fit: BoxFit.fill,
+              ),
+            ),
+
             show ? screenLeft() : Container(),
             show ? screenRight() : Container(),
             //show ? backButton() : Container(),
             show ? menuButton() : Container(),
+
             _leftScreenVideoPlaying
                 ? AspectRatio(
                     aspectRatio: _leftScreenVideoController.value.aspectRatio,
@@ -116,6 +128,15 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
                     aspectRatio: _rightScreenVideoController.value.aspectRatio,
                     // Use the VideoPlayer widget to display the video.
                     child: VideoPlayer(_rightScreenVideoController),
+                  )
+                : Container(),
+            loading
+                ? Container(
+                    width: screenSize.width,
+                    child: Image.asset(
+                      mapMainScreenImage,
+                      fit: BoxFit.fill,
+                    ),
                   )
                 : Container(),
 
@@ -141,16 +162,15 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
   Widget screenLeft() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.382),
-        top: screenSize.width * (0.264),
+        left: screenSize.width * (0.362),
+        top: screenSize.width * (0.184),
         child: Stack(
           children: [
             GestureDetector(
-              onTap: () {
+              onTap: () async {
                 setShow();
-                if (_controller.value.isPlaying) {
-                  _controller.pause();
-                }
+
+                //await Future.delayed(Duration(seconds: 1));
 
                 setState(() {
                   _leftScreenVideoPlaying = true;
@@ -190,7 +210,7 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
               child: CustomButtonLabel(
                 screenSize: screenSize,
                 text: "Smart Building Operations",
-                type: 0,
+                type: 1,
               ),
             ),
           ],
@@ -201,7 +221,7 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
         left: screenSize.width * (0.732),
-        top: screenSize.width * (0.265),
+        top: screenSize.width * (0.205),
         child: Stack(
           children: [
             GestureDetector(
@@ -249,7 +269,7 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
               child: CustomButtonLabel(
                 screenSize: screenSize,
                 text: "Smart HVAC",
-                type: 0,
+                type: 2,
               ),
             ),
           ],

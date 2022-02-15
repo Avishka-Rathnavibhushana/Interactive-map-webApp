@@ -3,6 +3,7 @@ import 'package:interactive_map/main_buildings/home.dart';
 import 'package:interactive_map/main_buildings/inside_school/motor.dart';
 import 'package:interactive_map/main_buildings/inside_school/school_main_screens.dart';
 import 'package:interactive_map/main_buildings/inside_school/energy_saving.dart';
+import 'package:interactive_map/widgets/text_area.dart';
 import 'package:video_player/video_player.dart';
 
 class ScreenLeft extends StatefulWidget {
@@ -19,6 +20,10 @@ class _ScreenLeftState extends State<ScreenLeft> {
   bool _isPlaying = false;
   int nextIndex = 0;
   String url = 'assets/videos/screen_LEFT_REV.mp4';
+
+  String screenLeftImage_1 = 'assets/tempory images/screen_LEFT.png';
+  String screenLeftImage_2 = 'assets/tempory images/screen_LEFT_2.png';
+  String screenLeftImage_3 = 'assets/tempory images/screen_LEFT_3.png';
 
   setIndex(value) {
     index = value;
@@ -75,15 +80,71 @@ class _ScreenLeftState extends State<ScreenLeft> {
               // Use the VideoPlayer widget to display the video.
               child: VideoPlayer(_controller),
             ),
+
+            show
+                ? nextIndex == 0
+                    ? Container(
+                        width: screenSize.width,
+                        child: Image.asset(
+                          screenLeftImage_1,
+                          fit: BoxFit.fill,
+                        ),
+                      )
+                    : nextIndex == 1
+                        ? Container(
+                            width: screenSize.width,
+                            child: Image.asset(
+                              screenLeftImage_2,
+                              fit: BoxFit.fill,
+                            ),
+                          )
+                        : Container(
+                            width: screenSize.width,
+                            child: Image.asset(
+                              screenLeftImage_3,
+                              fit: BoxFit.fill,
+                            ),
+                          )
+                : Container(),
             show ? nextButton() : Container(),
-            show ? backButton() : Container(),
+            // show ? backButton() : Container(),
             show ? menuButton() : Container(),
             show
                 ? nextIndex == 0
-                    ? textArea()
+                    ? Positioned(
+                        top: screenSize.height * (0.1),
+                        child: TextArea(
+                            screenSize: screenSize,
+                            texts: const [
+                              "Multi-site management and global controls allow you to react quickly",
+                              "Scale efficiency measures across your entire portfolio"
+                            ],
+                            topic: "Smart Building Operations",
+                            description: ""),
+                      )
                     : nextIndex == 1
-                        ? mediumArea()
-                        : smallArea()
+                        ? Positioned(
+                            top: screenSize.height * (0.1),
+                            child: TextArea(
+                                screenSize: screenSize,
+                                texts: const [
+                                  "Open-platform works with existing building systems regardless of vendor",
+                                  "Complete visibility in a single pane of glass"
+                                ],
+                                topic: "Smart Building Operations",
+                                description: ""),
+                          )
+                        : Positioned(
+                            top: screenSize.height * (0.1),
+                            child: TextArea(
+                                screenSize: screenSize,
+                                texts: const [
+                                  "Monitor Indoor Air Quality (IAQ) standerds",
+                                  "Help keep your employees and customers safe"
+                                ],
+                                topic: "Smart Building Operations",
+                                description: ""),
+                          )
                 : Container(),
           ],
         ),
@@ -93,64 +154,54 @@ class _ScreenLeftState extends State<ScreenLeft> {
 
   Widget nextButton() {
     var screenSize = MediaQuery.of(context).size;
-    return SizedBox(
-      height: screenSize.width * 0.52,
-      child: Align(
-        alignment: Alignment.bottomRight,
-        child: GestureDetector(
-          onTap: () {
-            if (nextIndex == 2) {
-              setShow();
-              _controller.play();
-              _controller.addListener(() {
-                final bool isPlaying = _controller.value.isPlaying;
+    return Positioned(
+      bottom: screenSize.height * (0.2),
+      right: 0,
+      child: GestureDetector(
+        onTap: () {
+          if (nextIndex == 2) {
+            setShow();
+            _controller.play();
+            _controller.addListener(() {
+              final bool isPlaying = _controller.value.isPlaying;
 
-                if (isPlaying != _isPlaying) {
-                  setState(() {
-                    _isPlaying = isPlaying;
-                    setIndex(++index);
-                  });
-                  if (index > 1) {
-                    _controller.removeListener(() {});
-                    Navigator.pushReplacement(
-                      context,
-                      PageRouteBuilder(
-                        pageBuilder: (context, animation1, animation2) =>
-                            const SchoolMainScreens(),
-                        transitionDuration: const Duration(seconds: 2),
-                        transitionsBuilder:
-                            (context, animation, secondaryAnimation, child) =>
-                                FadeTransition(
-                          opacity: animation,
-                          child: child,
-                        ),
+              if (isPlaying != _isPlaying) {
+                setState(() {
+                  _isPlaying = isPlaying;
+                  setIndex(++index);
+                });
+                if (index > 1) {
+                  _controller.removeListener(() {});
+                  Navigator.pushReplacement(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation1, animation2) =>
+                          const SchoolMainScreens(),
+                      transitionDuration: const Duration(seconds: 2),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) =>
+                              FadeTransition(
+                        opacity: animation,
+                        child: child,
                       ),
-                    );
-                  }
+                    ),
+                  );
                 }
-              });
-            } else {
-              setState(() {
-                nextIndex += 1;
-              });
-            }
-          },
-          child: Container(
-            width: screenSize.width * 0.091,
-            height: screenSize.width * 0.040,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: const Offset(0, 3), // changes position of shadow
-                ),
-              ],
-              image: const DecorationImage(
-                image: AssetImage('assets/graphics/Next.png'),
-                fit: BoxFit.cover,
-              ),
+              }
+            });
+          } else {
+            setState(() {
+              nextIndex += 1;
+            });
+          }
+        },
+        child: Container(
+          width: screenSize.width * 0.091,
+          height: screenSize.width * 0.040,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/graphics/Next.png'),
+              fit: BoxFit.cover,
             ),
           ),
         ),
@@ -158,79 +209,79 @@ class _ScreenLeftState extends State<ScreenLeft> {
     );
   }
 
-  Widget backButton() {
-    var screenSize = MediaQuery.of(context).size;
-    return SizedBox(
-      height: screenSize.height * 0.95,
-      child: Align(
-        alignment: Alignment.topRight,
-        child: GestureDetector(
-          onTap: () {
-            if (nextIndex != 0) {
-              setState(() {
-                nextIndex -= 1;
-              });
-            } else {
-              setShow();
-              _controller.play();
-              _controller.addListener(() {
-                final bool isPlaying = _controller.value.isPlaying;
+  // Widget backButton() {
+  //   var screenSize = MediaQuery.of(context).size;
+  //   return SizedBox(
+  //     height: screenSize.height * 0.95,
+  //     child: Align(
+  //       alignment: Alignment.topRight,
+  //       child: GestureDetector(
+  //         onTap: () {
+  //           if (nextIndex != 0) {
+  //             setState(() {
+  //               nextIndex -= 1;
+  //             });
+  //           } else {
+  //             setShow();
+  //             _controller.play();
+  //             _controller.addListener(() {
+  //               final bool isPlaying = _controller.value.isPlaying;
 
-                if (isPlaying != _isPlaying) {
-                  setState(() {
-                    _isPlaying = isPlaying;
-                    setIndex(++index);
-                  });
-                  if (index > 1) {
-                    _controller.removeListener(() {});
-                    Navigator.pushReplacement(
-                      context,
-                      PageRouteBuilder(
-                        pageBuilder: (context, animation1, animation2) =>
-                            const SchoolMainScreens(),
-                        transitionDuration: const Duration(seconds: 2),
-                        transitionsBuilder:
-                            (context, animation, secondaryAnimation, child) =>
-                                FadeTransition(
-                          opacity: animation,
-                          child: child,
-                        ),
-                      ),
-                    );
-                  }
-                }
-              });
-            }
-          },
-          child: Container(
-            width: screenSize.width * 0.050,
-            height: screenSize.width * 0.050,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: const Offset(0, 3), // changes position of shadow
-                ),
-              ],
-              image: const DecorationImage(
-                image: AssetImage('assets/graphics/back.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+  //               if (isPlaying != _isPlaying) {
+  //                 setState(() {
+  //                   _isPlaying = isPlaying;
+  //                   setIndex(++index);
+  //                 });
+  //                 if (index > 1) {
+  //                   _controller.removeListener(() {});
+  //                   Navigator.pushReplacement(
+  //                     context,
+  //                     PageRouteBuilder(
+  //                       pageBuilder: (context, animation1, animation2) =>
+  //                           const SchoolMainScreens(),
+  //                       transitionDuration: const Duration(seconds: 2),
+  //                       transitionsBuilder:
+  //                           (context, animation, secondaryAnimation, child) =>
+  //                               FadeTransition(
+  //                         opacity: animation,
+  //                         child: child,
+  //                       ),
+  //                     ),
+  //                   );
+  //                 }
+  //               }
+  //             });
+  //           }
+  //         },
+  //         child: Container(
+  //           width: screenSize.width * 0.050,
+  //           height: screenSize.width * 0.050,
+  //           decoration: BoxDecoration(
+  //             boxShadow: [
+  //               BoxShadow(
+  //                 color: Colors.grey.withOpacity(0.5),
+  //                 spreadRadius: 5,
+  //                 blurRadius: 7,
+  //                 offset: const Offset(0, 3), // changes position of shadow
+  //               ),
+  //             ],
+  //             image: const DecorationImage(
+  //               image: AssetImage('assets/graphics/back.png'),
+  //               fit: BoxFit.cover,
+  //             ),
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget menuButton() {
     var screenSize = MediaQuery.of(context).size;
     return SizedBox(
       height: screenSize.height * 0.95,
       child: Align(
-        alignment: Alignment.topLeft,
+        alignment: Alignment.topRight,
         child: GestureDetector(
           onTap: () {
             _controller.pause();
@@ -253,141 +304,13 @@ class _ScreenLeftState extends State<ScreenLeft> {
           child: Container(
             width: screenSize.width * 0.050,
             height: screenSize.width * 0.050,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: const Offset(0, 3), // changes position of shadow
-                ),
-              ],
-              image: const DecorationImage(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
                 image: AssetImage('assets/graphics/HOME.png'),
                 fit: BoxFit.cover,
               ),
             ),
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget smallArea() {
-    var screenSize = MediaQuery.of(context).size;
-    return SizedBox(
-      height: screenSize.width * 0.58,
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: screenSize.width * 0.35),
-            Container(
-              width: screenSize.width * 0.35,
-              height: screenSize.width * 0.14,
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: const Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-                color: const Color(0xFF131438),
-              ),
-              child: const Text(
-                'dfsdfsf dfsdf sdfds dsfsd fsfsdfsdfs sdfdf sdfsdfs dfsdfsdf dsfsdfs sdfsdfs'
-                'dsfsfd dfsd sdfdsfs df sd f sdfs sdfsdf sfd sd fdsf sdfds dsf gffgd dfdf dfds s sfssdf sf '
-                'dfsdfs fsfs sfs fsfsfsdf dfs fs f',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-            SizedBox(height: screenSize.width * 0.05),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget mediumArea() {
-    var screenSize = MediaQuery.of(context).size;
-    return SizedBox(
-      height: screenSize.width * 0.58,
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: screenSize.width * 0.15),
-            Container(
-              width: screenSize.width * 0.26,
-              height: screenSize.width * 0.18,
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: const Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-                color: const Color(0xFF131438),
-              ),
-              child: const Text(
-                'dfsdfsf dfsdf sdfds dsfsd fsfsdfsdfs sdfdf sdfsdfs dfsdfsdf dsfsdfs sdfsdfs'
-                'dsfsfd dfsd sdfdsfs df sd f sdfs sdfsdf sfd sd',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-            SizedBox(height: screenSize.width * 0.05),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget textArea() {
-    var screenSize = MediaQuery.of(context).size;
-    return SizedBox(
-      height: screenSize.width * 0.58,
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: screenSize.width * 0.28,
-              height: screenSize.width * 0.32,
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: const Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-                color: const Color(0xFF131438),
-              ),
-              child: const Text(
-                'dfsdfsf dfsdf sdfds dsfsd fsfsdfsdfs sdfdf sdfsdfs dfsdfsdf dsfsdfs sdfsdfs'
-                'dsfsfd dfsd sdfdsfs df sd f sdfs sdfsdf sfd sd fdsf sdfds dsf gffgd dfdf dfds s sfssdf sf '
-                'dfsdfs fsfs sfs fsfsfsdf dfs fs fdfsd dfsdf',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ],
         ),
       ),
     );

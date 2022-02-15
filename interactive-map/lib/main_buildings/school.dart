@@ -37,6 +37,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
   final String insideVideoImage = 'assets/videos/school_MAP.mp4';
 
   final String schoolImage = 'assets/tempory images/School_Plain.png';
+  final String mapScreenImage = 'assets/tempory images/screen_MAIN.png';
 
   bool showTextAreaSmall = true;
   bool showEnergySaving = false;
