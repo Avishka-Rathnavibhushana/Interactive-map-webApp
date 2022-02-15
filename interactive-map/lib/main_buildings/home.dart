@@ -59,7 +59,8 @@ class _HomeVideoState extends State<HomeVideo> {
   final String fastFoodVideoUrl = 'assets/videos/fastfood.mp4';
 
   final String buildingImage = 'assets/tempory images/Buildings_menu_still.png';
-  final String schoolSelected = 'assets/tempory images/school_SELECTED.png';
+  final String qrBackgroundImage =
+      'assets/tempory images/Buildings_menu_QR.png';
 
   bool timerOFF = false;
 
@@ -197,6 +198,7 @@ class _HomeVideoState extends State<HomeVideo> {
             show ? Container() : warehouse(),
             show ? Container() : groceryShop(),
             show ? Container() : fastFood(),
+            show ? Container() : qrButton(),
 
             Stack(
               children: [
@@ -268,6 +270,28 @@ class _HomeVideoState extends State<HomeVideo> {
             //       )
             //     : Container(),
             showQR
+                ? GestureDetector(
+                    onTap: () async {
+                      setState(() {
+                        width = 0;
+                      });
+
+                      await Future.delayed(const Duration(milliseconds: 200));
+                      setState(() {
+                        showQR = false;
+                      });
+                      setShow();
+                    },
+                    child: Container(
+                      width: screenSize.width,
+                      child: Image.asset(
+                        qrBackgroundImage,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  )
+                : Container(),
+            showQR
                 ? Positioned(
                     bottom: screenSize.height * (0.2),
                     child: TextAreaWithQR(
@@ -321,6 +345,41 @@ class _HomeVideoState extends State<HomeVideo> {
             //   ),
             // ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget qrButton() {
+    var screenSize = MediaQuery.of(context).size;
+    return SizedBox(
+      height: screenSize.height * 0.95,
+      child: Align(
+        alignment: Alignment.topRight,
+        child: GestureDetector(
+          onTap: () async {
+            setShow();
+            setState(() {
+              width = 0;
+              showQR = true;
+            });
+
+            await Future.delayed(const Duration(milliseconds: 200));
+
+            setState(() {
+              width = screenSize.width * 0.2;
+            });
+          },
+          child: Container(
+            width: screenSize.width * 0.050,
+            height: screenSize.width * 0.050,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/graphics/MORE.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
         ),
       ),
     );
@@ -489,20 +548,10 @@ class _HomeVideoState extends State<HomeVideo> {
 
                 setState(() {
                   _schoolVideoPlaying = true;
-                  showQR = true;
                 });
-
-                await Future.delayed(const Duration(milliseconds: 200));
-
-                setState(() {
-                  width = screenSize.width * 0.2;
-                });
-
-                await Future.delayed(const Duration(seconds: 3));
 
                 setState(() {
                   width = 0;
-                  showQR = false;
                 });
 
                 _schoolVideoController.play();
