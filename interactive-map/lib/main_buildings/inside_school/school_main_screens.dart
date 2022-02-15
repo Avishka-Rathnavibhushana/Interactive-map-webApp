@@ -4,6 +4,7 @@ import 'package:interactive_map/main_buildings/school.dart';
 import 'package:interactive_map/main_buildings/inside_school/screen_left.dart';
 import 'package:interactive_map/main_buildings/inside_school/screen_right.dart';
 import 'package:interactive_map/widgets/custom_button_label.dart';
+import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
 import 'package:interactive_map/widgets/text_area.dart';
 import 'package:video_player/video_player.dart';
 
@@ -207,7 +208,7 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
                   }
                 });
               },
-              child: CustomButtonLabel(
+              child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
                 text: "Smart Building Operations",
                 type: 1,
@@ -266,7 +267,7 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
                   }
                 });
               },
-              child: CustomButtonLabel(
+              child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
                 text: "Smart HVAC",
                 type: 2,

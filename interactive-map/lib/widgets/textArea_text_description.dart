@@ -6,10 +6,12 @@ class TextAreaTextDescription extends StatelessWidget {
     Key? key,
     required this.screenSize,
     required this.text,
+    required this.fontSize,
   }) : super(key: key);
 
   final Size screenSize;
   final String text;
+  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +26,9 @@ class TextAreaTextDescription extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: const TextStyle(
+              style: TextStyle(
                 color: AppColors.white,
-                fontSize: 18,
+                fontSize: fontSize,
               ),
               maxLines: 10,
               softWrap: true,

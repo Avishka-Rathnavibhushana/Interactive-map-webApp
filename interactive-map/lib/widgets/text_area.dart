@@ -38,12 +38,14 @@ class TextArea extends StatelessWidget {
               : TextAreaTextTopic(
                   screenSize: screenSize,
                   text: topic,
+                  fontSize: 19,
                 ),
           description == ''
               ? const SizedBox()
               : TextAreaTextDescription(
                   screenSize: screenSize,
                   text: description,
+                  fontSize: 18,
                 ),
           topic == ''
               ? const SizedBox()
@@ -66,6 +68,7 @@ class TextArea extends StatelessWidget {
                         .map<Widget>((text) => TextAreaTextRow(
                               screenSize: screenSize,
                               text: text,
+                              fontSize: 18,
                             ))
                         .toList(),
                   ),

@@ -4,9 +4,15 @@ import 'package:interactive_map/main_buildings/inside_school/motor.dart';
 import 'package:interactive_map/main_buildings/inside_school/school_main_screens.dart';
 import 'package:interactive_map/main_buildings/inside_school/energy_saving.dart';
 import 'package:interactive_map/widgets/custom_button_label.dart';
+import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
+import 'package:interactive_map/widgets/squre_shaped_custom_container.dart';
+import 'package:interactive_map/widgets/textArea_text_Topic.dart';
+import 'package:interactive_map/widgets/textArea_text_description.dart';
+import 'package:interactive_map/widgets/textArea_text_row.dart';
 import 'package:interactive_map/widgets/text_area.dart';
 import 'package:interactive_map/widgets/text_area_small.dart';
+import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 
 class SchoolVideo extends StatefulWidget {
@@ -160,8 +166,8 @@ class _SchoolVideoState extends State<SchoolVideo> {
                 : Container(),
             show
                 ? Positioned(
-                    top: screenSize.height * (0.1),
-                    child: TextArea(
+                    top: 100,
+                    child: TextAreaWithClip(
                         screenSize: screenSize,
                         texts: const [
                           "Smart Motor System",
@@ -386,7 +392,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
                   }
                 });
               },
-              child: CustomButtonLabel(
+              child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
                 text: "Smart HVAC",
                 type: 2,
@@ -431,7 +437,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
                 //   }
                 // });
               },
-              child: CustomButtonLabel(
+              child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
                 text: "Energy-Saving Stratergies",
                 type: 1,
@@ -472,7 +478,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
                   }
                 });
               },
-              child: CustomButtonLabel(
+              child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
                 text: "TurntideApp",
                 type: 3,

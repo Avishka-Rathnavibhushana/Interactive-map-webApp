@@ -10,9 +10,14 @@ import 'package:interactive_map/main_buildings/retail.dart';
 import 'package:interactive_map/main_buildings/school.dart';
 import 'package:interactive_map/main_buildings/warehouse.dart';
 import 'package:interactive_map/widgets/custom_button_label.dart';
+import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
 import 'package:interactive_map/widgets/custom_text_container.dart';
 import 'package:interactive_map/widgets/custom_topic.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
+import 'package:interactive_map/widgets/squre_shaped_custom_container.dart';
+import 'package:interactive_map/widgets/textArea_text_Topic.dart';
+import 'package:interactive_map/widgets/textArea_text_description.dart';
+import 'package:interactive_map/widgets/textArea_text_row.dart';
 import 'package:interactive_map/widgets/text_area.dart';
 import 'package:interactive_map/widgets/text_area_small.dart';
 import 'package:interactive_map/widgets/text_area_with_QR.dart';
@@ -313,37 +318,6 @@ class _HomeVideoState extends State<HomeVideo> {
                     ),
                   )
                 : Container(),
-
-            // Container(
-            //   color: Colors.red[100],
-            //   child: Column(
-            //     mainAxisSize: MainAxisSize.max,
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     children: [
-            //       // CustomPaint(
-            //       //   size: Size(screenSize.width * 0.35,
-            //       //       400), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
-            //       //   painter: SqureShapedCustomContainer(),
-            //       //   child: Container(
-            //       //     color: Colors.red[400],
-            //       //     width: screenSize.width * 0.35,
-            //       //     child: Column(
-            //       //       mainAxisSize: MainAxisSize.max,
-            //       //       mainAxisAlignment: MainAxisAlignment.center,
-            //       //       crossAxisAlignment: CrossAxisAlignment.start,
-            //       //       children: [
-            //       //         // CustomContainerTextRow(
-            //       //         //   screenSize: screenSize,
-            //       //         //   text: '',
-            //       //         // ),
-            //       //       ],
-            //       //     ),
-            //       //   ),
-            //       // ),
-            //     ],
-            //   ),
-            // ),
           ],
         ),
       ),
@@ -423,7 +397,7 @@ class _HomeVideoState extends State<HomeVideo> {
                     }
                   });
                 },
-                child: CustomButtonLabel(
+                child: CustomButtonLabelWithClip(
                   screenSize: screenSize,
                   text: "Banks",
                   type: 0,
@@ -472,7 +446,7 @@ class _HomeVideoState extends State<HomeVideo> {
                   }
                 });
               },
-              child: CustomButtonLabel(
+              child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
                 text: "Data Centers",
                 type: 0,
@@ -520,7 +494,7 @@ class _HomeVideoState extends State<HomeVideo> {
                   }
                 });
               },
-              child: CustomButtonLabel(
+              child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
                 text: "Warehouses",
                 type: 0,
@@ -582,7 +556,7 @@ class _HomeVideoState extends State<HomeVideo> {
                   }
                 });
               },
-              child: CustomButtonLabel(
+              child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
                 text: "Schools",
                 type: 0,
@@ -629,7 +603,7 @@ class _HomeVideoState extends State<HomeVideo> {
                   }
                 });
               },
-              child: CustomButtonLabel(
+              child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
                 text: "Retail Stores",
                 type: 0,
@@ -677,7 +651,7 @@ class _HomeVideoState extends State<HomeVideo> {
                   }
                 });
               },
-              child: CustomButtonLabel(
+              child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
                 text: "Grocery Stores",
                 type: 0,
@@ -726,7 +700,7 @@ class _HomeVideoState extends State<HomeVideo> {
                   }
                 });
               },
-              child: CustomButtonLabel(
+              child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
                 text: "Quick Serve Resturants",
                 type: 0,
