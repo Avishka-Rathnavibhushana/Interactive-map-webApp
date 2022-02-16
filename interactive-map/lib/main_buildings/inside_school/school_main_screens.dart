@@ -6,6 +6,7 @@ import 'package:interactive_map/main_buildings/inside_school/screen_right.dart';
 import 'package:interactive_map/widgets/custom_button_label.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
 import 'package:interactive_map/widgets/text_area.dart';
+import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 
 class SchoolMainScreens extends StatefulWidget {
@@ -145,7 +146,7 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
                 ? Positioned(
                     bottom: screenSize.height * (0.2),
                     left: 0,
-                    child: TextArea(
+                    child: TextAreaWithClip(
                       screenSize: screenSize,
                       texts: [],
                       topic: "Trntide App for Mobile and Desktop",

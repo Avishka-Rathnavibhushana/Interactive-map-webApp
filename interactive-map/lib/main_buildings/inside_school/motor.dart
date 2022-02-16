@@ -5,6 +5,7 @@ import 'package:interactive_map/widgets/custom_text_container.dart';
 import 'package:interactive_map/widgets/custom_topic.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
 import 'package:interactive_map/widgets/text_area.dart';
+import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 
 class Motor extends StatefulWidget {
@@ -107,7 +108,7 @@ class _MotorState extends State<Motor> {
                       const SizedBox(
                         height: 25,
                       ),
-                      TextArea(
+                      TextAreaWithClip(
                         screenSize: screenSize,
                         texts: const [
                           "Optimal efficiency switched reluctance motor",

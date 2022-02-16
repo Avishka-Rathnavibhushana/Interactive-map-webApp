@@ -4,6 +4,7 @@ import 'package:interactive_map/main_buildings/inside_school/motor.dart';
 import 'package:interactive_map/main_buildings/inside_school/school_main_screens.dart';
 import 'package:interactive_map/main_buildings/inside_school/energy_saving.dart';
 import 'package:interactive_map/widgets/text_area.dart';
+import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 
 class ScreenLeft extends StatefulWidget {
@@ -113,7 +114,7 @@ class _ScreenLeftState extends State<ScreenLeft> {
                 ? nextIndex == 0
                     ? Positioned(
                         top: screenSize.height * (0.1),
-                        child: TextArea(
+                        child: TextAreaWithClip(
                             screenSize: screenSize,
                             texts: const [
                               "Multi-site management and global controls allow you to react quickly",
@@ -125,7 +126,7 @@ class _ScreenLeftState extends State<ScreenLeft> {
                     : nextIndex == 1
                         ? Positioned(
                             top: screenSize.height * (0.1),
-                            child: TextArea(
+                            child: TextAreaWithClip(
                                 screenSize: screenSize,
                                 texts: const [
                                   "Open-platform works with existing building systems regardless of vendor",
@@ -136,7 +137,7 @@ class _ScreenLeftState extends State<ScreenLeft> {
                           )
                         : Positioned(
                             top: screenSize.height * (0.1),
-                            child: TextArea(
+                            child: TextAreaWithClip(
                                 screenSize: screenSize,
                                 texts: const [
                                   "Monitor Indoor Air Quality (IAQ) standerds",

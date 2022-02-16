@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/widgets/squre_shaped_custom_container.dart';
-import 'package:interactive_map/widgets/squre_shaped_custom_container_2.dart';
+import 'package:interactive_map/widgets/squre_shaped_custom_container_label.dart';
 
 class CustomButtonLabelWithClip extends StatelessWidget {
   CustomButtonLabelWithClip({
@@ -44,7 +44,7 @@ class CustomButtonLabelWithClip extends StatelessWidget {
                     ),
                     child: CustomPaint(
                       //size: Size(700, 700),
-                      painter: SqureShapedCustomContainer2(),
+                      painter: SqureShapedCustomContainerLabel(),
                       child: Container(
                         height:
                             screenSize.width * 0.04 - screenSize.width * 0.02,

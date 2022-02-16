@@ -20,7 +20,9 @@ import 'package:interactive_map/widgets/textArea_text_description.dart';
 import 'package:interactive_map/widgets/textArea_text_row.dart';
 import 'package:interactive_map/widgets/text_area.dart';
 import 'package:interactive_map/widgets/text_area_small.dart';
+import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
 import 'package:interactive_map/widgets/text_area_with_QR.dart';
+import 'package:interactive_map/widgets/text_area_with_QR_with_clip.dart';
 import 'package:video_player/video_player.dart';
 
 class HomeVideo extends StatefulWidget {
@@ -204,7 +206,6 @@ class _HomeVideoState extends State<HomeVideo> {
             show ? Container() : groceryShop(),
             show ? Container() : fastFood(),
             show ? Container() : qrButton(),
-
             Stack(
               children: [
                 _bankVideoPlaying
@@ -296,20 +297,24 @@ class _HomeVideoState extends State<HomeVideo> {
                     ),
                   )
                 : Container(),
+
             showQR
                 ? Positioned(
-                    bottom: screenSize.height * (0.2),
-                    child: TextAreaWithQR(
-                      screenSize: screenSize,
-                      width: width,
-                      height: screenSize.width * (0.2),
+                    bottom: 100,
+                    child: Container(
+                      child: TextAreaWithQRWithClip(
+                        screenSize: screenSize,
+                        width: width == 0 ? 0 : screenSize.width * (0.2),
+                        height: screenSize.width * (0.2),
+                      ),
                     ),
                   )
                 : Container(),
+            showQR ? qrButton() : Container(),
             showTextAreaSmall
                 ? Positioned(
                     bottom: screenSize.height * (0.2),
-                    child: TextAreaSmall(
+                    child: TextAreaSmallWithClip(
                       width: width,
                       screenSize: screenSize,
                       prefixText: "64%",
@@ -332,24 +337,38 @@ class _HomeVideoState extends State<HomeVideo> {
         alignment: Alignment.topRight,
         child: GestureDetector(
           onTap: () async {
-            setShow();
-            setState(() {
-              width = 0;
-              showQR = true;
-            });
+            if (showQR) {
+              setState(() {
+                width = 0;
+              });
 
-            await Future.delayed(const Duration(milliseconds: 200));
+              await Future.delayed(const Duration(milliseconds: 200));
+              setState(() {
+                showQR = false;
+              });
+              setShow();
+            } else {
+              setShow();
+              setState(() {
+                width = 0;
+                showQR = true;
+              });
 
-            setState(() {
-              width = screenSize.width * 0.2;
-            });
+              await Future.delayed(const Duration(milliseconds: 200));
+
+              setState(() {
+                width = screenSize.width * 0.2;
+              });
+            }
           },
           child: Container(
             width: screenSize.width * 0.050,
             height: screenSize.width * 0.050,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/graphics/MORE.png'),
+                image: showQR
+                    ? AssetImage('assets/graphics/HOME.png')
+                    : AssetImage('assets/graphics/MORE.png'),
                 fit: BoxFit.cover,
               ),
             ),

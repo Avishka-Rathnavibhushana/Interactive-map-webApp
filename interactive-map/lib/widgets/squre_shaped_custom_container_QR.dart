@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
 
-class SqureShapedCustomContainer extends CustomPainter {
+class SqureShapedCustomContainerQR extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint0 = Paint()
@@ -11,8 +11,8 @@ class SqureShapedCustomContainer extends CustomPainter {
 
     double w = size.width;
     double h = size.height;
-    double wm = w - w * 0.1;
-    double hm = h - w * 0.1;
+    double wm = w - h * 0.15;
+    double hm = h * 0.85;
 
     Path path0 = Path();
     path0.moveTo(0, 0);

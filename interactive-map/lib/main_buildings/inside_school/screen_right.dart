@@ -4,6 +4,7 @@ import 'package:interactive_map/main_buildings/inside_school/motor.dart';
 import 'package:interactive_map/main_buildings/inside_school/school_main_screens.dart';
 import 'package:interactive_map/main_buildings/inside_school/energy_saving.dart';
 import 'package:interactive_map/widgets/text_area.dart';
+import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 
 class ScreenRight extends StatefulWidget {
@@ -103,7 +104,7 @@ class _ScreenRightState extends State<ScreenRight> {
                 ? nextIndex
                     ? Positioned(
                         top: screenSize.height * (0.1),
-                        child: TextArea(
+                        child: TextAreaWithClip(
                             screenSize: screenSize,
                             texts: const [
                               "Easily mange temparature setpoints and scheduling anytime, anywhere 24/7",
@@ -113,7 +114,7 @@ class _ScreenRightState extends State<ScreenRight> {
                       )
                     : Positioned(
                         top: screenSize.height * (0.1),
-                        child: TextArea(
+                        child: TextAreaWithClip(
                             screenSize: screenSize,
                             texts: const [
                               "Monitor equipment performance with fault detection and alerts for preventative maintenance",

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
 
-class SqureShapedCustomContainer2 extends CustomPainter {
+class SqureShapedCustomContainerLabel extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint0 = Paint()

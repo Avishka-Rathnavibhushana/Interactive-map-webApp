@@ -12,6 +12,7 @@ import 'package:interactive_map/widgets/textArea_text_description.dart';
 import 'package:interactive_map/widgets/textArea_text_row.dart';
 import 'package:interactive_map/widgets/text_area.dart';
 import 'package:interactive_map/widgets/text_area_small.dart';
+import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 
@@ -198,7 +199,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
             showTextAreaSmall
                 ? Positioned(
                     bottom: screenSize.height * (0.2),
-                    child: TextAreaSmall(
+                    child: TextAreaSmallWithClip(
                         width: screenSize.width * 0.25,
                         screenSize: screenSize,
                         prefixText: "64%",
@@ -233,7 +234,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
             showEnergySaving
                 ? Positioned(
                     top: screenSize.height * (0.1),
-                    child: TextArea(
+                    child: TextAreaWithClip(
                         screenSize: screenSize,
                         texts: const [
                           "Improve energy efficiency",
