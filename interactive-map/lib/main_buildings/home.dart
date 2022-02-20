@@ -1,7 +1,4 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
-import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/main_buildings/bank.dart';
 import 'package:interactive_map/main_buildings/datacentre.dart';
 import 'package:interactive_map/main_buildings/fastfood.dart';
@@ -9,24 +6,16 @@ import 'package:interactive_map/main_buildings/groceryshop.dart';
 import 'package:interactive_map/main_buildings/retail.dart';
 import 'package:interactive_map/main_buildings/school.dart';
 import 'package:interactive_map/main_buildings/warehouse.dart';
-import 'package:interactive_map/widgets/custom_button_label.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
-import 'package:interactive_map/widgets/custom_text_container.dart';
-import 'package:interactive_map/widgets/custom_topic.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
-import 'package:interactive_map/widgets/squre_shaped_custom_container.dart';
-import 'package:interactive_map/widgets/textArea_text_Topic.dart';
-import 'package:interactive_map/widgets/textArea_text_description.dart';
-import 'package:interactive_map/widgets/textArea_text_row.dart';
-import 'package:interactive_map/widgets/text_area.dart';
-import 'package:interactive_map/widgets/text_area_small.dart';
 import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
-import 'package:interactive_map/widgets/text_area_with_QR.dart';
 import 'package:interactive_map/widgets/text_area_with_QR_with_clip.dart';
 import 'package:video_player/video_player.dart';
 
 class HomeVideo extends StatefulWidget {
-  const HomeVideo({Key? key}) : super(key: key);
+  const HomeVideo({Key? key, this.offsetHor, this.offsetVer}) : super(key: key);
+  final offsetHor;
+  final offsetVer;
   @override
   _HomeVideoState createState() => _HomeVideoState();
 }
@@ -183,147 +172,233 @@ class _HomeVideoState extends State<HomeVideo> {
     super.dispose();
   }
 
+  // double getWidth(Size size) {
+  //   if (size.width > 1920 && size.height > 1080) {
+  //     return 3840;
+  //   } else if (size.width > 1366 && size.height > 768) {
+  //     return 1920;
+  //   } else if (size.width < 1366 && size.height < 768) {
+  //     return 1920 * 0.5;
+  //   }
+
+  //   return 1920;
+  // }
+
+  // double getHeight(Size size) {
+  //   if (size.width > 1920 && size.height > 1080) {
+  //     return 2160;
+  //   } else if (size.width > 1366 && size.height > 768) {
+  //     return 1080;
+  //   } else if (size.width < 1366 && size.height < 768) {
+  //     return 1080 * 0.5;
+  //   }
+
+  //   return 1080;
+  // }
+
+  var screenWidth = 3840 * 0.63;
+  var screenHeight = 2160 * 0.63;
+
+  final ScrollController _scrollControllerHrizontal = ScrollController(
+    initialScrollOffset: offsetHor,
+  );
+
+  final ScrollController _scrollControllerVertical = ScrollController(
+    initialScrollOffset: offsetVer,
+  );
+  static double offsetHor = 0;
+  static double offsetVer = 0;
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
+
+    if (_scrollControllerHrizontal.hasClients) {
+      _scrollControllerHrizontal.animateTo(
+          _scrollControllerHrizontal.position.maxScrollExtent / 2,
+          duration: const Duration(milliseconds: 1000),
+          curve: Curves.easeInOut);
+      offsetHor = _scrollControllerHrizontal.position.maxScrollExtent / 2;
+    }
+
+    if (_scrollControllerVertical.hasClients) {
+      _scrollControllerVertical.animateTo(
+          _scrollControllerVertical.position.maxScrollExtent / 2,
+          duration: const Duration(milliseconds: 1000),
+          curve: Curves.easeInOut);
+      offsetVer = _scrollControllerVertical.position.maxScrollExtent / 2;
+    }
     return Scaffold(
-      body: SingleChildScrollView(
+      backgroundColor: Colors.transparent,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Container(
         child: Stack(
+          alignment: Alignment.topCenter,
+          fit: StackFit.expand,
           children: [
-            FittedBox(
-              fit: BoxFit.fitHeight,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 100),
               child: Container(
-                width: 3840,
-                height: 2160,
-                child: VideoPlayer(_timerVideoController),
-              ),
-            ),
-            show ? Container() : bank(),
-            show ? Container() : dataCentre(),
-            show ? Container() : school(),
-            show ? Container() : retail(),
-            show ? Container() : warehouse(),
-            show ? Container() : groceryShop(),
-            show ? Container() : fastFood(),
-            show ? Container() : qrButton(),
-            Stack(
-              children: [
-                _bankVideoPlaying
-                    ? AspectRatio(
-                        aspectRatio: _bankVideoController.value.aspectRatio,
-                        child: VideoPlayer(_bankVideoController),
-                      )
-                    : Container(),
-                _dataCentreVideoPlaying
-                    ? AspectRatio(
-                        aspectRatio:
-                            _dataCentreVideoController.value.aspectRatio,
-                        child: VideoPlayer(_dataCentreVideoController),
-                      )
-                    : Container(),
-                _schoolVideoPlaying
-                    ? AspectRatio(
-                        aspectRatio: _schoolVideoController.value.aspectRatio,
-                        child: VideoPlayer(_schoolVideoController),
-                      )
-                    : Container(),
-                _retailVideoPlaying
-                    ? AspectRatio(
-                        aspectRatio: _retailVideoController.value.aspectRatio,
-                        child: VideoPlayer(_retailVideoController),
-                      )
-                    : Container(),
-                _warehouseVideoPlaying
-                    ? AspectRatio(
-                        aspectRatio:
-                            _warehouseVideoController.value.aspectRatio,
-                        child: VideoPlayer(_warehouseVideoController),
-                      )
-                    : Container(),
-                _groceryShopVideoPlaying
-                    ? AspectRatio(
-                        aspectRatio:
-                            _groceryShopVideoController.value.aspectRatio,
-                        child: VideoPlayer(_groceryShopVideoController),
-                      )
-                    : Container(),
-                _fastFoodVideoPlaying
-                    ? AspectRatio(
-                        aspectRatio: _fastFoodVideoController.value.aspectRatio,
-                        child: VideoPlayer(_fastFoodVideoController),
-                      )
-                    : Container(),
-              ],
-            ),
-            loading
-                ? Container(
-                    width: screenSize.width,
-                    child: Image.asset(
-                      buildingImage,
-                      fit: BoxFit.fill,
-                    ),
-                  )
-                : Container(),
-            // showQR
-            //     ? Container(
-            //         width: screenSize.width,
-            //         child: Expanded(
-            //           child: Image.asset(
-            //             schoolSelected,
-            //             fit: BoxFit.fill,
-            //           ),
-            //         ),
-            //       )
-            //     : Container(),
-            showQR
-                ? GestureDetector(
-                    onTap: () async {
-                      setState(() {
-                        width = 0;
-                      });
-
-                      await Future.delayed(const Duration(milliseconds: 200));
-                      setState(() {
-                        showQR = false;
-                      });
-                      setShow();
-                    },
-                    child: Container(
-                      width: screenSize.width,
-                      child: Image.asset(
-                        qrBackgroundImage,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                  )
-                : Container(),
-
-            showQR
-                ? Positioned(
-                    bottom: 100,
-                    child: Container(
-                      child: TextAreaWithQRWithClip(
+                alignment: Alignment.centerLeft,
+                height: screenSize.width * (0.2),
+                child: showQR
+                    ? TextAreaWithQRWithClip(
                         screenSize: screenSize,
                         width: width == 0 ? 0 : screenSize.width * (0.2),
                         height: screenSize.width * (0.2),
-                      ),
-                    ),
-                  )
-                : Container(),
+                      )
+                    : Container(),
+              ),
+            ),
             showQR ? qrButton() : Container(),
+            show ? Container() : qrButton(),
             showTextAreaSmall
-                ? Positioned(
-                    bottom: screenSize.height * (0.2),
-                    child: TextAreaSmallWithClip(
-                      width: width,
-                      screenSize: screenSize,
-                      prefixText: "64%",
-                      description:
-                          "of energy in school is used by HVAC and lightning",
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Container(
+                      alignment: Alignment.bottomLeft,
+                      child: TextAreaSmallWithClip(
+                        width: width,
+                        screenSize: screenSize,
+                        prefixText: "64%",
+                        description:
+                            "of energy in school is used by HVAC and lightning",
+                      ),
                     ),
                   )
                 : Container(),
           ],
+        ),
+      ),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        controller: _scrollControllerHrizontal,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          controller: _scrollControllerVertical,
+          child: SizedBox(
+            width: screenWidth,
+            height: screenHeight,
+            child: Stack(
+              children: [
+                SizedBox(
+                  width: screenWidth,
+                  height: screenHeight,
+                  child: VideoPlayer(_timerVideoController),
+                ),
+                show ? Container() : bank(),
+                show ? Container() : dataCentre(),
+                show ? Container() : school(),
+                show ? Container() : retail(),
+                show ? Container() : warehouse(),
+                show ? Container() : groceryShop(),
+                show ? Container() : fastFood(),
+                // show ? Container() : qrButton(),
+                SizedBox(
+                  width: screenWidth,
+                  height: screenHeight,
+                  child: Stack(
+                    children: [
+                      _bankVideoPlaying
+                          ? SizedBox(
+                              width: screenWidth,
+                              height: screenHeight,
+                              child: VideoPlayer(_bankVideoController),
+                            )
+                          : Container(),
+                      _dataCentreVideoPlaying
+                          ? SizedBox(
+                              width: screenWidth,
+                              height: screenHeight,
+                              child: VideoPlayer(_dataCentreVideoController),
+                            )
+                          : Container(),
+                      _schoolVideoPlaying
+                          ? SizedBox(
+                              width: screenWidth,
+                              height: screenHeight,
+                              child: VideoPlayer(_schoolVideoController),
+                            )
+                          : Container(),
+                      _retailVideoPlaying
+                          ? SizedBox(
+                              width: screenWidth,
+                              height: screenHeight,
+                              child: VideoPlayer(_retailVideoController),
+                            )
+                          : Container(),
+                      _warehouseVideoPlaying
+                          ? SizedBox(
+                              width: screenWidth,
+                              height: screenHeight,
+                              child: VideoPlayer(_warehouseVideoController),
+                            )
+                          : Container(),
+                      _groceryShopVideoPlaying
+                          ? SizedBox(
+                              width: screenWidth,
+                              height: screenHeight,
+                              child: VideoPlayer(_groceryShopVideoController),
+                            )
+                          : Container(),
+                      _fastFoodVideoPlaying
+                          ? SizedBox(
+                              width: screenWidth,
+                              height: screenHeight,
+                              child: VideoPlayer(_fastFoodVideoController),
+                            )
+                          : Container(),
+                    ],
+                  ),
+                ),
+                loading
+                    ? SizedBox(
+                        width: screenWidth,
+                        height: screenHeight,
+                        child: Image.asset(
+                          buildingImage,
+                          fit: BoxFit.fill,
+                        ),
+                      )
+                    : Container(),
+                // showQR
+                //     ? Container(
+                //         width: screenSize.width,
+                //         child: Expanded(
+                //           child: Image.asset(
+                //             schoolSelected,
+                //             fit: BoxFit.fill,
+                //           ),
+                //         ),
+                //       )
+                //     : Container(),
+                showQR
+                    ? GestureDetector(
+                        onTap: () async {
+                          setState(() {
+                            width = 0;
+                          });
+
+                          await Future.delayed(
+                              const Duration(milliseconds: 200));
+                          setState(() {
+                            showQR = false;
+                          });
+                          setShow();
+                        },
+                        child: SizedBox(
+                          width: screenWidth,
+                          height: screenHeight,
+                          child: Image.asset(
+                            qrBackgroundImage,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      )
+                    : Container(),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -331,46 +406,45 @@ class _HomeVideoState extends State<HomeVideo> {
 
   Widget qrButton() {
     var screenSize = MediaQuery.of(context).size;
-    return SizedBox(
-      height: screenSize.height * 0.95,
-      child: Align(
-        alignment: Alignment.topRight,
-        child: GestureDetector(
-          onTap: () async {
-            if (showQR) {
-              setState(() {
-                width = 0;
-              });
+    return Container(
+      alignment: Alignment.topRight,
+      height: screenSize.width * 0.050,
+      width: screenSize.width * 0.050,
+      child: GestureDetector(
+        onTap: () async {
+          if (showQR) {
+            setState(() {
+              width = 0;
+            });
 
-              await Future.delayed(const Duration(milliseconds: 200));
-              setState(() {
-                showQR = false;
-              });
-              setShow();
-            } else {
-              setShow();
-              setState(() {
-                width = 0;
-                showQR = true;
-              });
+            await Future.delayed(const Duration(milliseconds: 200));
+            setState(() {
+              showQR = false;
+            });
+            setShow();
+          } else {
+            setShow();
+            setState(() {
+              width = 0;
+              showQR = true;
+            });
 
-              await Future.delayed(const Duration(milliseconds: 200));
+            await Future.delayed(const Duration(milliseconds: 200));
 
-              setState(() {
-                width = screenSize.width * 0.2;
-              });
-            }
-          },
-          child: Container(
-            width: screenSize.width * 0.050,
-            height: screenSize.width * 0.050,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: showQR
-                    ? AssetImage('assets/graphics/HOME.png')
-                    : AssetImage('assets/graphics/MORE.png'),
-                fit: BoxFit.cover,
-              ),
+            setState(() {
+              width = screenSize.width * 0.2;
+            });
+          }
+        },
+        child: Container(
+          width: screenSize.width * 0.050,
+          height: screenSize.width * 0.050,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: showQR
+                  ? AssetImage('assets/graphics/HOME.png')
+                  : AssetImage('assets/graphics/MORE.png'),
+              fit: BoxFit.cover,
             ),
           ),
         ),
@@ -381,8 +455,8 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget bank() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.61),
-        top: screenSize.width * (0.42),
+        left: screenWidth * 0.615,
+        top: screenHeight * 0.75,
         child: Stack(
           children: [
             Center(
@@ -430,8 +504,8 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget dataCentre() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.12),
-        top: screenSize.width * (0.26),
+        left: screenWidth * 0.12,
+        top: screenHeight * 0.459,
         child: Stack(
           children: [
             InkWell(
@@ -478,8 +552,8 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget warehouse() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.28),
-        top: screenSize.width * (0.125),
+        left: screenWidth * 0.269,
+        top: screenHeight * 0.22,
         child: Stack(
           children: [
             InkWell(
@@ -526,8 +600,8 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget school() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.445),
-        top: screenSize.width * (0.46),
+        left: screenWidth * 0.445,
+        top: screenHeight * 0.825,
         child: Stack(
           children: [
             InkWell(
@@ -570,7 +644,8 @@ class _HomeVideoState extends State<HomeVideo> {
                     if (index > 1) {
                       _schoolVideoController.removeListener(() {});
 
-                      customPushReplacement(context, const SchoolVideo());
+                      customPushReplacement(
+                          context, const SchoolVideo(from: "main"));
                     }
                   }
                 });
@@ -588,8 +663,8 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget retail() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.618),
-        top: screenSize.width * (0.073),
+        left: screenWidth * 0.62,
+        top: screenHeight * 0.13,
         child: Stack(
           children: [
             InkWell(
@@ -635,8 +710,8 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget groceryShop() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.755),
-        top: screenSize.width * (0.363),
+        left: screenWidth * 0.75,
+        top: screenHeight * 0.64,
         child: Stack(
           children: [
             InkWell(
@@ -683,8 +758,8 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget fastFood() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.345),
-        top: screenSize.width * (0.195),
+        left: screenWidth * 0.346,
+        top: screenHeight * 0.35,
         child: Stack(
           children: [
             InkWell(

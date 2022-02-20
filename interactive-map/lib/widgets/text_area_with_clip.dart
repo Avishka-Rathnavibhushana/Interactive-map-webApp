@@ -31,7 +31,7 @@ class TextAreaWithClip extends StatelessWidget {
           horizontal: 30,
         ),
         child: Column(
-          mainAxisSize: MainAxisSize.max,
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

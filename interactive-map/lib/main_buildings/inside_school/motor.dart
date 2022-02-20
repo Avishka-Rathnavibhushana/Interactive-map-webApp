@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:interactive_map/main_buildings/home.dart';
 import 'package:interactive_map/main_buildings/school.dart';
 import 'package:interactive_map/widgets/custom_text_container.dart';
 import 'package:interactive_map/widgets/custom_topic.dart';
-import 'package:interactive_map/widgets/shared_widgets.dart';
-import 'package:interactive_map/widgets/text_area.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 
 class Motor extends StatefulWidget {
-  const Motor({Key? key}) : super(key: key);
+  const Motor({Key? key, this.offsetHor, this.offsetVer}) : super(key: key);
+  final offsetHor;
+  final offsetVer;
 
   @override
   _MotorState createState() => _MotorState();
@@ -75,18 +74,46 @@ class _MotorState extends State<Motor> {
     super.dispose();
   }
 
+  var screenWidth = 3840 * 0.63;
+  var screenHeight = 2160 * 0.63;
+
+  final ScrollController _scrollControllerHrizontal = ScrollController(
+    initialScrollOffset: offsetHor,
+  );
+
+  final ScrollController _scrollControllerVertical = ScrollController(
+    initialScrollOffset: offsetVer,
+  );
+  static double offsetHor = 0;
+  static double offsetVer = 0;
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
+
+    if (_scrollControllerHrizontal.hasClients) {
+      _scrollControllerHrizontal.animateTo(
+          _scrollControllerHrizontal.position.maxScrollExtent / 2,
+          duration: const Duration(milliseconds: 1000),
+          curve: Curves.easeInOut);
+      offsetHor = _scrollControllerHrizontal.position.maxScrollExtent / 2;
+    }
+
+    if (_scrollControllerVertical.hasClients) {
+      _scrollControllerVertical.animateTo(
+          _scrollControllerVertical.position.maxScrollExtent / 2,
+          duration: const Duration(milliseconds: 1000),
+          curve: Curves.easeInOut);
+      offsetVer = _scrollControllerVertical.position.maxScrollExtent / 2;
+    }
     return Scaffold(
-      body: SingleChildScrollView(
+      backgroundColor: Colors.transparent,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Container(
         child: Stack(
+          alignment: Alignment.topCenter,
+          fit: StackFit.expand,
           children: [
-            AspectRatio(
-              aspectRatio: _controller.value.aspectRatio,
-              // Use the VideoPlayer widget to display the video.
-              child: VideoPlayer(_controller),
-            ),
             show ? nextButton() : Container(),
             //show ? backButton() : Container(),
             show ? menuButton() : Container(),
@@ -205,14 +232,35 @@ class _MotorState extends State<Motor> {
                     ],
                   )
                 : Container(),
-            _backVideoPlaying
-                ? AspectRatio(
-                    aspectRatio: _backVideoController.value.aspectRatio,
-                    // Use the VideoPlayer widget to display the video.
-                    child: VideoPlayer(_backVideoController),
-                  )
-                : Container(),
           ],
+        ),
+      ),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        controller: _scrollControllerHrizontal,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          controller: _scrollControllerVertical,
+          child: SizedBox(
+            width: screenWidth,
+            height: screenHeight,
+            child: Stack(
+              children: [
+                SizedBox(
+                  width: screenWidth,
+                  height: screenHeight,
+                  child: VideoPlayer(_controller),
+                ),
+                _backVideoPlaying
+                    ? SizedBox(
+                        width: screenWidth,
+                        height: screenHeight,
+                        child: VideoPlayer(_backVideoController),
+                      )
+                    : Container(),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -220,41 +268,45 @@ class _MotorState extends State<Motor> {
 
   Widget nextButton() {
     var screenSize = MediaQuery.of(context).size;
-    return Positioned(
-      bottom: screenSize.height * (0.2),
-      right: 0,
-      child: GestureDetector(
-        onTap: () {
-          if (nextIndex) {
-            setShow();
-            _controller.pause();
-            _controller.removeListener(() {});
-            Navigator.pushReplacement(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (context, animation1, animation2) => SchoolVideo(),
-                transitionDuration: Duration(seconds: 2),
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) =>
-                        FadeTransition(
-                  opacity: animation,
-                  child: child,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 100),
+      child: Container(
+        alignment: Alignment.bottomRight,
+        child: GestureDetector(
+          onTap: () {
+            if (nextIndex) {
+              setShow();
+              _controller.pause();
+              _controller.removeListener(() {});
+              Navigator.pushReplacement(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation1, animation2) => SchoolVideo(
+                    from: "",
+                  ),
+                  transitionDuration: Duration(seconds: 2),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) =>
+                          FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  ),
                 ),
+              );
+            } else {
+              setState(() {
+                nextIndex = true;
+              });
+            }
+          },
+          child: Container(
+            width: screenSize.width * 0.091,
+            height: screenSize.width * 0.040,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/graphics/Next.png'),
+                fit: BoxFit.cover,
               ),
-            );
-          } else {
-            setState(() {
-              nextIndex = true;
-            });
-          }
-        },
-        child: Container(
-          width: screenSize.width * 0.091,
-          height: screenSize.width * 0.040,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/graphics/Next.png'),
-              fit: BoxFit.cover,
             ),
           ),
         ),
@@ -336,37 +388,38 @@ class _MotorState extends State<Motor> {
 
   Widget menuButton() {
     var screenSize = MediaQuery.of(context).size;
-    return SizedBox(
-      height: screenSize.height * 0.95,
-      child: Align(
-        alignment: Alignment.topRight,
-        child: GestureDetector(
-          onTap: () {
-            _controller.pause();
-            _controller.removeListener(() {});
-            Navigator.pushReplacement(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (context, animation1, animation2) =>
-                    const HomeVideo(),
-                transitionDuration: const Duration(seconds: 2),
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) =>
-                        FadeTransition(
-                  opacity: animation,
-                  child: child,
-                ),
+    return Container(
+      alignment: Alignment.topRight,
+      height: screenSize.width * 0.050,
+      width: screenSize.width * 0.050,
+      child: GestureDetector(
+        onTap: () {
+          _controller.pause();
+          _controller.removeListener(() {});
+          Navigator.pushReplacement(
+            context,
+            PageRouteBuilder(
+              pageBuilder: (context, animation1, animation2) =>
+                  const SchoolVideo(
+                from: "motor",
               ),
-            );
-          },
-          child: Container(
-            width: screenSize.width * 0.050,
-            height: screenSize.width * 0.050,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/graphics/HOME.png'),
-                fit: BoxFit.cover,
+              transitionDuration: const Duration(seconds: 2),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) =>
+                      FadeTransition(
+                opacity: animation,
+                child: child,
               ),
+            ),
+          );
+        },
+        child: Container(
+          width: screenSize.width * 0.050,
+          height: screenSize.width * 0.050,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/graphics/HOME.png'),
+              fit: BoxFit.cover,
             ),
           ),
         ),

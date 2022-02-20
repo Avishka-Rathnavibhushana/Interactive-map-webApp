@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:interactive_map/main_buildings/home.dart';
 import 'package:interactive_map/main_buildings/school.dart';
 import 'package:interactive_map/main_buildings/inside_school/screen_left.dart';
 import 'package:interactive_map/main_buildings/inside_school/screen_right.dart';
-import 'package:interactive_map/widgets/custom_button_label.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
-import 'package:interactive_map/widgets/text_area.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 
 class SchoolMainScreens extends StatefulWidget {
-  const SchoolMainScreens({Key? key}) : super(key: key);
-
+  const SchoolMainScreens({Key? key, this.offsetHor, this.offsetVer})
+      : super(key: key);
+  final offsetHor;
+  final offsetVer;
   @override
   _SchoolMainScreensState createState() => _SchoolMainScreensState();
 }
@@ -89,73 +88,124 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
     });
   }
 
+  var screenWidth = 3840 * 0.63;
+  var screenHeight = 2160 * 0.63;
+
+  final ScrollController _scrollControllerHrizontal = ScrollController(
+    initialScrollOffset: offsetHor,
+  );
+
+  final ScrollController _scrollControllerVertical = ScrollController(
+    initialScrollOffset: offsetVer,
+  );
+  static double offsetHor = 0;
+  static double offsetVer = 0;
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
+
+    if (_scrollControllerHrizontal.hasClients) {
+      _scrollControllerHrizontal.animateTo(
+          _scrollControllerHrizontal.position.maxScrollExtent / 2,
+          duration: const Duration(milliseconds: 1000),
+          curve: Curves.easeInOut);
+      offsetHor = _scrollControllerHrizontal.position.maxScrollExtent / 2;
+    }
+
+    if (_scrollControllerVertical.hasClients) {
+      _scrollControllerVertical.animateTo(
+          _scrollControllerVertical.position.maxScrollExtent / 2,
+          duration: const Duration(milliseconds: 1000),
+          curve: Curves.easeInOut);
+      offsetVer = _scrollControllerVertical.position.maxScrollExtent / 2;
+    }
+
     return Scaffold(
-      // Use a FutureBuilder to display a loading spinner while waiting for the
-      // VideoPlayerController to finish initializing.
-      body: SingleChildScrollView(
+      backgroundColor: Colors.transparent,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Container(
         child: Stack(
+          alignment: Alignment.topCenter,
+          fit: StackFit.expand,
           children: [
-            show
-                ? AspectRatio(
-                    aspectRatio: _controller.value.aspectRatio,
-                    // Use the VideoPlayer widget to display the video.
-                    child: VideoPlayer(_controller),
-                  )
-                : Container(),
-            Container(
-              width: screenSize.width,
-              child: Image.asset(
-                mapMainScreenImage,
-                fit: BoxFit.fill,
-              ),
-            ),
-
-            show ? screenLeft() : Container(),
-            show ? screenRight() : Container(),
-            //show ? backButton() : Container(),
             show ? menuButton() : Container(),
-
-            _leftScreenVideoPlaying
-                ? AspectRatio(
-                    aspectRatio: _leftScreenVideoController.value.aspectRatio,
-                    // Use the VideoPlayer widget to display the video.
-                    child: VideoPlayer(_leftScreenVideoController),
-                  )
-                : Container(),
-            _rightScreenVideoPlaying
-                ? AspectRatio(
-                    aspectRatio: _rightScreenVideoController.value.aspectRatio,
-                    // Use the VideoPlayer widget to display the video.
-                    child: VideoPlayer(_rightScreenVideoController),
-                  )
-                : Container(),
-            loading
-                ? Container(
-                    width: screenSize.width,
-                    child: Image.asset(
-                      mapMainScreenImage,
-                      fit: BoxFit.fill,
-                    ),
-                  )
-                : Container(),
-
             show
-                ? Positioned(
-                    bottom: screenSize.height * (0.2),
-                    left: 0,
-                    child: TextAreaWithClip(
-                      screenSize: screenSize,
-                      texts: [],
-                      topic: "Trntide App for Mobile and Desktop",
-                      description:
-                          "Remotely monitor and manage HVAC equipment and yor entire building",
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Container(
+                      alignment: Alignment.bottomLeft,
+                      child: TextAreaWithClip(
+                        screenSize: screenSize,
+                        texts: [],
+                        topic: "Trntide App for Mobile and Desktop",
+                        description:
+                            "Remotely monitor and manage HVAC equipment and yor entire building",
+                      ),
                     ),
                   )
                 : Container(),
           ],
+        ),
+      ),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        controller: _scrollControllerHrizontal,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          controller: _scrollControllerVertical,
+          child: SizedBox(
+            width: screenWidth,
+            height: screenHeight,
+            child: Stack(
+              children: [
+                // show
+                //     ? SizedBox(
+                //         width: screenWidth,
+                //         height: screenHeight,
+                //         child: VideoPlayer(_controller),
+                //       )
+                //     : Container(),
+                SizedBox(
+                  width: screenWidth,
+                  height: screenHeight,
+                  child: Image.asset(
+                    mapMainScreenImage,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+
+                show ? screenLeft() : Container(),
+                show ? screenRight() : Container(),
+                //show ? backButton() : Container(),
+
+                _leftScreenVideoPlaying
+                    ? SizedBox(
+                        width: screenWidth,
+                        height: screenHeight,
+                        child: VideoPlayer(_leftScreenVideoController),
+                      )
+                    : Container(),
+                _rightScreenVideoPlaying
+                    ? SizedBox(
+                        width: screenWidth,
+                        height: screenHeight,
+                        child: VideoPlayer(_rightScreenVideoController),
+                      )
+                    : Container(),
+                loading
+                    ? SizedBox(
+                        width: screenWidth,
+                        height: screenHeight,
+                        child: Image.asset(
+                          mapMainScreenImage,
+                          fit: BoxFit.fill,
+                        ),
+                      )
+                    : Container(),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -164,8 +214,8 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
   Widget screenLeft() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.362),
-        top: screenSize.width * (0.184),
+        left: screenWidth * 0.35,
+        top: screenHeight * 0.34,
         child: Stack(
           children: [
             GestureDetector(
@@ -195,7 +245,8 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
                         context,
                         PageRouteBuilder(
                           pageBuilder: (context, animation1, animation2) =>
-                              ScreenLeft(),
+                              ScreenLeft(
+                                  offsetHor: offsetHor, offsetVer: offsetVer),
                           transitionDuration: Duration(seconds: 2),
                           transitionsBuilder:
                               (context, animation, secondaryAnimation, child) =>
@@ -222,8 +273,8 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
   Widget screenRight() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.732),
-        top: screenSize.width * (0.205),
+        left: screenWidth * 0.75,
+        top: screenHeight * 0.38,
         child: Stack(
           children: [
             GestureDetector(
@@ -288,10 +339,10 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
   //         onTap: () {
   //           setShow();
   //           _controller.play();
-
+  //
   //           _controller.addListener(() {
   //             final bool isPlaying = _controller.value.isPlaying;
-
+  //
   //             if (isPlaying != _isPlaying) {
   //               setState(() {
   //                 _isPlaying = isPlaying;
@@ -342,37 +393,38 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
 
   Widget menuButton() {
     var screenSize = MediaQuery.of(context).size;
-    return SizedBox(
-      height: screenSize.height * 0.95,
-      child: Align(
-        alignment: Alignment.topRight,
-        child: GestureDetector(
-          onTap: () {
-            _controller.pause();
-            _controller.removeListener(() {});
-            Navigator.pushReplacement(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (context, animation1, animation2) =>
-                    const HomeVideo(),
-                transitionDuration: const Duration(seconds: 2),
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) =>
-                        FadeTransition(
-                  opacity: animation,
-                  child: child,
-                ),
+    return Container(
+      alignment: Alignment.topRight,
+      height: screenSize.width * 0.050,
+      width: screenSize.width * 0.050,
+      child: GestureDetector(
+        onTap: () {
+          _controller.pause();
+          _controller.removeListener(() {});
+          Navigator.pushReplacement(
+            context,
+            PageRouteBuilder(
+              pageBuilder: (context, animation1, animation2) =>
+                  const SchoolVideo(
+                from: "map",
               ),
-            );
-          },
-          child: Container(
-            width: screenSize.width * 0.050,
-            height: screenSize.width * 0.050,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/graphics/HOME.png'),
-                fit: BoxFit.cover,
+              transitionDuration: const Duration(seconds: 2),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) =>
+                      FadeTransition(
+                opacity: animation,
+                child: child,
               ),
+            ),
+          );
+        },
+        child: Container(
+          width: screenSize.width * 0.050,
+          height: screenSize.width * 0.050,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/graphics/HOME.png'),
+              fit: BoxFit.cover,
             ),
           ),
         ),

@@ -2,23 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:interactive_map/main_buildings/home.dart';
 import 'package:interactive_map/main_buildings/inside_school/motor.dart';
 import 'package:interactive_map/main_buildings/inside_school/school_main_screens.dart';
-import 'package:interactive_map/main_buildings/inside_school/energy_saving.dart';
-import 'package:interactive_map/widgets/custom_button_label.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
-import 'package:interactive_map/widgets/squre_shaped_custom_container.dart';
-import 'package:interactive_map/widgets/textArea_text_Topic.dart';
-import 'package:interactive_map/widgets/textArea_text_description.dart';
-import 'package:interactive_map/widgets/textArea_text_row.dart';
-import 'package:interactive_map/widgets/text_area.dart';
-import 'package:interactive_map/widgets/text_area_small.dart';
 import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 
 class SchoolVideo extends StatefulWidget {
-  const SchoolVideo({Key? key}) : super(key: key);
-
+  const SchoolVideo({Key? key, this.from, this.offsetHor, this.offsetVer})
+      : super(key: key);
+  final offsetHor;
+  final offsetVer;
+  final from;
   @override
   _SchoolVideoState createState() => _SchoolVideoState();
 }
@@ -46,7 +41,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
   final String schoolImage = 'assets/tempory images/School_Plain.png';
   final String mapScreenImage = 'assets/tempory images/screen_MAIN.png';
 
-  bool showTextAreaSmall = true;
+  bool showTextAreaSmall = false;
   bool showEnergySaving = false;
 
   setIndex(value) {
@@ -83,6 +78,32 @@ class _SchoolVideoState extends State<SchoolVideo> {
       _controller.setVolume(0);
       _controller.setLooping(false);
     });
+    if (widget.from == "map" || widget.from == "motor") {
+      await Future.delayed(Duration(milliseconds: 1000));
+      _controller.play();
+
+      _controller.addListener(() {
+        final bool isPlaying = _controller.value.isPlaying;
+
+        if (isPlaying != _isPlaying) {
+          setState(() {
+            _isPlaying = isPlaying;
+            setIndex(++index);
+          });
+          if (index > 1) {
+            _controller.removeListener(() {});
+
+            customPushReplacement(context, const HomeVideo());
+          }
+        }
+      });
+    } else if (widget.from == "main") {
+      setState(() {
+        showTextAreaSmall = true;
+      });
+    } else {
+      setShow();
+    }
 
     _motorVideoController = VideoPlayerController.asset(motorVideoImage)
       ..initialize().then((_) => {
@@ -106,7 +127,6 @@ class _SchoolVideoState extends State<SchoolVideo> {
               _insideVideoController.setLooping(false);
             })
           });
-
     setState(() {
       loading = false;
     });
@@ -122,109 +142,98 @@ class _SchoolVideoState extends State<SchoolVideo> {
     super.dispose();
   }
 
+  var screenWidth = 3840 * 0.63;
+  var screenHeight = 2160 * 0.63;
+
+  final ScrollController _scrollControllerHrizontal = ScrollController(
+    initialScrollOffset: offsetHor,
+  );
+
+  final ScrollController _scrollControllerVertical = ScrollController(
+    initialScrollOffset: offsetVer,
+  );
+  static double offsetHor = 0;
+  static double offsetVer = 0;
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
+
+    if (_scrollControllerHrizontal.hasClients) {
+      _scrollControllerHrizontal.animateTo(
+          _scrollControllerHrizontal.position.maxScrollExtent / 2,
+          duration: const Duration(milliseconds: 1000),
+          curve: Curves.easeInOut);
+      offsetHor = _scrollControllerHrizontal.position.maxScrollExtent / 2;
+    }
+
+    if (_scrollControllerVertical.hasClients) {
+      _scrollControllerVertical.animateTo(
+          _scrollControllerVertical.position.maxScrollExtent / 2,
+          duration: const Duration(milliseconds: 1000),
+          curve: Curves.easeInOut);
+      offsetVer = _scrollControllerVertical.position.maxScrollExtent / 2;
+    }
     return Scaffold(
-      body: SingleChildScrollView(
+      backgroundColor: Colors.transparent,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Container(
         child: Stack(
+          alignment: Alignment.topCenter,
+          fit: StackFit.expand,
           children: [
-            AspectRatio(
-              aspectRatio: _controller.value.aspectRatio,
-              child: VideoPlayer(_controller),
-            ),
-            show ? motor() : Container(),
-            show ? energySaving() : Container(),
-            show ? screenMan2() : Container(),
-            show ? menuButton() : Container(),
-            // show ? backButton() : Container(),
-            _motorVideoPlaying
-                ? AspectRatio(
-                    aspectRatio: _motorVideoController.value.aspectRatio,
-                    child: VideoPlayer(_motorVideoController),
-                  )
-                : Container(),
-            _energySavingVideoPlaying
-                ? AspectRatio(
-                    aspectRatio: _energySavingVideoController.value.aspectRatio,
-                    child: VideoPlayer(_energySavingVideoController),
-                  )
-                : Container(),
-            _insideVideoPlaying
-                ? AspectRatio(
-                    aspectRatio: _insideVideoController.value.aspectRatio,
-                    child: VideoPlayer(_insideVideoController),
-                  )
-                : Container(),
-            loading
-                ? Container(
-                    width: screenSize.width,
-                    child: Image.asset(
-                      schoolImage,
-                      fit: BoxFit.fill,
-                    ),
-                  )
-                : Container(),
             show
-                ? Positioned(
-                    top: 100,
-                    child: TextAreaWithClip(
-                        screenSize: screenSize,
-                        texts: const [
-                          "Smart Motor System",
-                          "Smart HVAC",
-                          "Smart Building Operations"
-                        ],
-                        topic: "Turntide for Schools",
-                        description:
-                            "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights"),
-                  )
-                : Container(),
-            show
-                ? Positioned(
-                    left: screenSize.width * (0.495),
+                ? Padding(
+                    padding: const EdgeInsets.only(top: 100),
                     child: Container(
-                      width: screenSize.width * 0.06,
-                      height: screenSize.width * 0.17,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(
-                              'assets/animations/Data_animation_512.gif'),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                      alignment: Alignment.topLeft,
+                      child: TextAreaWithClip(
+                          screenSize: screenSize,
+                          texts: const [
+                            "Smart Motor System",
+                            "Smart HVAC",
+                            "Smart Building Operations"
+                          ],
+                          topic: "Turntide for Schools",
+                          description:
+                              "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights"),
                     ),
                   )
                 : Container(),
             showTextAreaSmall
-                ? Positioned(
-                    bottom: screenSize.height * (0.2),
-                    child: TextAreaSmallWithClip(
-                        width: screenSize.width * 0.25,
-                        screenSize: screenSize,
-                        prefixText: "64%",
-                        description:
-                            "of energy in school is used by HVAC and lightning"),
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Container(
+                      alignment: Alignment.bottomLeft,
+                      child: TextAreaSmallWithClip(
+                          width: screenSize.width * 0.25,
+                          screenSize: screenSize,
+                          prefixText: "64%",
+                          description:
+                              "of energy in school is used by HVAC and lightning"),
+                    ),
                   )
                 : Container(),
             showTextAreaSmall
-                ? Positioned(
-                    bottom: screenSize.height * (0.2),
-                    right: 0,
-                    child: GestureDetector(
-                      onTap: () {
-                        setShow();
-                        setState(() {
-                          showTextAreaSmall = false;
-                        });
-                      },
-                      child: Container(
-                        width: screenSize.width * 0.091,
-                        height: screenSize.width * 0.040,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('assets/graphics/Next.png'),
-                            fit: BoxFit.cover,
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Container(
+                      alignment: Alignment.bottomRight,
+                      child: GestureDetector(
+                        onTap: () {
+                          setShow();
+                          setState(() {
+                            showTextAreaSmall = false;
+                          });
+                        },
+                        child: Container(
+                          width: screenSize.width * 0.091,
+                          height: screenSize.width * 0.040,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/graphics/Next.png'),
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
@@ -232,46 +241,126 @@ class _SchoolVideoState extends State<SchoolVideo> {
                   )
                 : Container(),
             showEnergySaving
-                ? Positioned(
-                    top: screenSize.height * (0.1),
-                    child: TextAreaWithClip(
-                        screenSize: screenSize,
-                        texts: const [
-                          "Improve energy efficiency",
-                          "Maintain a comfortable environment",
-                          "Automate lighting and HVAC",
-                          "Extent equipment life",
-                          "Prevent learning disruption"
-                        ],
-                        topic: "Stratergies for Sustainable Operations",
-                        description: ""),
+                ? Padding(
+                    padding: const EdgeInsets.only(top: 100),
+                    child: Container(
+                      alignment: Alignment.topLeft,
+                      child: TextAreaWithClip(
+                          screenSize: screenSize,
+                          texts: const [
+                            "Improve energy efficiency",
+                            "Maintain a comfortable environment",
+                            "Automate lighting and HVAC",
+                            "Extent equipment life",
+                            "Prevent learning disruption"
+                          ],
+                          topic: "Stratergies for Sustainable Operations",
+                          description: ""),
+                    ),
                   )
                 : Container(),
             showEnergySaving
-                ? Positioned(
-                    bottom: screenSize.height * (0.2),
-                    right: 0,
-                    child: GestureDetector(
-                      onTap: () {
-                        setShow();
-                        setState(() {
-                          showEnergySaving = false;
-                        });
-                      },
-                      child: Container(
-                        width: screenSize.width * 0.091,
-                        height: screenSize.width * 0.040,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('assets/graphics/Next.png'),
-                            fit: BoxFit.cover,
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Container(
+                      alignment: Alignment.bottomRight,
+                      child: GestureDetector(
+                        onTap: () {
+                          setShow();
+                          setState(() {
+                            showEnergySaving = false;
+                          });
+                        },
+                        child: Container(
+                          width: screenSize.width * 0.091,
+                          height: screenSize.width * 0.040,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/graphics/Next.png'),
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
                     ),
                   )
                 : Container(),
+            show ? menuButton() : Container(),
           ],
+        ),
+      ),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        controller: _scrollControllerHrizontal,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          controller: _scrollControllerVertical,
+          child: SizedBox(
+            width: screenWidth,
+            height: screenHeight,
+            child: Stack(
+              children: [
+                SizedBox(
+                  width: screenWidth,
+                  height: screenHeight,
+                  child: VideoPlayer(_controller),
+                ),
+                show ? motor() : Container(),
+                show ? energySaving() : Container(),
+                show ? mapScreen() : Container(),
+
+                // show ? backButton() : Container(),
+                _motorVideoPlaying
+                    ? SizedBox(
+                        width: screenWidth,
+                        height: screenHeight,
+                        child: VideoPlayer(_motorVideoController),
+                      )
+                    : Container(),
+                _energySavingVideoPlaying
+                    ? SizedBox(
+                        width: screenWidth,
+                        height: screenHeight,
+                        child: VideoPlayer(_energySavingVideoController),
+                      )
+                    : Container(),
+                _insideVideoPlaying
+                    ? SizedBox(
+                        width: screenWidth,
+                        height: screenHeight,
+                        child: VideoPlayer(_insideVideoController),
+                      )
+                    : Container(),
+                loading
+                    ? SizedBox(
+                        width: screenWidth,
+                        height: screenHeight,
+                        child: Image.asset(
+                          schoolImage,
+                          fit: BoxFit.fill,
+                        ),
+                      )
+                    : Container(),
+
+                show
+                    ? Positioned(
+                        left: screenWidth * 0.5,
+                        child: Container(
+                          width: screenWidth * 0.075,
+                          height: screenHeight * 0.3,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                  'assets/animations/Data_animation_512.gif'),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      )
+                    : Container(),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -279,39 +368,38 @@ class _SchoolVideoState extends State<SchoolVideo> {
 
   Widget menuButton() {
     var screenSize = MediaQuery.of(context).size;
-    return SizedBox(
-      height: screenSize.height * 0.95,
-      child: Align(
-        alignment: Alignment.topRight,
-        child: GestureDetector(
-          onTap: () {
-            setShow();
-            _controller.play();
+    return Container(
+      alignment: Alignment.topRight,
+      height: screenSize.width * 0.050,
+      width: screenSize.width * 0.050,
+      child: GestureDetector(
+        onTap: () {
+          setShow();
+          _controller.play();
 
-            _controller.addListener(() {
-              final bool isPlaying = _controller.value.isPlaying;
+          _controller.addListener(() {
+            final bool isPlaying = _controller.value.isPlaying;
 
-              if (isPlaying != _isPlaying) {
-                setState(() {
-                  _isPlaying = isPlaying;
-                  setIndex(++index);
-                });
-                if (index > 1) {
-                  _controller.removeListener(() {});
+            if (isPlaying != _isPlaying) {
+              setState(() {
+                _isPlaying = isPlaying;
+                setIndex(++index);
+              });
+              if (index > 1) {
+                _controller.removeListener(() {});
 
-                  customPushReplacement(context, const HomeVideo());
-                }
+                customPushReplacement(context, const HomeVideo());
               }
-            });
-          },
-          child: Container(
-            width: screenSize.width * 0.050,
-            height: screenSize.width * 0.050,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/graphics/HOME.png'),
-                fit: BoxFit.cover,
-              ),
+            }
+          });
+        },
+        child: Container(
+          width: screenSize.width * 0.050,
+          height: screenSize.width * 0.050,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/graphics/HOME.png'),
+              fit: BoxFit.cover,
             ),
           ),
         ),
@@ -365,8 +453,8 @@ class _SchoolVideoState extends State<SchoolVideo> {
   Widget motor() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.5),
-        top: screenSize.width * (0.18),
+        left: screenWidth * 0.536,
+        top: screenHeight * 0.325,
         child: Stack(
           children: [
             InkWell(
@@ -406,8 +494,8 @@ class _SchoolVideoState extends State<SchoolVideo> {
   Widget energySaving() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.362),
-        top: screenSize.width * (0.428),
+        left: screenWidth * 0.439,
+        top: screenHeight * 0.647,
         child: Stack(
           children: [
             InkWell(
@@ -448,11 +536,11 @@ class _SchoolVideoState extends State<SchoolVideo> {
         ));
   }
 
-  Widget screenMan2() {
+  Widget mapScreen() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.55),
-        top: screenSize.width * (0.12),
+        left: screenWidth * 0.57,
+        top: screenHeight * 0.15,
         child: Stack(
           children: [
             InkWell(

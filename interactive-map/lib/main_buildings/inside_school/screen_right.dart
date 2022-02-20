@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:interactive_map/main_buildings/home.dart';
-import 'package:interactive_map/main_buildings/inside_school/motor.dart';
 import 'package:interactive_map/main_buildings/inside_school/school_main_screens.dart';
-import 'package:interactive_map/main_buildings/inside_school/energy_saving.dart';
-import 'package:interactive_map/widgets/text_area.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 
 class ScreenRight extends StatefulWidget {
-  const ScreenRight({Key? key}) : super(key: key);
+  const ScreenRight({Key? key, this.offsetHor, this.offsetVer})
+      : super(key: key);
+  final offsetHor;
+  final offsetVer;
 
   @override
   _ScreenRightState createState() => _ScreenRightState();
@@ -66,65 +66,120 @@ class _ScreenRightState extends State<ScreenRight> {
     super.dispose();
   }
 
+  var screenWidth = 3840 * 0.63;
+  var screenHeight = 2160 * 0.63;
+
+  final ScrollController _scrollControllerHrizontal = ScrollController(
+    initialScrollOffset: offsetHor,
+  );
+
+  final ScrollController _scrollControllerVertical = ScrollController(
+    initialScrollOffset: offsetVer,
+  );
+  static double offsetHor = 0;
+  static double offsetVer = 0;
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
+
+    if (_scrollControllerHrizontal.hasClients) {
+      _scrollControllerHrizontal.animateTo(
+          _scrollControllerHrizontal.position.maxScrollExtent / 2,
+          duration: const Duration(milliseconds: 1000),
+          curve: Curves.easeInOut);
+      offsetHor = _scrollControllerHrizontal.position.maxScrollExtent / 2;
+    }
+
+    if (_scrollControllerVertical.hasClients) {
+      _scrollControllerVertical.animateTo(
+          _scrollControllerVertical.position.maxScrollExtent / 2,
+          duration: const Duration(milliseconds: 1000),
+          curve: Curves.easeInOut);
+      offsetVer = _scrollControllerVertical.position.maxScrollExtent / 2;
+    }
     return Scaffold(
-      // Use a FutureBuilder to display a loading spinner while waiting for the
-      // VideoPlayerController to finish initializing.
-      body: SingleChildScrollView(
+      backgroundColor: Colors.transparent,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Container(
         child: Stack(
+          alignment: Alignment.topCenter,
+          fit: StackFit.expand,
           children: [
-            AspectRatio(
-              aspectRatio: _controller.value.aspectRatio,
-              // Use the VideoPlayer widget to display the video.
-              child: VideoPlayer(_controller),
-            ),
-            show
-                ? nextIndex
-                    ? Container(
-                        width: screenSize.width,
-                        child: Image.asset(
-                          screenRightImage_1,
-                          fit: BoxFit.fill,
-                        ),
-                      )
-                    : Container(
-                        width: screenSize.width,
-                        child: Image.asset(
-                          screenRightImage_2,
-                          fit: BoxFit.fill,
-                        ),
-                      )
-                : Container(),
             show ? nextButton() : Container(),
             // show ? backButton() : Container(),
             show ? menuButton() : Container(),
             show
                 ? nextIndex
-                    ? Positioned(
-                        top: screenSize.height * (0.1),
-                        child: TextAreaWithClip(
-                            screenSize: screenSize,
-                            texts: const [
-                              "Easily mange temparature setpoints and scheduling anytime, anywhere 24/7",
-                            ],
-                            topic: "Smart HVAC",
-                            description: ""),
+                    ? Padding(
+                        padding: const EdgeInsets.only(top: 100),
+                        child: Container(
+                          alignment: Alignment.topLeft,
+                          child: TextAreaWithClip(
+                              screenSize: screenSize,
+                              texts: const [
+                                "Easily mange temparature setpoints and scheduling anytime, anywhere 24/7",
+                              ],
+                              topic: "Smart HVAC",
+                              description: ""),
+                        ),
                       )
-                    : Positioned(
-                        top: screenSize.height * (0.1),
-                        child: TextAreaWithClip(
-                            screenSize: screenSize,
-                            texts: const [
-                              "Monitor equipment performance with fault detection and alerts for preventative maintenance",
-                              "Reduce costs and resolve issues before customers are affected"
-                            ],
-                            topic: "Smart HVAC",
-                            description: ""),
+                    : Padding(
+                        padding: const EdgeInsets.only(top: 100),
+                        child: Container(
+                          alignment: Alignment.topLeft,
+                          child: TextAreaWithClip(
+                              screenSize: screenSize,
+                              texts: const [
+                                "Monitor equipment performance with fault detection and alerts for preventative maintenance",
+                                "Reduce costs and resolve issues before customers are affected"
+                              ],
+                              topic: "Smart HVAC",
+                              description: ""),
+                        ),
                       )
                 : Container(),
           ],
+        ),
+      ),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        controller: _scrollControllerHrizontal,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          controller: _scrollControllerVertical,
+          child: SizedBox(
+            width: screenWidth,
+            height: screenHeight,
+            child: Stack(
+              children: [
+                SizedBox(
+                  width: screenWidth,
+                  height: screenHeight,
+                  child: VideoPlayer(_controller),
+                ),
+                show
+                    ? nextIndex
+                        ? SizedBox(
+                            width: screenWidth,
+                            height: screenHeight,
+                            child: Image.asset(
+                              screenRightImage_1,
+                              fit: BoxFit.fill,
+                            ),
+                          )
+                        : SizedBox(
+                            width: screenWidth,
+                            height: screenHeight,
+                            child: Image.asset(
+                              screenRightImage_2,
+                              fit: BoxFit.fill,
+                            ),
+                          )
+                    : Container(),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -132,54 +187,56 @@ class _ScreenRightState extends State<ScreenRight> {
 
   Widget nextButton() {
     var screenSize = MediaQuery.of(context).size;
-    return Positioned(
-      bottom: screenSize.height * (0.2),
-      right: 0,
-      child: GestureDetector(
-        onTap: () {
-          if (nextIndex) {
-            setShow();
-            _controller.play();
-            _controller.addListener(() {
-              final bool isPlaying = _controller.value.isPlaying;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 100),
+      child: Container(
+        alignment: Alignment.bottomRight,
+        child: GestureDetector(
+          onTap: () {
+            if (nextIndex) {
+              setShow();
+              _controller.play();
+              _controller.addListener(() {
+                final bool isPlaying = _controller.value.isPlaying;
 
-              if (isPlaying != _isPlaying) {
-                setState(() {
-                  _isPlaying = isPlaying;
-                  setIndex(++index);
-                });
-                if (index > 1) {
-                  _controller.removeListener(() {});
-                  Navigator.pushReplacement(
-                    context,
-                    PageRouteBuilder(
-                      pageBuilder: (context, animation1, animation2) =>
-                          const SchoolMainScreens(),
-                      transitionDuration: const Duration(seconds: 2),
-                      transitionsBuilder:
-                          (context, animation, secondaryAnimation, child) =>
-                              FadeTransition(
-                        opacity: animation,
-                        child: child,
+                if (isPlaying != _isPlaying) {
+                  setState(() {
+                    _isPlaying = isPlaying;
+                    setIndex(++index);
+                  });
+                  if (index > 1) {
+                    _controller.removeListener(() {});
+                    Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation1, animation2) =>
+                            const SchoolMainScreens(),
+                        transitionDuration: const Duration(seconds: 2),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) =>
+                                FadeTransition(
+                          opacity: animation,
+                          child: child,
+                        ),
                       ),
-                    ),
-                  );
+                    );
+                  }
                 }
-              }
-            });
-          } else {
-            setState(() {
-              nextIndex = true;
-            });
-          }
-        },
-        child: Container(
-          width: screenSize.width * 0.091,
-          height: screenSize.width * 0.040,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/graphics/Next.png'),
-              fit: BoxFit.cover,
+              });
+            } else {
+              setState(() {
+                nextIndex = true;
+              });
+            }
+          },
+          child: Container(
+            width: screenSize.width * 0.091,
+            height: screenSize.width * 0.040,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/graphics/Next.png'),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),
@@ -256,37 +313,36 @@ class _ScreenRightState extends State<ScreenRight> {
 
   Widget menuButton() {
     var screenSize = MediaQuery.of(context).size;
-    return SizedBox(
-      height: screenSize.height * 0.95,
-      child: Align(
-        alignment: Alignment.topRight,
-        child: GestureDetector(
-          onTap: () {
-            _controller.pause();
-            _controller.removeListener(() {});
-            Navigator.pushReplacement(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (context, animation1, animation2) =>
-                    const HomeVideo(),
-                transitionDuration: const Duration(seconds: 2),
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) =>
-                        FadeTransition(
-                  opacity: animation,
-                  child: child,
-                ),
+    return Container(
+      alignment: Alignment.topRight,
+      height: screenSize.width * 0.050,
+      width: screenSize.width * 0.050,
+      child: GestureDetector(
+        onTap: () {
+          _controller.pause();
+          _controller.removeListener(() {});
+          Navigator.pushReplacement(
+            context,
+            PageRouteBuilder(
+              pageBuilder: (context, animation1, animation2) =>
+                  const HomeVideo(),
+              transitionDuration: const Duration(seconds: 2),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) =>
+                      FadeTransition(
+                opacity: animation,
+                child: child,
               ),
-            );
-          },
-          child: Container(
-            width: screenSize.width * 0.050,
-            height: screenSize.width * 0.050,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/graphics/HOME.png'),
-                fit: BoxFit.cover,
-              ),
+            ),
+          );
+        },
+        child: Container(
+          width: screenSize.width * 0.050,
+          height: screenSize.width * 0.050,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/graphics/HOME.png'),
+              fit: BoxFit.cover,
             ),
           ),
         ),
