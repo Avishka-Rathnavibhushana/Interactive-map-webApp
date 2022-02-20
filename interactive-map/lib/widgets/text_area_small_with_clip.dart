@@ -25,7 +25,7 @@ class TextAreaSmallWithClip extends StatelessWidget {
         duration: const Duration(milliseconds: 200),
         //alignment: Alignment.centerLeft,
         transformAlignment: Alignment.centerLeft,
-        width: width,
+        width: width < 370 ? 370 : width,
         padding: const EdgeInsets.symmetric(
           vertical: 30,
           horizontal: 25,

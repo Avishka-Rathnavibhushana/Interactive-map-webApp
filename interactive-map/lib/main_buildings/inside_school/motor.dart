@@ -106,6 +106,7 @@ class _MotorState extends State<Motor> {
           curve: Curves.easeInOut);
       offsetVer = _scrollControllerVertical.position.maxScrollExtent / 2;
     }
+    print(screenSize.width);
     return Scaffold(
       backgroundColor: Colors.transparent,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -150,18 +151,23 @@ class _MotorState extends State<Motor> {
                       ),
                       nextIndex
                           ? Container(
-                              width: screenSize.width * 0.30,
+                              width: screenSize.width < 1565
+                                  ? 1565 * 0.25
+                                  : screenSize.width * 0.25,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Container(
-                                    width: screenSize.width * 0.30,
+                                    width: screenSize.width < 1565
+                                        ? 1565 * 0.25
+                                        : screenSize.width * 0.25,
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
                                         CustomTextContainer(
+                                          screenSize: screenSize,
                                           topic: "IE5+",
                                           description: "ACROSS MOST HP",
                                         ),
@@ -169,6 +175,7 @@ class _MotorState extends State<Motor> {
                                           width: 25,
                                         ),
                                         CustomTextContainer(
+                                          screenSize: screenSize,
                                           topic: "Up to 13%",
                                           description:
                                               "ETRA ENERGY SAVINGS OVER VFD",
@@ -180,12 +187,15 @@ class _MotorState extends State<Motor> {
                                     height: 25,
                                   ),
                                   Container(
-                                    width: screenSize.width * 0.35,
+                                    width: screenSize.width < 1565
+                                        ? 1565 * 0.25
+                                        : screenSize.width * 0.25,
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
                                         CustomTextContainer(
+                                          screenSize: screenSize,
                                           topic: "92%",
                                           description:
                                               "PEAK EFFICIENCY AT 3 HP",
@@ -197,12 +207,18 @@ class _MotorState extends State<Motor> {
                               ),
                             )
                           : Container(
-                              width: screenSize.width * 0.35,
+                              width: screenSize.width < 1565
+                                  ? 1565 * 0.35
+                                  : screenSize.width * 0.35,
                               child: Stack(
                                 children: [
                                   Container(
-                                    width: screenSize.width * 0.20,
-                                    height: screenSize.width * 0.15,
+                                    width: screenSize.width < 1565
+                                        ? 1565 * 0.20
+                                        : screenSize.width * 0.20,
+                                    height: screenSize.width < 1565
+                                        ? 1565 * 0.15
+                                        : screenSize.width * 0.15,
                                     decoration: const BoxDecoration(
                                       image: DecorationImage(
                                         image: AssetImage(
@@ -212,10 +228,16 @@ class _MotorState extends State<Motor> {
                                     ),
                                   ),
                                   Positioned(
-                                    left: screenSize.width * 0.1,
+                                    left: screenSize.width < 1565
+                                        ? 1565 * 0.1
+                                        : screenSize.width * 0.1,
                                     child: Container(
-                                      width: screenSize.width * 0.15,
-                                      height: screenSize.width * 0.1,
+                                      width: screenSize.width < 1565
+                                          ? 1565 * 0.15
+                                          : screenSize.width * 0.15,
+                                      height: screenSize.width < 1565
+                                          ? 1565 * 0.1
+                                          : screenSize.width * 0.1,
                                       padding: const EdgeInsets.all(1),
                                       decoration: const BoxDecoration(
                                         image: DecorationImage(

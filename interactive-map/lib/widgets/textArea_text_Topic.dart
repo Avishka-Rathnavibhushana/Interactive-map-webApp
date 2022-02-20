@@ -17,7 +17,7 @@ class TextAreaTextTopic extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(bottom: 15),
-      constraints: BoxConstraints(maxWidth: screenSize.width * 0.3),
+      width: screenSize.width < 1565 ? 1565 * 0.25 : screenSize.width * 0.25,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,

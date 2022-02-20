@@ -21,11 +21,12 @@ class TextAreaWithClip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(screenSize.width);
     return CustomPaint(
       //size: Size(700, 700),
       painter: SqureShapedCustomContainer(),
       child: Container(
-        width: screenSize.width * 0.25,
+        width: screenSize.width < 1565 ? 1565 * 0.25 : screenSize.width * 0.25,
         padding: const EdgeInsets.symmetric(
           vertical: 35,
           horizontal: 30,

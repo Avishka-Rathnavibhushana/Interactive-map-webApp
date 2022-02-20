@@ -18,6 +18,8 @@ class TextAreaWithQRWithClip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("text : " + width.toString());
+    print("text : " + height.toString());
     return CustomPaint(
       //size: Size(700, 700),
       painter: SqureShapedCustomContainerQR(),
@@ -26,8 +28,8 @@ class TextAreaWithQRWithClip extends StatelessWidget {
           85,
         ),
         child: AnimatedContainer(
-          width: width,
-          height: height,
+          width: width < 250 ? 250 : width,
+          height: height < 250 ? 250 : height,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(qr_url),

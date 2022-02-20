@@ -9,7 +9,7 @@ class SqureShapedCustomContainer extends CustomPainter {
       ..style = PaintingStyle.fill
       ..strokeWidth = 2;
 
-    double w = size.width;
+    double w = size.width < 400 ? 400 : size.width;
     double h = size.height;
     double wm = w - w * 0.1;
     double hm = h - w * 0.1;
