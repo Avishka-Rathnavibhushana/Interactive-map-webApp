@@ -8,8 +8,7 @@ class SqureShapedCustomContainerQR extends CustomPainter {
       ..color = AppColors.night
       ..style = PaintingStyle.fill
       ..strokeWidth = 2;
-    print("ani : " + size.width.toString());
-    print("ani : " + size.height.toString());
+
     double w = size.width < 400 ? 400 : size.width;
     double h = size.height < 400 ? 400 : size.height;
     double wm = w - h * 0.15;

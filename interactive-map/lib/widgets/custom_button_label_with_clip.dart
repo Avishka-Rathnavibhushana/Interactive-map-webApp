@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
-import 'package:interactive_map/widgets/squre_shaped_custom_container.dart';
 import 'package:interactive_map/widgets/squre_shaped_custom_container_label.dart';
 
 class CustomButtonLabelWithClip extends StatelessWidget {
