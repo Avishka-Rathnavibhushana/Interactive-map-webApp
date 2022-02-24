@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/widgets/squre_shaped_custom_container.dart';
 import 'package:interactive_map/widgets/textArea_text_Topic.dart';
 import 'package:interactive_map/widgets/textArea_text_description.dart';
