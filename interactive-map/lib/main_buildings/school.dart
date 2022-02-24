@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/main_buildings/home.dart';
-import 'package:interactive_map/main_buildings/inside_school/motor.dart';
-import 'package:interactive_map/main_buildings/inside_school/school_main_screens.dart';
+import 'package:interactive_map/main_buildings/inside_main_building/motor.dart';
+import 'package:interactive_map/main_buildings/inside_main_building/map_main_screen.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
 import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
@@ -25,8 +26,8 @@ class _SchoolVideoState extends State<SchoolVideo> {
   bool _motorVideoPlaying = false;
   late VideoPlayerController _energySavingVideoController;
   bool _energySavingVideoPlaying = false;
-  late VideoPlayerController _insideVideoController;
-  bool _insideVideoPlaying = false;
+  late VideoPlayerController _mapVideoController;
+  bool _mapVideoPlaying = false;
 
   int index = 0;
   bool show = false;
@@ -34,9 +35,9 @@ class _SchoolVideoState extends State<SchoolVideo> {
 
   final String url = 'assets/videos/school_REV.mp4';
 
-  final String motorVideoImage = 'assets/videos/school_MOTOR.mp4';
-  final String energySavingVideoImage = 'assets/videos/school_MOTOR.mp4';
-  final String insideVideoImage = 'assets/videos/school_MAP.mp4';
+  final String motorVideo = 'assets/videos/school_MOTOR.mp4';
+  final String energySavingVideo = 'assets/videos/school_MOTOR.mp4';
+  final String mapVideo = 'assets/videos/school_MAP.mp4';
 
   final String schoolImage = 'assets/tempory images/School_Plain.png';
   final String mapScreenImage = 'assets/tempory images/screen_MAIN.png';
@@ -78,7 +79,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
       _controller.setVolume(0);
       _controller.setLooping(false);
     });
-    if (widget.from == "map" || widget.from == "motor") {
+    if (widget.from == Pages.map || widget.from == Pages.motorToHome) {
       await Future.delayed(Duration(milliseconds: 1000));
       _controller.play();
 
@@ -93,11 +94,16 @@ class _SchoolVideoState extends State<SchoolVideo> {
           if (index > 1) {
             _controller.removeListener(() {});
 
-            customPushReplacement(context, const HomeVideo());
+            customPushReplacement(
+                context,
+                HomeVideo(
+                  offsetHor: offsetHor,
+                  offsetVer: offsetVer,
+                ));
           }
         }
       });
-    } else if (widget.from == "main") {
+    } else if (widget.from == Pages.home) {
       setState(() {
         showTextAreaSmall = true;
       });
@@ -105,7 +111,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
       setShow();
     }
 
-    _motorVideoController = VideoPlayerController.asset(motorVideoImage)
+    _motorVideoController = VideoPlayerController.asset(motorVideo)
       ..initialize().then((_) => {
             setState(() {
               _motorVideoController.setVolume(0);
@@ -113,18 +119,18 @@ class _SchoolVideoState extends State<SchoolVideo> {
             })
           });
     _energySavingVideoController =
-        VideoPlayerController.asset(energySavingVideoImage)
+        VideoPlayerController.asset(energySavingVideo)
           ..initialize().then((_) => {
                 setState(() {
                   _energySavingVideoController.setVolume(0);
                   _energySavingVideoController.setLooping(false);
                 })
               });
-    _insideVideoController = VideoPlayerController.asset(insideVideoImage)
+    _mapVideoController = VideoPlayerController.asset(mapVideo)
       ..initialize().then((_) => {
             setState(() {
-              _insideVideoController.setVolume(0);
-              _insideVideoController.setLooping(false);
+              _mapVideoController.setVolume(0);
+              _mapVideoController.setLooping(false);
             })
           });
     setState(() {
@@ -137,7 +143,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
     _controller.dispose();
     _motorVideoController.dispose();
     _energySavingVideoController.dispose();
-    _insideVideoController.dispose();
+    _mapVideoController.dispose();
 
     super.dispose();
   }
@@ -231,7 +237,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
                           height: screenSize.width * 0.040,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage('assets/graphics/Next.png'),
+                              image: AssetImage(nextImage),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -276,7 +282,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
                           height: screenSize.width * 0.040,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage('assets/graphics/Next.png'),
+                              image: AssetImage(nextImage),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -308,8 +314,6 @@ class _SchoolVideoState extends State<SchoolVideo> {
                 show ? motor() : Container(),
                 show ? energySaving() : Container(),
                 show ? mapScreen() : Container(),
-
-                // show ? backButton() : Container(),
                 _motorVideoPlaying
                     ? SizedBox(
                         width: screenWidth,
@@ -324,11 +328,11 @@ class _SchoolVideoState extends State<SchoolVideo> {
                         child: VideoPlayer(_energySavingVideoController),
                       )
                     : Container(),
-                _insideVideoPlaying
+                _mapVideoPlaying
                     ? SizedBox(
                         width: screenWidth,
                         height: screenHeight,
-                        child: VideoPlayer(_insideVideoController),
+                        child: VideoPlayer(_mapVideoController),
                       )
                     : Container(),
                 loading
@@ -341,7 +345,6 @@ class _SchoolVideoState extends State<SchoolVideo> {
                         ),
                       )
                     : Container(),
-
                 show
                     ? Positioned(
                         left: screenWidth * 0.5,
@@ -387,8 +390,12 @@ class _SchoolVideoState extends State<SchoolVideo> {
               });
               if (index > 1) {
                 _controller.removeListener(() {});
-
-                customPushReplacement(context, const HomeVideo());
+                customPushReplacement(
+                    context,
+                    HomeVideo(
+                      offsetHor: offsetHor,
+                      offsetVer: offsetVer,
+                    ));
               }
             }
           });
@@ -398,7 +405,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
           height: screenSize.width * 0.050,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/graphics/HOME.png'),
+              image: AssetImage(homeImage),
               fit: BoxFit.cover,
             ),
           ),
@@ -406,49 +413,6 @@ class _SchoolVideoState extends State<SchoolVideo> {
       ),
     );
   }
-
-  // Widget backButton() {
-  //   var screenSize = MediaQuery.of(context).size;
-  //   return SizedBox(
-  //     height: screenSize.height * 0.95,
-  //     child: Align(
-  //       alignment: Alignment.topLeft,
-  //       child: GestureDetector(
-  //         onTap: () {
-  //           setShow();
-  //           _controller.play();
-
-  //           _controller.addListener(() {
-  //             final bool isPlaying = _controller.value.isPlaying;
-
-  //             if (isPlaying != _isPlaying) {
-  //               setState(() {
-  //                 _isPlaying = isPlaying;
-  //                 setIndex(++index);
-  //               });
-  //               if (index > 1) {
-  //                 _controller.removeListener(() {});
-
-  //                 customPushReplacement(context, const HomeVideo());
-  //               }
-  //             }
-  //           });
-  //         },
-  //         child: Container(
-  //           width: screenSize.width * 0.050,
-  //           height: screenSize.width * 0.050,
-  //           decoration: const BoxDecoration(
-
-  //             image:  DecorationImage(
-  //               image: AssetImage('assets/graphics/HOME.png'),
-  //               fit: BoxFit.cover,
-  //             ),
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
 
   Widget motor() {
     var screenSize = MediaQuery.of(context).size;
@@ -475,8 +439,13 @@ class _SchoolVideoState extends State<SchoolVideo> {
                     });
                     if (index > 1) {
                       _motorVideoController.removeListener(() {});
-
-                      customPushReplacement(context, const Motor());
+                      customPushReplacement(
+                          context,
+                          Motor(
+                            from: Pages.school,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
                     }
                   }
                 });
@@ -504,27 +473,6 @@ class _SchoolVideoState extends State<SchoolVideo> {
                 setState(() {
                   showEnergySaving = true;
                 });
-                // setState(() {
-                //   _energySavingVideoPlaying = true;
-                // });
-                // _energySavingVideoController.play();
-
-                // _energySavingVideoController.addListener(() {
-                //   final bool isPlaying =
-                //       _energySavingVideoController.value.isPlaying;
-                //   print(isPlaying);
-                //   if (isPlaying != _isPlaying) {
-                //     setState(() {
-                //       _isPlaying = isPlaying;
-                //       setIndex(++index);
-                //     });
-                //     if (index > 1) {
-                //       _energySavingVideoController.removeListener(() {});
-
-                //       customPushReplacement(context, const EnergySaving());
-                //     }
-                //   }
-                // });
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
@@ -547,12 +495,12 @@ class _SchoolVideoState extends State<SchoolVideo> {
               onTap: () async {
                 setShow();
                 setState(() {
-                  _insideVideoPlaying = true;
+                  _mapVideoPlaying = true;
                 });
-                _insideVideoController.play();
+                _mapVideoController.play();
 
-                _insideVideoController.addListener(() {
-                  final bool isPlaying = _insideVideoController.value.isPlaying;
+                _mapVideoController.addListener(() {
+                  final bool isPlaying = _mapVideoController.value.isPlaying;
                   print(isPlaying);
                   if (isPlaying != _isPlaying) {
                     setState(() {
@@ -560,9 +508,13 @@ class _SchoolVideoState extends State<SchoolVideo> {
                       setIndex(++index);
                     });
                     if (index > 1) {
-                      //_insideVideoController.removeListener(() {});
-
-                      customPushReplacement(context, const SchoolMainScreens());
+                      customPushReplacement(
+                          context,
+                          MapMainScreens(
+                            from: Pages.school,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
                     }
                   }
                 });

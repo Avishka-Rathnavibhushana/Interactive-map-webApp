@@ -1,29 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/main_buildings/home.dart';
-import 'package:interactive_map/main_buildings/inside_school/school_main_screens.dart';
+import 'package:interactive_map/main_buildings/inside_main_building/map_main_screen.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 
-class ScreenLeft extends StatefulWidget {
-  const ScreenLeft({Key? key, this.offsetHor, this.offsetVer})
+class ScreenRight extends StatefulWidget {
+  const ScreenRight({Key? key, this.to, this.offsetHor, this.offsetVer})
       : super(key: key);
+  final to;
   final offsetHor;
   final offsetVer;
+
   @override
-  _ScreenLeftState createState() => _ScreenLeftState();
+  _ScreenRightState createState() => _ScreenRightState();
 }
 
-class _ScreenLeftState extends State<ScreenLeft> {
+class _ScreenRightState extends State<ScreenRight> {
   late VideoPlayerController _controller;
   int index = 0;
   bool show = false;
   bool _isPlaying = false;
-  int nextIndex = 0;
-  String url = 'assets/videos/screen_LEFT_REV.mp4';
+  bool nextIndex = false;
+  String url = 'assets/videos/screen_RIGHT_REV.mp4';
 
-  String screenLeftImage_1 = 'assets/tempory images/screen_LEFT.png';
-  String screenLeftImage_2 = 'assets/tempory images/screen_LEFT_2.png';
-  String screenLeftImage_3 = 'assets/tempory images/screen_LEFT_3.png';
+  String screenRightImage_1 = 'assets/tempory images/screen_RIGHT.png';
+  String screenRightImage_2 = 'assets/tempory images/screen_RIGHT_2.png';
 
   setIndex(value) {
     index = value;
@@ -36,17 +38,11 @@ class _ScreenLeftState extends State<ScreenLeft> {
     });
   }
 
-  static double offsetHor = 0;
-  static double offsetVer = 0;
-
   @override
   void initState() {
-    // Create and store the VideoPlayerController. The VideoPlayerController
-    // offers several different constructors to play videos from assets, files,
-    // or the internet.
     index = 0;
     show = false;
-    nextIndex = 0;
+    nextIndex = false;
     _controller = VideoPlayerController.asset(url)
       ..initialize().then((_) => {
             setState(() {
@@ -56,15 +52,11 @@ class _ScreenLeftState extends State<ScreenLeft> {
             })
           });
 
-    // Use the controller to loop the video.
-    offsetHor = widget.offsetHor;
-    offsetVer = widget.offsetVer;
     super.initState();
   }
 
   @override
   void dispose() {
-    // Ensure disposing of the VideoPlayerController to free up resources.
     _controller.dispose();
 
     super.dispose();
@@ -80,10 +72,13 @@ class _ScreenLeftState extends State<ScreenLeft> {
   final ScrollController _scrollControllerVertical = ScrollController(
     initialScrollOffset: offsetVer,
   );
+  static double offsetHor = 0;
+  static double offsetVer = 0;
 
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
+
     if (_scrollControllerHrizontal.hasClients) {
       _scrollControllerHrizontal.animateTo(
           _scrollControllerHrizontal.position.maxScrollExtent / 2,
@@ -99,7 +94,6 @@ class _ScreenLeftState extends State<ScreenLeft> {
           curve: Curves.easeInOut);
       offsetVer = _scrollControllerVertical.position.maxScrollExtent / 2;
     }
-
     return Scaffold(
       backgroundColor: Colors.transparent,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -109,10 +103,9 @@ class _ScreenLeftState extends State<ScreenLeft> {
           fit: StackFit.expand,
           children: [
             show ? nextButton() : Container(),
-            // show ? backButton() : Container(),
             show ? menuButton() : Container(),
             show
-                ? nextIndex == 0
+                ? nextIndex
                     ? Padding(
                         padding: const EdgeInsets.only(top: 100),
                         child: Container(
@@ -120,42 +113,26 @@ class _ScreenLeftState extends State<ScreenLeft> {
                           child: TextAreaWithClip(
                               screenSize: screenSize,
                               texts: const [
-                                "Multi-site management and global controls allow you to react quickly",
-                                "Scale efficiency measures across your entire portfolio"
+                                "Easily mange temparature setpoints and scheduling anytime, anywhere 24/7",
                               ],
-                              topic: "Smart Building Operations",
+                              topic: "Smart HVAC",
                               description: ""),
                         ),
                       )
-                    : nextIndex == 1
-                        ? Padding(
-                            padding: const EdgeInsets.only(top: 100),
-                            child: Container(
-                              alignment: Alignment.topLeft,
-                              child: TextAreaWithClip(
-                                  screenSize: screenSize,
-                                  texts: const [
-                                    "Open-platform works with existing building systems regardless of vendor",
-                                    "Complete visibility in a single pane of glass"
-                                  ],
-                                  topic: "Smart Building Operations",
-                                  description: ""),
-                            ),
-                          )
-                        : Padding(
-                            padding: const EdgeInsets.only(top: 100),
-                            child: Container(
-                              alignment: Alignment.topLeft,
-                              child: TextAreaWithClip(
-                                  screenSize: screenSize,
-                                  texts: const [
-                                    "Monitor Indoor Air Quality (IAQ) standerds",
-                                    "Help keep your employees and customers safe"
-                                  ],
-                                  topic: "Smart Building Operations",
-                                  description: ""),
-                            ),
-                          )
+                    : Padding(
+                        padding: const EdgeInsets.only(top: 100),
+                        child: Container(
+                          alignment: Alignment.topLeft,
+                          child: TextAreaWithClip(
+                              screenSize: screenSize,
+                              texts: const [
+                                "Monitor equipment performance with fault detection and alerts for preventative maintenance",
+                                "Reduce costs and resolve issues before customers are affected"
+                              ],
+                              topic: "Smart HVAC",
+                              description: ""),
+                        ),
+                      )
                 : Container(),
           ],
         ),
@@ -177,32 +154,23 @@ class _ScreenLeftState extends State<ScreenLeft> {
                   child: VideoPlayer(_controller),
                 ),
                 show
-                    ? nextIndex == 0
+                    ? nextIndex
                         ? SizedBox(
                             width: screenWidth,
                             height: screenHeight,
                             child: Image.asset(
-                              screenLeftImage_1,
+                              screenRightImage_1,
                               fit: BoxFit.fill,
                             ),
                           )
-                        : nextIndex == 1
-                            ? SizedBox(
-                                width: screenWidth,
-                                height: screenHeight,
-                                child: Image.asset(
-                                  screenLeftImage_2,
-                                  fit: BoxFit.fill,
-                                ),
-                              )
-                            : SizedBox(
-                                width: screenWidth,
-                                height: screenHeight,
-                                child: Image.asset(
-                                  screenLeftImage_3,
-                                  fit: BoxFit.fill,
-                                ),
-                              )
+                        : SizedBox(
+                            width: screenWidth,
+                            height: screenHeight,
+                            child: Image.asset(
+                              screenRightImage_2,
+                              fit: BoxFit.fill,
+                            ),
+                          )
                     : Container(),
               ],
             ),
@@ -220,7 +188,7 @@ class _ScreenLeftState extends State<ScreenLeft> {
         alignment: Alignment.bottomRight,
         child: GestureDetector(
           onTap: () {
-            if (nextIndex == 2) {
+            if (nextIndex) {
               setShow();
               _controller.play();
               _controller.addListener(() {
@@ -237,7 +205,8 @@ class _ScreenLeftState extends State<ScreenLeft> {
                       context,
                       PageRouteBuilder(
                         pageBuilder: (context, animation1, animation2) =>
-                            SchoolMainScreens(
+                            MapMainScreens(
+                          from: widget.to,
                           offsetHor: offsetHor,
                           offsetVer: offsetVer,
                         ),
@@ -255,7 +224,7 @@ class _ScreenLeftState extends State<ScreenLeft> {
               });
             } else {
               setState(() {
-                nextIndex += 1;
+                nextIndex = true;
               });
             }
           },
@@ -264,7 +233,7 @@ class _ScreenLeftState extends State<ScreenLeft> {
             height: screenSize.width * 0.040,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/graphics/Next.png'),
+                image: AssetImage(nextImage),
                 fit: BoxFit.cover,
               ),
             ),
@@ -273,73 +242,6 @@ class _ScreenLeftState extends State<ScreenLeft> {
       ),
     );
   }
-
-  // Widget backButton() {
-  //   var screenSize = MediaQuery.of(context).size;
-  //   return SizedBox(
-  //     height: screenSize.height * 0.95,
-  //     child: Align(
-  //       alignment: Alignment.topRight,
-  //       child: GestureDetector(
-  //         onTap: () {
-  //           if (nextIndex != 0) {
-  //             setState(() {
-  //               nextIndex -= 1;
-  //             });
-  //           } else {
-  //             setShow();
-  //             _controller.play();
-  //             _controller.addListener(() {
-  //               final bool isPlaying = _controller.value.isPlaying;
-
-  //               if (isPlaying != _isPlaying) {
-  //                 setState(() {
-  //                   _isPlaying = isPlaying;
-  //                   setIndex(++index);
-  //                 });
-  //                 if (index > 1) {
-  //                   _controller.removeListener(() {});
-  //                   Navigator.pushReplacement(
-  //                     context,
-  //                     PageRouteBuilder(
-  //                       pageBuilder: (context, animation1, animation2) =>
-  //                           const SchoolMainScreens(),
-  //                       transitionDuration: const Duration(seconds: 2),
-  //                       transitionsBuilder:
-  //                           (context, animation, secondaryAnimation, child) =>
-  //                               FadeTransition(
-  //                         opacity: animation,
-  //                         child: child,
-  //                       ),
-  //                     ),
-  //                   );
-  //                 }
-  //               }
-  //             });
-  //           }
-  //         },
-  //         child: Container(
-  //           width: screenSize.width * 0.050,
-  //           height: screenSize.width * 0.050,
-  //           decoration: BoxDecoration(
-  //             boxShadow: [
-  //               BoxShadow(
-  //                 color: Colors.grey.withOpacity(0.5),
-  //                 spreadRadius: 5,
-  //                 blurRadius: 7,
-  //                 offset: const Offset(0, 3), // changes position of shadow
-  //               ),
-  //             ],
-  //             image: const DecorationImage(
-  //               image: AssetImage('assets/graphics/back.png'),
-  //               fit: BoxFit.cover,
-  //             ),
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
 
   Widget menuButton() {
     var screenSize = MediaQuery.of(context).size;
@@ -354,8 +256,10 @@ class _ScreenLeftState extends State<ScreenLeft> {
           Navigator.pushReplacement(
             context,
             PageRouteBuilder(
-              pageBuilder: (context, animation1, animation2) =>
-                  const HomeVideo(),
+              pageBuilder: (context, animation1, animation2) => HomeVideo(
+                offsetHor: offsetHor,
+                offsetVer: offsetVer,
+              ),
               transitionDuration: const Duration(seconds: 2),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) =>
@@ -371,7 +275,7 @@ class _ScreenLeftState extends State<ScreenLeft> {
           height: screenSize.width * 0.050,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/graphics/HOME.png'),
+              image: AssetImage(homeImage),
               fit: BoxFit.cover,
             ),
           ),

@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:interactive_map/constants/constants.dart';
+import 'package:interactive_map/main_buildings/bank.dart';
+import 'package:interactive_map/main_buildings/datacentre.dart';
+import 'package:interactive_map/main_buildings/fastfood.dart';
+import 'package:interactive_map/main_buildings/groceryshop.dart';
+import 'package:interactive_map/main_buildings/retail.dart';
 import 'package:interactive_map/main_buildings/school.dart';
+import 'package:interactive_map/main_buildings/warehouse.dart';
 import 'package:interactive_map/widgets/custom_text_container.dart';
 import 'package:interactive_map/widgets/custom_topic.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 
 class Motor extends StatefulWidget {
-  const Motor({Key? key, this.offsetHor, this.offsetVer}) : super(key: key);
+  const Motor({Key? key, this.from, this.offsetHor, this.offsetVer})
+      : super(key: key);
   final offsetHor;
   final offsetVer;
-
+  final from;
   @override
   _MotorState createState() => _MotorState();
 }
@@ -19,8 +27,6 @@ class _MotorState extends State<Motor> {
 
   late VideoPlayerController _backVideoController;
   bool _backVideoPlaying = false;
-  // late VideoPlayerController _menueVideoController;
-  // bool _menueVideoPlaying = false;
 
   bool _isPlaying = false;
   int index = 0;
@@ -37,6 +43,52 @@ class _MotorState extends State<Motor> {
     setState(() {
       show = !show;
     });
+  }
+
+  toNavigate(String from, String current) {
+    if (from == Pages.school) {
+      return SchoolVideo(
+        from: current,
+        offsetHor: offsetHor,
+        offsetVer: offsetVer,
+      );
+    } else if (from == Pages.bank) {
+      return BankVideo(
+        from: current,
+        offsetHor: offsetHor,
+        offsetVer: offsetVer,
+      );
+    } else if (from == Pages.grocery) {
+      return GroceryShopVideo(
+        from: current,
+        offsetHor: offsetHor,
+        offsetVer: offsetVer,
+      );
+    } else if (from == Pages.dataCenter) {
+      return DataCentreVideo(
+        from: current,
+        offsetHor: offsetHor,
+        offsetVer: offsetVer,
+      );
+    } else if (from == Pages.fastfoods) {
+      return FastFoodVideo(
+        from: current,
+        offsetHor: offsetHor,
+        offsetVer: offsetVer,
+      );
+    } else if (from == Pages.werehouse) {
+      return WarehouseVideo(
+        from: current,
+        offsetHor: offsetHor,
+        offsetVer: offsetVer,
+      );
+    } else if (from == Pages.retail) {
+      return RetailVideo(
+        from: current,
+        offsetHor: offsetHor,
+        offsetVer: offsetVer,
+      );
+    }
   }
 
   @override
@@ -116,7 +168,6 @@ class _MotorState extends State<Motor> {
           fit: StackFit.expand,
           children: [
             show ? nextButton() : Container(),
-            //show ? backButton() : Container(),
             show ? menuButton() : Container(),
             show
                 ? Column(
@@ -303,9 +354,8 @@ class _MotorState extends State<Motor> {
               Navigator.pushReplacement(
                 context,
                 PageRouteBuilder(
-                  pageBuilder: (context, animation1, animation2) => SchoolVideo(
-                    from: "",
-                  ),
+                  pageBuilder: (context, animation1, animation2) =>
+                      toNavigate(widget.from, Pages.motor),
                   transitionDuration: Duration(seconds: 2),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) =>
@@ -326,7 +376,7 @@ class _MotorState extends State<Motor> {
             height: screenSize.width * 0.040,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/graphics/Next.png'),
+                image: AssetImage(nextImage),
                 fit: BoxFit.cover,
               ),
             ),
@@ -335,78 +385,6 @@ class _MotorState extends State<Motor> {
       ),
     );
   }
-
-  // Widget backButton() {
-  //   var screenSize = MediaQuery.of(context).size;
-  //   return SizedBox(
-  //     height: screenSize.height * 0.95,
-  //     child: Align(
-  //       alignment: Alignment.topRight,
-  //       child: GestureDetector(
-  //         onTap: () async {
-  //           if (nextIndex) {
-  //             setState(() {
-  //               nextIndex = false;
-  //             });
-  //           } else {
-  //             setShow();
-  //             setState(() {
-  //               _backVideoPlaying = true;
-  //             });
-  //             _backVideoController.play();
-
-  //             _backVideoController.addListener(() {
-  //               final bool isPlaying = _backVideoController.value.isPlaying;
-  //               print(isPlaying);
-  //               if (isPlaying != _isPlaying) {
-  //                 setState(() {
-  //                   _isPlaying = isPlaying;
-  //                   setIndex(++index);
-  //                 });
-  //                 if (index > 1) {
-  //                   _backVideoController.removeListener(() {});
-
-  //                   Navigator.pushReplacement(
-  //                     context,
-  //                     PageRouteBuilder(
-  //                       pageBuilder: (context, animation1, animation2) =>
-  //                           SchoolVideo(),
-  //                       transitionDuration: Duration(seconds: 2),
-  //                       transitionsBuilder:
-  //                           (context, animation, secondaryAnimation, child) =>
-  //                               FadeTransition(
-  //                         opacity: animation,
-  //                         child: child,
-  //                       ),
-  //                     ),
-  //                   );
-  //                 }
-  //               }
-  //             });
-  //           }
-  //         },
-  //         child: Container(
-  //           width: screenSize.width * 0.050,
-  //           height: screenSize.width * 0.050,
-  //           decoration: BoxDecoration(
-  //             boxShadow: [
-  //               BoxShadow(
-  //                 color: Colors.grey.withOpacity(0.5),
-  //                 spreadRadius: 5,
-  //                 blurRadius: 7,
-  //                 offset: const Offset(0, 3), // changes position of shadow
-  //               ),
-  //             ],
-  //             image: const DecorationImage(
-  //               image: AssetImage('assets/graphics/back.png'),
-  //               fit: BoxFit.cover,
-  //             ),
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
 
   Widget menuButton() {
     var screenSize = MediaQuery.of(context).size;
@@ -422,9 +400,7 @@ class _MotorState extends State<Motor> {
             context,
             PageRouteBuilder(
               pageBuilder: (context, animation1, animation2) =>
-                  const SchoolVideo(
-                from: "motor",
-              ),
+                  toNavigate(widget.from, Pages.motorToHome),
               transitionDuration: const Duration(seconds: 2),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) =>
@@ -440,7 +416,7 @@ class _MotorState extends State<Motor> {
           height: screenSize.width * 0.050,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/graphics/HOME.png'),
+              image: AssetImage(homeImage),
               fit: BoxFit.cover,
             ),
           ),
@@ -448,138 +424,4 @@ class _MotorState extends State<Motor> {
       ),
     );
   }
-
-  // Widget buttonArea() {
-  //   var screenSize = MediaQuery.of(context).size;
-  //   return SizedBox(
-  //     height: screenSize.width * 0.58,
-  //     child: Align(
-  //       alignment: Alignment.centerLeft,
-  //       child: Column(
-  //         mainAxisSize: MainAxisSize.max,
-  //         mainAxisAlignment: MainAxisAlignment.center,
-  //         crossAxisAlignment: CrossAxisAlignment.start,
-  //         children: [
-  //           Container(
-  //             width: screenSize.width * 0.35,
-  //             height: screenSize.width * 0.22,
-  //             padding: const EdgeInsets.all(10),
-  //             decoration: BoxDecoration(
-  //               boxShadow: [
-  //                 BoxShadow(
-  //                   color: Colors.grey.withOpacity(0.5),
-  //                   spreadRadius: 5,
-  //                   blurRadius: 7,
-  //                   offset: const Offset(0, 3), // changes position of shadow
-  //                 ),
-  //               ],
-  //               color: const Color(0xFF131438),
-  //             ),
-  //             child: const Text(
-  //               'dfsdfsf dfsdf sdfds dsfsd fsfsdfsdfs sdfdf sdfsdfs dfsdfsdf dsfsdfs sdfsdfs'
-  //               'dsfsfd dfsd sdfdsfs df sd f sdfs sdfsdf sfd sd fdsf sdfds dsf gffgd dfdf dfds s sfssdf sf '
-  //               'dfsdfs fsfs sfs fsfsfsdf dfs fs f',
-  //               style: TextStyle(color: Colors.white),
-  //             ),
-  //           ),
-  //           Row(
-  //             mainAxisSize: MainAxisSize.min,
-  //             mainAxisAlignment: MainAxisAlignment.center,
-  //             children: [
-  //               SizedBox(height: screenSize.width * 0.12),
-  //               GestureDetector(
-  //                 onTap: () {},
-  //                 child: Container(
-  //                   width: screenSize.width * 0.091,
-  //                   height: screenSize.width * 0.040,
-  //                   margin: EdgeInsets.only(left: screenSize.width * 0.05),
-  //                   decoration: BoxDecoration(
-  //                     boxShadow: [
-  //                       BoxShadow(
-  //                         color: Colors.grey.withOpacity(0.5),
-  //                         spreadRadius: 5,
-  //                         blurRadius: 7,
-  //                         offset:
-  //                             const Offset(0, 3), // changes position of shadow
-  //                       ),
-  //                     ],
-  //                     image: const DecorationImage(
-  //                       image: AssetImage('assets/graphics/Next.png'),
-  //                       fit: BoxFit.cover,
-  //                     ),
-  //                   ),
-  //                 ),
-  //               ),
-  //               GestureDetector(
-  //                 onTap: () {},
-  //                 child: Container(
-  //                   width: screenSize.width * 0.091,
-  //                   height: screenSize.width * 0.040,
-  //                   margin: EdgeInsets.only(left: screenSize.width * 0.06),
-  //                   decoration: BoxDecoration(
-  //                     boxShadow: [
-  //                       BoxShadow(
-  //                         color: Colors.grey.withOpacity(0.5),
-  //                         spreadRadius: 5,
-  //                         blurRadius: 7,
-  //                         offset:
-  //                             const Offset(0, 3), // changes position of shadow
-  //                       ),
-  //                     ],
-  //                     image: const DecorationImage(
-  //                       image: AssetImage('assets/graphics/Next.png'),
-  //                       fit: BoxFit.cover,
-  //                     ),
-  //                   ),
-  //                 ),
-  //               ),
-  //             ],
-  //           ),
-  //           GestureDetector(
-  //             onTap: () {
-  //               showDialog(
-  //                 context: context,
-  //                 builder: (context) {
-  //                   return Dialog(
-  //                     shape: RoundedRectangleBorder(
-  //                         borderRadius: BorderRadius.circular(5)),
-  //                     elevation: 16,
-  //                     insetPadding: EdgeInsets.all(screenSize.width * 0.2),
-  //                     child: Container(
-  //                       decoration: const BoxDecoration(
-  //                         image: DecorationImage(
-  //                           image: AssetImage('assets/images/QR.png'),
-  //                           fit: BoxFit.contain,
-  //                         ),
-  //                       ),
-  //                     ),
-  //                   );
-  //                 },
-  //               );
-  //             },
-  //             child: Container(
-  //               width: screenSize.width * 0.091,
-  //               height: screenSize.width * 0.040,
-  //               margin: EdgeInsets.only(left: screenSize.width * 0.12),
-  //               decoration: BoxDecoration(
-  //                 boxShadow: [
-  //                   BoxShadow(
-  //                     color: Colors.grey.withOpacity(0.5),
-  //                     spreadRadius: 5,
-  //                     blurRadius: 7,
-  //                     offset: const Offset(0, 3), // changes position of shadow
-  //                   ),
-  //                 ],
-  //                 image: const DecorationImage(
-  //                   image: AssetImage('assets/graphics/Next.png'),
-  //                   fit: BoxFit.cover,
-  //                 ),
-  //               ),
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
 }

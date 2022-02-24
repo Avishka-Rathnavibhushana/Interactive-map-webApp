@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:interactive_map/constants/constants.dart';
+import 'package:interactive_map/main_buildings/bank.dart';
+import 'package:interactive_map/main_buildings/datacentre.dart';
+import 'package:interactive_map/main_buildings/fastfood.dart';
+import 'package:interactive_map/main_buildings/groceryshop.dart';
+import 'package:interactive_map/main_buildings/retail.dart';
 import 'package:interactive_map/main_buildings/school.dart';
-import 'package:interactive_map/main_buildings/inside_school/screen_left.dart';
-import 'package:interactive_map/main_buildings/inside_school/screen_right.dart';
+import 'package:interactive_map/main_buildings/inside_main_building/screen_left.dart';
+import 'package:interactive_map/main_buildings/inside_main_building/screen_right.dart';
+import 'package:interactive_map/main_buildings/warehouse.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 
-class SchoolMainScreens extends StatefulWidget {
-  const SchoolMainScreens({Key? key, this.offsetHor, this.offsetVer})
+class MapMainScreens extends StatefulWidget {
+  const MapMainScreens({Key? key, this.from, this.offsetHor, this.offsetVer})
       : super(key: key);
   final offsetHor;
   final offsetVer;
+  final from;
   @override
-  _SchoolMainScreensState createState() => _SchoolMainScreensState();
+  _MapMainScreensState createState() => _MapMainScreensState();
 }
 
-class _SchoolMainScreensState extends State<SchoolMainScreens> {
+class _MapMainScreensState extends State<MapMainScreens> {
   late VideoPlayerController _controller;
 
   late VideoPlayerController _leftScreenVideoController;
@@ -26,7 +34,7 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
   bool _isPlaying = false;
   int index = 0;
   bool show = false;
-  final String url = 'assets/videos/school_REV.mp4';
+  String url = '';
 
   String mapMainScreenImage = 'assets/tempory images/screen_MAIN.png';
 
@@ -57,7 +65,68 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
     super.initState();
   }
 
+  toNavigate(String from) {
+    if (from == Pages.school) {
+      return SchoolVideo(
+        from: Pages.map,
+        offsetHor: offsetHor,
+        offsetVer: offsetVer,
+      );
+    } else if (from == Pages.bank) {
+      return BankVideo(
+        from: Pages.map,
+        offsetHor: offsetHor,
+        offsetVer: offsetVer,
+      );
+    } else if (from == Pages.grocery) {
+      return GroceryShopVideo(
+        from: Pages.map,
+        offsetHor: offsetHor,
+        offsetVer: offsetVer,
+      );
+    } else if (from == Pages.dataCenter) {
+      return DataCentreVideo(
+        from: Pages.map,
+        offsetHor: offsetHor,
+        offsetVer: offsetVer,
+      );
+    } else if (from == Pages.fastfoods) {
+      return FastFoodVideo(
+        from: Pages.map,
+        offsetHor: offsetHor,
+        offsetVer: offsetVer,
+      );
+    } else if (from == Pages.werehouse) {
+      return WarehouseVideo(
+        from: Pages.map,
+        offsetHor: offsetHor,
+        offsetVer: offsetVer,
+      );
+    } else if (from == Pages.retail) {
+      return RetailVideo(
+        from: Pages.map,
+        offsetHor: offsetHor,
+        offsetVer: offsetVer,
+      );
+    }
+  }
+
   videoHandler() async {
+    if (widget.from == Pages.school) {
+      url = 'assets/videos/school_REV.mp4';
+    } else if (widget.from == Pages.bank) {
+      url = 'assets/videos/bank_REV.mp4';
+    } else if (widget.from == Pages.grocery) {
+      url = 'assets/videos/groceryshop_REV.mp4';
+    } else if (widget.from == Pages.dataCenter) {
+      url = 'assets/videos/datacentre_REV.mp4';
+    } else if (widget.from == Pages.fastfoods) {
+      url = 'assets/videos/fastfood_REV.mp4';
+    } else if (widget.from == Pages.werehouse) {
+      url = 'assets/videos/warehouse_REV.mp4';
+    } else if (widget.from == Pages.retail) {
+      url = 'assets/videos/retail_REV.mp4';
+    }
     _controller = VideoPlayerController.asset(url);
     await _controller.initialize();
     setState(() {
@@ -159,13 +228,6 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
             height: screenHeight,
             child: Stack(
               children: [
-                // show
-                //     ? SizedBox(
-                //         width: screenWidth,
-                //         height: screenHeight,
-                //         child: VideoPlayer(_controller),
-                //       )
-                //     : Container(),
                 SizedBox(
                   width: screenWidth,
                   height: screenHeight,
@@ -174,11 +236,8 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
                     fit: BoxFit.fill,
                   ),
                 ),
-
                 show ? screenLeft() : Container(),
                 show ? screenRight() : Container(),
-                //show ? backButton() : Container(),
-
                 _leftScreenVideoPlaying
                     ? SizedBox(
                         width: screenWidth,
@@ -221,9 +280,6 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
             GestureDetector(
               onTap: () async {
                 setShow();
-
-                //await Future.delayed(Duration(seconds: 1));
-
                 setState(() {
                   _leftScreenVideoPlaying = true;
                 });
@@ -246,7 +302,9 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
                         PageRouteBuilder(
                           pageBuilder: (context, animation1, animation2) =>
                               ScreenLeft(
-                                  offsetHor: offsetHor, offsetVer: offsetVer),
+                                  to: widget.from,
+                                  offsetHor: offsetHor,
+                                  offsetVer: offsetVer),
                           transitionDuration: Duration(seconds: 2),
                           transitionsBuilder:
                               (context, animation, secondaryAnimation, child) =>
@@ -305,7 +363,11 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
                         context,
                         PageRouteBuilder(
                           pageBuilder: (context, animation1, animation2) =>
-                              ScreenRight(),
+                              ScreenRight(
+                            to: widget.from,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ),
                           transitionDuration: Duration(seconds: 2),
                           transitionsBuilder:
                               (context, animation, secondaryAnimation, child) =>
@@ -329,68 +391,6 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
         ));
   }
 
-  // Widget backButton() {
-  //   var screenSize = MediaQuery.of(context).size;
-  //   return SizedBox(
-  //     height: screenSize.height * 0.95,
-  //     child: Align(
-  //       alignment: Alignment.topRight,
-  //       child: GestureDetector(
-  //         onTap: () {
-  //           setShow();
-  //           _controller.play();
-  //
-  //           _controller.addListener(() {
-  //             final bool isPlaying = _controller.value.isPlaying;
-  //
-  //             if (isPlaying != _isPlaying) {
-  //               setState(() {
-  //                 _isPlaying = isPlaying;
-  //                 setIndex(++index);
-  //               });
-  //               if (index > 1) {
-  //                 _controller.removeListener(() {});
-  //                 Navigator.pushReplacement(
-  //                   context,
-  //                   PageRouteBuilder(
-  //                     pageBuilder: (context, animation1, animation2) =>
-  //                         const SchoolVideo(),
-  //                     transitionDuration: const Duration(seconds: 2),
-  //                     transitionsBuilder:
-  //                         (context, animation, secondaryAnimation, child) =>
-  //                             FadeTransition(
-  //                       opacity: animation,
-  //                       child: child,
-  //                     ),
-  //                   ),
-  //                 );
-  //               }
-  //             }
-  //           });
-  //         },
-  //         child: Container(
-  //           width: screenSize.width * 0.050,
-  //           height: screenSize.width * 0.050,
-  //           decoration: BoxDecoration(
-  //             boxShadow: [
-  //               BoxShadow(
-  //                 color: Colors.grey.withOpacity(0.5),
-  //                 spreadRadius: 5,
-  //                 blurRadius: 7,
-  //                 offset: const Offset(0, 3), // changes position of shadow
-  //               ),
-  //             ],
-  //             image: const DecorationImage(
-  //               image: AssetImage('assets/graphics/back.png'),
-  //               fit: BoxFit.cover,
-  //             ),
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
-
   Widget menuButton() {
     var screenSize = MediaQuery.of(context).size;
     return Container(
@@ -405,9 +405,7 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
             context,
             PageRouteBuilder(
               pageBuilder: (context, animation1, animation2) =>
-                  const SchoolVideo(
-                from: "map",
-              ),
+                  toNavigate(widget.from),
               transitionDuration: const Duration(seconds: 2),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) =>
@@ -423,7 +421,7 @@ class _SchoolMainScreensState extends State<SchoolMainScreens> {
           height: screenSize.width * 0.050,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/graphics/HOME.png'),
+              image: AssetImage(homeImage),
               fit: BoxFit.cover,
             ),
           ),

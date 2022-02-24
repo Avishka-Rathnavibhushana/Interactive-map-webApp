@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/main_buildings/bank.dart';
 import 'package:interactive_map/main_buildings/datacentre.dart';
 import 'package:interactive_map/main_buildings/fastfood.dart';
@@ -293,7 +294,6 @@ class _HomeVideoState extends State<HomeVideo> {
                 show ? Container() : warehouse(),
                 show ? Container() : groceryShop(),
                 show ? Container() : fastFood(),
-                // show ? Container() : qrButton(),
                 SizedBox(
                   width: screenWidth,
                   height: screenHeight,
@@ -361,17 +361,6 @@ class _HomeVideoState extends State<HomeVideo> {
                         ),
                       )
                     : Container(),
-                // showQR
-                //     ? Container(
-                //         width: screenSize.width,
-                //         child: Expanded(
-                //           child: Image.asset(
-                //             schoolSelected,
-                //             fit: BoxFit.fill,
-                //           ),
-                //         ),
-                //       )
-                //     : Container(),
                 showQR
                     ? GestureDetector(
                         onTap: () async {
@@ -442,159 +431,14 @@ class _HomeVideoState extends State<HomeVideo> {
           decoration: BoxDecoration(
             image: DecorationImage(
               image: showQR
-                  ? AssetImage('assets/graphics/HOME.png')
-                  : AssetImage('assets/graphics/MORE.png'),
+                  ? const AssetImage(homeImage)
+                  : const AssetImage(moreImage),
               fit: BoxFit.cover,
             ),
           ),
         ),
       ),
     );
-  }
-
-  Widget bank() {
-    var screenSize = MediaQuery.of(context).size;
-    return Positioned(
-        left: screenWidth * 0.615,
-        top: screenHeight * 0.75,
-        child: Stack(
-          children: [
-            Center(
-              child: InkWell(
-                onTap: () async {
-                  setShow();
-                  setState(() {
-                    timerOFF = true;
-                  });
-
-                  _timerVideoController.pause();
-
-                  setState(() {
-                    _bankVideoPlaying = true;
-                  });
-                  _bankVideoController.play();
-
-                  _bankVideoController.addListener(() {
-                    final bool isPlaying = _bankVideoController.value.isPlaying;
-                    print(isPlaying);
-                    if (isPlaying != _isPlaying) {
-                      setState(() {
-                        _isPlaying = isPlaying;
-                        setIndex(++index);
-                      });
-                      if (index > 1) {
-                        _bankVideoController.removeListener(() {});
-
-                        customPushReplacement(context, BankVideo());
-                      }
-                    }
-                  });
-                },
-                child: CustomButtonLabelWithClip(
-                  screenSize: screenSize,
-                  text: "Banks",
-                  type: 0,
-                ),
-              ),
-            ),
-          ],
-        ));
-  }
-
-  Widget dataCentre() {
-    var screenSize = MediaQuery.of(context).size;
-    return Positioned(
-        left: screenWidth * 0.12,
-        top: screenHeight * 0.459,
-        child: Stack(
-          children: [
-            InkWell(
-              onTap: () async {
-                setShow();
-                setState(() {
-                  timerOFF = true;
-                });
-
-                _timerVideoController.pause();
-
-                setState(() {
-                  _dataCentreVideoPlaying = true;
-                });
-                _dataCentreVideoController.play();
-
-                _dataCentreVideoController.addListener(() {
-                  final bool isPlaying =
-                      _dataCentreVideoController.value.isPlaying;
-                  print(isPlaying);
-                  if (isPlaying != _isPlaying) {
-                    setState(() {
-                      _isPlaying = isPlaying;
-                      setIndex(++index);
-                    });
-                    if (index > 1) {
-                      _dataCentreVideoController.removeListener(() {});
-
-                      customPushReplacement(context, const DataCentreVideo());
-                    }
-                  }
-                });
-              },
-              child: CustomButtonLabelWithClip(
-                screenSize: screenSize,
-                text: "Data Centers",
-                type: 0,
-              ),
-            ),
-          ],
-        ));
-  }
-
-  Widget warehouse() {
-    var screenSize = MediaQuery.of(context).size;
-    return Positioned(
-        left: screenWidth * 0.269,
-        top: screenHeight * 0.22,
-        child: Stack(
-          children: [
-            InkWell(
-              onTap: () async {
-                setShow();
-                setState(() {
-                  timerOFF = true;
-                });
-
-                _timerVideoController.pause();
-
-                setState(() {
-                  _warehouseVideoPlaying = true;
-                });
-                _warehouseVideoController.play();
-
-                _warehouseVideoController.addListener(() {
-                  final bool isPlaying =
-                      _warehouseVideoController.value.isPlaying;
-                  print(isPlaying);
-                  if (isPlaying != _isPlaying) {
-                    setState(() {
-                      _isPlaying = isPlaying;
-                      setIndex(++index);
-                    });
-                    if (index > 1) {
-                      _warehouseVideoController.removeListener(() {});
-
-                      customPushReplacement(context, const WarehouseVideo());
-                    }
-                  }
-                });
-              },
-              child: CustomButtonLabelWithClip(
-                screenSize: screenSize,
-                text: "Warehouses",
-                type: 0,
-              ),
-            ),
-          ],
-        ));
   }
 
   Widget school() {
@@ -645,7 +489,12 @@ class _HomeVideoState extends State<HomeVideo> {
                       _schoolVideoController.removeListener(() {});
 
                       customPushReplacement(
-                          context, const SchoolVideo(from: "main"));
+                          context,
+                          SchoolVideo(
+                            from: Pages.home,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
                     }
                   }
                 });
@@ -653,6 +502,210 @@ class _HomeVideoState extends State<HomeVideo> {
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
                 text: "Schools",
+                type: 0,
+              ),
+            ),
+          ],
+        ));
+  }
+
+  Widget bank() {
+    var screenSize = MediaQuery.of(context).size;
+    return Positioned(
+        left: screenWidth * 0.615,
+        top: screenHeight * 0.75,
+        child: Stack(
+          children: [
+            Center(
+              child: InkWell(
+                onTap: () async {
+                  setShow();
+                  setState(() {
+                    timerOFF = true;
+                  });
+
+                  _timerVideoController.pause();
+
+                  setState(() {
+                    _bankVideoPlaying = true;
+                  });
+
+                  setState(() {
+                    width = 0;
+                  });
+
+                  _bankVideoController.play();
+
+                  setState(() {
+                    showTextAreaSmall = true;
+                  });
+
+                  await Future.delayed(const Duration(milliseconds: 200));
+
+                  setState(() {
+                    width = screenSize.width * 0.25;
+                  });
+
+                  _bankVideoController.addListener(() {
+                    final bool isPlaying = _bankVideoController.value.isPlaying;
+                    print(isPlaying);
+                    if (isPlaying != _isPlaying) {
+                      setState(() {
+                        _isPlaying = isPlaying;
+                        setIndex(++index);
+                      });
+                      if (index > 1) {
+                        _bankVideoController.removeListener(() {});
+                        customPushReplacement(
+                            context,
+                            BankVideo(
+                              from: Pages.home,
+                              offsetHor: offsetHor,
+                              offsetVer: offsetVer,
+                            ));
+                      }
+                    }
+                  });
+                },
+                child: CustomButtonLabelWithClip(
+                  screenSize: screenSize,
+                  text: "Banks",
+                  type: 0,
+                ),
+              ),
+            ),
+          ],
+        ));
+  }
+
+  Widget dataCentre() {
+    var screenSize = MediaQuery.of(context).size;
+    return Positioned(
+        left: screenWidth * 0.12,
+        top: screenHeight * 0.459,
+        child: Stack(
+          children: [
+            InkWell(
+              onTap: () async {
+                setShow();
+                setState(() {
+                  timerOFF = true;
+                });
+
+                _timerVideoController.pause();
+
+                setState(() {
+                  _dataCentreVideoPlaying = true;
+                });
+
+                setState(() {
+                  width = 0;
+                });
+
+                _dataCentreVideoController.play();
+
+                setState(() {
+                  showTextAreaSmall = true;
+                });
+
+                await Future.delayed(const Duration(milliseconds: 200));
+
+                setState(() {
+                  width = screenSize.width * 0.25;
+                });
+                _dataCentreVideoController.addListener(() {
+                  final bool isPlaying =
+                      _dataCentreVideoController.value.isPlaying;
+                  print(isPlaying);
+                  if (isPlaying != _isPlaying) {
+                    setState(() {
+                      _isPlaying = isPlaying;
+                      setIndex(++index);
+                    });
+                    if (index > 1) {
+                      _dataCentreVideoController.removeListener(() {});
+                      customPushReplacement(
+                          context,
+                          DataCentreVideo(
+                            from: Pages.home,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
+                    }
+                  }
+                });
+              },
+              child: CustomButtonLabelWithClip(
+                screenSize: screenSize,
+                text: "Data Centers",
+                type: 0,
+              ),
+            ),
+          ],
+        ));
+  }
+
+  Widget warehouse() {
+    var screenSize = MediaQuery.of(context).size;
+    return Positioned(
+        left: screenWidth * 0.269,
+        top: screenHeight * 0.22,
+        child: Stack(
+          children: [
+            InkWell(
+              onTap: () async {
+                setShow();
+                setState(() {
+                  timerOFF = true;
+                });
+
+                _timerVideoController.pause();
+
+                setState(() {
+                  _warehouseVideoPlaying = true;
+                });
+
+                setState(() {
+                  width = 0;
+                });
+
+                _warehouseVideoController.play();
+
+                setState(() {
+                  showTextAreaSmall = true;
+                });
+
+                await Future.delayed(const Duration(milliseconds: 200));
+
+                setState(() {
+                  width = screenSize.width * 0.25;
+                });
+
+                _warehouseVideoController.addListener(() {
+                  final bool isPlaying =
+                      _warehouseVideoController.value.isPlaying;
+                  print(isPlaying);
+                  if (isPlaying != _isPlaying) {
+                    setState(() {
+                      _isPlaying = isPlaying;
+                      setIndex(++index);
+                    });
+                    if (index > 1) {
+                      _warehouseVideoController.removeListener(() {});
+                      customPushReplacement(
+                          context,
+                          WarehouseVideo(
+                            from: Pages.home,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
+                    }
+                  }
+                });
+              },
+              child: CustomButtonLabelWithClip(
+                screenSize: screenSize,
+                text: "Warehouses",
                 type: 0,
               ),
             ),
@@ -679,7 +732,22 @@ class _HomeVideoState extends State<HomeVideo> {
                 setState(() {
                   _retailVideoPlaying = true;
                 });
+
+                setState(() {
+                  width = 0;
+                });
+
                 _retailVideoController.play();
+
+                setState(() {
+                  showTextAreaSmall = true;
+                });
+
+                await Future.delayed(const Duration(milliseconds: 200));
+
+                setState(() {
+                  width = screenSize.width * 0.25;
+                });
 
                 _retailVideoController.addListener(() {
                   final bool isPlaying = _retailVideoController.value.isPlaying;
@@ -692,7 +760,13 @@ class _HomeVideoState extends State<HomeVideo> {
                     if (index > 1) {
                       _retailVideoController.removeListener(() {});
 
-                      customPushReplacement(context, const RetailVideo());
+                      customPushReplacement(
+                          context,
+                          RetailVideo(
+                            from: Pages.home,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
                     }
                   }
                 });
@@ -726,7 +800,22 @@ class _HomeVideoState extends State<HomeVideo> {
                 setState(() {
                   _groceryShopVideoPlaying = true;
                 });
+
+                setState(() {
+                  width = 0;
+                });
+
                 _groceryShopVideoController.play();
+
+                setState(() {
+                  showTextAreaSmall = true;
+                });
+
+                await Future.delayed(const Duration(milliseconds: 200));
+
+                setState(() {
+                  width = screenSize.width * 0.25;
+                });
 
                 _groceryShopVideoController.addListener(() {
                   final bool isPlaying =
@@ -739,8 +828,13 @@ class _HomeVideoState extends State<HomeVideo> {
                     });
                     if (index > 1) {
                       _groceryShopVideoController.removeListener(() {});
-
-                      customPushReplacement(context, const GroceryShopVideo());
+                      customPushReplacement(
+                          context,
+                          GroceryShopVideo(
+                            from: Pages.home,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
                     }
                   }
                 });
@@ -765,7 +859,6 @@ class _HomeVideoState extends State<HomeVideo> {
             InkWell(
               onTap: () async {
                 setShow();
-                setShow();
                 setState(() {
                   timerOFF = true;
                 });
@@ -775,7 +868,22 @@ class _HomeVideoState extends State<HomeVideo> {
                 setState(() {
                   _fastFoodVideoPlaying = true;
                 });
+
+                setState(() {
+                  width = 0;
+                });
+
                 _fastFoodVideoController.play();
+
+                setState(() {
+                  showTextAreaSmall = true;
+                });
+
+                await Future.delayed(const Duration(milliseconds: 200));
+
+                setState(() {
+                  width = screenSize.width * 0.25;
+                });
 
                 _fastFoodVideoController.addListener(() {
                   final bool isPlaying =
@@ -788,8 +896,13 @@ class _HomeVideoState extends State<HomeVideo> {
                     });
                     if (index > 1) {
                       _fastFoodVideoController.removeListener(() {});
-
-                      customPushReplacement(context, const FastFoodVideo());
+                      customPushReplacement(
+                          context,
+                          FastFoodVideo(
+                            from: Pages.home,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
                     }
                   }
                 });
