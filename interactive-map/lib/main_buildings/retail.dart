@@ -1,18 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/main_buildings/home.dart';
+import 'package:interactive_map/main_buildings/inside_main_building/motor.dart';
+import 'package:interactive_map/main_buildings/inside_main_building/map_main_screen.dart';
+import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
+import 'package:interactive_map/widgets/shared_widgets.dart';
+import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
+import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 
 class RetailVideo extends StatefulWidget {
-  const RetailVideo({Key? key}) : super(key: key);
+  const RetailVideo({Key? key, this.from, this.offsetHor, this.offsetVer})
+      : super(key: key);
+  final offsetHor;
+  final offsetVer;
+  final from;
   @override
   _RetailVideoState createState() => _RetailVideoState();
 }
 
 class _RetailVideoState extends State<RetailVideo> {
   late VideoPlayerController _controller;
+
+  late VideoPlayerController _motorVideoController;
+  bool _motorVideoPlaying = false;
+  late VideoPlayerController _energySavingVideoController;
+  bool _energySavingVideoPlaying = false;
+  late VideoPlayerController _mapVideoController;
+  bool _mapVideoPlaying = false;
+
   int index = 0;
   bool show = false;
-  final String url = 'assets/videos/retail_REV_v001.mp4';
+  bool _isPlaying = false;
+
+  final String url = 'assets/videos/retail_REV.mp4';
+
+  final String motorVideo = 'assets/videos/retail_MOTOR.mp4';
+  final String energySavingVideo = 'assets/videos/retail_MOTOR.mp4';
+  final String mapVideo = 'assets/videos/retail_MAP.mp4';
+
+  final String retailImage = 'assets/tempory images/retail_Plain.png';
+  final String mapScreenImage = 'assets/tempory images/screen_MAIN.png';
+
+  bool showTextAreaSmall = false;
+  bool showEnergySaving = false;
 
   setIndex(value) {
     index = value;
@@ -25,54 +56,328 @@ class _RetailVideoState extends State<RetailVideo> {
     });
   }
 
+  bool loading = true;
+
   @override
   void initState() {
-    // Create and store the VideoPlayerController. The VideoPlayerController
-    // offers several different constructors to play videos from assets, files,
-    // or the internet.
+    setState(() {
+      loading = true;
+    });
+
     index = 0;
     show = false;
-    _controller = VideoPlayerController.asset(url)
-      ..initialize().then((_) => {
-            setState(() {
-              _controller.setVolume(0);
-              _controller.setLooping(false);
-            })
-          });
 
-    // Use the controller to loop the video.
-    _controller.setLooping(true);
+    videoHandler();
 
     super.initState();
   }
 
+  videoHandler() async {
+    _controller = VideoPlayerController.asset(url);
+    await _controller.initialize();
+    setState(() {
+      _controller.setVolume(0);
+      _controller.setLooping(false);
+    });
+    if (widget.from == Pages.map || widget.from == Pages.motorToHome) {
+      await Future.delayed(Duration(milliseconds: 1000));
+      _controller.play();
+
+      _controller.addListener(() {
+        final bool isPlaying = _controller.value.isPlaying;
+
+        if (isPlaying != _isPlaying) {
+          setState(() {
+            _isPlaying = isPlaying;
+            setIndex(++index);
+          });
+          if (index > 1) {
+            _controller.removeListener(() {});
+
+            customPushReplacement(
+                context,
+                HomeVideo(
+                  offsetHor: offsetHor,
+                  offsetVer: offsetVer,
+                ));
+          }
+        }
+      });
+    } else if (widget.from == Pages.home) {
+      setState(() {
+        showTextAreaSmall = true;
+      });
+    } else {
+      setShow();
+    }
+
+    _motorVideoController = VideoPlayerController.asset(motorVideo)
+      ..initialize().then((_) => {
+            setState(() {
+              _motorVideoController.setVolume(0);
+              _motorVideoController.setLooping(false);
+            })
+          });
+    _energySavingVideoController =
+        VideoPlayerController.asset(energySavingVideo)
+          ..initialize().then((_) => {
+                setState(() {
+                  _energySavingVideoController.setVolume(0);
+                  _energySavingVideoController.setLooping(false);
+                })
+              });
+    _mapVideoController = VideoPlayerController.asset(mapVideo)
+      ..initialize().then((_) => {
+            setState(() {
+              _mapVideoController.setVolume(0);
+              _mapVideoController.setLooping(false);
+            })
+          });
+    setState(() {
+      loading = false;
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _motorVideoController.dispose();
+    _energySavingVideoController.dispose();
+    _mapVideoController.dispose();
+
+    super.dispose();
+  }
+
+  var screenWidth = 3840 * 0.63;
+  var screenHeight = 2160 * 0.63;
+
+  final ScrollController _scrollControllerHrizontal = ScrollController(
+    initialScrollOffset: offsetHor,
+  );
+
+  final ScrollController _scrollControllerVertical = ScrollController(
+    initialScrollOffset: offsetVer,
+  );
+  static double offsetHor = 0;
+  static double offsetVer = 0;
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
-    bool _isPlaying = false;
-    int index = 0;
 
-    setIndex(value) {
-      index = value;
-      setState(() {});
+    if (_scrollControllerHrizontal.hasClients) {
+      _scrollControllerHrizontal.animateTo(
+          _scrollControllerHrizontal.position.maxScrollExtent / 2,
+          duration: const Duration(milliseconds: 1000),
+          curve: Curves.easeInOut);
+      offsetHor = _scrollControllerHrizontal.position.maxScrollExtent / 2;
     }
 
+    if (_scrollControllerVertical.hasClients) {
+      _scrollControllerVertical.animateTo(
+          _scrollControllerVertical.position.maxScrollExtent / 2,
+          duration: const Duration(milliseconds: 1000),
+          curve: Curves.easeInOut);
+      offsetVer = _scrollControllerVertical.position.maxScrollExtent / 2;
+    }
     return Scaffold(
-      // Use a FutureBuilder to display a loading spinner while waiting for the
-      // VideoPlayerController to finish initializing.
-      body: SingleChildScrollView(
+      backgroundColor: Colors.transparent,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Container(
         child: Stack(
+          alignment: Alignment.topCenter,
+          fit: StackFit.expand,
           children: [
-            AspectRatio(
-              aspectRatio: _controller.value.aspectRatio,
-              // Use the VideoPlayer widget to display the video.
-              child: VideoPlayer(_controller),
-            ),
+            show
+                ? Padding(
+                    padding: const EdgeInsets.only(top: 100),
+                    child: Container(
+                      alignment: Alignment.topLeft,
+                      child: TextAreaWithClip(
+                          screenSize: screenSize,
+                          texts: const [
+                            "Smart Motor System",
+                            "Smart HVAC",
+                            "Smart Building Operations"
+                          ],
+                          topic: "Turntide for retails",
+                          description:
+                              "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights"),
+                    ),
+                  )
+                : Container(),
+            showTextAreaSmall
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Container(
+                      alignment: Alignment.bottomLeft,
+                      child: TextAreaSmallWithClip(
+                          width: screenSize.width * 0.25,
+                          screenSize: screenSize,
+                          prefixText: "64%",
+                          description:
+                              "of energy in bank is used by HVAC and lightning"),
+                    ),
+                  )
+                : Container(),
+            showTextAreaSmall
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Container(
+                      alignment: Alignment.bottomRight,
+                      child: GestureDetector(
+                        onTap: () {
+                          setShow();
+                          setState(() {
+                            showTextAreaSmall = false;
+                          });
+                        },
+                        child: Container(
+                          width: screenSize.width * 0.091,
+                          height: screenSize.width * 0.040,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(nextImage),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                : Container(),
+            showEnergySaving
+                ? Padding(
+                    padding: const EdgeInsets.only(top: 100),
+                    child: Container(
+                      alignment: Alignment.topLeft,
+                      child: TextAreaWithClip(
+                          screenSize: screenSize,
+                          texts: const [
+                            "Improve energy efficiency",
+                            "Maintain a comfortable environment",
+                            "Automate lighting and HVAC",
+                            "Extent equipment life",
+                            "Prevent learning disruption"
+                          ],
+                          topic: "Stratergies for Sustainable Operations",
+                          description: ""),
+                    ),
+                  )
+                : Container(),
+            showEnergySaving
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Container(
+                      alignment: Alignment.bottomRight,
+                      child: GestureDetector(
+                        onTap: () {
+                          setShow();
+                          setState(() {
+                            showEnergySaving = false;
+                          });
+                        },
+                        child: Container(
+                          width: screenSize.width * 0.091,
+                          height: screenSize.width * 0.040,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(nextImage),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                : Container(),
+            show ? menuButton() : Container(),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
+      body: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        controller: _scrollControllerHrizontal,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          controller: _scrollControllerVertical,
+          child: SizedBox(
+            width: screenWidth,
+            height: screenHeight,
+            child: Stack(
+              children: [
+                SizedBox(
+                  width: screenWidth,
+                  height: screenHeight,
+                  child: VideoPlayer(_controller),
+                ),
+                show ? motor() : Container(),
+                show ? energySaving() : Container(),
+                show ? mapScreen() : Container(),
+                _motorVideoPlaying
+                    ? SizedBox(
+                        width: screenWidth,
+                        height: screenHeight,
+                        child: VideoPlayer(_motorVideoController),
+                      )
+                    : Container(),
+                _energySavingVideoPlaying
+                    ? SizedBox(
+                        width: screenWidth,
+                        height: screenHeight,
+                        child: VideoPlayer(_energySavingVideoController),
+                      )
+                    : Container(),
+                _mapVideoPlaying
+                    ? SizedBox(
+                        width: screenWidth,
+                        height: screenHeight,
+                        child: VideoPlayer(_mapVideoController),
+                      )
+                    : Container(),
+                loading
+                    ? SizedBox(
+                        width: screenWidth,
+                        height: screenHeight,
+                        child: Image.asset(
+                          retailImage,
+                          fit: BoxFit.fill,
+                        ),
+                      )
+                    : Container(),
+                show
+                    ? Positioned(
+                        left: screenWidth * 0.5,
+                        child: Container(
+                          width: screenWidth * 0.075,
+                          height: screenHeight * 0.3,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                  'assets/animations/Data_animation_512.gif'),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      )
+                    : Container(),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget menuButton() {
+    var screenSize = MediaQuery.of(context).size;
+    return Container(
+      alignment: Alignment.topRight,
+      height: screenSize.width * 0.050,
+      width: screenSize.width * 0.050,
+      child: GestureDetector(
+        onTap: () {
+          setShow();
           _controller.play();
 
           _controller.addListener(() {
@@ -85,29 +390,142 @@ class _RetailVideoState extends State<RetailVideo> {
               });
               if (index > 1) {
                 _controller.removeListener(() {});
-                Navigator.pushReplacement(
-                  context,
-                  PageRouteBuilder(
-                    pageBuilder: (context, animation1, animation2) =>
-                        const HomeVideo(),
-                    transitionDuration: const Duration(seconds: 2),
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) =>
-                            FadeTransition(
-                      opacity: animation,
-                      child: child,
-                    ),
-                  ),
-                );
+                customPushReplacement(
+                    context,
+                    HomeVideo(
+                      offsetHor: offsetHor,
+                      offsetVer: offsetVer,
+                    ));
               }
             }
           });
         },
-        // Display the correct icon depending on the state of the player.
-        child: const Icon(
-          Icons.arrow_back,
+        child: Container(
+          width: screenSize.width * 0.050,
+          height: screenSize.width * 0.050,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(homeImage),
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
       ),
     );
+  }
+
+  Widget motor() {
+    var screenSize = MediaQuery.of(context).size;
+    return Positioned(
+        left: screenWidth * 0.536,
+        top: screenHeight * 0.325,
+        child: Stack(
+          children: [
+            InkWell(
+              onTap: () async {
+                setShow();
+                setState(() {
+                  _motorVideoPlaying = true;
+                });
+                _motorVideoController.play();
+
+                _motorVideoController.addListener(() {
+                  final bool isPlaying = _motorVideoController.value.isPlaying;
+                  print(isPlaying);
+                  if (isPlaying != _isPlaying) {
+                    setState(() {
+                      _isPlaying = isPlaying;
+                      setIndex(++index);
+                    });
+                    if (index > 1) {
+                      _motorVideoController.removeListener(() {});
+                      customPushReplacement(
+                          context,
+                          Motor(
+                            from: Pages.retail,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
+                    }
+                  }
+                });
+              },
+              child: CustomButtonLabelWithClip(
+                screenSize: screenSize,
+                text: "Smart HVAC",
+                type: 2,
+              ),
+            ),
+          ],
+        ));
+  }
+
+  Widget energySaving() {
+    var screenSize = MediaQuery.of(context).size;
+    return Positioned(
+        left: screenWidth * 0.439,
+        top: screenHeight * 0.647,
+        child: Stack(
+          children: [
+            InkWell(
+              onTap: () async {
+                setShow();
+                setState(() {
+                  showEnergySaving = true;
+                });
+              },
+              child: CustomButtonLabelWithClip(
+                screenSize: screenSize,
+                text: "Energy-Saving Stratergies",
+                type: 1,
+              ),
+            ),
+          ],
+        ));
+  }
+
+  Widget mapScreen() {
+    var screenSize = MediaQuery.of(context).size;
+    return Positioned(
+        left: screenWidth * 0.57,
+        top: screenHeight * 0.15,
+        child: Stack(
+          children: [
+            InkWell(
+              onTap: () async {
+                setShow();
+                setState(() {
+                  _mapVideoPlaying = true;
+                });
+                _mapVideoController.play();
+
+                _mapVideoController.addListener(() {
+                  final bool isPlaying = _mapVideoController.value.isPlaying;
+                  print(isPlaying);
+                  if (isPlaying != _isPlaying) {
+                    setState(() {
+                      _isPlaying = isPlaying;
+                      setIndex(++index);
+                    });
+                    if (index > 1) {
+                      customPushReplacement(
+                          context,
+                          MapMainScreens(
+                            from: Pages.retail,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
+                    }
+                  }
+                });
+              },
+              child: CustomButtonLabelWithClip(
+                screenSize: screenSize,
+                text: "TurntideApp",
+                type: 3,
+              ),
+            ),
+          ],
+        ));
   }
 }
