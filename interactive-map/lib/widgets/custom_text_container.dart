@@ -4,17 +4,20 @@ import 'package:interactive_map/constants/constants.dart';
 class CustomTextContainer extends StatelessWidget {
   const CustomTextContainer({
     Key? key,
+    required this.screenSize,
     required this.topic,
     required this.description,
   }) : super(key: key);
 
   final String topic;
   final String description;
+  final Size screenSize;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
+      width: screenSize.width < 1565 ? 1565 * 0.08 : screenSize.width * 0.08,
+      height: 125,
       color: AppColors.fern,
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Column(
@@ -29,7 +32,7 @@ class CustomTextContainer extends StatelessWidget {
               fontSize: 25,
               fontWeight: FontWeight.w600,
             ),
-            maxLines: 1,
+            maxLines: 2,
             softWrap: true,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
@@ -44,7 +47,7 @@ class CustomTextContainer extends StatelessWidget {
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),
-            maxLines: 2,
+            maxLines: 3,
             softWrap: true,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,

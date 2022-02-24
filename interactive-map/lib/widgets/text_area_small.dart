@@ -5,6 +5,7 @@ class TextAreaSmall extends StatelessWidget {
   const TextAreaSmall({
     Key? key,
     required this.screenSize,
+    required this.width,
     required this.prefixText,
     required this.description,
   }) : super(key: key);
@@ -12,11 +13,15 @@ class TextAreaSmall extends StatelessWidget {
   final Size screenSize;
   final String prefixText;
   final String description;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: screenSize.width * 0.25,
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      //alignment: Alignment.centerLeft,
+      transformAlignment: Alignment.centerLeft,
+      width: width,
       decoration: const BoxDecoration(
         color: AppColors.night,
       ),

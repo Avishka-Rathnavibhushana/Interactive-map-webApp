@@ -5,10 +5,14 @@ class TextAreaWithQR extends StatelessWidget {
   const TextAreaWithQR({
     Key? key,
     required this.screenSize,
+    required this.width,
+    required this.height,
   }) : super(key: key);
 
   final Size screenSize;
-  final String qr_url = 'assets/images/QR.png';
+  final double height;
+  final double width;
+  final String qr_url = 'assets/graphics/QR.png';
 
   @override
   Widget build(BuildContext context) {
@@ -17,17 +21,20 @@ class TextAreaWithQR extends StatelessWidget {
         color: AppColors.night,
       ),
       padding: const EdgeInsets.all(
-        35,
+        65,
       ),
-      child: Container(
-        width: screenSize.width * 0.2,
-        height: screenSize.width * 0.2,
+      child: AnimatedContainer(
+        width: width,
+        height: height,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(qr_url),
             fit: BoxFit.cover,
           ),
         ),
+        duration: const Duration(milliseconds: 200),
+        alignment: Alignment.centerLeft,
+        transformAlignment: Alignment.centerLeft,
       ),
     );
   }

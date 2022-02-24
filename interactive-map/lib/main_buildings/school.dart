@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/main_buildings/home.dart';
-import 'package:interactive_map/main_buildings/inside_school/motor.dart';
-import 'package:interactive_map/main_buildings/inside_school/school_main_screens.dart';
-import 'package:interactive_map/main_buildings/inside_school/temporary.dart';
+import 'package:interactive_map/main_buildings/inside_main_building/motor.dart';
+import 'package:interactive_map/main_buildings/inside_main_building/map_main_screen.dart';
+import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
+import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
+import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 
 class SchoolVideo extends StatefulWidget {
-  const SchoolVideo({Key? key}) : super(key: key);
-
+  const SchoolVideo({Key? key, this.from, this.offsetHor, this.offsetVer})
+      : super(key: key);
+  final offsetHor;
+  final offsetVer;
+  final from;
   @override
   _SchoolVideoState createState() => _SchoolVideoState();
 }
@@ -18,22 +24,26 @@ class _SchoolVideoState extends State<SchoolVideo> {
 
   late VideoPlayerController _motorVideoController;
   bool _motorVideoPlaying = false;
-  late VideoPlayerController _temporaryVideoController;
-  bool _temporaryVideoPlaying = false;
-  late VideoPlayerController _insideVideoController;
-  bool _insideVideoPlaying = false;
+  late VideoPlayerController _energySavingVideoController;
+  bool _energySavingVideoPlaying = false;
+  late VideoPlayerController _mapVideoController;
+  bool _mapVideoPlaying = false;
 
   int index = 0;
   bool show = false;
   bool _isPlaying = false;
 
-  final String url = 'assets/videos/school_REV_v001.mp4';
+  final String url = 'assets/videos/school_REV.mp4';
 
-  final String motorVideoImage = 'assets/videos/school_MOTOR.mp4';
-  final String temporaryVideoImage = 'assets/videos/datacentre_v001.mp4';
-  final String insideVideoImage = 'assets/videos/school_MAP_v003.mp4';
+  final String motorVideo = 'assets/videos/school_MOTOR.mp4';
+  final String energySavingVideo = 'assets/videos/school_MOTOR.mp4';
+  final String mapVideo = 'assets/videos/school_MAP.mp4';
 
-  final String schoolImage = 'assets/images/school.jpg';
+  final String schoolImage = 'assets/tempory images/School_Plain.png';
+  final String mapScreenImage = 'assets/tempory images/screen_MAIN.png';
+
+  bool showTextAreaSmall = false;
+  bool showEnergySaving = false;
 
   setIndex(value) {
     index = value;
@@ -55,7 +65,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
     });
 
     index = 0;
-    show = true;
+    show = false;
 
     videoHandler();
 
@@ -69,29 +79,60 @@ class _SchoolVideoState extends State<SchoolVideo> {
       _controller.setVolume(0);
       _controller.setLooping(false);
     });
+    if (widget.from == Pages.map || widget.from == Pages.motorToHome) {
+      await Future.delayed(Duration(milliseconds: 1000));
+      _controller.play();
 
-    _motorVideoController = VideoPlayerController.asset(motorVideoImage)
+      _controller.addListener(() {
+        final bool isPlaying = _controller.value.isPlaying;
+
+        if (isPlaying != _isPlaying) {
+          setState(() {
+            _isPlaying = isPlaying;
+            setIndex(++index);
+          });
+          if (index > 1) {
+            _controller.removeListener(() {});
+
+            customPushReplacement(
+                context,
+                HomeVideo(
+                  offsetHor: offsetHor,
+                  offsetVer: offsetVer,
+                ));
+          }
+        }
+      });
+    } else if (widget.from == Pages.home) {
+      setState(() {
+        showTextAreaSmall = true;
+      });
+    } else {
+      setShow();
+    }
+
+    _motorVideoController = VideoPlayerController.asset(motorVideo)
       ..initialize().then((_) => {
             setState(() {
               _motorVideoController.setVolume(0);
               _motorVideoController.setLooping(false);
             })
           });
-    _temporaryVideoController = VideoPlayerController.asset(temporaryVideoImage)
+    _energySavingVideoController =
+        VideoPlayerController.asset(energySavingVideo)
+          ..initialize().then((_) => {
+                setState(() {
+                  _energySavingVideoController.setVolume(0);
+                  _energySavingVideoController.setLooping(false);
+                })
+              });
+    _mapVideoController = VideoPlayerController.asset(mapVideo)
       ..initialize().then((_) => {
             setState(() {
-              _temporaryVideoController.setVolume(0);
-              _temporaryVideoController.setLooping(false);
+              _mapVideoController.setVolume(0);
+              _mapVideoController.setLooping(false);
             })
           });
-    _insideVideoController = VideoPlayerController.asset(insideVideoImage)
-      ..initialize().then((_) => {
-            setState(() {
-              _insideVideoController.setVolume(0);
-              _insideVideoController.setLooping(false);
-            })
-          });
-
     setState(() {
       loading = false;
     });
@@ -101,106 +142,226 @@ class _SchoolVideoState extends State<SchoolVideo> {
   void dispose() {
     _controller.dispose();
     _motorVideoController.dispose();
-    _temporaryVideoController.dispose();
-    _insideVideoController.dispose();
+    _energySavingVideoController.dispose();
+    _mapVideoController.dispose();
 
     super.dispose();
   }
 
+  var screenWidth = 3840 * 0.63;
+  var screenHeight = 2160 * 0.63;
+
+  final ScrollController _scrollControllerHrizontal = ScrollController(
+    initialScrollOffset: offsetHor,
+  );
+
+  final ScrollController _scrollControllerVertical = ScrollController(
+    initialScrollOffset: offsetVer,
+  );
+  static double offsetHor = 0;
+  static double offsetVer = 0;
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
+
+    if (_scrollControllerHrizontal.hasClients) {
+      _scrollControllerHrizontal.animateTo(
+          _scrollControllerHrizontal.position.maxScrollExtent / 2,
+          duration: const Duration(milliseconds: 1000),
+          curve: Curves.easeInOut);
+      offsetHor = _scrollControllerHrizontal.position.maxScrollExtent / 2;
+    }
+
+    if (_scrollControllerVertical.hasClients) {
+      _scrollControllerVertical.animateTo(
+          _scrollControllerVertical.position.maxScrollExtent / 2,
+          duration: const Duration(milliseconds: 1000),
+          curve: Curves.easeInOut);
+      offsetVer = _scrollControllerVertical.position.maxScrollExtent / 2;
+    }
     return Scaffold(
-      body: SingleChildScrollView(
+      backgroundColor: Colors.transparent,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Container(
         child: Stack(
+          alignment: Alignment.topCenter,
+          fit: StackFit.expand,
           children: [
-            AspectRatio(
-              aspectRatio: _controller.value.aspectRatio,
-              child: VideoPlayer(_controller),
-            ),
-            show ? motor() : Container(),
-            show ? temporary() : Container(),
-            show ? screenMan2() : Container(),
-            show ? menuButton() : Container(),
-            show ? backButton() : Container(),
-            _motorVideoPlaying
-                ? AspectRatio(
-                    aspectRatio: _motorVideoController.value.aspectRatio,
-                    child: VideoPlayer(_motorVideoController),
+            show
+                ? Padding(
+                    padding: const EdgeInsets.only(top: 100),
+                    child: Container(
+                      alignment: Alignment.topLeft,
+                      child: TextAreaWithClip(
+                          screenSize: screenSize,
+                          texts: const [
+                            "Smart Motor System",
+                            "Smart HVAC",
+                            "Smart Building Operations"
+                          ],
+                          topic: "Turntide for Schools",
+                          description:
+                              "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights"),
+                    ),
                   )
                 : Container(),
-            _temporaryVideoPlaying
-                ? AspectRatio(
-                    aspectRatio: _temporaryVideoController.value.aspectRatio,
-                    child: VideoPlayer(_temporaryVideoController),
+            showTextAreaSmall
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Container(
+                      alignment: Alignment.bottomLeft,
+                      child: TextAreaSmallWithClip(
+                          width: screenSize.width * 0.25,
+                          screenSize: screenSize,
+                          prefixText: "64%",
+                          description:
+                              "of energy in school is used by HVAC and lightning"),
+                    ),
                   )
                 : Container(),
-            _insideVideoPlaying
-                ? AspectRatio(
-                    aspectRatio: _insideVideoController.value.aspectRatio,
-                    child: VideoPlayer(_insideVideoController),
-                  )
-                : Container(),
-            loading
-                ? Container(
-                    width: screenSize.width,
-                    child: Expanded(
-                      child: Image.asset(
-                        schoolImage,
-                        fit: BoxFit.fill,
+            showTextAreaSmall
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Container(
+                      alignment: Alignment.bottomRight,
+                      child: GestureDetector(
+                        onTap: () {
+                          setShow();
+                          setState(() {
+                            showTextAreaSmall = false;
+                          });
+                        },
+                        child: Container(
+                          width: screenSize.width * 0.091,
+                          height: screenSize.width * 0.040,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(nextImage),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   )
-                : Container()
+                : Container(),
+            showEnergySaving
+                ? Padding(
+                    padding: const EdgeInsets.only(top: 100),
+                    child: Container(
+                      alignment: Alignment.topLeft,
+                      child: TextAreaWithClip(
+                          screenSize: screenSize,
+                          texts: const [
+                            "Improve energy efficiency",
+                            "Maintain a comfortable environment",
+                            "Automate lighting and HVAC",
+                            "Extent equipment life",
+                            "Prevent learning disruption"
+                          ],
+                          topic: "Stratergies for Sustainable Operations",
+                          description: ""),
+                    ),
+                  )
+                : Container(),
+            showEnergySaving
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Container(
+                      alignment: Alignment.bottomRight,
+                      child: GestureDetector(
+                        onTap: () {
+                          setShow();
+                          setState(() {
+                            showEnergySaving = false;
+                          });
+                        },
+                        child: Container(
+                          width: screenSize.width * 0.091,
+                          height: screenSize.width * 0.040,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(nextImage),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                : Container(),
+            show ? menuButton() : Container(),
           ],
         ),
       ),
-    );
-  }
-
-  Widget backButton() {
-    var screenSize = MediaQuery.of(context).size;
-    return SizedBox(
-      height: screenSize.height * 0.95,
-      child: Align(
-        alignment: Alignment.topRight,
-        child: GestureDetector(
-          onTap: () {
-            setShow();
-            _controller.play();
-
-            _controller.addListener(() {
-              final bool isPlaying = _controller.value.isPlaying;
-
-              if (isPlaying != _isPlaying) {
-                setState(() {
-                  _isPlaying = isPlaying;
-                  setIndex(++index);
-                });
-                if (index > 1) {
-                  _controller.removeListener(() {});
-
-                  customPushReplacement(context, const HomeVideo());
-                }
-              }
-            });
-          },
-          child: Container(
-            width: screenSize.width * 0.050,
-            height: screenSize.width * 0.050,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: const Offset(0, 3), // changes position of shadow
+      body: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        controller: _scrollControllerHrizontal,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          controller: _scrollControllerVertical,
+          child: SizedBox(
+            width: screenWidth,
+            height: screenHeight,
+            child: Stack(
+              children: [
+                SizedBox(
+                  width: screenWidth,
+                  height: screenHeight,
+                  child: VideoPlayer(_controller),
                 ),
+                show ? motor() : Container(),
+                show ? energySaving() : Container(),
+                show ? mapScreen() : Container(),
+                _motorVideoPlaying
+                    ? SizedBox(
+                        width: screenWidth,
+                        height: screenHeight,
+                        child: VideoPlayer(_motorVideoController),
+                      )
+                    : Container(),
+                _energySavingVideoPlaying
+                    ? SizedBox(
+                        width: screenWidth,
+                        height: screenHeight,
+                        child: VideoPlayer(_energySavingVideoController),
+                      )
+                    : Container(),
+                _mapVideoPlaying
+                    ? SizedBox(
+                        width: screenWidth,
+                        height: screenHeight,
+                        child: VideoPlayer(_mapVideoController),
+                      )
+                    : Container(),
+                loading
+                    ? SizedBox(
+                        width: screenWidth,
+                        height: screenHeight,
+                        child: Image.asset(
+                          schoolImage,
+                          fit: BoxFit.fill,
+                        ),
+                      )
+                    : Container(),
+                show
+                    ? Positioned(
+                        left: screenWidth * 0.5,
+                        child: Container(
+                          width: screenWidth * 0.075,
+                          height: screenHeight * 0.3,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                  'assets/animations/Data_animation_512.gif'),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      )
+                    : Container(),
               ],
-              image: const DecorationImage(
-                image: AssetImage('assets/graphics/back.png'),
-                fit: BoxFit.cover,
-              ),
             ),
           ),
         ),
@@ -210,47 +371,42 @@ class _SchoolVideoState extends State<SchoolVideo> {
 
   Widget menuButton() {
     var screenSize = MediaQuery.of(context).size;
-    return SizedBox(
-      height: screenSize.height * 0.95,
-      child: Align(
-        alignment: Alignment.topLeft,
-        child: GestureDetector(
-          onTap: () {
-            setShow();
-            _controller.play();
+    return Container(
+      alignment: Alignment.topRight,
+      height: screenSize.width * 0.050,
+      width: screenSize.width * 0.050,
+      child: GestureDetector(
+        onTap: () {
+          setShow();
+          _controller.play();
 
-            _controller.addListener(() {
-              final bool isPlaying = _controller.value.isPlaying;
+          _controller.addListener(() {
+            final bool isPlaying = _controller.value.isPlaying;
 
-              if (isPlaying != _isPlaying) {
-                setState(() {
-                  _isPlaying = isPlaying;
-                  setIndex(++index);
-                });
-                if (index > 1) {
-                  _controller.removeListener(() {});
-
-                  customPushReplacement(context, const HomeVideo());
-                }
+            if (isPlaying != _isPlaying) {
+              setState(() {
+                _isPlaying = isPlaying;
+                setIndex(++index);
+              });
+              if (index > 1) {
+                _controller.removeListener(() {});
+                customPushReplacement(
+                    context,
+                    HomeVideo(
+                      offsetHor: offsetHor,
+                      offsetVer: offsetVer,
+                    ));
               }
-            });
-          },
-          child: Container(
-            width: screenSize.width * 0.050,
-            height: screenSize.width * 0.050,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: const Offset(0, 3), // changes position of shadow
-                ),
-              ],
-              image: const DecorationImage(
-                image: AssetImage('assets/graphics/Home.png'),
-                fit: BoxFit.cover,
-              ),
+            }
+          });
+        },
+        child: Container(
+          width: screenSize.width * 0.050,
+          height: screenSize.width * 0.050,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(homeImage),
+              fit: BoxFit.cover,
             ),
           ),
         ),
@@ -261,13 +417,12 @@ class _SchoolVideoState extends State<SchoolVideo> {
   Widget motor() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.092),
-        top: screenSize.width * (0.138),
-        width: 150,
+        left: screenWidth * 0.536,
+        top: screenHeight * 0.325,
         child: Stack(
           children: [
-            ElevatedButton(
-              onPressed: () async {
+            InkWell(
+              onTap: () async {
                 setShow();
                 setState(() {
                   _motorVideoPlaying = true;
@@ -284,62 +439,68 @@ class _SchoolVideoState extends State<SchoolVideo> {
                     });
                     if (index > 1) {
                       _motorVideoController.removeListener(() {});
-
-                      customPushReplacement(context, const Motor());
+                      customPushReplacement(
+                          context,
+                          Motor(
+                            from: Pages.school,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
                     }
                   }
                 });
               },
-              child: Container(
-                width: screenSize.width * 0.058,
-                height: screenSize.width * 0.058,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/graphics/POINT_1.png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+              child: CustomButtonLabelWithClip(
+                screenSize: screenSize,
+                text: "Smart HVAC",
+                type: 2,
               ),
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all(const CircleBorder()),
-                padding: MaterialStateProperty.all(const EdgeInsets.all(0.4)),
-                backgroundColor: MaterialStateProperty.all(
-                    Colors.transparent), // <-- Button color
-                overlayColor:
-                    MaterialStateProperty.resolveWith<Color?>((states) {
-                  if (states.contains(MaterialState.pressed))
-                    return Colors.red; // <-- Splash color
-                }),
-              ),
-            ),
-            const Positioned(
-              left: 48,
-              top: 10,
-              child: Text('Motor'),
             ),
           ],
         ));
   }
 
-  Widget temporary() {
+  Widget energySaving() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenSize.width * (0.792),
-        top: screenSize.width * (0.155),
-        width: 150,
+        left: screenWidth * 0.439,
+        top: screenHeight * 0.647,
         child: Stack(
           children: [
-            ElevatedButton(
-              onPressed: () async {
+            InkWell(
+              onTap: () async {
                 setShow();
                 setState(() {
-                  _temporaryVideoPlaying = true;
+                  showEnergySaving = true;
                 });
-                _temporaryVideoController.play();
+              },
+              child: CustomButtonLabelWithClip(
+                screenSize: screenSize,
+                text: "Energy-Saving Stratergies",
+                type: 1,
+              ),
+            ),
+          ],
+        ));
+  }
 
-                _temporaryVideoController.addListener(() {
-                  final bool isPlaying =
-                      _temporaryVideoController.value.isPlaying;
+  Widget mapScreen() {
+    var screenSize = MediaQuery.of(context).size;
+    return Positioned(
+        left: screenWidth * 0.57,
+        top: screenHeight * 0.15,
+        child: Stack(
+          children: [
+            InkWell(
+              onTap: () async {
+                setShow();
+                setState(() {
+                  _mapVideoPlaying = true;
+                });
+                _mapVideoController.play();
+
+                _mapVideoController.addListener(() {
+                  final bool isPlaying = _mapVideoController.value.isPlaying;
                   print(isPlaying);
                   if (isPlaying != _isPlaying) {
                     setState(() {
@@ -347,102 +508,22 @@ class _SchoolVideoState extends State<SchoolVideo> {
                       setIndex(++index);
                     });
                     if (index > 1) {
-                      _temporaryVideoController.removeListener(() {});
-
-                      customPushReplacement(context, const Temporary());
+                      customPushReplacement(
+                          context,
+                          MapMainScreens(
+                            from: Pages.school,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
                     }
                   }
                 });
               },
-              child: Container(
-                width: screenSize.width * 0.058,
-                height: screenSize.width * 0.058,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/graphics/POINT_2.png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+              child: CustomButtonLabelWithClip(
+                screenSize: screenSize,
+                text: "TurntideApp",
+                type: 3,
               ),
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all(const CircleBorder()),
-                padding: MaterialStateProperty.all(const EdgeInsets.all(0.4)),
-                backgroundColor: MaterialStateProperty.all(
-                    Colors.transparent), // <-- Button color
-                overlayColor:
-                    MaterialStateProperty.resolveWith<Color?>((states) {
-                  if (states.contains(MaterialState.pressed))
-                    return Colors.red; // <-- Splash color
-                }),
-              ),
-            ),
-            const Positioned(
-              left: 48,
-              top: 10,
-              child: Text('Temporary'),
-            ),
-          ],
-        ));
-  }
-
-  Widget screenMan2() {
-    var screenSize = MediaQuery.of(context).size;
-    return Positioned(
-        left: screenSize.width * (0.342),
-        top: screenSize.width * (0.428),
-        width: 150,
-        child: Stack(
-          children: [
-            ElevatedButton(
-              onPressed: () async {
-                setShow();
-                setState(() {
-                  _insideVideoPlaying = true;
-                });
-                _insideVideoController.play();
-
-                _insideVideoController.addListener(() {
-                  final bool isPlaying = _insideVideoController.value.isPlaying;
-                  print(isPlaying);
-                  if (isPlaying != _isPlaying) {
-                    setState(() {
-                      _isPlaying = isPlaying;
-                      setIndex(++index);
-                    });
-                    if (index > 1) {
-                      _insideVideoController.removeListener(() {});
-
-                      customPushReplacement(context, const SchoolMainScreens());
-                    }
-                  }
-                });
-              },
-              child: Container(
-                width: screenSize.width * 0.058,
-                height: screenSize.width * 0.058,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/graphics/POINT_3.png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all(const CircleBorder()),
-                padding: MaterialStateProperty.all(const EdgeInsets.all(0.4)),
-                backgroundColor: MaterialStateProperty.all(
-                    Colors.transparent), // <-- Button color
-                overlayColor:
-                    MaterialStateProperty.resolveWith<Color?>((states) {
-                  if (states.contains(MaterialState.pressed))
-                    return Colors.red; // <-- Splash color
-                }),
-              ),
-            ),
-            const Positioned(
-              left: 48,
-              top: 10,
-              child: Text('Inside'),
             ),
           ],
         ));
