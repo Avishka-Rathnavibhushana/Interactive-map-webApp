@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppColors{
+class AppColors {
   //colors
   static const Color white = Colors.white;
 
@@ -36,4 +36,25 @@ class AppColors{
   static const Color ash = Color(0xFF4D4D4D);
   static const Color smoke = Color(0xFFCCCCCC);
   static const Color fog = Color(0xFFEFEFEF);
+}
+
+//video links
+const homeImage = 'assets/graphics/HOME.png';
+const moreImage = 'assets/graphics/MORE.png';
+const nextImage = 'assets/graphics/Next.png';
+
+//pages
+class Pages {
+  static const home = 'home';
+  static const motor = 'motor';
+  static const motorToHome = 'motorToHome';
+  static const map = 'map';
+
+  static const school = 'Schools';
+  static const bank = 'bank';
+  static const grocery = 'grocery';
+  static const dataCenter = 'dataCenter';
+  static const fastfoods = 'fastfoods';
+  static const werehouse = 'werehouse';
+  static const retail = 'retail';
 }
