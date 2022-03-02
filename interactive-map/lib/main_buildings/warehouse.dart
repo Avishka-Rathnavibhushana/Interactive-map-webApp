@@ -8,6 +8,7 @@ import 'package:interactive_map/widgets/shared_widgets.dart';
 import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
+import 'package:interactive_map/utills/utils.dart';
 
 class WarehouseVideo extends StatefulWidget {
   const WarehouseVideo({Key? key, this.from, this.offsetHor, this.offsetVer})
@@ -148,8 +149,8 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
     super.dispose();
   }
 
-  var screenWidth = 3840 * 0.63;
-  var screenHeight = 2160 * 0.63;
+  bool h = false;
+  bool v = false;
 
   final ScrollController _scrollControllerHrizontal = ScrollController(
     initialScrollOffset: offsetHor,
@@ -180,6 +181,20 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
           curve: Curves.easeInOut);
       offsetVer = _scrollControllerVertical.position.maxScrollExtent / 2;
     }
+
+    if (screenSize.width / screenSize.height ==
+        VideoAspectRatio.width / VideoAspectRatio.height) {
+      v = false;
+      h = false;
+    } else if (screenSize.width / screenSize.height <
+        VideoAspectRatio.width / VideoAspectRatio.height) {
+      v = false;
+      h = true;
+    } else {
+      v = true;
+      h = false;
+    }
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -302,13 +317,13 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
           scrollDirection: Axis.vertical,
           controller: _scrollControllerVertical,
           child: SizedBox(
-            width: screenWidth,
-            height: screenHeight,
+            width: Utils.getVideoScreenWidth(screenSize),
+            height: Utils.getVideoScreenHeight(screenSize),
             child: Stack(
               children: [
                 SizedBox(
-                  width: screenWidth,
-                  height: screenHeight,
+                  width: Utils.getVideoScreenWidth(screenSize),
+                  height: Utils.getVideoScreenHeight(screenSize),
                   child: VideoPlayer(_controller),
                 ),
                 show ? motor() : Container(),
@@ -316,29 +331,29 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
                 show ? mapScreen() : Container(),
                 _motorVideoPlaying
                     ? SizedBox(
-                        width: screenWidth,
-                        height: screenHeight,
+                        width: Utils.getVideoScreenWidth(screenSize),
+                        height: Utils.getVideoScreenHeight(screenSize),
                         child: VideoPlayer(_motorVideoController),
                       )
                     : Container(),
                 _energySavingVideoPlaying
                     ? SizedBox(
-                        width: screenWidth,
-                        height: screenHeight,
+                        width: Utils.getVideoScreenWidth(screenSize),
+                        height: Utils.getVideoScreenHeight(screenSize),
                         child: VideoPlayer(_energySavingVideoController),
                       )
                     : Container(),
                 _mapVideoPlaying
                     ? SizedBox(
-                        width: screenWidth,
-                        height: screenHeight,
+                        width: Utils.getVideoScreenWidth(screenSize),
+                        height: Utils.getVideoScreenHeight(screenSize),
                         child: VideoPlayer(_mapVideoController),
                       )
                     : Container(),
                 loading
                     ? SizedBox(
-                        width: screenWidth,
-                        height: screenHeight,
+                        width: Utils.getVideoScreenWidth(screenSize),
+                        height: Utils.getVideoScreenHeight(screenSize),
                         child: Image.asset(
                           warehouseImage,
                           fit: BoxFit.fill,
@@ -347,10 +362,10 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
                     : Container(),
                 show
                     ? Positioned(
-                        left: screenWidth * 0.5,
+                        left: Utils.getVideoScreenWidth(screenSize) * 0.5,
                         child: Container(
-                          width: screenWidth * 0.075,
-                          height: screenHeight * 0.3,
+                          width: Utils.getVideoScreenWidth(screenSize) * 0.075,
+                          height: Utils.getVideoScreenHeight(screenSize) * 0.3,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage(
@@ -417,8 +432,8 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
   Widget motor() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.536,
-        top: screenHeight * 0.325,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.536,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.325,
         child: Stack(
           children: [
             InkWell(
@@ -463,8 +478,8 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
   Widget energySaving() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.439,
-        top: screenHeight * 0.647,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.439,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.647,
         child: Stack(
           children: [
             InkWell(
@@ -487,8 +502,8 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
   Widget mapScreen() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.57,
-        top: screenHeight * 0.15,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.57,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.15,
         child: Stack(
           children: [
             InkWell(

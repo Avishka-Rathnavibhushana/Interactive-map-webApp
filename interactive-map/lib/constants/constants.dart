@@ -58,3 +58,9 @@ class Pages {
   static const werehouse = 'werehouse';
   static const retail = 'retail';
 }
+
+//VideoAspect Ratio
+class VideoAspectRatio {
+  static const width = 1920.0;
+  static const height = 1080.0;
+}

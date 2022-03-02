@@ -11,6 +11,7 @@ import 'package:interactive_map/widgets/custom_text_container.dart';
 import 'package:interactive_map/widgets/custom_topic.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
+import 'package:interactive_map/utills/utils.dart';
 
 class Motor extends StatefulWidget {
   const Motor({Key? key, this.from, this.offsetHor, this.offsetVer})
@@ -126,8 +127,8 @@ class _MotorState extends State<Motor> {
     super.dispose();
   }
 
-  var screenWidth = 3840 * 0.63;
-  var screenHeight = 2160 * 0.63;
+  bool h = false;
+  bool v = false;
 
   final ScrollController _scrollControllerHrizontal = ScrollController(
     initialScrollOffset: offsetHor,
@@ -158,7 +159,20 @@ class _MotorState extends State<Motor> {
           curve: Curves.easeInOut);
       offsetVer = _scrollControllerVertical.position.maxScrollExtent / 2;
     }
-    print(screenSize.width);
+
+    if (screenSize.width / screenSize.height ==
+        VideoAspectRatio.width / VideoAspectRatio.height) {
+      v = false;
+      h = false;
+    } else if (screenSize.width / screenSize.height <
+        VideoAspectRatio.width / VideoAspectRatio.height) {
+      v = false;
+      h = true;
+    } else {
+      v = true;
+      h = false;
+    }
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -315,19 +329,19 @@ class _MotorState extends State<Motor> {
           scrollDirection: Axis.vertical,
           controller: _scrollControllerVertical,
           child: SizedBox(
-            width: screenWidth,
-            height: screenHeight,
+            width: Utils.getVideoScreenWidth(screenSize),
+            height: Utils.getVideoScreenHeight(screenSize),
             child: Stack(
               children: [
                 SizedBox(
-                  width: screenWidth,
-                  height: screenHeight,
+                  width: Utils.getVideoScreenWidth(screenSize),
+                  height: Utils.getVideoScreenHeight(screenSize),
                   child: VideoPlayer(_controller),
                 ),
                 _backVideoPlaying
                     ? SizedBox(
-                        width: screenWidth,
-                        height: screenHeight,
+                        width: Utils.getVideoScreenWidth(screenSize),
+                        height: Utils.getVideoScreenHeight(screenSize),
                         child: VideoPlayer(_backVideoController),
                       )
                     : Container(),

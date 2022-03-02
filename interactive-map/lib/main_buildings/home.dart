@@ -7,6 +7,7 @@ import 'package:interactive_map/main_buildings/groceryshop.dart';
 import 'package:interactive_map/main_buildings/retail.dart';
 import 'package:interactive_map/main_buildings/school.dart';
 import 'package:interactive_map/main_buildings/warehouse.dart';
+import 'package:interactive_map/utills/utils.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
 import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
@@ -173,32 +174,8 @@ class _HomeVideoState extends State<HomeVideo> {
     super.dispose();
   }
 
-  // double getWidth(Size size) {
-  //   if (size.width > 1920 && size.height > 1080) {
-  //     return 3840;
-  //   } else if (size.width > 1366 && size.height > 768) {
-  //     return 1920;
-  //   } else if (size.width < 1366 && size.height < 768) {
-  //     return 1920 * 0.5;
-  //   }
-
-  //   return 1920;
-  // }
-
-  // double getHeight(Size size) {
-  //   if (size.width > 1920 && size.height > 1080) {
-  //     return 2160;
-  //   } else if (size.width > 1366 && size.height > 768) {
-  //     return 1080;
-  //   } else if (size.width < 1366 && size.height < 768) {
-  //     return 1080 * 0.5;
-  //   }
-
-  //   return 1080;
-  // }
-
-  var screenWidth = 3840 * 0.63;
-  var screenHeight = 2160 * 0.63;
+  bool h = false;
+  bool v = false;
 
   final ScrollController _scrollControllerHrizontal = ScrollController(
     initialScrollOffset: offsetHor,
@@ -229,6 +206,20 @@ class _HomeVideoState extends State<HomeVideo> {
           curve: Curves.easeInOut);
       offsetVer = _scrollControllerVertical.position.maxScrollExtent / 2;
     }
+
+    if (screenSize.width / screenSize.height ==
+        VideoAspectRatio.width / VideoAspectRatio.height) {
+      v = false;
+      h = false;
+    } else if (screenSize.width / screenSize.height <
+        VideoAspectRatio.width / VideoAspectRatio.height) {
+      v = false;
+      h = true;
+    } else {
+      v = true;
+      h = false;
+    }
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -278,13 +269,13 @@ class _HomeVideoState extends State<HomeVideo> {
           scrollDirection: Axis.vertical,
           controller: _scrollControllerVertical,
           child: SizedBox(
-            width: screenWidth,
-            height: screenHeight,
+            width: Utils.getVideoScreenWidth(screenSize),
+            height: Utils.getVideoScreenHeight(screenSize),
             child: Stack(
               children: [
                 SizedBox(
-                  width: screenWidth,
-                  height: screenHeight,
+                  width: Utils.getVideoScreenWidth(screenSize),
+                  height: Utils.getVideoScreenHeight(screenSize),
                   child: VideoPlayer(_timerVideoController),
                 ),
                 show ? Container() : bank(),
@@ -295,56 +286,56 @@ class _HomeVideoState extends State<HomeVideo> {
                 show ? Container() : groceryShop(),
                 show ? Container() : fastFood(),
                 SizedBox(
-                  width: screenWidth,
-                  height: screenHeight,
+                  width: Utils.getVideoScreenWidth(screenSize),
+                  height: Utils.getVideoScreenHeight(screenSize),
                   child: Stack(
                     children: [
                       _bankVideoPlaying
                           ? SizedBox(
-                              width: screenWidth,
-                              height: screenHeight,
+                              width: Utils.getVideoScreenWidth(screenSize),
+                              height: Utils.getVideoScreenHeight(screenSize),
                               child: VideoPlayer(_bankVideoController),
                             )
                           : Container(),
                       _dataCentreVideoPlaying
                           ? SizedBox(
-                              width: screenWidth,
-                              height: screenHeight,
+                              width: Utils.getVideoScreenWidth(screenSize),
+                              height: Utils.getVideoScreenHeight(screenSize),
                               child: VideoPlayer(_dataCentreVideoController),
                             )
                           : Container(),
                       _schoolVideoPlaying
                           ? SizedBox(
-                              width: screenWidth,
-                              height: screenHeight,
+                              width: Utils.getVideoScreenWidth(screenSize),
+                              height: Utils.getVideoScreenHeight(screenSize),
                               child: VideoPlayer(_schoolVideoController),
                             )
                           : Container(),
                       _retailVideoPlaying
                           ? SizedBox(
-                              width: screenWidth,
-                              height: screenHeight,
+                              width: Utils.getVideoScreenWidth(screenSize),
+                              height: Utils.getVideoScreenHeight(screenSize),
                               child: VideoPlayer(_retailVideoController),
                             )
                           : Container(),
                       _warehouseVideoPlaying
                           ? SizedBox(
-                              width: screenWidth,
-                              height: screenHeight,
+                              width: Utils.getVideoScreenWidth(screenSize),
+                              height: Utils.getVideoScreenHeight(screenSize),
                               child: VideoPlayer(_warehouseVideoController),
                             )
                           : Container(),
                       _groceryShopVideoPlaying
                           ? SizedBox(
-                              width: screenWidth,
-                              height: screenHeight,
+                              width: Utils.getVideoScreenWidth(screenSize),
+                              height: Utils.getVideoScreenHeight(screenSize),
                               child: VideoPlayer(_groceryShopVideoController),
                             )
                           : Container(),
                       _fastFoodVideoPlaying
                           ? SizedBox(
-                              width: screenWidth,
-                              height: screenHeight,
+                              width: Utils.getVideoScreenWidth(screenSize),
+                              height: Utils.getVideoScreenHeight(screenSize),
                               child: VideoPlayer(_fastFoodVideoController),
                             )
                           : Container(),
@@ -353,8 +344,8 @@ class _HomeVideoState extends State<HomeVideo> {
                 ),
                 loading
                     ? SizedBox(
-                        width: screenWidth,
-                        height: screenHeight,
+                        width: Utils.getVideoScreenWidth(screenSize),
+                        height: Utils.getVideoScreenHeight(screenSize),
                         child: Image.asset(
                           buildingImage,
                           fit: BoxFit.fill,
@@ -376,8 +367,8 @@ class _HomeVideoState extends State<HomeVideo> {
                           setShow();
                         },
                         child: SizedBox(
-                          width: screenWidth,
-                          height: screenHeight,
+                          width: Utils.getVideoScreenWidth(screenSize),
+                          height: Utils.getVideoScreenHeight(screenSize),
                           child: Image.asset(
                             qrBackgroundImage,
                             fit: BoxFit.fill,
@@ -444,8 +435,8 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget school() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.445,
-        top: screenHeight * 0.825,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.445,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.825,
         child: Stack(
           children: [
             InkWell(
@@ -512,8 +503,8 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget bank() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.615,
-        top: screenHeight * 0.75,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.615,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.75,
         child: Stack(
           children: [
             Center(
@@ -581,8 +572,8 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget dataCentre() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.12,
-        top: screenHeight * 0.459,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.12,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.459,
         child: Stack(
           children: [
             InkWell(
@@ -648,8 +639,8 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget warehouse() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.269,
-        top: screenHeight * 0.22,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.269,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.22,
         child: Stack(
           children: [
             InkWell(
@@ -716,8 +707,8 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget retail() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.62,
-        top: screenHeight * 0.13,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.62,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.13,
         child: Stack(
           children: [
             InkWell(
@@ -784,8 +775,8 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget groceryShop() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.75,
-        top: screenHeight * 0.64,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.75,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.64,
         child: Stack(
           children: [
             InkWell(
@@ -852,8 +843,8 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget fastFood() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.346,
-        top: screenHeight * 0.35,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.346,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.35,
         child: Stack(
           children: [
             InkWell(
