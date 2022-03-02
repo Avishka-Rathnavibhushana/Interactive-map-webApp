@@ -327,6 +327,23 @@ class _DataCentreVideoState extends State<DataCentreVideo> {
                   height: Utils.getVideoScreenHeight(screenSize),
                   child: VideoPlayer(_controller),
                 ),
+                show
+                    ? Positioned(
+                        left: Utils.getVideoScreenWidth(screenSize) * 0.5,
+                        top: Utils.getVideoScreenHeight(screenSize) * 0.55,
+                        child: Container(
+                          width: Utils.getVideoScreenWidth(screenSize) * 0.2,
+                          height: Utils.getVideoScreenHeight(screenSize) * 0.2,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                  'assets/animations/Data_Center_airflow.gif'),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                      )
+                    : Container(),
                 show ? motor() : Container(),
                 show ? energySaving() : Container(),
                 show ? mapScreen() : Container(),
