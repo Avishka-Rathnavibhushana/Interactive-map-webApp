@@ -60,6 +60,7 @@ class CustomButtonLabelWithClip extends StatelessWidget {
                                 style: const TextStyle(
                                   color: AppColors.white,
                                   fontSize: 25,
+                                  fontFamily: Fonts.bold,
                                 ),
                                 maxLines: 1,
                                 softWrap: true,

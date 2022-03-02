@@ -37,6 +37,7 @@ class TextAreaTextRow extends StatelessWidget {
               style: TextStyle(
                 color: AppColors.white,
                 fontSize: fontSize,
+                fontFamily: Fonts.regular,
               ),
               maxLines: 10,
               softWrap: true,

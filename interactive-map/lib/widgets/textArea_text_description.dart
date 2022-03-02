@@ -27,9 +27,9 @@ class TextAreaTextDescription extends StatelessWidget {
             child: Text(
               text,
               style: TextStyle(
-                color: AppColors.white,
-                fontSize: fontSize,
-              ),
+                  color: AppColors.white,
+                  fontSize: fontSize,
+                  fontFamily: Fonts.regular),
               maxLines: 10,
               softWrap: true,
               overflow: TextOverflow.ellipsis,

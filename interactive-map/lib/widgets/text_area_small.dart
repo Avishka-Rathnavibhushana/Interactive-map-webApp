@@ -40,6 +40,7 @@ class TextAreaSmall extends StatelessWidget {
               color: AppColors.fern,
               fontSize: 55,
               fontWeight: FontWeight.bold,
+              fontFamily: Fonts.extraBold,
             ),
             maxLines: 1,
             softWrap: true,
@@ -62,6 +63,7 @@ class TextAreaSmall extends StatelessWidget {
               style: const TextStyle(
                 color: AppColors.white,
                 fontSize: 20,
+                fontFamily: Fonts.regular,
               ),
               maxLines: 10,
               softWrap: true,
