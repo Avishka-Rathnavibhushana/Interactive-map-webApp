@@ -4,6 +4,7 @@ import 'package:interactive_map/main_buildings/home.dart';
 import 'package:interactive_map/main_buildings/inside_main_building/map_main_screen.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
+import 'package:interactive_map/utills/utils.dart';
 
 class ScreenLeft extends StatefulWidget {
   const ScreenLeft({Key? key, this.to, this.offsetHor, this.offsetVer})
@@ -67,8 +68,8 @@ class _ScreenLeftState extends State<ScreenLeft> {
     super.dispose();
   }
 
-  var screenWidth = 3840 * 0.63;
-  var screenHeight = 2160 * 0.63;
+  bool h = false;
+  bool v = false;
 
   final ScrollController _scrollControllerHrizontal = ScrollController(
     initialScrollOffset: offsetHor,
@@ -95,6 +96,19 @@ class _ScreenLeftState extends State<ScreenLeft> {
           duration: const Duration(milliseconds: 1000),
           curve: Curves.easeInOut);
       offsetVer = _scrollControllerVertical.position.maxScrollExtent / 2;
+    }
+
+    if (screenSize.width / screenSize.height ==
+        VideoAspectRatio.width / VideoAspectRatio.height) {
+      v = false;
+      h = false;
+    } else if (screenSize.width / screenSize.height <
+        VideoAspectRatio.width / VideoAspectRatio.height) {
+      v = false;
+      h = true;
+    } else {
+      v = true;
+      h = false;
     }
 
     return Scaffold(
@@ -163,20 +177,20 @@ class _ScreenLeftState extends State<ScreenLeft> {
           scrollDirection: Axis.vertical,
           controller: _scrollControllerVertical,
           child: SizedBox(
-            width: screenWidth,
-            height: screenHeight,
+            width: Utils.getVideoScreenWidth(screenSize),
+            height: Utils.getVideoScreenHeight(screenSize),
             child: Stack(
               children: [
                 SizedBox(
-                  width: screenWidth,
-                  height: screenHeight,
+                  width: Utils.getVideoScreenWidth(screenSize),
+                  height: Utils.getVideoScreenHeight(screenSize),
                   child: VideoPlayer(_controller),
                 ),
                 show
                     ? nextIndex == 0
                         ? SizedBox(
-                            width: screenWidth,
-                            height: screenHeight,
+                            width: Utils.getVideoScreenWidth(screenSize),
+                            height: Utils.getVideoScreenHeight(screenSize),
                             child: Image.asset(
                               screenLeftImage_1,
                               fit: BoxFit.fill,
@@ -184,16 +198,16 @@ class _ScreenLeftState extends State<ScreenLeft> {
                           )
                         : nextIndex == 1
                             ? SizedBox(
-                                width: screenWidth,
-                                height: screenHeight,
+                                width: Utils.getVideoScreenWidth(screenSize),
+                                height: Utils.getVideoScreenHeight(screenSize),
                                 child: Image.asset(
                                   screenLeftImage_2,
                                   fit: BoxFit.fill,
                                 ),
                               )
                             : SizedBox(
-                                width: screenWidth,
-                                height: screenHeight,
+                                width: Utils.getVideoScreenWidth(screenSize),
+                                height: Utils.getVideoScreenHeight(screenSize),
                                 child: Image.asset(
                                   screenLeftImage_3,
                                   fit: BoxFit.fill,
