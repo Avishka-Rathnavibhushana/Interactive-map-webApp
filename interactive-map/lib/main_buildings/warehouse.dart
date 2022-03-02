@@ -215,7 +215,7 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
                             "Smart HVAC",
                             "Smart Building Operations"
                           ],
-                          topic: "Turntide for warehouses",
+                          topic: "Turntide for Warehouses",
                           description:
                               "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights"),
                     ),
@@ -227,11 +227,12 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
                     child: Container(
                       alignment: Alignment.bottomLeft,
                       child: TextAreaSmallWithClip(
-                          width: screenSize.width * 0.25,
-                          screenSize: screenSize,
-                          prefixText: "64%",
-                          description:
-                              "of energy in bank is used by HVAC and lightning"),
+                        width: screenSize.width * 0.25,
+                        screenSize: screenSize,
+                        prefixText: "75%",
+                        description:
+                            "of energy in warehouse is used by HVAC and lightning",
+                      ),
                     ),
                   )
                 : Container(),

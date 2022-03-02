@@ -215,7 +215,7 @@ class _BankVideoState extends State<BankVideo> {
                             "Smart HVAC",
                             "Smart Building Operations"
                           ],
-                          topic: "Turntide for banks",
+                          topic: "Turntide for Banks",
                           description:
                               "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights"),
                     ),
@@ -227,11 +227,12 @@ class _BankVideoState extends State<BankVideo> {
                     child: Container(
                       alignment: Alignment.bottomLeft,
                       child: TextAreaSmallWithClip(
-                          width: screenSize.width * 0.25,
-                          screenSize: screenSize,
-                          prefixText: "64%",
-                          description:
-                              "of energy in bank is used by HVAC and lightning"),
+                        width: screenSize.width * 0.25,
+                        screenSize: screenSize,
+                        prefixText: "40-60%",
+                        description:
+                            "of energy in bank branches is used by HVAC and lightning",
+                      ),
                     ),
                   )
                 : Container(),

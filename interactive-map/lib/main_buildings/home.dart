@@ -244,7 +244,7 @@ class _HomeVideoState extends State<HomeVideo> {
             ),
             showQR ? qrButton() : Container(),
             show ? Container() : qrButton(),
-            showTextAreaSmall
+            showTextAreaSmall && _schoolVideoPlaying
                 ? Padding(
                     padding: const EdgeInsets.only(bottom: 100),
                     child: Container(
@@ -255,6 +255,81 @@ class _HomeVideoState extends State<HomeVideo> {
                         prefixText: "64%",
                         description:
                             "of energy in school is used by HVAC and lightning",
+                      ),
+                    ),
+                  )
+                : Container(),
+            showTextAreaSmall && _fastFoodVideoPlaying
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Container(
+                      alignment: Alignment.bottomLeft,
+                      child: TextAreaSmallWithClip(
+                        width: width,
+                        screenSize: screenSize,
+                        prefixText: "28%",
+                        description:
+                            "of restuarant energy costs are from HVAC on avarage",
+                      ),
+                    ),
+                  )
+                : Container(),
+            showTextAreaSmall && _bankVideoPlaying
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Container(
+                      alignment: Alignment.bottomLeft,
+                      child: TextAreaSmallWithClip(
+                        width: width,
+                        screenSize: screenSize,
+                        prefixText: "40-60%",
+                        description:
+                            "of energy in bank branches is used by HVAC and lightning",
+                      ),
+                    ),
+                  )
+                : Container(),
+            showTextAreaSmall && _retailVideoPlaying
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Container(
+                      alignment: Alignment.bottomLeft,
+                      child: TextAreaSmallWithClip(
+                        width: width,
+                        screenSize: screenSize,
+                        prefixText: "70%",
+                        description:
+                            "of energy in retail is used by HVAC and lightning",
+                      ),
+                    ),
+                  )
+                : Container(),
+            showTextAreaSmall && _warehouseVideoPlaying
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Container(
+                      alignment: Alignment.bottomLeft,
+                      child: TextAreaSmallWithClip(
+                        width: width,
+                        screenSize: screenSize,
+                        prefixText: "75%",
+                        description:
+                            "of energy in warehouse is used by HVAC and lightning",
+                      ),
+                    ),
+                  )
+                : Container(),
+            showTextAreaSmall && _dataCentreVideoPlaying
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Container(
+                      alignment: Alignment.bottomLeft,
+                      child: TextAreaSmallWithClip(
+                        width: width,
+                        screenSize: screenSize,
+                        prefixText: "37%",
+                        description:
+                            "of energy in data centers is used by HVAC and lightning",
                       ),
                     ),
                   )

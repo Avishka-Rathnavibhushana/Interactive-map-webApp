@@ -33,7 +33,7 @@ class _MotorState extends State<Motor> {
   int index = 0;
   bool nextIndex = false;
   bool show = false;
-  final String url = 'assets/videos/motor_MAIN.mp4';
+  String url = 'assets/videos/motor_MAIN.mp4';
 
   setIndex(value) {
     index = value;
@@ -97,6 +97,12 @@ class _MotorState extends State<Motor> {
     index = 0;
     nextIndex = false;
     show = false;
+
+    if (widget.from == Pages.dataCenter) {
+      url = 'assets/videos/TX_MAIN.mp4';
+    } else {
+      url = 'assets/videos/motor_MAIN.mp4';
+    }
     _controller = VideoPlayerController.asset(url)
       ..initialize().then((_) => {
             setState(() {
@@ -105,14 +111,19 @@ class _MotorState extends State<Motor> {
               show = true;
             })
           });
-    _backVideoController =
-        VideoPlayerController.asset("assets/videos/school_MOTOR.mp4")
-          ..initialize().then((_) => {
-                setState(() {
-                  _backVideoController.setVolume(0);
-                  _backVideoController.setLooping(false);
-                })
-              });
+    String back;
+    if (widget.from == Pages.dataCenter) {
+      back = 'assets/videos/datacentre_MOTOR.mp4';
+    } else {
+      back = 'assets/videos/school_MOTOR.mp4';
+    }
+    _backVideoController = VideoPlayerController.asset(back)
+      ..initialize().then((_) => {
+            setState(() {
+              _backVideoController.setVolume(0);
+              _backVideoController.setLooping(false);
+            })
+          });
 
     _controller.setLooping(true);
 
@@ -191,10 +202,12 @@ class _MotorState extends State<Motor> {
                       const SizedBox(
                         height: 50,
                       ),
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.only(left: 25),
                         child: CustomTopic(
-                            topic: "Smart Motor System - V Series",
+                            topic: widget.from == Pages.dataCenter
+                                ? "Smart Motor System - TX Series"
+                                : "Smart Motor System - V Series",
                             subTopic:
                                 "Includes: Smart Motor, Motor Controller, and Hub"),
                       ),
@@ -204,9 +217,10 @@ class _MotorState extends State<Motor> {
                       TextAreaWithClip(
                         screenSize: screenSize,
                         texts: const [
-                          "Optimal efficiency switched reluctance motor",
-                          "Standard NEMA dimensions",
-                          "Available in 1-10 HP"
+                          "Slim design for space efficiency",
+                          "IE5-level motor efficiency",
+                          "Ultra-reliable performance across all speeds",
+                          "Provides diagnostics like torque, speed, and HP"
                         ],
                         topic: "",
                         description: "",
@@ -219,103 +233,200 @@ class _MotorState extends State<Motor> {
                               width: screenSize.width < 1565
                                   ? 1565 * 0.25
                                   : screenSize.width * 0.25,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width: screenSize.width < 1565
-                                        ? 1565 * 0.25
-                                        : screenSize.width * 0.25,
-                                    child: Row(
+                              child: widget.from == Pages.dataCenter
+                                  ? Column(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: [
-                                        CustomTextContainer(
-                                          screenSize: screenSize,
-                                          topic: "IE5+",
-                                          description: "ACROSS MOST HP",
+                                        Container(
+                                          width: screenSize.width < 1565
+                                              ? 1565 * 0.25
+                                              : screenSize.width * 0.25,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              CustomTextContainer(
+                                                screenSize: screenSize,
+                                                topic: "93.2%",
+                                                description:
+                                                    "PEAK MOTOR EFFICIENCY",
+                                              ),
+                                              SizedBox(
+                                                width: 25,
+                                              ),
+                                              CustomTextContainer(
+                                                screenSize: screenSize,
+                                                topic: "0%",
+                                                description:
+                                                    "RARE EARTH METALS",
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                         SizedBox(
-                                          width: 25,
+                                          height: 25,
                                         ),
-                                        CustomTextContainer(
-                                          screenSize: screenSize,
-                                          topic: "Up to 13%",
-                                          description:
-                                              "ETRA ENERGY SAVINGS OVER VFD",
+                                        Container(
+                                          width: screenSize.width < 1565
+                                              ? 1565 * 0.25
+                                              : screenSize.width * 0.25,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              CustomTextContainer(
+                                                screenSize: screenSize,
+                                                topic: "50%",
+                                                description: "LIGHTER WEIGHT",
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 25,
-                                  ),
-                                  Container(
-                                    width: screenSize.width < 1565
-                                        ? 1565 * 0.25
-                                        : screenSize.width * 0.25,
-                                    child: Row(
+                                    )
+                                  : Column(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: [
-                                        CustomTextContainer(
-                                          screenSize: screenSize,
-                                          topic: "92%",
-                                          description:
-                                              "PEAK EFFICIENCY AT 3 HP",
+                                        Container(
+                                          width: screenSize.width < 1565
+                                              ? 1565 * 0.25
+                                              : screenSize.width * 0.25,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              CustomTextContainer(
+                                                screenSize: screenSize,
+                                                topic: "IE5+",
+                                                description: "ACROSS MOST HP",
+                                              ),
+                                              SizedBox(
+                                                width: 25,
+                                              ),
+                                              CustomTextContainer(
+                                                screenSize: screenSize,
+                                                topic: "Up to 13%",
+                                                description:
+                                                    "ETRA ENERGY SAVINGS OVER VFD",
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 25,
+                                        ),
+                                        Container(
+                                          width: screenSize.width < 1565
+                                              ? 1565 * 0.25
+                                              : screenSize.width * 0.25,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              CustomTextContainer(
+                                                screenSize: screenSize,
+                                                topic: "92%",
+                                                description:
+                                                    "PEAK EFFICIENCY AT 3 HP",
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ],
                                     ),
-                                  ),
-                                ],
-                              ),
                             )
-                          : Container(
-                              width: screenSize.width < 1565
-                                  ? 1565 * 0.35
-                                  : screenSize.width * 0.35,
-                              child: Stack(
-                                children: [
-                                  Container(
-                                    width: screenSize.width < 1565
-                                        ? 1565 * 0.20
-                                        : screenSize.width * 0.20,
-                                    height: screenSize.width < 1565
-                                        ? 1565 * 0.15
-                                        : screenSize.width * 0.15,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                            'assets/graphics/router.png'),
-                                        fit: BoxFit.contain,
-                                      ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    left: screenSize.width < 1565
-                                        ? 1565 * 0.1
-                                        : screenSize.width * 0.1,
-                                    child: Container(
-                                      width: screenSize.width < 1565
-                                          ? 1565 * 0.15
-                                          : screenSize.width * 0.15,
-                                      height: screenSize.width < 1565
-                                          ? 1565 * 0.1
-                                          : screenSize.width * 0.1,
-                                      padding: const EdgeInsets.all(1),
-                                      decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                          image: AssetImage(
-                                              'assets/graphics/Motor_controller.png'),
-                                          fit: BoxFit.contain,
+                          : widget.from == Pages.dataCenter
+                              ? Container(
+                                  width: screenSize.width < 1565
+                                      ? 1565 * 0.35
+                                      : screenSize.width * 0.35,
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        width: screenSize.width < 1565
+                                            ? 1565 * 0.13
+                                            : screenSize.width * 0.13,
+                                        height: screenSize.width < 1565
+                                            ? 1565 * 0.15
+                                            : screenSize.width * 0.15,
+                                        decoration: const BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(
+                                                'assets/graphics/TX_front.png'),
+                                            fit: BoxFit.contain,
+                                          ),
                                         ),
                                       ),
-                                    ),
+                                      Container(
+                                        width: screenSize.width < 1565
+                                            ? 1565 * 0.13
+                                            : screenSize.width * 0.13,
+                                        height: screenSize.width < 1565
+                                            ? 1565 * 0.15
+                                            : screenSize.width * 0.15,
+                                        padding: const EdgeInsets.all(1),
+                                        decoration: const BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(
+                                                'assets/graphics/TX_side.png'),
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                            ),
+                                )
+                              : Container(
+                                  width: screenSize.width < 1565
+                                      ? 1565 * 0.35
+                                      : screenSize.width * 0.35,
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        width: screenSize.width < 1565
+                                            ? 1565 * 0.20
+                                            : screenSize.width * 0.20,
+                                        height: screenSize.width < 1565
+                                            ? 1565 * 0.15
+                                            : screenSize.width * 0.15,
+                                        decoration: const BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(
+                                                'assets/graphics/router.png'),
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                      Positioned(
+                                        left: screenSize.width < 1565
+                                            ? 1565 * 0.1
+                                            : screenSize.width * 0.1,
+                                        child: Container(
+                                          width: screenSize.width < 1565
+                                              ? 1565 * 0.15
+                                              : screenSize.width * 0.15,
+                                          height: screenSize.width < 1565
+                                              ? 1565 * 0.1
+                                              : screenSize.width * 0.1,
+                                          padding: const EdgeInsets.all(1),
+                                          decoration: const BoxDecoration(
+                                            image: DecorationImage(
+                                              image: AssetImage(
+                                                  'assets/graphics/Motor_controller.png'),
+                                              fit: BoxFit.contain,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                     ],
                   )
                 : Container(),

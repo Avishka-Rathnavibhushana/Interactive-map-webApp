@@ -215,7 +215,7 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
                             "Smart HVAC",
                             "Smart Building Operations"
                           ],
-                          topic: "Turntide for fastfoods",
+                          topic: "Turntide for Restaurantss",
                           description:
                               "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights"),
                     ),
@@ -227,11 +227,12 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
                     child: Container(
                       alignment: Alignment.bottomLeft,
                       child: TextAreaSmallWithClip(
-                          width: screenSize.width * 0.25,
-                          screenSize: screenSize,
-                          prefixText: "64%",
-                          description:
-                              "of energy in bank is used by HVAC and lightning"),
+                        width: screenSize.width * 0.25,
+                        screenSize: screenSize,
+                        prefixText: "28%",
+                        description:
+                            "of restuarant energy costs are from HVAC on avarage",
+                      ),
                     ),
                   )
                 : Container(),

@@ -215,7 +215,7 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
                             "Smart HVAC",
                             "Smart Building Operations"
                           ],
-                          topic: "Turntide for groceryshops",
+                          topic: "Turntide for Grocery Stores",
                           description:
                               "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights"),
                     ),
@@ -227,11 +227,12 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
                     child: Container(
                       alignment: Alignment.bottomLeft,
                       child: TextAreaSmallWithClip(
-                          width: screenSize.width * 0.25,
-                          screenSize: screenSize,
-                          prefixText: "64%",
-                          description:
-                              "of energy in bank is used by HVAC and lightning"),
+                        width: screenSize.width * 0.25,
+                        screenSize: screenSize,
+                        prefixText: "50%",
+                        description:
+                            "of energy in grocery stores is used by HVAC and lightning",
+                      ),
                     ),
                   )
                 : Container(),

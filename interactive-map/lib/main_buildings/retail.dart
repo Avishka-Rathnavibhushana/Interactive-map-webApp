@@ -215,7 +215,7 @@ class _RetailVideoState extends State<RetailVideo> {
                             "Smart HVAC",
                             "Smart Building Operations"
                           ],
-                          topic: "Turntide for retails",
+                          topic: "Turntide for Retail Stores",
                           description:
                               "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights"),
                     ),
@@ -227,11 +227,12 @@ class _RetailVideoState extends State<RetailVideo> {
                     child: Container(
                       alignment: Alignment.bottomLeft,
                       child: TextAreaSmallWithClip(
-                          width: screenSize.width * 0.25,
-                          screenSize: screenSize,
-                          prefixText: "64%",
-                          description:
-                              "of energy in bank is used by HVAC and lightning"),
+                        width: screenSize.width * 0.25,
+                        screenSize: screenSize,
+                        prefixText: "70%",
+                        description:
+                            "of energy in retail is used by HVAC and lightning",
+                      ),
                     ),
                   )
                 : Container(),
