@@ -5,6 +5,8 @@ import 'package:interactive_map/main_buildings/inside_main_building/map_main_scr
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 import 'package:interactive_map/utills/utils.dart';
+import 'package:get/get.dart';
+import 'package:interactive_map/controller/controller.dart';
 
 class ScreenLeft extends StatefulWidget {
   const ScreenLeft({Key? key, this.to, this.offsetHor, this.offsetVer})
@@ -72,11 +74,11 @@ class _ScreenLeftState extends State<ScreenLeft> {
   bool v = false;
 
   final ScrollController _scrollControllerHrizontal = ScrollController(
-    initialScrollOffset: offsetHor,
+    initialScrollOffset: Get.find<Controller>().horizontalOffset.value,
   );
 
   final ScrollController _scrollControllerVertical = ScrollController(
-    initialScrollOffset: offsetVer,
+    initialScrollOffset: Get.find<Controller>().verticalOffset.value,
   );
 
   @override
@@ -88,6 +90,7 @@ class _ScreenLeftState extends State<ScreenLeft> {
           duration: const Duration(milliseconds: 1000),
           curve: Curves.easeInOut);
       offsetHor = _scrollControllerHrizontal.position.maxScrollExtent / 2;
+      Get.find<Controller>().horizontalOffset.value = offsetHor;
     }
 
     if (_scrollControllerVertical.hasClients) {
@@ -96,6 +99,7 @@ class _ScreenLeftState extends State<ScreenLeft> {
           duration: const Duration(milliseconds: 1000),
           curve: Curves.easeInOut);
       offsetVer = _scrollControllerVertical.position.maxScrollExtent / 2;
+      Get.find<Controller>().verticalOffset.value = offsetVer;
     }
 
     if (screenSize.width / screenSize.height ==

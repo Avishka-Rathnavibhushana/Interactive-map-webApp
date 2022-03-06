@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
+import 'package:get/get.dart';
+import 'package:interactive_map/controller/controller.dart';
 import 'package:interactive_map/main_buildings/bank.dart';
 import 'package:interactive_map/main_buildings/datacentre.dart';
 import 'package:interactive_map/main_buildings/fastfood.dart';
@@ -8,6 +10,7 @@ import 'package:interactive_map/main_buildings/retail.dart';
 import 'package:interactive_map/main_buildings/school.dart';
 import 'package:interactive_map/main_buildings/warehouse.dart';
 import 'package:interactive_map/utills/utils.dart';
+import 'package:interactive_map/widgets/custom_button_label.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
 import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
@@ -178,11 +181,11 @@ class _HomeVideoState extends State<HomeVideo> {
   bool v = false;
 
   final ScrollController _scrollControllerHrizontal = ScrollController(
-    initialScrollOffset: offsetHor,
+    initialScrollOffset: Get.find<Controller>().horizontalOffset.value,
   );
 
   final ScrollController _scrollControllerVertical = ScrollController(
-    initialScrollOffset: offsetVer,
+    initialScrollOffset: Get.find<Controller>().verticalOffset.value,
   );
   static double offsetHor = 0;
   static double offsetVer = 0;
@@ -197,6 +200,7 @@ class _HomeVideoState extends State<HomeVideo> {
           duration: const Duration(milliseconds: 1000),
           curve: Curves.easeInOut);
       offsetHor = _scrollControllerHrizontal.position.maxScrollExtent / 2;
+      Get.find<Controller>().horizontalOffset.value = offsetHor;
     }
 
     if (_scrollControllerVertical.hasClients) {
@@ -205,19 +209,7 @@ class _HomeVideoState extends State<HomeVideo> {
           duration: const Duration(milliseconds: 1000),
           curve: Curves.easeInOut);
       offsetVer = _scrollControllerVertical.position.maxScrollExtent / 2;
-    }
-
-    if (screenSize.width / screenSize.height ==
-        VideoAspectRatio.width / VideoAspectRatio.height) {
-      v = false;
-      h = false;
-    } else if (screenSize.width / screenSize.height <
-        VideoAspectRatio.width / VideoAspectRatio.height) {
-      v = false;
-      h = true;
-    } else {
-      v = true;
-      h = false;
+      Get.find<Controller>().verticalOffset.value = offsetVer;
     }
 
     return Scaffold(
@@ -573,6 +565,78 @@ class _HomeVideoState extends State<HomeVideo> {
             ),
           ],
         ));
+  }
+
+  Widget schoolMobile() {
+    var screenSize = MediaQuery.of(context).size;
+    return Stack(
+      children: [
+        InkWell(
+          onTap: () async {
+            setShow();
+            setState(() {
+              timerOFF = true;
+            });
+
+            _timerVideoController.pause();
+
+            setState(() {
+              _schoolVideoPlaying = true;
+            });
+
+            setState(() {
+              width = 0;
+            });
+
+            _schoolVideoController.play();
+
+            setState(() {
+              showTextAreaSmall = true;
+            });
+
+            await Future.delayed(const Duration(milliseconds: 200));
+
+            setState(() {
+              width = screenSize.width * 0.2;
+            });
+
+            _schoolVideoController.addListener(() {
+              final bool isPlaying = _schoolVideoController.value.isPlaying;
+              print(isPlaying);
+              if (isPlaying != _isPlaying) {
+                setState(() {
+                  _isPlaying = isPlaying;
+                  setIndex(++index);
+                });
+                if (index > 1) {
+                  _schoolVideoController.removeListener(() {});
+
+                  customPushReplacement(
+                      context,
+                      SchoolVideo(
+                        from: Pages.home,
+                        offsetHor: offsetHor,
+                        offsetVer: offsetVer,
+                      ));
+                }
+              }
+            });
+          },
+          // child: CustomButtonLabel(
+          //   screenSize: screenSize,
+          //   text: "Schools",
+          //   type: 0,
+          // ),
+          child: ElevatedButton(
+            onPressed: () {},
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Text("Schools"),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 
   Widget bank() {

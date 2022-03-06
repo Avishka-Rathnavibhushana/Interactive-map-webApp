@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:interactive_map/constants/constants.dart';
+import 'package:interactive_map/controller/controller.dart';
 import 'package:interactive_map/main_buildings/home.dart';
 import 'package:interactive_map/main_buildings/inside_main_building/motor.dart';
 import 'package:interactive_map/main_buildings/inside_main_building/map_main_screen.dart';
@@ -71,6 +73,12 @@ class _SchoolVideoState extends State<SchoolVideo> {
     videoHandler();
 
     super.initState();
+    setState(() {
+      offsetHor = widget.offsetHor;
+      offsetVer = widget.offsetVer;
+    });
+    print("pre passing page" + widget.offsetHor.toString());
+    print("pre passing page" + widget.offsetVer.toString());
   }
 
   videoHandler() async {
@@ -153,11 +161,11 @@ class _SchoolVideoState extends State<SchoolVideo> {
   bool v = false;
 
   final ScrollController _scrollControllerHrizontal = ScrollController(
-    initialScrollOffset: offsetHor,
+    initialScrollOffset: Get.find<Controller>().horizontalOffset.value,
   );
 
   final ScrollController _scrollControllerVertical = ScrollController(
-    initialScrollOffset: offsetVer,
+    initialScrollOffset: Get.find<Controller>().verticalOffset.value,
   );
   static double offsetHor = 0;
   static double offsetVer = 0;
@@ -172,6 +180,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
           duration: const Duration(milliseconds: 1000),
           curve: Curves.easeInOut);
       offsetHor = _scrollControllerHrizontal.position.maxScrollExtent / 2;
+      Get.find<Controller>().horizontalOffset.value = offsetHor;
     }
 
     if (_scrollControllerVertical.hasClients) {
@@ -180,6 +189,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
           duration: const Duration(milliseconds: 1000),
           curve: Curves.easeInOut);
       offsetVer = _scrollControllerVertical.position.maxScrollExtent / 2;
+      Get.find<Controller>().verticalOffset.value = offsetVer;
     }
 
     if (screenSize.width / screenSize.height ==
