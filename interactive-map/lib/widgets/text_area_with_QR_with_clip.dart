@@ -26,8 +26,8 @@ class TextAreaWithQRWithClip extends StatelessWidget {
           85,
         ),
         child: AnimatedContainer(
-          width: width < 250 ? 250 : width,
-          height: height < 250 ? 250 : height,
+          width: width,
+          height: height,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(qr_url),

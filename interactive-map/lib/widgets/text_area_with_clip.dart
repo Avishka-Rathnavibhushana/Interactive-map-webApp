@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:interactive_map/constants/constants.dart';
+import 'package:interactive_map/utills/utils.dart';
 import 'package:interactive_map/widgets/squre_shaped_custom_container.dart';
 import 'package:interactive_map/widgets/textArea_text_Topic.dart';
 import 'package:interactive_map/widgets/textArea_text_description.dart';
@@ -25,10 +27,11 @@ class TextAreaWithClip extends StatelessWidget {
       //size: Size(700, 700),
       painter: SqureShapedCustomContainer(),
       child: Container(
-        width: screenSize.width < 1565 ? 1565 * 0.25 : screenSize.width * 0.25,
-        padding: const EdgeInsets.symmetric(
-          vertical: 35,
-          horizontal: 30,
+        // width: screenSize.width < 1565 ? 1565 * 0.25 : screenSize.width * 0.25,
+        width: screenSize.width * 0.25 * Utils.getMultiplier(screenSize.width),
+        padding: EdgeInsets.symmetric(
+          vertical: screenSize.height * (35 / VideoAspectRatio.height),
+          horizontal: screenSize.width * (30 / VideoAspectRatio.width),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -40,27 +43,28 @@ class TextAreaWithClip extends StatelessWidget {
                 : TextAreaTextTopic(
                     screenSize: screenSize,
                     text: topic,
-                    fontSize: 25,
+                    fontSize: 21,
                   ),
             description == ''
                 ? const SizedBox()
                 : TextAreaTextDescription(
                     screenSize: screenSize,
                     text: description,
-                    fontSize: 23,
+                    fontSize: 17,
                   ),
-            topic == ''
+            description == ''
                 ? const SizedBox()
-                : const SizedBox(
-                    height: 15,
+                : SizedBox(
+                    height: screenSize.height * (15 / VideoAspectRatio.height),
                   ),
             texts.isEmpty
                 ? const SizedBox()
                 : Container(
-                    padding: const EdgeInsets.only(
-                      top: 15,
-                      bottom: 15,
-                      left: 15,
+                    padding: EdgeInsets.only(
+                      top: screenSize.height * (15 / VideoAspectRatio.height),
+                      bottom:
+                          screenSize.height * (15 / VideoAspectRatio.height),
+                      left: screenSize.width * (15 / VideoAspectRatio.width),
                     ),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -70,7 +74,7 @@ class TextAreaWithClip extends StatelessWidget {
                           .map<Widget>((text) => TextAreaTextRow(
                                 screenSize: screenSize,
                                 text: text,
-                                fontSize: 22,
+                                fontSize: 18,
                               ))
                           .toList(),
                     ),

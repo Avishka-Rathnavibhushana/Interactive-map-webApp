@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
+import 'package:interactive_map/utills/utils.dart';
 
 class TextAreaTextDescription extends StatelessWidget {
   const TextAreaTextDescription({
@@ -16,8 +17,10 @@ class TextAreaTextDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 15),
-      width: screenSize.width < 1565 ? 1565 * 0.25 : screenSize.width * 0.25,
+      padding: EdgeInsets.symmetric(
+          vertical: screenSize.height * (15 / VideoAspectRatio.height)),
+      // width: screenSize.width < 1565 ? 1565 * 0.25 : screenSize.width * 0.25,
+      width: screenSize.width * 0.25 * Utils.getMultiplier(screenSize.width),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -28,7 +31,9 @@ class TextAreaTextDescription extends StatelessWidget {
               text,
               style: TextStyle(
                   color: AppColors.white,
-                  fontSize: fontSize,
+                  fontSize: fontSize *
+                      (screenSize.width / VideoAspectRatio.width) *
+                      Utils.getMultiplier(screenSize.width),
                   fontFamily: Fonts.regular),
               maxLines: 10,
               softWrap: true,

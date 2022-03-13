@@ -100,101 +100,331 @@ class _ScreenRightState extends State<ScreenRight> {
       Get.find<Controller>().verticalOffset.value = offsetVer;
     }
 
-    if (screenSize.width / screenSize.height ==
-        VideoAspectRatio.width / VideoAspectRatio.height) {
-      v = false;
-      h = false;
-    } else if (screenSize.width / screenSize.height <
-        VideoAspectRatio.width / VideoAspectRatio.height) {
-      v = false;
-      h = true;
-    } else {
-      v = true;
-      h = false;
-    }
-
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
-        child: Stack(
-          alignment: Alignment.topCenter,
-          fit: StackFit.expand,
+    if (screenSize.height < 500 && screenSize.width > 500) {
+      if (screenSize.width - screenSize.width * 0.3 / screenSize.height ==
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = false;
+      } else if (screenSize.width - screenSize.width * 0.3 / screenSize.height <
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = true;
+      } else {
+        v = true;
+        h = false;
+      }
+      var screenSizeMobile1 =
+          Size(screenSize.width - screenSize.width * 0.3, screenSize.height);
+      return Scaffold(
+        backgroundColor: Colors.transparent,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: floatingButtonPanel(),
+        body: Row(
           children: [
-            show ? nextButton() : Container(),
-            show ? menuButton() : Container(),
-            show
-                ? nextIndex
-                    ? Padding(
-                        padding: const EdgeInsets.only(top: 100),
-                        child: Container(
-                          alignment: Alignment.topLeft,
-                          child: TextAreaWithClip(
-                              screenSize: screenSize,
-                              texts: const [
-                                "Easily mange temparature setpoints and scheduling anytime, anywhere 24/7",
-                              ],
-                              topic: "Smart HVAC",
-                              description: ""),
+            Container(
+              width: screenSize.width - screenSize.width * 0.3,
+              height: screenSize.height,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                controller: _scrollControllerHrizontal,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  controller: _scrollControllerVertical,
+                  child: SizedBox(
+                    width: Utils.getVideoScreenWidth(screenSizeMobile1),
+                    height: Utils.getVideoScreenHeight(screenSizeMobile1),
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          width: Utils.getVideoScreenWidth(screenSizeMobile1),
+                          height: Utils.getVideoScreenHeight(screenSizeMobile1),
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                width: Utils.getVideoScreenWidth(
+                                    screenSizeMobile1),
+                                height: Utils.getVideoScreenHeight(
+                                    screenSizeMobile1),
+                                child: VideoPlayer(_controller),
+                              ),
+                              show
+                                  ? nextIndex
+                                      ? SizedBox(
+                                          width: Utils.getVideoScreenWidth(
+                                              screenSizeMobile1),
+                                          height: Utils.getVideoScreenHeight(
+                                              screenSizeMobile1),
+                                          child: Image.asset(
+                                            screenRightImage_1,
+                                            fit: BoxFit.fill,
+                                          ),
+                                        )
+                                      : SizedBox(
+                                          width: Utils.getVideoScreenWidth(
+                                              screenSizeMobile1),
+                                          height: Utils.getVideoScreenHeight(
+                                              screenSizeMobile1),
+                                          child: Image.asset(
+                                            screenRightImage_2,
+                                            fit: BoxFit.fill,
+                                          ),
+                                        )
+                                  : Container(),
+                            ],
+                          ),
                         ),
-                      )
-                    : Padding(
-                        padding: const EdgeInsets.only(top: 100),
-                        child: Container(
-                          alignment: Alignment.topLeft,
-                          child: TextAreaWithClip(
-                              screenSize: screenSize,
-                              texts: const [
-                                "Monitor equipment performance with fault detection and alerts for preventative maintenance",
-                                "Reduce costs and resolve issues before customers are affected"
-                              ],
-                              topic: "Smart HVAC",
-                              description: ""),
-                        ),
-                      )
-                : Container(),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Container(
+                height: screenSize.height,
+                width: screenSize.width - screenSize.width * 0.3,
+                alignment: Alignment.topRight,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  physics: const BouncingScrollPhysics(),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Container(
+                      width: screenSize.width - screenSize.width * 0.3,
+                      child: Column(
+                        children: [
+                          show ? nextButtonMobile() : Container(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
-      ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        controller: _scrollControllerHrizontal,
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          controller: _scrollControllerVertical,
-          child: SizedBox(
-            width: Utils.getVideoScreenWidth(screenSize),
-            height: Utils.getVideoScreenHeight(screenSize),
-            child: Stack(
-              children: [
-                SizedBox(
-                  width: Utils.getVideoScreenWidth(screenSize),
-                  height: Utils.getVideoScreenHeight(screenSize),
-                  child: VideoPlayer(_controller),
+      );
+    } else if (screenSize.width < 500) {
+      if (screenSize.width / screenSize.height - screenSize.height * 0.3 ==
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = false;
+      } else if (screenSize.width / screenSize.height -
+              screenSize.height * 0.3 <
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = true;
+      } else {
+        v = true;
+        h = false;
+      }
+      var screenSizeMobile2 =
+          Size(screenSize.width, screenSize.height - screenSize.height * 0.3);
+      return Scaffold(
+        backgroundColor: Colors.transparent,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: floatingButtonPanel(),
+        body: Column(
+          children: [
+            Container(
+              width: screenSize.width,
+              height: screenSize.height - screenSize.height * 0.3,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                controller: _scrollControllerHrizontal,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  controller: _scrollControllerVertical,
+                  child: SizedBox(
+                    width: Utils.getVideoScreenWidth(screenSizeMobile2),
+                    height: Utils.getVideoScreenHeight(screenSizeMobile2),
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          width: Utils.getVideoScreenWidth(screenSizeMobile2),
+                          height: Utils.getVideoScreenHeight(screenSizeMobile2),
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                width: Utils.getVideoScreenWidth(
+                                    screenSizeMobile2),
+                                height: Utils.getVideoScreenHeight(
+                                    screenSizeMobile2),
+                                child: VideoPlayer(_controller),
+                              ),
+                              show
+                                  ? nextIndex
+                                      ? SizedBox(
+                                          width: Utils.getVideoScreenWidth(
+                                              screenSizeMobile2),
+                                          height: Utils.getVideoScreenHeight(
+                                              screenSizeMobile2),
+                                          child: Image.asset(
+                                            screenRightImage_1,
+                                            fit: BoxFit.fill,
+                                          ),
+                                        )
+                                      : SizedBox(
+                                          width: Utils.getVideoScreenWidth(
+                                              screenSizeMobile2),
+                                          height: Utils.getVideoScreenHeight(
+                                              screenSizeMobile2),
+                                          child: Image.asset(
+                                            screenRightImage_2,
+                                            fit: BoxFit.fill,
+                                          ),
+                                        )
+                                  : Container(),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                show
-                    ? nextIndex
-                        ? SizedBox(
-                            width: Utils.getVideoScreenWidth(screenSize),
-                            height: Utils.getVideoScreenHeight(screenSize),
-                            child: Image.asset(
-                              screenRightImage_1,
-                              fit: BoxFit.fill,
-                            ),
-                          )
-                        : SizedBox(
-                            width: Utils.getVideoScreenWidth(screenSize),
-                            height: Utils.getVideoScreenHeight(screenSize),
-                            child: Image.asset(
-                              screenRightImage_2,
-                              fit: BoxFit.fill,
-                            ),
-                          )
-                    : Container(),
-              ],
+              ),
+            ),
+            Expanded(
+              child: Container(
+                height: screenSize.height * 0.3,
+                width: screenSize.width,
+                alignment: Alignment.topCenter,
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Container(
+                      width: screenSize.width,
+                      child: Column(
+                        children: [
+                          show ? nextButtonMobile() : Container(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    } else {
+      if (screenSize.width / screenSize.height ==
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = false;
+      } else if (screenSize.width / screenSize.height <
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = true;
+      } else {
+        v = true;
+        h = false;
+      }
+      return Scaffold(
+        backgroundColor: Colors.transparent,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: floatingButtonPanel(),
+        body: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          controller: _scrollControllerHrizontal,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            controller: _scrollControllerVertical,
+            child: SizedBox(
+              width: Utils.getVideoScreenWidth(screenSize),
+              height: Utils.getVideoScreenHeight(screenSize),
+              child: Stack(
+                children: [
+                  SizedBox(
+                    width: Utils.getVideoScreenWidth(screenSize),
+                    height: Utils.getVideoScreenHeight(screenSize),
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          width: Utils.getVideoScreenWidth(screenSize),
+                          height: Utils.getVideoScreenHeight(screenSize),
+                          child: VideoPlayer(_controller),
+                        ),
+                        show
+                            ? nextIndex
+                                ? SizedBox(
+                                    width:
+                                        Utils.getVideoScreenWidth(screenSize),
+                                    height:
+                                        Utils.getVideoScreenHeight(screenSize),
+                                    child: Image.asset(
+                                      screenRightImage_1,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  )
+                                : SizedBox(
+                                    width:
+                                        Utils.getVideoScreenWidth(screenSize),
+                                    height:
+                                        Utils.getVideoScreenHeight(screenSize),
+                                    child: Image.asset(
+                                      screenRightImage_2,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  )
+                            : Container(),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
+      );
+    }
+  }
+
+  Widget floatingButtonPanel() {
+    var screenSize = MediaQuery.of(context).size;
+    return Container(
+      child: Stack(
+        alignment: Alignment.topCenter,
+        fit: StackFit.expand,
+        children: [
+          show && screenSize.width > 500 && screenSize.height > 500
+              ? nextButton()
+              : Container(),
+          show ? menuButton() : Container(),
+          show
+              ? nextIndex
+                  ? Padding(
+                      padding: EdgeInsets.only(
+                          top: Utils.getTopPadding(screenSize, 100)),
+                      child: Container(
+                        alignment: Alignment.topLeft,
+                        child: TextAreaWithClip(
+                            screenSize: screenSize,
+                            texts: const [
+                              "Easily mange temparature setpoints and scheduling anytime, anywhere 24/7",
+                            ],
+                            topic: "Smart HVAC",
+                            description: ""),
+                      ),
+                    )
+                  : Padding(
+                      padding: EdgeInsets.only(
+                          top: Utils.getTopPadding(screenSize, 100)),
+                      child: Container(
+                        alignment: Alignment.topLeft,
+                        child: TextAreaWithClip(
+                            screenSize: screenSize,
+                            texts: const [
+                              "Monitor equipment performance with fault detection and alerts for preventative maintenance",
+                              "Reduce costs and resolve issues before customers are affected"
+                            ],
+                            topic: "Smart HVAC",
+                            description: ""),
+                      ),
+                    )
+              : Container(),
+        ],
       ),
     );
   }
@@ -202,7 +432,7 @@ class _ScreenRightState extends State<ScreenRight> {
   Widget nextButton() {
     var screenSize = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.only(bottom: 100),
+      padding: EdgeInsets.only(bottom: Utils.getBottomPadding(screenSize, 200)),
       child: Container(
         alignment: Alignment.bottomRight,
         child: GestureDetector(
@@ -248,8 +478,12 @@ class _ScreenRightState extends State<ScreenRight> {
             }
           },
           child: Container(
-            width: screenSize.width * 0.091,
-            height: screenSize.width * 0.040,
+            width: screenSize.width *
+                0.091 *
+                Utils.getMultiplier(screenSize.width),
+            height: screenSize.width *
+                0.040 *
+                Utils.getMultiplier(screenSize.width),
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(nextImage),
@@ -262,40 +496,110 @@ class _ScreenRightState extends State<ScreenRight> {
     );
   }
 
-  Widget menuButton() {
+  Widget nextButtonMobile() {
     var screenSize = MediaQuery.of(context).size;
-    return Container(
-      alignment: Alignment.topRight,
-      height: screenSize.width * 0.050,
-      width: screenSize.width * 0.050,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: GestureDetector(
         onTap: () {
-          _controller.pause();
-          _controller.removeListener(() {});
-          Navigator.pushReplacement(
-            context,
-            PageRouteBuilder(
-              pageBuilder: (context, animation1, animation2) => HomeVideo(
-                offsetHor: offsetHor,
-                offsetVer: offsetVer,
-              ),
-              transitionDuration: const Duration(seconds: 2),
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) =>
-                      FadeTransition(
-                opacity: animation,
-                child: child,
-              ),
-            ),
-          );
+          if (nextIndex) {
+            setShow();
+            _controller.play();
+            _controller.addListener(() {
+              final bool isPlaying = _controller.value.isPlaying;
+
+              if (isPlaying != _isPlaying) {
+                setState(() {
+                  _isPlaying = isPlaying;
+                  setIndex(++index);
+                });
+                if (index > 1) {
+                  _controller.removeListener(() {});
+                  Navigator.pushReplacement(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation1, animation2) =>
+                          MapMainScreens(
+                        from: widget.to,
+                        offsetHor: offsetHor,
+                        offsetVer: offsetVer,
+                      ),
+                      transitionDuration: const Duration(seconds: 2),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) =>
+                              FadeTransition(
+                        opacity: animation,
+                        child: child,
+                      ),
+                    ),
+                  );
+                }
+              }
+            });
+          } else {
+            setState(() {
+              nextIndex = true;
+            });
+          }
         },
         child: Container(
-          width: screenSize.width * 0.050,
-          height: screenSize.width * 0.050,
+          width:
+              screenSize.width * 0.091 * Utils.getMultiplier(screenSize.width),
+          height:
+              screenSize.width * 0.040 * Utils.getMultiplier(screenSize.width),
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(homeImage),
+              image: AssetImage(nextImage),
               fit: BoxFit.cover,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget menuButton() {
+    var screenSize = MediaQuery.of(context).size;
+    return Positioned(
+      right: Utils.getRightPadding(screenSize, 0),
+      child: Container(
+        alignment: Alignment.topRight,
+        height:
+            screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
+        width: screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
+        child: GestureDetector(
+          onTap: () {
+            _controller.pause();
+            _controller.removeListener(() {});
+            Navigator.pushReplacement(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (context, animation1, animation2) => HomeVideo(
+                  offsetHor: offsetHor,
+                  offsetVer: offsetVer,
+                ),
+                transitionDuration: const Duration(seconds: 2),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) =>
+                        FadeTransition(
+                  opacity: animation,
+                  child: child,
+                ),
+              ),
+            );
+          },
+          child: Container(
+            width: screenSize.width *
+                0.050 *
+                Utils.getMultiplier(screenSize.width),
+            height: screenSize.width *
+                0.050 *
+                Utils.getMultiplier(screenSize.width),
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(homeImage),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),
