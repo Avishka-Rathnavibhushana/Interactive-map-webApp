@@ -9,6 +9,7 @@ import 'package:interactive_map/main_buildings/school.dart';
 import 'package:interactive_map/main_buildings/inside_main_building/screen_left.dart';
 import 'package:interactive_map/main_buildings/inside_main_building/screen_right.dart';
 import 'package:interactive_map/main_buildings/warehouse.dart';
+import 'package:interactive_map/widgets/custom_button_label_mobile.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
@@ -196,95 +197,354 @@ class _MapMainScreensState extends State<MapMainScreens> {
       Get.find<Controller>().verticalOffset.value = offsetVer;
     }
 
-    if (screenSize.width / screenSize.height ==
-        VideoAspectRatio.width / VideoAspectRatio.height) {
-      v = false;
-      h = false;
-    } else if (screenSize.width / screenSize.height <
-        VideoAspectRatio.width / VideoAspectRatio.height) {
-      v = false;
-      h = true;
-    } else {
-      v = true;
-      h = false;
-    }
-
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
-        child: Stack(
-          alignment: Alignment.topCenter,
-          fit: StackFit.expand,
+    if (screenSize.height < 500 && screenSize.width > 500) {
+      if (screenSize.width - screenSize.width * 0.3 / screenSize.height ==
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = false;
+      } else if (screenSize.width - screenSize.width * 0.3 / screenSize.height <
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = true;
+      } else {
+        v = true;
+        h = false;
+      }
+      var screenSizeMobile1 =
+          Size(screenSize.width - screenSize.width * 0.3, screenSize.height);
+      return Scaffold(
+        backgroundColor: Colors.transparent,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: floatingButtonPanel(),
+        body: Row(
           children: [
-            show ? menuButton() : Container(),
-            show
-                ? Padding(
-                    padding: const EdgeInsets.only(bottom: 100),
-                    child: Container(
-                      alignment: Alignment.bottomLeft,
-                      child: TextAreaWithClip(
-                        screenSize: screenSize,
-                        texts: [],
-                        topic: "Trntide App for Mobile and Desktop",
-                        description:
-                            "Remotely monitor and manage HVAC equipment and yor entire building",
-                      ),
+            Container(
+              width: screenSize.width - screenSize.width * 0.3,
+              height: screenSize.height,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                controller: _scrollControllerHrizontal,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  controller: _scrollControllerVertical,
+                  child: SizedBox(
+                    width: Utils.getVideoScreenWidth(screenSizeMobile1),
+                    height: Utils.getVideoScreenHeight(screenSizeMobile1),
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          width: Utils.getVideoScreenWidth(screenSizeMobile1),
+                          height: Utils.getVideoScreenHeight(screenSizeMobile1),
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                width: Utils.getVideoScreenWidth(
+                                    screenSizeMobile1),
+                                height: Utils.getVideoScreenHeight(
+                                    screenSizeMobile1),
+                                child: Image.asset(
+                                  mapMainScreenImage,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                              _leftScreenVideoPlaying
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile1),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile1),
+                                      child: VideoPlayer(
+                                          _leftScreenVideoController),
+                                    )
+                                  : Container(),
+                              _rightScreenVideoPlaying
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile1),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile1),
+                                      child: VideoPlayer(
+                                          _rightScreenVideoController),
+                                    )
+                                  : Container(),
+                              loading
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile1),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile1),
+                                      child: Image.asset(
+                                        mapMainScreenImage,
+                                        fit: BoxFit.fill,
+                                      ),
+                                    )
+                                  : Container(),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                  )
-                : Container(),
-          ],
-        ),
-      ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        controller: _scrollControllerHrizontal,
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          controller: _scrollControllerVertical,
-          child: SizedBox(
-            width: Utils.getVideoScreenWidth(screenSize),
-            height: Utils.getVideoScreenHeight(screenSize),
-            child: Stack(
-              children: [
-                SizedBox(
-                  width: Utils.getVideoScreenWidth(screenSize),
-                  height: Utils.getVideoScreenHeight(screenSize),
-                  child: Image.asset(
-                    mapMainScreenImage,
-                    fit: BoxFit.fill,
                   ),
                 ),
-                show ? screenLeft() : Container(),
-                show ? screenRight() : Container(),
-                _leftScreenVideoPlaying
-                    ? SizedBox(
-                        width: Utils.getVideoScreenWidth(screenSize),
-                        height: Utils.getVideoScreenHeight(screenSize),
-                        child: VideoPlayer(_leftScreenVideoController),
-                      )
-                    : Container(),
-                _rightScreenVideoPlaying
-                    ? SizedBox(
-                        width: Utils.getVideoScreenWidth(screenSize),
-                        height: Utils.getVideoScreenHeight(screenSize),
-                        child: VideoPlayer(_rightScreenVideoController),
-                      )
-                    : Container(),
-                loading
-                    ? SizedBox(
-                        width: Utils.getVideoScreenWidth(screenSize),
-                        height: Utils.getVideoScreenHeight(screenSize),
-                        child: Image.asset(
-                          mapMainScreenImage,
-                          fit: BoxFit.fill,
+              ),
+            ),
+            Expanded(
+              child: Container(
+                height: screenSize.height,
+                width: screenSize.width - screenSize.width * 0.3,
+                alignment: Alignment.topRight,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  physics: const BouncingScrollPhysics(),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Container(
+                      width: screenSize.width - screenSize.width * 0.3,
+                      child: Column(
+                        children: [
+                          show
+                              ? screenLeftMobile(
+                                  screenSize.width - screenSize.width * 0.3)
+                              : Container(),
+                          show
+                              ? screenRightMobile(
+                                  screenSize.width - screenSize.width * 0.3)
+                              : Container(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    } else if (screenSize.width < 500) {
+      if (screenSize.width / screenSize.height - screenSize.height * 0.3 ==
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = false;
+      } else if (screenSize.width / screenSize.height -
+              screenSize.height * 0.3 <
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = true;
+      } else {
+        v = true;
+        h = false;
+      }
+      var screenSizeMobile2 =
+          Size(screenSize.width, screenSize.height - screenSize.height * 0.3);
+      return Scaffold(
+        backgroundColor: Colors.transparent,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: floatingButtonPanel(),
+        body: Column(
+          children: [
+            Container(
+              width: screenSize.width,
+              height: screenSize.height - screenSize.height * 0.3,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                controller: _scrollControllerHrizontal,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  controller: _scrollControllerVertical,
+                  child: SizedBox(
+                    width: Utils.getVideoScreenWidth(screenSizeMobile2),
+                    height: Utils.getVideoScreenHeight(screenSizeMobile2),
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          width: Utils.getVideoScreenWidth(screenSizeMobile2),
+                          height: Utils.getVideoScreenHeight(screenSizeMobile2),
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                width: Utils.getVideoScreenWidth(screenSize),
+                                height: Utils.getVideoScreenHeight(screenSize),
+                                child: Image.asset(
+                                  mapMainScreenImage,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                              _leftScreenVideoPlaying
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile2),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile2),
+                                      child: VideoPlayer(
+                                          _leftScreenVideoController),
+                                    )
+                                  : Container(),
+                              _rightScreenVideoPlaying
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile2),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile2),
+                                      child: VideoPlayer(
+                                          _rightScreenVideoController),
+                                    )
+                                  : Container(),
+                              loading
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile2),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile2),
+                                      child: Image.asset(
+                                        mapMainScreenImage,
+                                        fit: BoxFit.fill,
+                                      ),
+                                    )
+                                  : Container(),
+                            ],
+                          ),
                         ),
-                      )
-                    : Container(),
-              ],
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Container(
+                height: screenSize.height * 0.3,
+                width: screenSize.width,
+                alignment: Alignment.topCenter,
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Container(
+                      width: screenSize.width,
+                      child: Column(
+                        children: [
+                          show
+                              ? screenLeftMobile(
+                                  screenSize.width - screenSize.width * 0.3)
+                              : Container(),
+                          show
+                              ? screenRightMobile(
+                                  screenSize.width - screenSize.width * 0.3)
+                              : Container(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    } else {
+      if (screenSize.width / screenSize.height ==
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = false;
+      } else if (screenSize.width / screenSize.height <
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = true;
+      } else {
+        v = true;
+        h = false;
+      }
+      return Scaffold(
+        backgroundColor: Colors.transparent,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: floatingButtonPanel(),
+        body: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          controller: _scrollControllerHrizontal,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            controller: _scrollControllerVertical,
+            child: SizedBox(
+              width: Utils.getVideoScreenWidth(screenSize),
+              height: Utils.getVideoScreenHeight(screenSize),
+              child: Stack(
+                children: [
+                  SizedBox(
+                    width: Utils.getVideoScreenWidth(screenSize),
+                    height: Utils.getVideoScreenHeight(screenSize),
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          width: Utils.getVideoScreenWidth(screenSize),
+                          height: Utils.getVideoScreenHeight(screenSize),
+                          child: Image.asset(
+                            mapMainScreenImage,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        show ? screenLeft() : Container(),
+                        show ? screenRight() : Container(),
+                        _leftScreenVideoPlaying
+                            ? SizedBox(
+                                width: Utils.getVideoScreenWidth(screenSize),
+                                height: Utils.getVideoScreenHeight(screenSize),
+                                child: VideoPlayer(_leftScreenVideoController),
+                              )
+                            : Container(),
+                        _rightScreenVideoPlaying
+                            ? SizedBox(
+                                width: Utils.getVideoScreenWidth(screenSize),
+                                height: Utils.getVideoScreenHeight(screenSize),
+                                child: VideoPlayer(_rightScreenVideoController),
+                              )
+                            : Container(),
+                        loading
+                            ? SizedBox(
+                                width: Utils.getVideoScreenWidth(screenSize),
+                                height: Utils.getVideoScreenHeight(screenSize),
+                                child: Image.asset(
+                                  mapMainScreenImage,
+                                  fit: BoxFit.fill,
+                                ),
+                              )
+                            : Container(),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
+      );
+    }
+  }
+
+  Widget floatingButtonPanel() {
+    var screenSize = MediaQuery.of(context).size;
+    return Container(
+      child: Stack(
+        alignment: Alignment.topCenter,
+        fit: StackFit.expand,
+        children: [
+          show ? menuButton() : Container(),
+          show
+              ? Padding(
+                  padding: EdgeInsets.only(
+                      bottom: Utils.getBottomPadding(screenSize, 200)),
+                  child: Container(
+                    alignment: Alignment.bottomLeft,
+                    child: TextAreaWithClip(
+                      screenSize: screenSize,
+                      texts: [],
+                      topic: "Trntide App for Mobile and Desktop",
+                      description:
+                          "Remotely monitor and manage HVAC equipment and yor entire building",
+                    ),
+                  ),
+                )
+              : Container(),
+        ],
       ),
     );
   }
@@ -345,6 +605,52 @@ class _MapMainScreensState extends State<MapMainScreens> {
             ),
           ],
         ));
+  }
+
+  Widget screenLeftMobile(width) {
+    var screenSize = MediaQuery.of(context).size;
+    return CustomButtonLabelMobile(
+      onPressed: () async {
+        setShow();
+        setState(() {
+          _leftScreenVideoPlaying = true;
+        });
+        _leftScreenVideoController.play();
+
+        _leftScreenVideoController.addListener(() {
+          final bool isPlaying = _leftScreenVideoController.value.isPlaying;
+          print(isPlaying);
+          if (isPlaying != _isPlaying) {
+            setState(() {
+              _isPlaying = isPlaying;
+              setIndex(++index);
+            });
+            if (index > 1) {
+              _leftScreenVideoController.removeListener(() {});
+
+              Navigator.pushReplacement(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation1, animation2) => ScreenLeft(
+                      to: widget.from,
+                      offsetHor: offsetHor,
+                      offsetVer: offsetVer),
+                  transitionDuration: Duration(seconds: 2),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) =>
+                          FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  ),
+                ),
+              );
+            }
+          }
+        });
+      },
+      title: "Smart Building Operations",
+      width: width,
+    );
   }
 
   Widget screenRight() {
@@ -410,38 +716,97 @@ class _MapMainScreensState extends State<MapMainScreens> {
         ));
   }
 
+  Widget screenRightMobile(width) {
+    var screenSize = MediaQuery.of(context).size;
+    return CustomButtonLabelMobile(
+      onPressed: () {
+        setShow();
+        if (_controller.value.isPlaying) {
+          _controller.pause();
+        }
+
+        setState(() {
+          _rightScreenVideoPlaying = true;
+        });
+        _rightScreenVideoController.play();
+
+        _rightScreenVideoController.addListener(() {
+          final bool isPlaying = _rightScreenVideoController.value.isPlaying;
+          print(isPlaying);
+          if (isPlaying != _isPlaying) {
+            setState(() {
+              _isPlaying = isPlaying;
+              setIndex(++index);
+            });
+            if (index > 1) {
+              _rightScreenVideoController.removeListener(() {});
+
+              Navigator.pushReplacement(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation1, animation2) => ScreenRight(
+                    to: widget.from,
+                    offsetHor: offsetHor,
+                    offsetVer: offsetVer,
+                  ),
+                  transitionDuration: Duration(seconds: 2),
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) =>
+                          FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  ),
+                ),
+              );
+            }
+          }
+        });
+      },
+      title: "Smart HVAC",
+      width: width,
+    );
+  }
+
   Widget menuButton() {
     var screenSize = MediaQuery.of(context).size;
-    return Container(
-      alignment: Alignment.topRight,
-      height: screenSize.width * 0.050,
-      width: screenSize.width * 0.050,
-      child: GestureDetector(
-        onTap: () {
-          _controller.pause();
-          _controller.removeListener(() {});
-          Navigator.pushReplacement(
-            context,
-            PageRouteBuilder(
-              pageBuilder: (context, animation1, animation2) =>
-                  toNavigate(widget.from),
-              transitionDuration: const Duration(seconds: 2),
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) =>
-                      FadeTransition(
-                opacity: animation,
-                child: child,
+    return Positioned(
+      right: Utils.getRightPadding(screenSize, 0),
+      child: Container(
+        alignment: Alignment.topRight,
+        height:
+            screenSize.width * 0.070 * Utils.getMultiplier(screenSize.width),
+        width: screenSize.width * 0.070 * Utils.getMultiplier(screenSize.width),
+        child: GestureDetector(
+          onTap: () {
+            _controller.pause();
+            _controller.removeListener(() {});
+            Navigator.pushReplacement(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (context, animation1, animation2) =>
+                    toNavigate(widget.from),
+                transitionDuration: const Duration(seconds: 2),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) =>
+                        FadeTransition(
+                  opacity: animation,
+                  child: child,
+                ),
               ),
-            ),
-          );
-        },
-        child: Container(
-          width: screenSize.width * 0.050,
-          height: screenSize.width * 0.050,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(homeImage),
-              fit: BoxFit.cover,
+            );
+          },
+          child: Container(
+            height: screenSize.width *
+                0.070 *
+                Utils.getMultiplier(screenSize.width),
+            width: screenSize.width *
+                0.070 *
+                Utils.getMultiplier(screenSize.width),
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(homeImage),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),

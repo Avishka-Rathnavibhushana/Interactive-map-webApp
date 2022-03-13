@@ -9,8 +9,8 @@ class SqureShapedCustomContainerQR extends CustomPainter {
       ..style = PaintingStyle.fill
       ..strokeWidth = 2;
 
-    double w = size.width < 400 ? 400 : size.width;
-    double h = size.height < 400 ? 400 : size.height;
+    double w = size.width;
+    double h = size.height;
     double wm = w - h * 0.15;
     double hm = h * 0.85;
 

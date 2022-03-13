@@ -175,295 +175,523 @@ class _MotorState extends State<Motor> {
       Get.find<Controller>().verticalOffset.value = offsetVer;
     }
 
-    if (screenSize.width / screenSize.height ==
-        VideoAspectRatio.width / VideoAspectRatio.height) {
-      v = false;
-      h = false;
-    } else if (screenSize.width / screenSize.height <
-        VideoAspectRatio.width / VideoAspectRatio.height) {
-      v = false;
-      h = true;
-    } else {
-      v = true;
-      h = false;
-    }
-
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
-        child: Stack(
-          alignment: Alignment.topCenter,
-          fit: StackFit.expand,
+    if (screenSize.height < 500 && screenSize.width > 500) {
+      if (screenSize.width - screenSize.width * 0.3 / screenSize.height ==
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = false;
+      } else if (screenSize.width - screenSize.width * 0.3 / screenSize.height <
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = true;
+      } else {
+        v = true;
+        h = false;
+      }
+      var screenSizeMobile1 =
+          Size(screenSize.width - screenSize.width * 0.3, screenSize.height);
+      return Scaffold(
+        backgroundColor: Colors.transparent,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: floatingButtonPanel(),
+        body: Row(
           children: [
-            show ? nextButton() : Container(),
-            show ? menuButton() : Container(),
-            show
-                ? Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 25),
-                        child: CustomTopic(
-                            topic: widget.from == Pages.dataCenter
-                                ? "Smart Motor System - TX Series"
-                                : "Smart Motor System - V Series",
-                            subTopic:
-                                "Includes: Smart Motor, Motor Controller, and Hub"),
-                      ),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      TextAreaWithClip(
-                        screenSize: screenSize,
-                        texts: const [
-                          "Slim design for space efficiency",
-                          "IE5-level motor efficiency",
-                          "Ultra-reliable performance across all speeds",
-                          "Provides diagnostics like torque, speed, and HP"
-                        ],
-                        topic: "",
-                        description: "",
-                      ),
-                      const SizedBox(
-                        height: 45,
-                      ),
-                      nextIndex
-                          ? Container(
-                              width: screenSize.width < 1565
-                                  ? 1565 * 0.25
-                                  : screenSize.width * 0.25,
-                              child: widget.from == Pages.dataCenter
-                                  ? Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          width: screenSize.width < 1565
-                                              ? 1565 * 0.25
-                                              : screenSize.width * 0.25,
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              CustomTextContainer(
-                                                screenSize: screenSize,
-                                                topic: "93.2%",
-                                                description:
-                                                    "PEAK MOTOR EFFICIENCY",
-                                              ),
-                                              SizedBox(
-                                                width: 25,
-                                              ),
-                                              CustomTextContainer(
-                                                screenSize: screenSize,
-                                                topic: "0%",
-                                                description:
-                                                    "RARE EARTH METALS",
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 25,
-                                        ),
-                                        Container(
-                                          width: screenSize.width < 1565
-                                              ? 1565 * 0.25
-                                              : screenSize.width * 0.25,
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              CustomTextContainer(
-                                                screenSize: screenSize,
-                                                topic: "50%",
-                                                description: "LIGHTER WEIGHT",
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
+            Container(
+              width: screenSize.width - screenSize.width * 0.3,
+              height: screenSize.height,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                controller: _scrollControllerHrizontal,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  controller: _scrollControllerVertical,
+                  child: SizedBox(
+                    width: Utils.getVideoScreenWidth(screenSizeMobile1),
+                    height: Utils.getVideoScreenHeight(screenSizeMobile1),
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          width: Utils.getVideoScreenWidth(screenSizeMobile1),
+                          height: Utils.getVideoScreenHeight(screenSizeMobile1),
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                width: Utils.getVideoScreenWidth(
+                                    screenSizeMobile1),
+                                height: Utils.getVideoScreenHeight(
+                                    screenSizeMobile1),
+                                child: VideoPlayer(_controller),
+                              ),
+                              _backVideoPlaying
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile1),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile1),
+                                      child: VideoPlayer(_backVideoController),
                                     )
-                                  : Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                  : Container(),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Container(
+                height: screenSize.height,
+                width: screenSize.width - screenSize.width * 0.3,
+                alignment: Alignment.topRight,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  physics: const BouncingScrollPhysics(),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Container(
+                      width: screenSize.width - screenSize.width * 0.3,
+                      child: Column(
+                        children: [
+                          show ? nextButtonMobile() : Container(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    } else if (screenSize.width < 500) {
+      if (screenSize.width / screenSize.height - screenSize.height * 0.3 ==
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = false;
+      } else if (screenSize.width / screenSize.height -
+              screenSize.height * 0.3 <
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = true;
+      } else {
+        v = true;
+        h = false;
+      }
+      var screenSizeMobile2 =
+          Size(screenSize.width, screenSize.height - screenSize.height * 0.3);
+      return Scaffold(
+        backgroundColor: Colors.transparent,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: floatingButtonPanel(),
+        body: Column(
+          children: [
+            Container(
+              width: screenSize.width,
+              height: screenSize.height - screenSize.height * 0.3,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                controller: _scrollControllerHrizontal,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  controller: _scrollControllerVertical,
+                  child: SizedBox(
+                    width: Utils.getVideoScreenWidth(screenSizeMobile2),
+                    height: Utils.getVideoScreenHeight(screenSizeMobile2),
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          width: Utils.getVideoScreenWidth(screenSizeMobile2),
+                          height: Utils.getVideoScreenHeight(screenSizeMobile2),
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                width: Utils.getVideoScreenWidth(
+                                    screenSizeMobile2),
+                                height: Utils.getVideoScreenHeight(
+                                    screenSizeMobile2),
+                                child: VideoPlayer(_controller),
+                              ),
+                              _backVideoPlaying
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile2),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile2),
+                                      child: VideoPlayer(_backVideoController),
+                                    )
+                                  : Container(),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Container(
+                height: screenSize.height * 0.3,
+                width: screenSize.width,
+                alignment: Alignment.topCenter,
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Container(
+                      width: screenSize.width,
+                      child: Column(
+                        children: [
+                          show ? nextButtonMobile() : Container(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    } else {
+      if (screenSize.width / screenSize.height ==
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = false;
+      } else if (screenSize.width / screenSize.height <
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = true;
+      } else {
+        v = true;
+        h = false;
+      }
+      return Scaffold(
+        backgroundColor: Colors.transparent,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: floatingButtonPanel(),
+        body: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          controller: _scrollControllerHrizontal,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            controller: _scrollControllerVertical,
+            child: SizedBox(
+              width: Utils.getVideoScreenWidth(screenSize),
+              height: Utils.getVideoScreenHeight(screenSize),
+              child: Stack(
+                children: [
+                  SizedBox(
+                    width: Utils.getVideoScreenWidth(screenSize),
+                    height: Utils.getVideoScreenHeight(screenSize),
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          width: Utils.getVideoScreenWidth(screenSize),
+                          height: Utils.getVideoScreenHeight(screenSize),
+                          child: VideoPlayer(_controller),
+                        ),
+                        _backVideoPlaying
+                            ? SizedBox(
+                                width: Utils.getVideoScreenWidth(screenSize),
+                                height: Utils.getVideoScreenHeight(screenSize),
+                                child: VideoPlayer(_backVideoController),
+                              )
+                            : Container(),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+  }
+
+  Widget floatingButtonPanel() {
+    var screenSize = MediaQuery.of(context).size;
+    return Container(
+      child: Stack(
+        alignment: Alignment.topCenter,
+        fit: StackFit.expand,
+        children: [
+          show && screenSize.width > 500 && screenSize.height > 500
+              ? nextButton()
+              : Container(),
+          show ? menuButton() : Container(),
+          show
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height:
+                          50 * (screenSize.height / VideoAspectRatio.height),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 25),
+                      child: CustomTopic(
+                        topic: widget.from == Pages.dataCenter
+                            ? "Smart Motor System - TX Series"
+                            : "Smart Motor System - V Series",
+                        subTopic:
+                            "Includes: Smart Motor, Motor Controller, and Hub",
+                        screenSize: screenSize,
+                      ),
+                    ),
+                    SizedBox(
+                      height:
+                          25 * (screenSize.height / VideoAspectRatio.height),
+                    ),
+                    TextAreaWithClip(
+                      screenSize: screenSize,
+                      texts: const [
+                        "Slim design for space efficiency",
+                        "IE5-level motor efficiency",
+                        "Ultra-reliable performance across all speeds",
+                        "Provides diagnostics like torque, speed, and HP"
+                      ],
+                      topic: "",
+                      description: "",
+                    ),
+                    SizedBox(
+                      height:
+                          45 * (screenSize.height / VideoAspectRatio.height),
+                    ),
+                    nextIndex
+                        ? screenSize.width < 500 || screenSize.height < 500
+                            ? Container()
+                            : Container(
+                                width: screenSize.width *
+                                    0.25 *
+                                    Utils.getMultiplier(screenSize.width),
+                                child: widget.from == Pages.dataCenter
+                                    ? Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            width: screenSize.width *
+                                                0.25 *
+                                                Utils.getMultiplier(
+                                                    screenSize.width),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                CustomTextContainer(
+                                                  screenSize: screenSize,
+                                                  topic: "93.2%",
+                                                  description:
+                                                      "PEAK MOTOR EFFICIENCY",
+                                                ),
+                                                SizedBox(
+                                                  width: 25 *
+                                                      (screenSize.width /
+                                                          VideoAspectRatio
+                                                              .width),
+                                                ),
+                                                CustomTextContainer(
+                                                  screenSize: screenSize,
+                                                  topic: "0%",
+                                                  description:
+                                                      "RARE EARTH METALS",
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 25 *
+                                                (screenSize.height /
+                                                    VideoAspectRatio.height),
+                                          ),
+                                          Container(
+                                            width: screenSize.width *
+                                                0.25 *
+                                                Utils.getMultiplier(
+                                                    screenSize.width),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                CustomTextContainer(
+                                                  screenSize: screenSize,
+                                                  topic: "50%",
+                                                  description: "LIGHTER WEIGHT",
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    : Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            width: screenSize.width *
+                                                0.25 *
+                                                Utils.getMultiplier(
+                                                    screenSize.width),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                CustomTextContainer(
+                                                  screenSize: screenSize,
+                                                  topic: "IE5+",
+                                                  description: "ACROSS MOST HP",
+                                                ),
+                                                SizedBox(
+                                                  width: 25 *
+                                                      (screenSize.width /
+                                                          VideoAspectRatio
+                                                              .width),
+                                                ),
+                                                CustomTextContainer(
+                                                  screenSize: screenSize,
+                                                  topic: "Up to 13%",
+                                                  description:
+                                                      "ETRA ENERGY SAVINGS OVER VFD",
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 25 *
+                                                (screenSize.height /
+                                                    VideoAspectRatio.height),
+                                          ),
+                                          Container(
+                                            width: screenSize.width *
+                                                0.25 *
+                                                Utils.getMultiplier(
+                                                    screenSize.width),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                CustomTextContainer(
+                                                  screenSize: screenSize,
+                                                  topic: "92%",
+                                                  description:
+                                                      "PEAK EFFICIENCY AT 3 HP",
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                              )
+                        : screenSize.width < 500 || screenSize.height < 500
+                            ? Container()
+                            : widget.from == Pages.dataCenter
+                                ? Container(
+                                    width: screenSize.width *
+                                        0.35 *
+                                        Utils.getMultiplier(screenSize.width),
+                                    child: Row(
                                       children: [
                                         Container(
-                                          width: screenSize.width < 1565
-                                              ? 1565 * 0.25
-                                              : screenSize.width * 0.25,
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              CustomTextContainer(
-                                                screenSize: screenSize,
-                                                topic: "IE5+",
-                                                description: "ACROSS MOST HP",
-                                              ),
-                                              SizedBox(
-                                                width: 25,
-                                              ),
-                                              CustomTextContainer(
-                                                screenSize: screenSize,
-                                                topic: "Up to 13%",
-                                                description:
-                                                    "ETRA ENERGY SAVINGS OVER VFD",
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 25,
-                                        ),
-                                        Container(
-                                          width: screenSize.width < 1565
-                                              ? 1565 * 0.25
-                                              : screenSize.width * 0.25,
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              CustomTextContainer(
-                                                screenSize: screenSize,
-                                                topic: "92%",
-                                                description:
-                                                    "PEAK EFFICIENCY AT 3 HP",
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                            )
-                          : widget.from == Pages.dataCenter
-                              ? Container(
-                                  width: screenSize.width < 1565
-                                      ? 1565 * 0.35
-                                      : screenSize.width * 0.35,
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        width: screenSize.width < 1565
-                                            ? 1565 * 0.13
-                                            : screenSize.width * 0.13,
-                                        height: screenSize.width < 1565
-                                            ? 1565 * 0.15
-                                            : screenSize.width * 0.15,
-                                        decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                            image: AssetImage(
-                                                'assets/graphics/TX_front.png'),
-                                            fit: BoxFit.contain,
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        width: screenSize.width < 1565
-                                            ? 1565 * 0.13
-                                            : screenSize.width * 0.13,
-                                        height: screenSize.width < 1565
-                                            ? 1565 * 0.15
-                                            : screenSize.width * 0.15,
-                                        padding: const EdgeInsets.all(1),
-                                        decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                            image: AssetImage(
-                                                'assets/graphics/TX_side.png'),
-                                            fit: BoxFit.contain,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              : Container(
-                                  width: screenSize.width < 1565
-                                      ? 1565 * 0.35
-                                      : screenSize.width * 0.35,
-                                  child: Stack(
-                                    children: [
-                                      Container(
-                                        width: screenSize.width < 1565
-                                            ? 1565 * 0.20
-                                            : screenSize.width * 0.20,
-                                        height: screenSize.width < 1565
-                                            ? 1565 * 0.15
-                                            : screenSize.width * 0.15,
-                                        decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                            image: AssetImage(
-                                                'assets/graphics/router.png'),
-                                            fit: BoxFit.contain,
-                                          ),
-                                        ),
-                                      ),
-                                      Positioned(
-                                        left: screenSize.width < 1565
-                                            ? 1565 * 0.1
-                                            : screenSize.width * 0.1,
-                                        child: Container(
-                                          width: screenSize.width < 1565
-                                              ? 1565 * 0.15
-                                              : screenSize.width * 0.15,
-                                          height: screenSize.width < 1565
-                                              ? 1565 * 0.1
-                                              : screenSize.width * 0.1,
-                                          padding: const EdgeInsets.all(1),
+                                          width: screenSize.width *
+                                              0.13 *
+                                              Utils.getMultiplier(
+                                                  screenSize.width),
+                                          height: screenSize.width *
+                                              0.15 *
+                                              Utils.getMultiplier(
+                                                  screenSize.width),
                                           decoration: const BoxDecoration(
                                             image: DecorationImage(
                                               image: AssetImage(
-                                                  'assets/graphics/Motor_controller.png'),
+                                                  'assets/graphics/TX_front.png'),
                                               fit: BoxFit.contain,
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                        Container(
+                                          width: screenSize.width *
+                                              0.13 *
+                                              Utils.getMultiplier(
+                                                  screenSize.width),
+                                          height: screenSize.width *
+                                              0.15 *
+                                              Utils.getMultiplier(
+                                                  screenSize.width),
+                                          padding: const EdgeInsets.all(1),
+                                          decoration: const BoxDecoration(
+                                            image: DecorationImage(
+                                              image: AssetImage(
+                                                  'assets/graphics/TX_side.png'),
+                                              fit: BoxFit.contain,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                : Container(
+                                    width: screenSize.width *
+                                        0.35 *
+                                        Utils.getMultiplier(screenSize.width),
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                          width: screenSize.width *
+                                              0.20 *
+                                              Utils.getMultiplier(
+                                                  screenSize.width),
+                                          height: screenSize.width *
+                                              0.15 *
+                                              Utils.getMultiplier(
+                                                  screenSize.width),
+                                          decoration: const BoxDecoration(
+                                            image: DecorationImage(
+                                              image: AssetImage(
+                                                  'assets/graphics/router.png'),
+                                              fit: BoxFit.contain,
+                                            ),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          left: screenSize.width *
+                                              0.1 *
+                                              Utils.getMultiplier(
+                                                  screenSize.width),
+                                          child: Container(
+                                            width: screenSize.width *
+                                                0.15 *
+                                                Utils.getMultiplier(
+                                                    screenSize.width),
+                                            height: screenSize.width *
+                                                0.1 *
+                                                Utils.getMultiplier(
+                                                    screenSize.width),
+                                            padding: const EdgeInsets.all(1),
+                                            decoration: const BoxDecoration(
+                                              image: DecorationImage(
+                                                image: AssetImage(
+                                                    'assets/graphics/Motor_controller.png'),
+                                                fit: BoxFit.contain,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                    ],
-                  )
-                : Container(),
-          ],
-        ),
-      ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        controller: _scrollControllerHrizontal,
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          controller: _scrollControllerVertical,
-          child: SizedBox(
-            width: Utils.getVideoScreenWidth(screenSize),
-            height: Utils.getVideoScreenHeight(screenSize),
-            child: Stack(
-              children: [
-                SizedBox(
-                  width: Utils.getVideoScreenWidth(screenSize),
-                  height: Utils.getVideoScreenHeight(screenSize),
-                  child: VideoPlayer(_controller),
-                ),
-                _backVideoPlaying
-                    ? SizedBox(
-                        width: Utils.getVideoScreenWidth(screenSize),
-                        height: Utils.getVideoScreenHeight(screenSize),
-                        child: VideoPlayer(_backVideoController),
-                      )
-                    : Container(),
-              ],
-            ),
-          ),
-        ),
+                  ],
+                )
+              : Container(),
+        ],
       ),
     );
   }
@@ -471,7 +699,7 @@ class _MotorState extends State<Motor> {
   Widget nextButton() {
     var screenSize = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.only(bottom: 100),
+      padding: EdgeInsets.only(bottom: Utils.getBottomPadding(screenSize, 200)),
       child: Container(
         alignment: Alignment.bottomRight,
         child: GestureDetector(
@@ -501,8 +729,12 @@ class _MotorState extends State<Motor> {
             }
           },
           child: Container(
-            width: screenSize.width * 0.091,
-            height: screenSize.width * 0.040,
+            width: screenSize.width *
+                0.091 *
+                Utils.getMultiplier(screenSize.width),
+            height: screenSize.width *
+                0.040 *
+                Utils.getMultiplier(screenSize.width),
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(nextImage),
@@ -515,38 +747,88 @@ class _MotorState extends State<Motor> {
     );
   }
 
-  Widget menuButton() {
+  Widget nextButtonMobile() {
     var screenSize = MediaQuery.of(context).size;
-    return Container(
-      alignment: Alignment.topRight,
-      height: screenSize.width * 0.050,
-      width: screenSize.width * 0.050,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: GestureDetector(
         onTap: () {
-          _controller.pause();
-          _controller.removeListener(() {});
-          Navigator.pushReplacement(
-            context,
-            PageRouteBuilder(
-              pageBuilder: (context, animation1, animation2) =>
-                  toNavigate(widget.from, Pages.motorToHome),
-              transitionDuration: const Duration(seconds: 2),
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) =>
-                      FadeTransition(
-                opacity: animation,
-                child: child,
+          if (screenSize.width < 500 || screenSize.height < 500) {
+            setShow();
+            _controller.pause();
+            _controller.removeListener(() {});
+            Navigator.pushReplacement(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (context, animation1, animation2) =>
+                    toNavigate(widget.from, Pages.motor),
+                transitionDuration: Duration(seconds: 2),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) =>
+                        FadeTransition(
+                  opacity: animation,
+                  child: child,
+                ),
               ),
-            ),
-          );
+            );
+          }
         },
         child: Container(
-          width: screenSize.width * 0.050,
-          height: screenSize.width * 0.050,
+          width:
+              screenSize.width * 0.091 * Utils.getMultiplier(screenSize.width),
+          height:
+              screenSize.width * 0.040 * Utils.getMultiplier(screenSize.width),
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(homeImage),
+              image: AssetImage(nextImage),
               fit: BoxFit.cover,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget menuButton() {
+    var screenSize = MediaQuery.of(context).size;
+    return Positioned(
+      right: Utils.getRightPadding(screenSize, 0),
+      child: Container(
+        alignment: Alignment.topRight,
+        height:
+            screenSize.width * 0.070 * Utils.getMultiplier(screenSize.width),
+        width: screenSize.width * 0.070 * Utils.getMultiplier(screenSize.width),
+        child: GestureDetector(
+          onTap: () {
+            _controller.pause();
+            _controller.removeListener(() {});
+            Navigator.pushReplacement(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (context, animation1, animation2) =>
+                    toNavigate(widget.from, Pages.motorToHome),
+                transitionDuration: const Duration(seconds: 2),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) =>
+                        FadeTransition(
+                  opacity: animation,
+                  child: child,
+                ),
+              ),
+            );
+          },
+          child: Container(
+            height: screenSize.width *
+                0.070 *
+                Utils.getMultiplier(screenSize.width),
+            width: screenSize.width *
+                0.070 *
+                Utils.getMultiplier(screenSize.width),
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(homeImage),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),

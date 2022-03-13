@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
+import 'package:interactive_map/utills/utils.dart';
 import 'package:interactive_map/widgets/squre_shaped_custom_container.dart';
 
 class TextAreaSmallWithClip extends StatelessWidget {
@@ -25,10 +26,10 @@ class TextAreaSmallWithClip extends StatelessWidget {
         duration: const Duration(milliseconds: 200),
         //alignment: Alignment.centerLeft,
         transformAlignment: Alignment.centerLeft,
-        width: width < 370 ? 370 : width,
-        padding: const EdgeInsets.symmetric(
-          vertical: 30,
-          horizontal: 25,
+        width: width * Utils.getMultiplier(screenSize.width),
+        padding: EdgeInsets.symmetric(
+          vertical: screenSize.width * (30 / VideoAspectRatio.height),
+          horizontal: screenSize.height * (25 / VideoAspectRatio.width),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -37,9 +38,11 @@ class TextAreaSmallWithClip extends StatelessWidget {
           children: [
             Text(
               prefixText,
-              style: const TextStyle(
+              style: TextStyle(
                 color: AppColors.fern,
-                fontSize: 55,
+                fontSize: 55 *
+                    (screenSize.width / VideoAspectRatio.width) *
+                    Utils.getMultiplier(screenSize.width),
                 fontWeight: FontWeight.bold,
                 fontFamily: Fonts.extraBold,
               ),
@@ -61,9 +64,11 @@ class TextAreaSmallWithClip extends StatelessWidget {
             Expanded(
               child: Text(
                 description,
-                style: const TextStyle(
+                style: TextStyle(
                   color: AppColors.white,
-                  fontSize: 20,
+                  fontSize: 25 *
+                      (screenSize.width / VideoAspectRatio.width) *
+                      Utils.getMultiplier(screenSize.width),
                   fontFamily: Fonts.regular,
                 ),
                 maxLines: 10,

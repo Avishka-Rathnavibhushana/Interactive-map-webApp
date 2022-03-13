@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
+import 'package:interactive_map/utills/utils.dart';
 
 class CustomTextContainer extends StatelessWidget {
   const CustomTextContainer({
@@ -16,8 +17,11 @@ class CustomTextContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: screenSize.width < 1565 ? 1565 * 0.08 : screenSize.width * 0.08,
-      height: 125,
+      width: screenSize.width *
+          0.08 *
+          (screenSize.width / VideoAspectRatio.width) *
+          Utils.getCustomTextContainerMultiplier(screenSize.width),
+      height: 125 * (screenSize.height / VideoAspectRatio.height),
       color: AppColors.fern,
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Column(
@@ -27,9 +31,11 @@ class CustomTextContainer extends StatelessWidget {
         children: [
           Text(
             topic,
-            style: const TextStyle(
+            style: TextStyle(
               color: AppColors.sky,
-              fontSize: 25,
+              fontSize: 18 *
+                  (screenSize.width / VideoAspectRatio.width) *
+                  Utils.getMultiplier(screenSize.width),
               fontWeight: FontWeight.w600,
               fontFamily: Fonts.bold,
             ),
@@ -38,14 +44,16 @@ class CustomTextContainer extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
           ),
-          const SizedBox(
-            height: 10,
+          SizedBox(
+            height: 10 * (screenSize.height / VideoAspectRatio.height),
           ),
           Text(
             description,
-            style: const TextStyle(
+            style: TextStyle(
               color: AppColors.night,
-              fontSize: 18,
+              fontSize: 14 *
+                  (screenSize.width / VideoAspectRatio.width) *
+                  Utils.getMultiplier(screenSize.width),
               fontWeight: FontWeight.w600,
               fontFamily: Fonts.regular,
             ),
