@@ -4,6 +4,9 @@ import 'package:interactive_map/main_buildings/home.dart';
 import 'package:interactive_map/main_buildings/inside_main_building/map_main_screen.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
+import 'package:interactive_map/utills/utils.dart';
+import 'package:get/get.dart';
+import 'package:interactive_map/controller/controller.dart';
 
 class ScreenRight extends StatefulWidget {
   const ScreenRight({Key? key, this.to, this.offsetHor, this.offsetVer})
@@ -62,15 +65,15 @@ class _ScreenRightState extends State<ScreenRight> {
     super.dispose();
   }
 
-  var screenWidth = 3840 * 0.63;
-  var screenHeight = 2160 * 0.63;
+  bool h = false;
+  bool v = false;
 
   final ScrollController _scrollControllerHrizontal = ScrollController(
-    initialScrollOffset: offsetHor,
+    initialScrollOffset: Get.find<Controller>().horizontalOffset.value,
   );
 
   final ScrollController _scrollControllerVertical = ScrollController(
-    initialScrollOffset: offsetVer,
+    initialScrollOffset: Get.find<Controller>().verticalOffset.value,
   );
   static double offsetHor = 0;
   static double offsetVer = 0;
@@ -85,6 +88,7 @@ class _ScreenRightState extends State<ScreenRight> {
           duration: const Duration(milliseconds: 1000),
           curve: Curves.easeInOut);
       offsetHor = _scrollControllerHrizontal.position.maxScrollExtent / 2;
+      Get.find<Controller>().horizontalOffset.value = offsetHor;
     }
 
     if (_scrollControllerVertical.hasClients) {
@@ -93,7 +97,22 @@ class _ScreenRightState extends State<ScreenRight> {
           duration: const Duration(milliseconds: 1000),
           curve: Curves.easeInOut);
       offsetVer = _scrollControllerVertical.position.maxScrollExtent / 2;
+      Get.find<Controller>().verticalOffset.value = offsetVer;
     }
+
+    if (screenSize.width / screenSize.height ==
+        VideoAspectRatio.width / VideoAspectRatio.height) {
+      v = false;
+      h = false;
+    } else if (screenSize.width / screenSize.height <
+        VideoAspectRatio.width / VideoAspectRatio.height) {
+      v = false;
+      h = true;
+    } else {
+      v = true;
+      h = false;
+    }
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -144,28 +163,28 @@ class _ScreenRightState extends State<ScreenRight> {
           scrollDirection: Axis.vertical,
           controller: _scrollControllerVertical,
           child: SizedBox(
-            width: screenWidth,
-            height: screenHeight,
+            width: Utils.getVideoScreenWidth(screenSize),
+            height: Utils.getVideoScreenHeight(screenSize),
             child: Stack(
               children: [
                 SizedBox(
-                  width: screenWidth,
-                  height: screenHeight,
+                  width: Utils.getVideoScreenWidth(screenSize),
+                  height: Utils.getVideoScreenHeight(screenSize),
                   child: VideoPlayer(_controller),
                 ),
                 show
                     ? nextIndex
                         ? SizedBox(
-                            width: screenWidth,
-                            height: screenHeight,
+                            width: Utils.getVideoScreenWidth(screenSize),
+                            height: Utils.getVideoScreenHeight(screenSize),
                             child: Image.asset(
                               screenRightImage_1,
                               fit: BoxFit.fill,
                             ),
                           )
                         : SizedBox(
-                            width: screenWidth,
-                            height: screenHeight,
+                            width: Utils.getVideoScreenWidth(screenSize),
+                            height: Utils.getVideoScreenHeight(screenSize),
                             child: Image.asset(
                               screenRightImage_2,
                               fit: BoxFit.fill,

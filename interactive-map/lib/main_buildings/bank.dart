@@ -8,6 +8,9 @@ import 'package:interactive_map/widgets/shared_widgets.dart';
 import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
+import 'package:interactive_map/utills/utils.dart';
+import 'package:get/get.dart';
+import 'package:interactive_map/controller/controller.dart';
 
 class BankVideo extends StatefulWidget {
   const BankVideo({Key? key, this.from, this.offsetHor, this.offsetVer})
@@ -148,15 +151,15 @@ class _BankVideoState extends State<BankVideo> {
     super.dispose();
   }
 
-  var screenWidth = 3840 * 0.63;
-  var screenHeight = 2160 * 0.63;
+  bool h = false;
+  bool v = false;
 
   final ScrollController _scrollControllerHrizontal = ScrollController(
-    initialScrollOffset: offsetHor,
+    initialScrollOffset: Get.find<Controller>().horizontalOffset.value,
   );
 
   final ScrollController _scrollControllerVertical = ScrollController(
-    initialScrollOffset: offsetVer,
+    initialScrollOffset: Get.find<Controller>().verticalOffset.value,
   );
   static double offsetHor = 0;
   static double offsetVer = 0;
@@ -171,6 +174,7 @@ class _BankVideoState extends State<BankVideo> {
           duration: const Duration(milliseconds: 1000),
           curve: Curves.easeInOut);
       offsetHor = _scrollControllerHrizontal.position.maxScrollExtent / 2;
+      Get.find<Controller>().horizontalOffset.value = offsetHor;
     }
 
     if (_scrollControllerVertical.hasClients) {
@@ -179,7 +183,22 @@ class _BankVideoState extends State<BankVideo> {
           duration: const Duration(milliseconds: 1000),
           curve: Curves.easeInOut);
       offsetVer = _scrollControllerVertical.position.maxScrollExtent / 2;
+      Get.find<Controller>().verticalOffset.value = offsetVer;
     }
+
+    if (screenSize.width / screenSize.height ==
+        VideoAspectRatio.width / VideoAspectRatio.height) {
+      v = false;
+      h = false;
+    } else if (screenSize.width / screenSize.height <
+        VideoAspectRatio.width / VideoAspectRatio.height) {
+      v = false;
+      h = true;
+    } else {
+      v = true;
+      h = false;
+    }
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -200,7 +219,7 @@ class _BankVideoState extends State<BankVideo> {
                             "Smart HVAC",
                             "Smart Building Operations"
                           ],
-                          topic: "Turntide for banks",
+                          topic: "Turntide for Banks",
                           description:
                               "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights"),
                     ),
@@ -212,11 +231,12 @@ class _BankVideoState extends State<BankVideo> {
                     child: Container(
                       alignment: Alignment.bottomLeft,
                       child: TextAreaSmallWithClip(
-                          width: screenSize.width * 0.25,
-                          screenSize: screenSize,
-                          prefixText: "64%",
-                          description:
-                              "of energy in bank is used by HVAC and lightning"),
+                        width: screenSize.width * 0.25,
+                        screenSize: screenSize,
+                        prefixText: "40-60%",
+                        description:
+                            "of energy in bank branches is used by HVAC and lightning",
+                      ),
                     ),
                   )
                 : Container(),
@@ -302,13 +322,13 @@ class _BankVideoState extends State<BankVideo> {
           scrollDirection: Axis.vertical,
           controller: _scrollControllerVertical,
           child: SizedBox(
-            width: screenWidth,
-            height: screenHeight,
+            width: Utils.getVideoScreenWidth(screenSize),
+            height: Utils.getVideoScreenHeight(screenSize),
             child: Stack(
               children: [
                 SizedBox(
-                  width: screenWidth,
-                  height: screenHeight,
+                  width: Utils.getVideoScreenWidth(screenSize),
+                  height: Utils.getVideoScreenHeight(screenSize),
                   child: VideoPlayer(_controller),
                 ),
                 show ? motor() : Container(),
@@ -316,29 +336,29 @@ class _BankVideoState extends State<BankVideo> {
                 show ? mapScreen() : Container(),
                 _motorVideoPlaying
                     ? SizedBox(
-                        width: screenWidth,
-                        height: screenHeight,
+                        width: Utils.getVideoScreenWidth(screenSize),
+                        height: Utils.getVideoScreenHeight(screenSize),
                         child: VideoPlayer(_motorVideoController),
                       )
                     : Container(),
                 _energySavingVideoPlaying
                     ? SizedBox(
-                        width: screenWidth,
-                        height: screenHeight,
+                        width: Utils.getVideoScreenWidth(screenSize),
+                        height: Utils.getVideoScreenHeight(screenSize),
                         child: VideoPlayer(_energySavingVideoController),
                       )
                     : Container(),
                 _mapVideoPlaying
                     ? SizedBox(
-                        width: screenWidth,
-                        height: screenHeight,
+                        width: Utils.getVideoScreenWidth(screenSize),
+                        height: Utils.getVideoScreenHeight(screenSize),
                         child: VideoPlayer(_mapVideoController),
                       )
                     : Container(),
                 loading
                     ? SizedBox(
-                        width: screenWidth,
-                        height: screenHeight,
+                        width: Utils.getVideoScreenWidth(screenSize),
+                        height: Utils.getVideoScreenHeight(screenSize),
                         child: Image.asset(
                           bankImage,
                           fit: BoxFit.fill,
@@ -347,10 +367,10 @@ class _BankVideoState extends State<BankVideo> {
                     : Container(),
                 show
                     ? Positioned(
-                        left: screenWidth * 0.5,
+                        left: Utils.getVideoScreenWidth(screenSize) * 0.5,
                         child: Container(
-                          width: screenWidth * 0.075,
-                          height: screenHeight * 0.3,
+                          width: Utils.getVideoScreenWidth(screenSize) * 0.075,
+                          height: Utils.getVideoScreenHeight(screenSize) * 0.3,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage(
@@ -417,8 +437,8 @@ class _BankVideoState extends State<BankVideo> {
   Widget motor() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.536,
-        top: screenHeight * 0.325,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.536,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.325,
         child: Stack(
           children: [
             InkWell(
@@ -463,8 +483,8 @@ class _BankVideoState extends State<BankVideo> {
   Widget energySaving() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.439,
-        top: screenHeight * 0.647,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.439,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.647,
         child: Stack(
           children: [
             InkWell(
@@ -487,8 +507,8 @@ class _BankVideoState extends State<BankVideo> {
   Widget mapScreen() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.57,
-        top: screenHeight * 0.15,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.57,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.15,
         child: Stack(
           children: [
             InkWell(

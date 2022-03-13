@@ -52,6 +52,7 @@ class CustomButtonLabel extends StatelessWidget {
                       style: const TextStyle(
                         color: AppColors.white,
                         fontSize: 18,
+                        fontFamily: Fonts.bold,
                       ),
                       maxLines: 1,
                       softWrap: true,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
+import 'package:get/get.dart';
+import 'package:interactive_map/controller/controller.dart';
 import 'package:interactive_map/main_buildings/bank.dart';
 import 'package:interactive_map/main_buildings/datacentre.dart';
 import 'package:interactive_map/main_buildings/fastfood.dart';
@@ -7,6 +9,8 @@ import 'package:interactive_map/main_buildings/groceryshop.dart';
 import 'package:interactive_map/main_buildings/retail.dart';
 import 'package:interactive_map/main_buildings/school.dart';
 import 'package:interactive_map/main_buildings/warehouse.dart';
+import 'package:interactive_map/utills/utils.dart';
+import 'package:interactive_map/widgets/custom_button_label.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
 import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
@@ -173,39 +177,15 @@ class _HomeVideoState extends State<HomeVideo> {
     super.dispose();
   }
 
-  // double getWidth(Size size) {
-  //   if (size.width > 1920 && size.height > 1080) {
-  //     return 3840;
-  //   } else if (size.width > 1366 && size.height > 768) {
-  //     return 1920;
-  //   } else if (size.width < 1366 && size.height < 768) {
-  //     return 1920 * 0.5;
-  //   }
-
-  //   return 1920;
-  // }
-
-  // double getHeight(Size size) {
-  //   if (size.width > 1920 && size.height > 1080) {
-  //     return 2160;
-  //   } else if (size.width > 1366 && size.height > 768) {
-  //     return 1080;
-  //   } else if (size.width < 1366 && size.height < 768) {
-  //     return 1080 * 0.5;
-  //   }
-
-  //   return 1080;
-  // }
-
-  var screenWidth = 3840 * 0.63;
-  var screenHeight = 2160 * 0.63;
+  bool h = false;
+  bool v = false;
 
   final ScrollController _scrollControllerHrizontal = ScrollController(
-    initialScrollOffset: offsetHor,
+    initialScrollOffset: Get.find<Controller>().horizontalOffset.value,
   );
 
   final ScrollController _scrollControllerVertical = ScrollController(
-    initialScrollOffset: offsetVer,
+    initialScrollOffset: Get.find<Controller>().verticalOffset.value,
   );
   static double offsetHor = 0;
   static double offsetVer = 0;
@@ -220,6 +200,7 @@ class _HomeVideoState extends State<HomeVideo> {
           duration: const Duration(milliseconds: 1000),
           curve: Curves.easeInOut);
       offsetHor = _scrollControllerHrizontal.position.maxScrollExtent / 2;
+      Get.find<Controller>().horizontalOffset.value = offsetHor;
     }
 
     if (_scrollControllerVertical.hasClients) {
@@ -228,7 +209,9 @@ class _HomeVideoState extends State<HomeVideo> {
           duration: const Duration(milliseconds: 1000),
           curve: Curves.easeInOut);
       offsetVer = _scrollControllerVertical.position.maxScrollExtent / 2;
+      Get.find<Controller>().verticalOffset.value = offsetVer;
     }
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -253,7 +236,7 @@ class _HomeVideoState extends State<HomeVideo> {
             ),
             showQR ? qrButton() : Container(),
             show ? Container() : qrButton(),
-            showTextAreaSmall
+            showTextAreaSmall && _schoolVideoPlaying
                 ? Padding(
                     padding: const EdgeInsets.only(bottom: 100),
                     child: Container(
@@ -268,6 +251,81 @@ class _HomeVideoState extends State<HomeVideo> {
                     ),
                   )
                 : Container(),
+            showTextAreaSmall && _fastFoodVideoPlaying
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Container(
+                      alignment: Alignment.bottomLeft,
+                      child: TextAreaSmallWithClip(
+                        width: width,
+                        screenSize: screenSize,
+                        prefixText: "28%",
+                        description:
+                            "of restuarant energy costs are from HVAC on avarage",
+                      ),
+                    ),
+                  )
+                : Container(),
+            showTextAreaSmall && _bankVideoPlaying
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Container(
+                      alignment: Alignment.bottomLeft,
+                      child: TextAreaSmallWithClip(
+                        width: width,
+                        screenSize: screenSize,
+                        prefixText: "40-60%",
+                        description:
+                            "of energy in bank branches is used by HVAC and lightning",
+                      ),
+                    ),
+                  )
+                : Container(),
+            showTextAreaSmall && _retailVideoPlaying
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Container(
+                      alignment: Alignment.bottomLeft,
+                      child: TextAreaSmallWithClip(
+                        width: width,
+                        screenSize: screenSize,
+                        prefixText: "70%",
+                        description:
+                            "of energy in retail is used by HVAC and lightning",
+                      ),
+                    ),
+                  )
+                : Container(),
+            showTextAreaSmall && _warehouseVideoPlaying
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Container(
+                      alignment: Alignment.bottomLeft,
+                      child: TextAreaSmallWithClip(
+                        width: width,
+                        screenSize: screenSize,
+                        prefixText: "75%",
+                        description:
+                            "of energy in warehouse is used by HVAC and lightning",
+                      ),
+                    ),
+                  )
+                : Container(),
+            showTextAreaSmall && _dataCentreVideoPlaying
+                ? Padding(
+                    padding: const EdgeInsets.only(bottom: 100),
+                    child: Container(
+                      alignment: Alignment.bottomLeft,
+                      child: TextAreaSmallWithClip(
+                        width: width,
+                        screenSize: screenSize,
+                        prefixText: "37%",
+                        description:
+                            "of energy in data centers is used by HVAC and lightning",
+                      ),
+                    ),
+                  )
+                : Container(),
           ],
         ),
       ),
@@ -278,13 +336,13 @@ class _HomeVideoState extends State<HomeVideo> {
           scrollDirection: Axis.vertical,
           controller: _scrollControllerVertical,
           child: SizedBox(
-            width: screenWidth,
-            height: screenHeight,
+            width: Utils.getVideoScreenWidth(screenSize),
+            height: Utils.getVideoScreenHeight(screenSize),
             child: Stack(
               children: [
                 SizedBox(
-                  width: screenWidth,
-                  height: screenHeight,
+                  width: Utils.getVideoScreenWidth(screenSize),
+                  height: Utils.getVideoScreenHeight(screenSize),
                   child: VideoPlayer(_timerVideoController),
                 ),
                 show ? Container() : bank(),
@@ -295,56 +353,56 @@ class _HomeVideoState extends State<HomeVideo> {
                 show ? Container() : groceryShop(),
                 show ? Container() : fastFood(),
                 SizedBox(
-                  width: screenWidth,
-                  height: screenHeight,
+                  width: Utils.getVideoScreenWidth(screenSize),
+                  height: Utils.getVideoScreenHeight(screenSize),
                   child: Stack(
                     children: [
                       _bankVideoPlaying
                           ? SizedBox(
-                              width: screenWidth,
-                              height: screenHeight,
+                              width: Utils.getVideoScreenWidth(screenSize),
+                              height: Utils.getVideoScreenHeight(screenSize),
                               child: VideoPlayer(_bankVideoController),
                             )
                           : Container(),
                       _dataCentreVideoPlaying
                           ? SizedBox(
-                              width: screenWidth,
-                              height: screenHeight,
+                              width: Utils.getVideoScreenWidth(screenSize),
+                              height: Utils.getVideoScreenHeight(screenSize),
                               child: VideoPlayer(_dataCentreVideoController),
                             )
                           : Container(),
                       _schoolVideoPlaying
                           ? SizedBox(
-                              width: screenWidth,
-                              height: screenHeight,
+                              width: Utils.getVideoScreenWidth(screenSize),
+                              height: Utils.getVideoScreenHeight(screenSize),
                               child: VideoPlayer(_schoolVideoController),
                             )
                           : Container(),
                       _retailVideoPlaying
                           ? SizedBox(
-                              width: screenWidth,
-                              height: screenHeight,
+                              width: Utils.getVideoScreenWidth(screenSize),
+                              height: Utils.getVideoScreenHeight(screenSize),
                               child: VideoPlayer(_retailVideoController),
                             )
                           : Container(),
                       _warehouseVideoPlaying
                           ? SizedBox(
-                              width: screenWidth,
-                              height: screenHeight,
+                              width: Utils.getVideoScreenWidth(screenSize),
+                              height: Utils.getVideoScreenHeight(screenSize),
                               child: VideoPlayer(_warehouseVideoController),
                             )
                           : Container(),
                       _groceryShopVideoPlaying
                           ? SizedBox(
-                              width: screenWidth,
-                              height: screenHeight,
+                              width: Utils.getVideoScreenWidth(screenSize),
+                              height: Utils.getVideoScreenHeight(screenSize),
                               child: VideoPlayer(_groceryShopVideoController),
                             )
                           : Container(),
                       _fastFoodVideoPlaying
                           ? SizedBox(
-                              width: screenWidth,
-                              height: screenHeight,
+                              width: Utils.getVideoScreenWidth(screenSize),
+                              height: Utils.getVideoScreenHeight(screenSize),
                               child: VideoPlayer(_fastFoodVideoController),
                             )
                           : Container(),
@@ -353,8 +411,8 @@ class _HomeVideoState extends State<HomeVideo> {
                 ),
                 loading
                     ? SizedBox(
-                        width: screenWidth,
-                        height: screenHeight,
+                        width: Utils.getVideoScreenWidth(screenSize),
+                        height: Utils.getVideoScreenHeight(screenSize),
                         child: Image.asset(
                           buildingImage,
                           fit: BoxFit.fill,
@@ -376,8 +434,8 @@ class _HomeVideoState extends State<HomeVideo> {
                           setShow();
                         },
                         child: SizedBox(
-                          width: screenWidth,
-                          height: screenHeight,
+                          width: Utils.getVideoScreenWidth(screenSize),
+                          height: Utils.getVideoScreenHeight(screenSize),
                           child: Image.asset(
                             qrBackgroundImage,
                             fit: BoxFit.fill,
@@ -444,8 +502,8 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget school() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.445,
-        top: screenHeight * 0.825,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.445,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.825,
         child: Stack(
           children: [
             InkWell(
@@ -509,11 +567,83 @@ class _HomeVideoState extends State<HomeVideo> {
         ));
   }
 
+  Widget schoolMobile() {
+    var screenSize = MediaQuery.of(context).size;
+    return Stack(
+      children: [
+        InkWell(
+          onTap: () async {
+            setShow();
+            setState(() {
+              timerOFF = true;
+            });
+
+            _timerVideoController.pause();
+
+            setState(() {
+              _schoolVideoPlaying = true;
+            });
+
+            setState(() {
+              width = 0;
+            });
+
+            _schoolVideoController.play();
+
+            setState(() {
+              showTextAreaSmall = true;
+            });
+
+            await Future.delayed(const Duration(milliseconds: 200));
+
+            setState(() {
+              width = screenSize.width * 0.2;
+            });
+
+            _schoolVideoController.addListener(() {
+              final bool isPlaying = _schoolVideoController.value.isPlaying;
+              print(isPlaying);
+              if (isPlaying != _isPlaying) {
+                setState(() {
+                  _isPlaying = isPlaying;
+                  setIndex(++index);
+                });
+                if (index > 1) {
+                  _schoolVideoController.removeListener(() {});
+
+                  customPushReplacement(
+                      context,
+                      SchoolVideo(
+                        from: Pages.home,
+                        offsetHor: offsetHor,
+                        offsetVer: offsetVer,
+                      ));
+                }
+              }
+            });
+          },
+          // child: CustomButtonLabel(
+          //   screenSize: screenSize,
+          //   text: "Schools",
+          //   type: 0,
+          // ),
+          child: ElevatedButton(
+            onPressed: () {},
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Text("Schools"),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget bank() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.615,
-        top: screenHeight * 0.75,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.615,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.75,
         child: Stack(
           children: [
             Center(
@@ -581,8 +711,8 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget dataCentre() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.12,
-        top: screenHeight * 0.459,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.12,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.459,
         child: Stack(
           children: [
             InkWell(
@@ -648,8 +778,8 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget warehouse() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.269,
-        top: screenHeight * 0.22,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.269,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.22,
         child: Stack(
           children: [
             InkWell(
@@ -716,8 +846,8 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget retail() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.62,
-        top: screenHeight * 0.13,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.62,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.13,
         child: Stack(
           children: [
             InkWell(
@@ -784,8 +914,8 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget groceryShop() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.75,
-        top: screenHeight * 0.64,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.75,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.64,
         child: Stack(
           children: [
             InkWell(
@@ -852,8 +982,8 @@ class _HomeVideoState extends State<HomeVideo> {
   Widget fastFood() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.346,
-        top: screenHeight * 0.35,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.346,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.35,
         child: Stack(
           children: [
             InkWell(

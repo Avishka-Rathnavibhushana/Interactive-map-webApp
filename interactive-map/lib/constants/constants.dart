@@ -58,3 +58,31 @@ class Pages {
   static const werehouse = 'werehouse';
   static const retail = 'retail';
 }
+
+//fonts
+class Fonts {
+  static const black = "Barlow-Black";
+  static const blackItalic = "Barlow-BlackItalic";
+  static const bold = "Barlow-Bold";
+  static const boldItalic = "Barlow-BoldItalic";
+  static const extraBold = "Barlow-ExtraBold";
+  static const extraBoldItalic = "Barlow-ExtraBoldItalic";
+  static const extraLight = "Barlow-ExtraLight";
+  static const extraLightItalic = "Barlow-ExtraLightItalic";
+  static const iitalic = "Barlow-Italic";
+  static const light = "Barlow-Light";
+  static const lightItalic = "Barlow-LightItalic";
+  static const medium = "Barlow-Medium";
+  static const mediumItalic = "Barlow-MediumItalic";
+  static const regular = "Barlow-Regular";
+  static const semiBold = "Barlow-SemiBold";
+  static const semiBoldItalic = "Barlow-SemiBoldItalic";
+  static const thin = "Barlow-Thin";
+  static const thinItalic = "Barlow-ThinItalic";
+}
+
+//VideoAspect Ratio
+class VideoAspectRatio {
+  static const width = 1920.0;
+  static const height = 1080.0;
+}

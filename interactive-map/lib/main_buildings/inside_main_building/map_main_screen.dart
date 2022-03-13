@@ -12,6 +12,10 @@ import 'package:interactive_map/main_buildings/warehouse.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
+import 'package:interactive_map/utills/utils.dart';
+import 'package:get/get.dart';
+
+import 'package:interactive_map/controller/controller.dart';
 
 class MapMainScreens extends StatefulWidget {
   const MapMainScreens({Key? key, this.from, this.offsetHor, this.offsetVer})
@@ -157,15 +161,15 @@ class _MapMainScreensState extends State<MapMainScreens> {
     });
   }
 
-  var screenWidth = 3840 * 0.63;
-  var screenHeight = 2160 * 0.63;
+  bool h = false;
+  bool v = false;
 
   final ScrollController _scrollControllerHrizontal = ScrollController(
-    initialScrollOffset: offsetHor,
+    initialScrollOffset: Get.find<Controller>().horizontalOffset.value,
   );
 
   final ScrollController _scrollControllerVertical = ScrollController(
-    initialScrollOffset: offsetVer,
+    initialScrollOffset: Get.find<Controller>().verticalOffset.value,
   );
   static double offsetHor = 0;
   static double offsetVer = 0;
@@ -180,6 +184,7 @@ class _MapMainScreensState extends State<MapMainScreens> {
           duration: const Duration(milliseconds: 1000),
           curve: Curves.easeInOut);
       offsetHor = _scrollControllerHrizontal.position.maxScrollExtent / 2;
+      Get.find<Controller>().horizontalOffset.value = offsetHor;
     }
 
     if (_scrollControllerVertical.hasClients) {
@@ -188,6 +193,20 @@ class _MapMainScreensState extends State<MapMainScreens> {
           duration: const Duration(milliseconds: 1000),
           curve: Curves.easeInOut);
       offsetVer = _scrollControllerVertical.position.maxScrollExtent / 2;
+      Get.find<Controller>().verticalOffset.value = offsetVer;
+    }
+
+    if (screenSize.width / screenSize.height ==
+        VideoAspectRatio.width / VideoAspectRatio.height) {
+      v = false;
+      h = false;
+    } else if (screenSize.width / screenSize.height <
+        VideoAspectRatio.width / VideoAspectRatio.height) {
+      v = false;
+      h = true;
+    } else {
+      v = true;
+      h = false;
     }
 
     return Scaffold(
@@ -224,13 +243,13 @@ class _MapMainScreensState extends State<MapMainScreens> {
           scrollDirection: Axis.vertical,
           controller: _scrollControllerVertical,
           child: SizedBox(
-            width: screenWidth,
-            height: screenHeight,
+            width: Utils.getVideoScreenWidth(screenSize),
+            height: Utils.getVideoScreenHeight(screenSize),
             child: Stack(
               children: [
                 SizedBox(
-                  width: screenWidth,
-                  height: screenHeight,
+                  width: Utils.getVideoScreenWidth(screenSize),
+                  height: Utils.getVideoScreenHeight(screenSize),
                   child: Image.asset(
                     mapMainScreenImage,
                     fit: BoxFit.fill,
@@ -240,22 +259,22 @@ class _MapMainScreensState extends State<MapMainScreens> {
                 show ? screenRight() : Container(),
                 _leftScreenVideoPlaying
                     ? SizedBox(
-                        width: screenWidth,
-                        height: screenHeight,
+                        width: Utils.getVideoScreenWidth(screenSize),
+                        height: Utils.getVideoScreenHeight(screenSize),
                         child: VideoPlayer(_leftScreenVideoController),
                       )
                     : Container(),
                 _rightScreenVideoPlaying
                     ? SizedBox(
-                        width: screenWidth,
-                        height: screenHeight,
+                        width: Utils.getVideoScreenWidth(screenSize),
+                        height: Utils.getVideoScreenHeight(screenSize),
                         child: VideoPlayer(_rightScreenVideoController),
                       )
                     : Container(),
                 loading
                     ? SizedBox(
-                        width: screenWidth,
-                        height: screenHeight,
+                        width: Utils.getVideoScreenWidth(screenSize),
+                        height: Utils.getVideoScreenHeight(screenSize),
                         child: Image.asset(
                           mapMainScreenImage,
                           fit: BoxFit.fill,
@@ -273,8 +292,8 @@ class _MapMainScreensState extends State<MapMainScreens> {
   Widget screenLeft() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.35,
-        top: screenHeight * 0.34,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.35,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.34,
         child: Stack(
           children: [
             GestureDetector(
@@ -331,8 +350,8 @@ class _MapMainScreensState extends State<MapMainScreens> {
   Widget screenRight() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.75,
-        top: screenHeight * 0.38,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.75,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.38,
         child: Stack(
           children: [
             GestureDetector(

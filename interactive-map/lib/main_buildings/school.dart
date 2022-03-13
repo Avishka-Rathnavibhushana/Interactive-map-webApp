@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:interactive_map/constants/constants.dart';
+import 'package:interactive_map/controller/controller.dart';
 import 'package:interactive_map/main_buildings/home.dart';
 import 'package:interactive_map/main_buildings/inside_main_building/motor.dart';
 import 'package:interactive_map/main_buildings/inside_main_building/map_main_screen.dart';
@@ -8,6 +10,7 @@ import 'package:interactive_map/widgets/shared_widgets.dart';
 import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
+import 'package:interactive_map/utills/utils.dart';
 
 class SchoolVideo extends StatefulWidget {
   const SchoolVideo({Key? key, this.from, this.offsetHor, this.offsetVer})
@@ -70,6 +73,12 @@ class _SchoolVideoState extends State<SchoolVideo> {
     videoHandler();
 
     super.initState();
+    setState(() {
+      offsetHor = widget.offsetHor;
+      offsetVer = widget.offsetVer;
+    });
+    print("pre passing page" + widget.offsetHor.toString());
+    print("pre passing page" + widget.offsetVer.toString());
   }
 
   videoHandler() async {
@@ -148,15 +157,15 @@ class _SchoolVideoState extends State<SchoolVideo> {
     super.dispose();
   }
 
-  var screenWidth = 3840 * 0.63;
-  var screenHeight = 2160 * 0.63;
+  bool h = false;
+  bool v = false;
 
   final ScrollController _scrollControllerHrizontal = ScrollController(
-    initialScrollOffset: offsetHor,
+    initialScrollOffset: Get.find<Controller>().horizontalOffset.value,
   );
 
   final ScrollController _scrollControllerVertical = ScrollController(
-    initialScrollOffset: offsetVer,
+    initialScrollOffset: Get.find<Controller>().verticalOffset.value,
   );
   static double offsetHor = 0;
   static double offsetVer = 0;
@@ -171,6 +180,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
           duration: const Duration(milliseconds: 1000),
           curve: Curves.easeInOut);
       offsetHor = _scrollControllerHrizontal.position.maxScrollExtent / 2;
+      Get.find<Controller>().horizontalOffset.value = offsetHor;
     }
 
     if (_scrollControllerVertical.hasClients) {
@@ -179,7 +189,22 @@ class _SchoolVideoState extends State<SchoolVideo> {
           duration: const Duration(milliseconds: 1000),
           curve: Curves.easeInOut);
       offsetVer = _scrollControllerVertical.position.maxScrollExtent / 2;
+      Get.find<Controller>().verticalOffset.value = offsetVer;
     }
+
+    if (screenSize.width / screenSize.height ==
+        VideoAspectRatio.width / VideoAspectRatio.height) {
+      v = false;
+      h = false;
+    } else if (screenSize.width / screenSize.height <
+        VideoAspectRatio.width / VideoAspectRatio.height) {
+      v = false;
+      h = true;
+    } else {
+      v = true;
+      h = false;
+    }
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -302,13 +327,13 @@ class _SchoolVideoState extends State<SchoolVideo> {
           scrollDirection: Axis.vertical,
           controller: _scrollControllerVertical,
           child: SizedBox(
-            width: screenWidth,
-            height: screenHeight,
+            width: Utils.getVideoScreenWidth(screenSize),
+            height: Utils.getVideoScreenHeight(screenSize),
             child: Stack(
               children: [
                 SizedBox(
-                  width: screenWidth,
-                  height: screenHeight,
+                  width: Utils.getVideoScreenWidth(screenSize),
+                  height: Utils.getVideoScreenHeight(screenSize),
                   child: VideoPlayer(_controller),
                 ),
                 show ? motor() : Container(),
@@ -316,29 +341,29 @@ class _SchoolVideoState extends State<SchoolVideo> {
                 show ? mapScreen() : Container(),
                 _motorVideoPlaying
                     ? SizedBox(
-                        width: screenWidth,
-                        height: screenHeight,
+                        width: Utils.getVideoScreenWidth(screenSize),
+                        height: Utils.getVideoScreenHeight(screenSize),
                         child: VideoPlayer(_motorVideoController),
                       )
                     : Container(),
                 _energySavingVideoPlaying
                     ? SizedBox(
-                        width: screenWidth,
-                        height: screenHeight,
+                        width: Utils.getVideoScreenWidth(screenSize),
+                        height: Utils.getVideoScreenHeight(screenSize),
                         child: VideoPlayer(_energySavingVideoController),
                       )
                     : Container(),
                 _mapVideoPlaying
                     ? SizedBox(
-                        width: screenWidth,
-                        height: screenHeight,
+                        width: Utils.getVideoScreenWidth(screenSize),
+                        height: Utils.getVideoScreenHeight(screenSize),
                         child: VideoPlayer(_mapVideoController),
                       )
                     : Container(),
                 loading
                     ? SizedBox(
-                        width: screenWidth,
-                        height: screenHeight,
+                        width: Utils.getVideoScreenWidth(screenSize),
+                        height: Utils.getVideoScreenHeight(screenSize),
                         child: Image.asset(
                           schoolImage,
                           fit: BoxFit.fill,
@@ -347,10 +372,10 @@ class _SchoolVideoState extends State<SchoolVideo> {
                     : Container(),
                 show
                     ? Positioned(
-                        left: screenWidth * 0.5,
+                        left: Utils.getVideoScreenWidth(screenSize) * 0.5,
                         child: Container(
-                          width: screenWidth * 0.075,
-                          height: screenHeight * 0.3,
+                          width: Utils.getVideoScreenWidth(screenSize) * 0.075,
+                          height: Utils.getVideoScreenHeight(screenSize) * 0.3,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage(
@@ -417,8 +442,8 @@ class _SchoolVideoState extends State<SchoolVideo> {
   Widget motor() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.536,
-        top: screenHeight * 0.325,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.536,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.325,
         child: Stack(
           children: [
             InkWell(
@@ -463,8 +488,8 @@ class _SchoolVideoState extends State<SchoolVideo> {
   Widget energySaving() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.439,
-        top: screenHeight * 0.647,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.439,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.647,
         child: Stack(
           children: [
             InkWell(
@@ -487,8 +512,8 @@ class _SchoolVideoState extends State<SchoolVideo> {
   Widget mapScreen() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: screenWidth * 0.57,
-        top: screenHeight * 0.15,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.57,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.15,
         child: Stack(
           children: [
             InkWell(

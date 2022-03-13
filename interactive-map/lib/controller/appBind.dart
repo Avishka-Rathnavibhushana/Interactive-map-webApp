@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
-import 'package:interactive_map/controller/homePageController.dart';
+import 'package:interactive_map/controller/controller.dart';
 
 class AppBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<HomePageController>(() => HomePageController());
+    Get.lazyPut<Controller>(() => Controller());
   }
 }

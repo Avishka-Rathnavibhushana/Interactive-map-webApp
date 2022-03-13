@@ -30,6 +30,7 @@ class TextAreaTextTopic extends StatelessWidget {
                 color: AppColors.fern,
                 fontSize: fontSize,
                 fontWeight: FontWeight.bold,
+                fontFamily: Fonts.bold,
               ),
               maxLines: 10,
               softWrap: true,
