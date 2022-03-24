@@ -27,7 +27,7 @@ class _InteractiveMapState extends State<InteractiveMap> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Video app',
+      title: 'Turntide App',
       initialBinding: AppBinding(),
       scrollBehavior: MyCustomScrollBehavior(),
       home: const HomeVideo(),
