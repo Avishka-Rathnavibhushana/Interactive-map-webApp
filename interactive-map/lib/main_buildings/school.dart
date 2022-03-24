@@ -78,8 +78,6 @@ class _SchoolVideoState extends State<SchoolVideo> {
       offsetHor = widget.offsetHor;
       offsetVer = widget.offsetVer;
     });
-    print("pre passing page" + widget.offsetHor.toString());
-    print("pre passing page" + widget.offsetVer.toString());
   }
 
   videoHandler() async {
@@ -842,6 +840,91 @@ class _SchoolVideoState extends State<SchoolVideo> {
     );
   }
 
+  Widget motorMobile(width) {
+    var screenSize = MediaQuery.of(context).size;
+    return CustomButtonLabelMobile(
+      width: width,
+      title: "Smart HVAC",
+      onPressed: () async {
+        setShow();
+        setState(() {
+          _motorVideoPlaying = true;
+        });
+        _motorVideoController.play();
+
+        _motorVideoController.addListener(() {
+          final bool isPlaying = _motorVideoController.value.isPlaying;
+          print(isPlaying);
+          if (isPlaying != _isPlaying) {
+            setState(() {
+              _isPlaying = isPlaying;
+              setIndex(++index);
+            });
+            if (index > 1) {
+              _motorVideoController.removeListener(() {});
+              customPushReplacement(
+                  context,
+                  Motor(
+                    from: Pages.school,
+                    offsetHor: offsetHor,
+                    offsetVer: offsetVer,
+                  ));
+            }
+          }
+        });
+      },
+    );
+  }
+
+   Widget energySavingMobile(width) {
+    var screenSize = MediaQuery.of(context).size;
+    return CustomButtonLabelMobile(
+      width: width,
+      title: "Energy-Saving Stratergies",
+      onPressed: () async {
+        setShow();
+        setState(() {
+          showEnergySaving = true;
+        });
+      },
+    );
+  }
+  
+  Widget mapScreenMobile(width) {
+    var screenSize = MediaQuery.of(context).size;
+    return CustomButtonLabelMobile(
+      width: width,
+      title: "TurntideApp",
+      onPressed: () async {
+        setShow();
+        setState(() {
+          _mapVideoPlaying = true;
+        });
+        _mapVideoController.play();
+
+        _mapVideoController.addListener(() {
+          final bool isPlaying = _mapVideoController.value.isPlaying;
+          print(isPlaying);
+          if (isPlaying != _isPlaying) {
+            setState(() {
+              _isPlaying = isPlaying;
+              setIndex(++index);
+            });
+            if (index > 1) {
+              customPushReplacement(
+                  context,
+                  MapMainScreens(
+                    from: Pages.school,
+                    offsetHor: offsetHor,
+                    offsetVer: offsetVer,
+                  ));
+            }
+          }
+        });
+      },
+    );
+  }
+
   Widget menuButton() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
@@ -941,41 +1024,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
         ));
   }
 
-  Widget motorMobile(width) {
-    var screenSize = MediaQuery.of(context).size;
-    return CustomButtonLabelMobile(
-      width: width,
-      title: "Smart HVAC",
-      onPressed: () async {
-        setShow();
-        setState(() {
-          _motorVideoPlaying = true;
-        });
-        _motorVideoController.play();
-
-        _motorVideoController.addListener(() {
-          final bool isPlaying = _motorVideoController.value.isPlaying;
-          print(isPlaying);
-          if (isPlaying != _isPlaying) {
-            setState(() {
-              _isPlaying = isPlaying;
-              setIndex(++index);
-            });
-            if (index > 1) {
-              _motorVideoController.removeListener(() {});
-              customPushReplacement(
-                  context,
-                  Motor(
-                    from: Pages.school,
-                    offsetHor: offsetHor,
-                    offsetVer: offsetVer,
-                  ));
-            }
-          }
-        });
-      },
-    );
-  }
+  
 
   Widget energySaving() {
     var screenSize = MediaQuery.of(context).size;
@@ -1001,19 +1050,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
         ));
   }
 
-  Widget energySavingMobile(width) {
-    var screenSize = MediaQuery.of(context).size;
-    return CustomButtonLabelMobile(
-      width: width,
-      title: "Energy-Saving Stratergies",
-      onPressed: () async {
-        setShow();
-        setState(() {
-          showEnergySaving = true;
-        });
-      },
-    );
-  }
+  
 
   Widget mapScreen() {
     var screenSize = MediaQuery.of(context).size;
@@ -1058,40 +1095,5 @@ class _SchoolVideoState extends State<SchoolVideo> {
             ),
           ],
         ));
-  }
-
-  Widget mapScreenMobile(width) {
-    var screenSize = MediaQuery.of(context).size;
-    return CustomButtonLabelMobile(
-      width: width,
-      title: "TurntideApp",
-      onPressed: () async {
-        setShow();
-        setState(() {
-          _mapVideoPlaying = true;
-        });
-        _mapVideoController.play();
-
-        _mapVideoController.addListener(() {
-          final bool isPlaying = _mapVideoController.value.isPlaying;
-          print(isPlaying);
-          if (isPlaying != _isPlaying) {
-            setState(() {
-              _isPlaying = isPlaying;
-              setIndex(++index);
-            });
-            if (index > 1) {
-              customPushReplacement(
-                  context,
-                  MapMainScreens(
-                    from: Pages.school,
-                    offsetHor: offsetHor,
-                    offsetVer: offsetVer,
-                  ));
-            }
-          }
-        });
-      },
-    );
   }
 }
