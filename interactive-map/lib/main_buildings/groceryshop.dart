@@ -46,7 +46,6 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
   final String groceryshopImage = 'assets/tempory images/groceryshop_Plain.png';
   final String mapScreenImage = 'assets/tempory images/screen_MAIN.png';
 
-  bool showTextAreaSmall = false;
   bool showEnergySaving = false;
 
   setIndex(value) {
@@ -110,10 +109,6 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
                 ));
           }
         }
-      });
-    } else if (widget.from == Pages.home) {
-      setState(() {
-        showTextAreaSmall = true;
       });
     } else {
       setShow();
@@ -336,34 +331,7 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
                               ? Container()
                               : mapScreenMobile(
                                   screenSize.width - screenSize.width * 0.3),
-                          showTextAreaSmall
-                              ? Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 10),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      setShow();
-                                      setState(() {
-                                        showTextAreaSmall = false;
-                                      });
-                                    },
-                                    child: Container(
-                                      width: screenSize.width *
-                                          0.091 *
-                                          Utils.getMultiplier(screenSize.width),
-                                      height: screenSize.width *
-                                          0.040 *
-                                          Utils.getMultiplier(screenSize.width),
-                                      decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                          image: AssetImage(nextImage),
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              : Container(),
+                          
                           showEnergySaving
                               ? Padding(
                                   padding:
@@ -541,34 +509,7 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
                           !show
                               ? Container()
                               : mapScreenMobile(screenSize.width),
-                          showTextAreaSmall
-                              ? Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 10),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      setShow();
-                                      setState(() {
-                                        showTextAreaSmall = false;
-                                      });
-                                    },
-                                    child: Container(
-                                      width: screenSize.width *
-                                          0.091 *
-                                          Utils.getMultiplier(screenSize.width),
-                                      height: screenSize.width *
-                                          0.040 *
-                                          Utils.getMultiplier(screenSize.width),
-                                      decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                          image: AssetImage(nextImage),
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              : Container(),
+                         
                           showEnergySaving
                               ? Padding(
                                   padding:
@@ -724,53 +665,7 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
                     ),
                   )
                 : Container(),
-            showTextAreaSmall
-                ? Positioned(
-                  left: 0,
-                  bottom: Utils.getBottomPadding(screenSize, 200),
-                    child: Container(
-                      alignment: Alignment.bottomLeft,
-                      child: TextAreaSmallWithClip(
-                        width: screenSize.width * 0.25,
-                        screenSize: screenSize,
-                        prefixText: "40-60%",
-                        description:
-                            "of energy in bank branches is used by HVAC and lightning",
-                      ),
-                    ),
-                  )
-                : Container(),
-             showTextAreaSmall && screenSize.width > 500 && screenSize.height > 500
-              ? Positioned(
-                  right: 0,
-                  bottom: Utils.getBottomPadding(screenSize, 200),
-                    child: Container(
-                      alignment: Alignment.bottomRight,
-                      child: GestureDetector(
-                        onTap: () {
-                          setShow();
-                          setState(() {
-                            showTextAreaSmall = false;
-                          });
-                        },
-                        child: Container(
-                          width: screenSize.width *
-                            0.091 *
-                            Utils.getMultiplier(screenSize.width),
-                          height: screenSize.width *
-                            0.040 *
-                            Utils.getMultiplier(screenSize.width),
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(nextImage),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                : Container(),
+           
             showEnergySaving
                 ? Padding(
                     padding: EdgeInsets.only(top:  Utils.getTopPadding(screenSize, 100)),
