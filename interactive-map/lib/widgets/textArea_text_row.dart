@@ -18,9 +18,9 @@ class TextAreaTextRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
-          vertical: screenSize.height * (15 / VideoAspectRatio.height)),
+          vertical: screenSize.height * (25 / VideoAspectRatio.height)),
       //width: screenSize.width < 1565 ? 1565 * 0.25 : screenSize.width * 0.25,
-      width: screenSize.width * 0.25 * Utils.getMultiplier(screenSize.width),
+      width: screenSize.width * 0.30 * Utils.getMultiplier(screenSize.width),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,

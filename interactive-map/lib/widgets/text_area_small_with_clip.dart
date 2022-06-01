@@ -23,13 +23,16 @@ class TextAreaSmallWithClip extends StatelessWidget {
       //size: Size(700, 700),
       painter: SqureShapedCustomContainer(),
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
+        duration: const Duration(milliseconds: 0),
+        
         //alignment: Alignment.centerLeft,
         transformAlignment: Alignment.centerLeft,
         width: width * Utils.getMultiplier(screenSize.width),
-        padding: EdgeInsets.symmetric(
-          vertical: screenSize.width * (30 / VideoAspectRatio.height),
-          horizontal: screenSize.height * (25 / VideoAspectRatio.width),
+        padding: EdgeInsets.only(
+          top: screenSize.width * (25 / VideoAspectRatio.height),
+          bottom: screenSize.width * (25 / VideoAspectRatio.height),
+          left: screenSize.height * (75 / VideoAspectRatio.width),
+          right: screenSize.height * (35 / VideoAspectRatio.width),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -40,7 +43,7 @@ class TextAreaSmallWithClip extends StatelessWidget {
               prefixText,
               style: TextStyle(
                 color: AppColors.fern,
-                fontSize: 55 *
+                fontSize: 75 *
                     (screenSize.width / VideoAspectRatio.width) *
                     Utils.getMultiplier(screenSize.width),
                 fontWeight: FontWeight.bold,
@@ -51,9 +54,9 @@ class TextAreaSmallWithClip extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
             Container(
-              height: 70,
+              height: 100,
               padding: const EdgeInsets.only(
-                left: 20,
+                left: 30,
                 right: 10,
               ),
               child: const VerticalDivider(
@@ -66,7 +69,7 @@ class TextAreaSmallWithClip extends StatelessWidget {
                 description,
                 style: TextStyle(
                   color: AppColors.white,
-                  fontSize: 25 *
+                  fontSize: 30 *
                       (screenSize.width / VideoAspectRatio.width) *
                       Utils.getMultiplier(screenSize.width),
                   fontFamily: Fonts.regular,
