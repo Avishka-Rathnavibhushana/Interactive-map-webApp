@@ -8,7 +8,6 @@ import 'package:interactive_map/main_buildings/inside_main_building/map_main_scr
 import 'package:interactive_map/widgets/custom_button_label_mobile.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
-import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 import 'package:interactive_map/utills/utils.dart';
@@ -46,7 +45,6 @@ class _SchoolVideoState extends State<SchoolVideo> {
   final String schoolImage = 'assets/tempory images/School_Plain.png';
   final String mapScreenImage = 'assets/tempory images/screen_MAIN.png';
 
-  bool showTextAreaSmall = false;
   bool showEnergySaving = false;
 
   setIndex(value) {
@@ -78,8 +76,6 @@ class _SchoolVideoState extends State<SchoolVideo> {
       offsetHor = widget.offsetHor;
       offsetVer = widget.offsetVer;
     });
-    print("pre passing page" + widget.offsetHor.toString());
-    print("pre passing page" + widget.offsetVer.toString());
   }
 
   videoHandler() async {
@@ -112,10 +108,6 @@ class _SchoolVideoState extends State<SchoolVideo> {
                 ));
           }
         }
-      });
-    } else if (widget.from == Pages.home) {
-      setState(() {
-        showTextAreaSmall = true;
       });
     } else {
       setShow();
@@ -295,7 +287,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
                                         decoration: const BoxDecoration(
                                           image: DecorationImage(
                                             image: AssetImage(
-                                                'assets/animations/Data_animation_512.gif'),
+                                                dataAnimationGif),
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -337,34 +329,6 @@ class _SchoolVideoState extends State<SchoolVideo> {
                               ? Container()
                               : mapScreenMobile(
                                   screenSize.width - screenSize.width * 0.3),
-                          showTextAreaSmall
-                              ? Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 10),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      setShow();
-                                      setState(() {
-                                        showTextAreaSmall = false;
-                                      });
-                                    },
-                                    child: Container(
-                                      width: screenSize.width *
-                                          0.091 *
-                                          Utils.getMultiplier(screenSize.width),
-                                      height: screenSize.width *
-                                          0.040 *
-                                          Utils.getMultiplier(screenSize.width),
-                                      decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                          image: AssetImage(nextImage),
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              : Container(),
                           showEnergySaving
                               ? Padding(
                                   padding:
@@ -506,7 +470,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
                                         decoration: const BoxDecoration(
                                           image: DecorationImage(
                                             image: AssetImage(
-                                                'assets/animations/Data_animation_512.gif'),
+                                                dataAnimationGif),
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -542,34 +506,6 @@ class _SchoolVideoState extends State<SchoolVideo> {
                           !show
                               ? Container()
                               : mapScreenMobile(screenSize.width),
-                          showTextAreaSmall
-                              ? Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 10),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      setShow();
-                                      setState(() {
-                                        showTextAreaSmall = false;
-                                      });
-                                    },
-                                    child: Container(
-                                      width: screenSize.width *
-                                          0.091 *
-                                          Utils.getMultiplier(screenSize.width),
-                                      height: screenSize.width *
-                                          0.040 *
-                                          Utils.getMultiplier(screenSize.width),
-                                      decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                          image: AssetImage(nextImage),
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              : Container(),
                           showEnergySaving
                               ? Padding(
                                   padding:
@@ -694,7 +630,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
                                   decoration: const BoxDecoration(
                                     image: DecorationImage(
                                       image: AssetImage(
-                                          'assets/animations/Data_animation_512.gif'),
+                                          dataAnimationGif),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -728,59 +664,13 @@ class _SchoolVideoState extends State<SchoolVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                         screenSize: screenSize,
-                        texts: const [
-                          "Smart Motor System",
-                          "Smart HVAC",
-                          "Smart Building Operations"
-                        ],
-                        topic: "Turntide for Schools",
+                      texts: TextsConstants.schoolTexts["TextAreaWithClipMain"]
+                          ["texts"],
+                      topic: TextsConstants.schoolTexts["TextAreaWithClipMain"]
+                          ["topic"],
                         description:
-                            "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights"),
-                  ),
-                )
-              : Container(),
-          showTextAreaSmall
-              ? Positioned(
-                  left: 0,
-                  bottom: Utils.getBottomPadding(screenSize, 200),
-                  child: Container(
-                    alignment: Alignment.bottomLeft,
-                    child: TextAreaSmallWithClip(
-                        width: screenSize.width * 0.25,
-                        screenSize: screenSize,
-                        prefixText: "64%",
-                        description:
-                            "of energy in school is used by HVAC and lightning"),
-                  ),
-                )
-              : Container(),
-          showTextAreaSmall && screenSize.width > 500 && screenSize.height > 500
-              ? Positioned(
-                  right: 0,
-                  bottom: Utils.getBottomPadding(screenSize, 200),
-                  child: Container(
-                    alignment: Alignment.bottomRight,
-                    child: GestureDetector(
-                      onTap: () {
-                        setShow();
-                        setState(() {
-                          showTextAreaSmall = false;
-                        });
-                      },
-                      child: Container(
-                        width: screenSize.width *
-                            0.091 *
-                            Utils.getMultiplier(screenSize.width),
-                        height: screenSize.width *
-                            0.040 *
-                            Utils.getMultiplier(screenSize.width),
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(nextImage),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
+                            TextsConstants
+                          .schoolTexts["TextAreaWithClipMain"]["description"],
                     ),
                   ),
                 )
@@ -793,15 +683,13 @@ class _SchoolVideoState extends State<SchoolVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                         screenSize: screenSize,
-                        texts: const [
-                          "Improve energy efficiency",
-                          "Maintain a comfortable environment",
-                          "Automate lighting and HVAC",
-                          "Extent equipment life",
-                          "Prevent learning disruption"
-                        ],
-                        topic: "Stratergies for Sustainable Operations",
-                        description: ""),
+                        texts: TextsConstants.schoolTexts["TextAreaWithClipEnergySaving"]
+                          ["texts"],
+                      topic: TextsConstants.schoolTexts["TextAreaWithClipEnergySaving"]
+                          ["topic"],
+                      description: TextsConstants
+                          .schoolTexts["TextAreaWithClipEnergySaving"]["description"],
+                    ),
                   ),
                 )
               : Container(),
@@ -839,6 +727,91 @@ class _SchoolVideoState extends State<SchoolVideo> {
           show ? menuButton() : Container(),
         ],
       ),
+    );
+  }
+
+  Widget motorMobile(width) {
+    var screenSize = MediaQuery.of(context).size;
+    return CustomButtonLabelMobile(
+      width: width,
+      title: TextsConstants.schoolTexts["subTopics"][0],
+      onPressed: () async {
+        setShow();
+        setState(() {
+          _motorVideoPlaying = true;
+        });
+        _motorVideoController.play();
+
+        _motorVideoController.addListener(() {
+          final bool isPlaying = _motorVideoController.value.isPlaying;
+          print(isPlaying);
+          if (isPlaying != _isPlaying) {
+            setState(() {
+              _isPlaying = isPlaying;
+              setIndex(++index);
+            });
+            if (index > 1) {
+              _motorVideoController.removeListener(() {});
+              customPushReplacement(
+                  context,
+                  Motor(
+                    from: Pages.school,
+                    offsetHor: offsetHor,
+                    offsetVer: offsetVer,
+                  ));
+            }
+          }
+        });
+      },
+    );
+  }
+
+   Widget energySavingMobile(width) {
+    var screenSize = MediaQuery.of(context).size;
+    return CustomButtonLabelMobile(
+      width: width,
+      title: TextsConstants.schoolTexts["subTopics"][1],
+      onPressed: () async {
+        setShow();
+        setState(() {
+          showEnergySaving = true;
+        });
+      },
+    );
+  }
+  
+  Widget mapScreenMobile(width) {
+    var screenSize = MediaQuery.of(context).size;
+    return CustomButtonLabelMobile(
+      width: width,
+      title: TextsConstants.schoolTexts["subTopics"][2],
+      onPressed: () async {
+        setShow();
+        setState(() {
+          _mapVideoPlaying = true;
+        });
+        _mapVideoController.play();
+
+        _mapVideoController.addListener(() {
+          final bool isPlaying = _mapVideoController.value.isPlaying;
+          print(isPlaying);
+          if (isPlaying != _isPlaying) {
+            setState(() {
+              _isPlaying = isPlaying;
+              setIndex(++index);
+            });
+            if (index > 1) {
+              customPushReplacement(
+                  context,
+                  MapMainScreens(
+                    from: Pages.school,
+                    offsetHor: offsetHor,
+                    offsetVer: offsetVer,
+                  ));
+            }
+          }
+        });
+      },
     );
   }
 
@@ -933,7 +906,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Smart HVAC",
+                text: TextsConstants.schoolTexts["subTopics"][0],
                 type: 2,
               ),
             ),
@@ -941,41 +914,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
         ));
   }
 
-  Widget motorMobile(width) {
-    var screenSize = MediaQuery.of(context).size;
-    return CustomButtonLabelMobile(
-      width: width,
-      title: "Smart HVAC",
-      onPressed: () async {
-        setShow();
-        setState(() {
-          _motorVideoPlaying = true;
-        });
-        _motorVideoController.play();
-
-        _motorVideoController.addListener(() {
-          final bool isPlaying = _motorVideoController.value.isPlaying;
-          print(isPlaying);
-          if (isPlaying != _isPlaying) {
-            setState(() {
-              _isPlaying = isPlaying;
-              setIndex(++index);
-            });
-            if (index > 1) {
-              _motorVideoController.removeListener(() {});
-              customPushReplacement(
-                  context,
-                  Motor(
-                    from: Pages.school,
-                    offsetHor: offsetHor,
-                    offsetVer: offsetVer,
-                  ));
-            }
-          }
-        });
-      },
-    );
-  }
+  
 
   Widget energySaving() {
     var screenSize = MediaQuery.of(context).size;
@@ -993,7 +932,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Energy-Saving Stratergies",
+                text: TextsConstants.schoolTexts["subTopics"][1],
                 type: 1,
               ),
             ),
@@ -1001,19 +940,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
         ));
   }
 
-  Widget energySavingMobile(width) {
-    var screenSize = MediaQuery.of(context).size;
-    return CustomButtonLabelMobile(
-      width: width,
-      title: "Energy-Saving Stratergies",
-      onPressed: () async {
-        setShow();
-        setState(() {
-          showEnergySaving = true;
-        });
-      },
-    );
-  }
+  
 
   Widget mapScreen() {
     var screenSize = MediaQuery.of(context).size;
@@ -1052,46 +979,11 @@ class _SchoolVideoState extends State<SchoolVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "TurntideApp",
+                text: TextsConstants.schoolTexts["subTopics"][2],
                 type: 3,
               ),
             ),
           ],
         ));
-  }
-
-  Widget mapScreenMobile(width) {
-    var screenSize = MediaQuery.of(context).size;
-    return CustomButtonLabelMobile(
-      width: width,
-      title: "TurntideApp",
-      onPressed: () async {
-        setShow();
-        setState(() {
-          _mapVideoPlaying = true;
-        });
-        _mapVideoController.play();
-
-        _mapVideoController.addListener(() {
-          final bool isPlaying = _mapVideoController.value.isPlaying;
-          print(isPlaying);
-          if (isPlaying != _isPlaying) {
-            setState(() {
-              _isPlaying = isPlaying;
-              setIndex(++index);
-            });
-            if (index > 1) {
-              customPushReplacement(
-                  context,
-                  MapMainScreens(
-                    from: Pages.school,
-                    offsetHor: offsetHor,
-                    offsetVer: offsetVer,
-                  ));
-            }
-          }
-        });
-      },
-    );
   }
 }

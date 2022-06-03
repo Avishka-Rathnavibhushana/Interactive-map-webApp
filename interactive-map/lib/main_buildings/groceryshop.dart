@@ -3,9 +3,9 @@ import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/main_buildings/home.dart';
 import 'package:interactive_map/main_buildings/inside_main_building/motor.dart';
 import 'package:interactive_map/main_buildings/inside_main_building/map_main_screen.dart';
+import 'package:interactive_map/widgets/custom_button_label_mobile.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
-import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 import 'package:interactive_map/utills/utils.dart';
@@ -45,7 +45,6 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
   final String groceryshopImage = 'assets/tempory images/groceryshop_Plain.png';
   final String mapScreenImage = 'assets/tempory images/screen_MAIN.png';
 
-  bool showTextAreaSmall = false;
   bool showEnergySaving = false;
 
   setIndex(value) {
@@ -73,6 +72,10 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
     videoHandler();
 
     super.initState();
+    setState(() {
+      offsetHor = widget.offsetHor;
+      offsetVer = widget.offsetVer;
+    });
   }
 
   videoHandler() async {
@@ -105,10 +108,6 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
                 ));
           }
         }
-      });
-    } else if (widget.from == Pages.home) {
-      setState(() {
-        showTextAreaSmall = true;
       });
     } else {
       setShow();
@@ -186,135 +185,385 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
       Get.find<Controller>().verticalOffset.value = offsetVer;
     }
 
-    if (screenSize.width / screenSize.height ==
-        VideoAspectRatio.width / VideoAspectRatio.height) {
-      v = false;
-      h = false;
-    } else if (screenSize.width / screenSize.height <
-        VideoAspectRatio.width / VideoAspectRatio.height) {
-      v = false;
-      h = true;
-    } else {
-      v = true;
-      h = false;
-    }
-
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
-        child: Stack(
-          alignment: Alignment.topCenter,
-          fit: StackFit.expand,
+    
+  if (screenSize.height < 500 && screenSize.width > 500) {
+      if (screenSize.width - screenSize.width * 0.3 / screenSize.height ==
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = false;
+      } else if (screenSize.width - screenSize.width * 0.3 / screenSize.height <
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = true;
+      } else {
+        v = true;
+        h = false;
+      }
+      var screenSizeMobile1 =
+          Size(screenSize.width - screenSize.width * 0.3, screenSize.height);
+      return Scaffold(
+        backgroundColor: Colors.transparent,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: floatingButtonPanel(),
+        body: Row(
           children: [
-            show
-                ? Padding(
-                    padding: const EdgeInsets.only(top: 100),
-                    child: Container(
-                      alignment: Alignment.topLeft,
-                      child: TextAreaWithClip(
-                          screenSize: screenSize,
-                          texts: const [
-                            "Smart Motor System",
-                            "Smart HVAC",
-                            "Smart Building Operations"
-                          ],
-                          topic: "Turntide for Grocery Stores",
-                          description:
-                              "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights"),
-                    ),
-                  )
-                : Container(),
-            showTextAreaSmall
-                ? Padding(
-                    padding: const EdgeInsets.only(bottom: 100),
-                    child: Container(
-                      alignment: Alignment.bottomLeft,
-                      child: TextAreaSmallWithClip(
-                        width: screenSize.width * 0.25,
-                        screenSize: screenSize,
-                        prefixText: "50%",
-                        description:
-                            "of energy in grocery stores is used by HVAC and lightning",
-                      ),
-                    ),
-                  )
-                : Container(),
-            showTextAreaSmall
-                ? Padding(
-                    padding: const EdgeInsets.only(bottom: 100),
-                    child: Container(
-                      alignment: Alignment.bottomRight,
-                      child: GestureDetector(
-                        onTap: () {
-                          setShow();
-                          setState(() {
-                            showTextAreaSmall = false;
-                          });
-                        },
-                        child: Container(
-                          width: screenSize.width * 0.091,
-                          height: screenSize.width * 0.040,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(nextImage),
-                              fit: BoxFit.cover,
-                            ),
+            Container(
+              width: screenSize.width - screenSize.width * 0.3,
+              height: screenSize.height,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                controller: _scrollControllerHrizontal,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  controller: _scrollControllerVertical,
+                  child: SizedBox(
+                    width: Utils.getVideoScreenWidth(screenSizeMobile1),
+                    height: Utils.getVideoScreenHeight(screenSizeMobile1),
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          width: Utils.getVideoScreenWidth(screenSizeMobile1),
+                          height: Utils.getVideoScreenHeight(screenSizeMobile1),
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                width: Utils.getVideoScreenWidth(
+                                    screenSizeMobile1),
+                                height: Utils.getVideoScreenHeight(
+                                    screenSizeMobile1),
+                                child: VideoPlayer(_controller),
+                              ),
+                              _motorVideoPlaying
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile1),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile1),
+                                      child: VideoPlayer(_motorVideoController),
+                                    )
+                                  : Container(),
+                              _energySavingVideoPlaying
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile1),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile1),
+                                      child: VideoPlayer(
+                                          _energySavingVideoController),
+                                    )
+                                  : Container(),
+                              _mapVideoPlaying
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile1),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile1),
+                                      child: VideoPlayer(_mapVideoController),
+                                    )
+                                  : Container(),
+                              loading
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile1),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile1),
+                                      child: Image.asset(
+                                        groceryshopImage,
+                                        fit: BoxFit.fill,
+                                      ),
+                                    )
+                                  : Container(),
+                              show
+                                  ? Positioned(
+                                      left: Utils.getVideoScreenWidth(
+                                              screenSizeMobile1) *
+                                          0.5,
+                                      child: Container(
+                                        width: Utils.getVideoScreenWidth(
+                                                screenSizeMobile1) *
+                                            0.075,
+                                        height: Utils.getVideoScreenHeight(
+                                                screenSizeMobile1) *
+                                            0.3,
+                                        decoration: const BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(
+                                                dataAnimationGif),
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  : Container(),
+                            ],
                           ),
                         ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Container(
+                height: screenSize.height,
+                width: screenSize.width - screenSize.width * 0.3,
+                alignment: Alignment.topRight,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  physics: const BouncingScrollPhysics(),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Container(
+                      width: screenSize.width - screenSize.width * 0.3,
+                      child: Column(
+                        children: [
+                          !show
+                              ? Container()
+                              : motorMobile(
+                                  screenSize.width - screenSize.width * 0.3),
+                          !show
+                              ? Container()
+                              : energySavingMobile(
+                                  screenSize.width - screenSize.width * 0.3),
+                          !show
+                              ? Container()
+                              : mapScreenMobile(
+                                  screenSize.width - screenSize.width * 0.3),
+                          
+                          showEnergySaving
+                              ? Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      setShow();
+                                      setState(() {
+                                        showEnergySaving = false;
+                                      });
+                                    },
+                                    child: Container(
+                                      width: screenSize.width *
+                                          0.091 *
+                                          Utils.getMultiplier(screenSize.width),
+                                      height: screenSize.width *
+                                          0.040 *
+                                          Utils.getMultiplier(screenSize.width),
+                                      decoration: const BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(nextImage),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : Container(),
+                        ],
                       ),
                     ),
-                  )
-                : Container(),
-            showEnergySaving
-                ? Padding(
-                    padding: const EdgeInsets.only(top: 100),
-                    child: Container(
-                      alignment: Alignment.topLeft,
-                      child: TextAreaWithClip(
-                          screenSize: screenSize,
-                          texts: const [
-                            "Improve energy efficiency",
-                            "Maintain a comfortable environment",
-                            "Automate lighting and HVAC",
-                            "Extent equipment life",
-                            "Prevent learning disruption"
-                          ],
-                          topic: "Stratergies for Sustainable Operations",
-                          description: ""),
-                    ),
-                  )
-                : Container(),
-            showEnergySaving
-                ? Padding(
-                    padding: const EdgeInsets.only(bottom: 100),
-                    child: Container(
-                      alignment: Alignment.bottomRight,
-                      child: GestureDetector(
-                        onTap: () {
-                          setShow();
-                          setState(() {
-                            showEnergySaving = false;
-                          });
-                        },
-                        child: Container(
-                          width: screenSize.width * 0.091,
-                          height: screenSize.width * 0.040,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(nextImage),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                : Container(),
-            show ? menuButton() : Container(),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
-      ),
+      );
+    } else if (screenSize.width < 500) {
+      if (screenSize.width / screenSize.height - screenSize.height * 0.3 ==
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = false;
+      } else if (screenSize.width / screenSize.height -
+              screenSize.height * 0.3 <
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = true;
+      } else {
+        v = true;
+        h = false;
+      }
+      var screenSizeMobile2 =
+          Size(screenSize.width, screenSize.height - screenSize.height * 0.3);
+      return Scaffold(
+        backgroundColor: Colors.transparent,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: floatingButtonPanel(),
+        body: Column(
+          children: [
+            Container(
+              width: screenSize.width,
+              height: screenSize.height - screenSize.height * 0.3,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                controller: _scrollControllerHrizontal,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  controller: _scrollControllerVertical,
+                  child: SizedBox(
+                    width: Utils.getVideoScreenWidth(screenSizeMobile2),
+                    height: Utils.getVideoScreenHeight(screenSizeMobile2),
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          width: Utils.getVideoScreenWidth(screenSizeMobile2),
+                          height: Utils.getVideoScreenHeight(screenSizeMobile2),
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                width: Utils.getVideoScreenWidth(
+                                    screenSizeMobile2),
+                                height: Utils.getVideoScreenHeight(
+                                    screenSizeMobile2),
+                                child: VideoPlayer(_controller),
+                              ),
+                              _motorVideoPlaying
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile2),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile2),
+                                      child: VideoPlayer(_motorVideoController),
+                                    )
+                                  : Container(),
+                              _energySavingVideoPlaying
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile2),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile2),
+                                      child: VideoPlayer(
+                                          _energySavingVideoController),
+                                    )
+                                  : Container(),
+                              _mapVideoPlaying
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile2),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile2),
+                                      child: VideoPlayer(_mapVideoController),
+                                    )
+                                  : Container(),
+                              loading
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile2),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile2),
+                                      child: Image.asset(
+                                        groceryshopImage,
+                                        fit: BoxFit.fill,
+                                      ),
+                                    )
+                                  : Container(),
+                              show
+                                  ? Positioned(
+                                      left: Utils.getVideoScreenWidth(
+                                              screenSizeMobile2) *
+                                          0.5,
+                                      child: Container(
+                                        width: Utils.getVideoScreenWidth(
+                                                screenSizeMobile2) *
+                                            0.075,
+                                        height: Utils.getVideoScreenHeight(
+                                                screenSizeMobile2) *
+                                            0.3,
+                                        decoration: const BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(
+                                                dataAnimationGif),
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  : Container(),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Container(
+                height: screenSize.height * 0.3,
+                width: screenSize.width,
+                alignment: Alignment.topCenter,
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Container(
+                      width: screenSize.width,
+                      child: Column(
+                        children: [
+                          !show ? Container() : motorMobile(screenSize.width),
+                          !show
+                              ? Container()
+                              : energySavingMobile(screenSize.width),
+                          !show
+                              ? Container()
+                              : mapScreenMobile(screenSize.width),
+                         
+                          showEnergySaving
+                              ? Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      setShow();
+                                      setState(() {
+                                        showEnergySaving = false;
+                                      });
+                                    },
+                                    child: Container(
+                                      width: screenSize.width *
+                                          0.091 *
+                                          Utils.getMultiplier(screenSize.width),
+                                      height: screenSize.width *
+                                          0.040 *
+                                          Utils.getMultiplier(screenSize.width),
+                                      decoration: const BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(nextImage),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : Container(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    } else {
+      if (screenSize.width / screenSize.height ==
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = false;
+      } else if (screenSize.width / screenSize.height <
+          VideoAspectRatio.width / VideoAspectRatio.height) {
+        v = false;
+        h = true;
+      } else {
+        v = true;
+        h = false;
+      }
+      return Scaffold(
+      backgroundColor: Colors.transparent,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: floatingButtonPanel(),
       body: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         controller: _scrollControllerHrizontal,
@@ -367,14 +616,15 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
                     : Container(),
                 show
                     ? Positioned(
-                        left: Utils.getVideoScreenWidth(screenSize) * 0.5,
+                          left: Utils.getVideoScreenWidth(screenSize) * 0.68,
                         child: Container(
                           width: Utils.getVideoScreenWidth(screenSize) * 0.075,
-                          height: Utils.getVideoScreenHeight(screenSize) * 0.3,
+                            height:
+                                Utils.getVideoScreenHeight(screenSize) * 0.25,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage(
-                                  'assets/animations/Data_animation_512.gif'),
+                                  dataAnimationGif),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -387,46 +637,223 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
         ),
       ),
     );
+    }
+  }
+
+  Widget floatingButtonPanel() {
+    var screenSize = MediaQuery.of(context).size;
+    return Container(
+        child: Stack(
+          alignment: Alignment.topCenter,
+          fit: StackFit.expand,
+          children: [
+            show
+                ? Padding(
+                    padding: EdgeInsets.only(top: Utils.getTopPadding(screenSize, 100)),
+                    child: Container(
+                      alignment: Alignment.topLeft,
+                      child: TextAreaWithClip(
+                          screenSize: screenSize,
+                      texts: TextsConstants
+                          .groceryShopTexts["TextAreaWithClipMain"]["texts"],
+                      topic: TextsConstants
+                          .groceryShopTexts["TextAreaWithClipMain"]["topic"],
+                      description: TextsConstants
+                              .groceryShopTexts["TextAreaWithClipMain"]
+                          ["description"],
+                    ),
+                    ),
+                  )
+                : Container(),
+           
+            showEnergySaving
+                ? Padding(
+                    padding: EdgeInsets.only(top:  Utils.getTopPadding(screenSize, 100)),
+                    child: Container(
+                      alignment: Alignment.topLeft,
+                      child: TextAreaWithClip(
+                          screenSize: screenSize,
+                      texts: TextsConstants
+                              .groceryShopTexts["TextAreaWithClipEnergySaving"]
+                          ["texts"],
+                      topic: TextsConstants
+                              .groceryShopTexts["TextAreaWithClipEnergySaving"]
+                          ["topic"],
+                      description: TextsConstants
+                              .groceryShopTexts["TextAreaWithClipEnergySaving"]
+                          ["description"],
+                    ),
+                    ),
+                  )
+                : Container(),
+            showEnergySaving && screenSize.width > 500 && screenSize.height > 500
+              ? Positioned(
+                  right: 0,
+                  bottom: Utils.getBottomPadding(screenSize, 200),
+                    child: Container(
+                      alignment: Alignment.bottomRight,
+                      child: GestureDetector(
+                        onTap: () {
+                          setShow();
+                          setState(() {
+                            showEnergySaving = false;
+                          });
+                        },
+                        child: Container(
+                          width: screenSize.width *
+                            0.091 *
+                            Utils.getMultiplier(screenSize.width),
+                        height: screenSize.width *
+                            0.040 *
+                            Utils.getMultiplier(screenSize.width),
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(nextImage),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                : Container(),
+            show ? menuButton() : Container(),
+          ],
+        ),
+      );
+  }
+
+  Widget motorMobile(width) {
+    var screenSize = MediaQuery.of(context).size;
+    return CustomButtonLabelMobile(
+      width: width,
+      title: TextsConstants.groceryShopTexts["subTopics"][0],
+      onPressed: () async {
+        setShow();
+        setState(() {
+          _motorVideoPlaying = true;
+        });
+        _motorVideoController.play();
+
+        _motorVideoController.addListener(() {
+          final bool isPlaying = _motorVideoController.value.isPlaying;
+          print(isPlaying);
+          if (isPlaying != _isPlaying) {
+            setState(() {
+              _isPlaying = isPlaying;
+              setIndex(++index);
+            });
+            if (index > 1) {
+              _motorVideoController.removeListener(() {});
+              customPushReplacement(
+                  context,
+                  Motor(
+                    from: Pages.school,
+                    offsetHor: offsetHor,
+                    offsetVer: offsetVer,
+                  ));
+            }
+          }
+        });
+      },
+    );
+  }
+
+    Widget energySavingMobile(width) {
+    var screenSize = MediaQuery.of(context).size;
+    return CustomButtonLabelMobile(
+      width: width,
+      title: TextsConstants.groceryShopTexts["subTopics"][1],
+      onPressed: () async {
+        setShow();
+        setState(() {
+          showEnergySaving = true;
+        });
+      },
+    );
+  }
+
+  Widget mapScreenMobile(width) {
+    var screenSize = MediaQuery.of(context).size;
+    return CustomButtonLabelMobile(
+      width: width,
+      title: TextsConstants.groceryShopTexts["subTopics"][1],
+      onPressed: () async {
+        setShow();
+        setState(() {
+          _mapVideoPlaying = true;
+        });
+        _mapVideoController.play();
+
+        _mapVideoController.addListener(() {
+          final bool isPlaying = _mapVideoController.value.isPlaying;
+          print(isPlaying);
+          if (isPlaying != _isPlaying) {
+            setState(() {
+              _isPlaying = isPlaying;
+              setIndex(++index);
+            });
+            if (index > 1) {
+              customPushReplacement(
+                  context,
+                  MapMainScreens(
+                    from: Pages.school,
+                    offsetHor: offsetHor,
+                    offsetVer: offsetVer,
+                  ));
+            }
+          }
+        });
+      },
+    );
   }
 
   Widget menuButton() {
     var screenSize = MediaQuery.of(context).size;
-    return Container(
-      alignment: Alignment.topRight,
-      height: screenSize.width * 0.050,
-      width: screenSize.width * 0.050,
-      child: GestureDetector(
-        onTap: () {
-          setShow();
-          _controller.play();
+    return Positioned(
+      right: Utils.getRightPadding(screenSize, 0),
+      child: Container(
+        alignment: Alignment.topRight,
+        height:
+            screenSize.width * 0.070 * Utils.getMultiplier(screenSize.width),
+        width: screenSize.width * 0.070 * Utils.getMultiplier(screenSize.width),
+        child: GestureDetector(
+          onTap: () {
+            setShow();
+            _controller.play();
 
-          _controller.addListener(() {
-            final bool isPlaying = _controller.value.isPlaying;
+            _controller.addListener(() {
+              final bool isPlaying = _controller.value.isPlaying;
 
-            if (isPlaying != _isPlaying) {
-              setState(() {
-                _isPlaying = isPlaying;
-                setIndex(++index);
-              });
-              if (index > 1) {
-                _controller.removeListener(() {});
-                customPushReplacement(
-                    context,
-                    HomeVideo(
-                      offsetHor: offsetHor,
-                      offsetVer: offsetVer,
-                    ));
+              if (isPlaying != _isPlaying) {
+                setState(() {
+                  _isPlaying = isPlaying;
+                  setIndex(++index);
+                });
+                if (index > 1) {
+                  _controller.removeListener(() {});
+                  customPushReplacement(
+                      context,
+                      HomeVideo(
+                        offsetHor: offsetHor,
+                        offsetVer: offsetVer,
+                      ));
+                }
               }
-            }
-          });
-        },
-        child: Container(
-          width: screenSize.width * 0.050,
-          height: screenSize.width * 0.050,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(homeImage),
-              fit: BoxFit.cover,
+            });
+          },
+          child: Container(
+            height: screenSize.width *
+                0.070 *
+                Utils.getMultiplier(screenSize.width),
+            width: screenSize.width *
+                0.070 *
+                Utils.getMultiplier(screenSize.width),
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(homeImage),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),
@@ -437,8 +864,8 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
   Widget motor() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.536,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.325,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.75,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.31,
         child: Stack(
           children: [
             InkWell(
@@ -472,7 +899,7 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Smart HVAC",
+                text: TextsConstants.groceryShopTexts["subTopics"][0],
                 type: 2,
               ),
             ),
@@ -483,8 +910,8 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
   Widget energySaving() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.439,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.647,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.6,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.58,
         child: Stack(
           children: [
             InkWell(
@@ -496,7 +923,7 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Energy-Saving Stratergies",
+                text: TextsConstants.groceryShopTexts["subTopics"][1],
                 type: 1,
               ),
             ),
@@ -507,8 +934,8 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
   Widget mapScreen() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.57,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.15,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.52,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.125,
         child: Stack(
           children: [
             InkWell(
@@ -541,7 +968,7 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "TurntideApp",
+                text: TextsConstants.groceryShopTexts["subTopics"][2],
                 type: 3,
               ),
             ),

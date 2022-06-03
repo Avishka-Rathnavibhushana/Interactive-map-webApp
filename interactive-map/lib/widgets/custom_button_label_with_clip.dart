@@ -23,15 +23,20 @@ class CustomButtonLabelWithClip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double ratio_1 =
+        screenSize.width <= 700 ? 700 * 0.05 : screenSize.width * 0.05;
+    double ratio_2 =
+        screenSize.width <= 700 ? 700 * 0.025 : screenSize.width * 0.025;
+    print(screenSize.width);
     return Container(
-      height: screenSize.width * 0.04,
+      height: ratio_1,
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: screenSize.width * 0.04,
+            height: ratio_1,
             child: Stack(
               fit: StackFit.loose,
               children: [
@@ -39,27 +44,27 @@ class CustomButtonLabelWithClip extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: Container(
                     margin: EdgeInsets.only(
-                      left: screenSize.width * 0.04 / 2,
+                      left: ratio_1 / 2,
                     ),
                     child: CustomPaint(
                       //size: Size(700, 700),
                       painter: SqureShapedCustomContainerLabel(),
                       child: Container(
                         height:
-                            screenSize.width * 0.04 - screenSize.width * 0.02,
+                            ratio_1 - ratio_2,
                         padding: EdgeInsets.only(
-                          left: screenSize.width * 0.04 / 2 + 10,
+                          left: ratio_1 / 2 + 10,
                           right: 35,
                         ),
                         child: Center(
                           child: FittedBox(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 5),
+                              padding: const EdgeInsets.symmetric(vertical: 7),
                               child: Text(
                                 text,
                                 style: const TextStyle(
                                   color: AppColors.white,
-                                  fontSize: 25,
+                                  fontSize: 30,
                                   fontFamily: Fonts.bold,
                                 ),
                                 maxLines: 1,
@@ -75,8 +80,8 @@ class CustomButtonLabelWithClip extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  width: screenSize.width * 0.04,
-                  height: screenSize.width * 0.04,
+                  width: ratio_1,
+                  height: ratio_1,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(prefixIcons[type]),

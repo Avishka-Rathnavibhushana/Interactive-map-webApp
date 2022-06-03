@@ -10,13 +10,11 @@ import 'package:interactive_map/main_buildings/retail.dart';
 import 'package:interactive_map/main_buildings/school.dart';
 import 'package:interactive_map/main_buildings/warehouse.dart';
 import 'package:interactive_map/utills/utils.dart';
-import 'package:interactive_map/widgets/custom_button_label.dart';
 import 'package:interactive_map/widgets/custom_button_label_mobile.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
 import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
 import 'package:interactive_map/widgets/text_area_with_QR_with_clip.dart';
-import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 
 class HomeVideo extends StatefulWidget {
@@ -69,6 +67,8 @@ class _HomeVideoState extends State<HomeVideo> {
 
   bool showQR = false;
   bool showTextAreaSmall = false;
+  bool showNext = false;
+  late String nextPage;
 
   double width = 0;
 
@@ -195,7 +195,6 @@ class _HomeVideoState extends State<HomeVideo> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
-
     if (_scrollControllerHrizontal.hasClients) {
       _scrollControllerHrizontal.animateTo(
           _scrollControllerHrizontal.position.maxScrollExtent / 2,
@@ -386,6 +385,99 @@ class _HomeVideoState extends State<HomeVideo> {
                       width: screenSize.width - screenSize.width * 0.3,
                       child: Column(
                         children: [
+                          showNext
+                              ? Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      switch (nextPage) {
+                                        case Pages.school:
+                                          customPushReplacement(
+                                              context,
+                                              SchoolVideo(
+                                                from: Pages.home,
+                                                offsetHor: offsetHor,
+                                                offsetVer: offsetVer,
+                                              ));
+                                          break;
+                                        case Pages.bank:
+                                          customPushReplacement(
+                                              context,
+                                              BankVideo(
+                                                from: Pages.home,
+                                                offsetHor: offsetHor,
+                                                offsetVer: offsetVer,
+                                              ));
+                                          break;
+                                        case Pages.grocery:
+                                          customPushReplacement(
+                                              context,
+                                              GroceryShopVideo(
+                                                from: Pages.home,
+                                                offsetHor: offsetHor,
+                                                offsetVer: offsetVer,
+                                              ));
+                                          break;
+                                        case Pages.dataCenter:
+                                          customPushReplacement(
+                                              context,
+                                              DataCentreVideo(
+                                                from: Pages.home,
+                                                offsetHor: offsetHor,
+                                                offsetVer: offsetVer,
+                                              ));
+                                          break;
+                                        case Pages.fastfoods:
+                                          customPushReplacement(
+                                              context,
+                                              FastFoodVideo(
+                                                from: Pages.home,
+                                                offsetHor: offsetHor,
+                                                offsetVer: offsetVer,
+                                              ));
+                                          break;
+                                        case Pages.werehouse:
+                                          customPushReplacement(
+                                              context,
+                                              WarehouseVideo(
+                                                from: Pages.home,
+                                                offsetHor: offsetHor,
+                                                offsetVer: offsetVer,
+                                              ));
+                                          break;
+                                        case Pages.retail:
+                                          customPushReplacement(
+                                              context,
+                                              RetailVideo(
+                                                from: Pages.home,
+                                                offsetHor: offsetHor,
+                                                offsetVer: offsetVer,
+                                              ));
+                                          break;
+                                        default:
+                                      }
+                                      setState(() {
+                                        showNext = false;
+                                      });
+                                    },
+                                    child: Container(
+                                      width: screenSize.width *
+                                          0.091 *
+                                          Utils.getMultiplier(screenSize.width),
+                                      height: screenSize.width *
+                                          0.040 *
+                                          Utils.getMultiplier(screenSize.width),
+                                      decoration: const BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(nextImage),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : Container(),
                           show
                               ? Container()
                               : schoolMobile(
@@ -596,6 +688,99 @@ class _HomeVideoState extends State<HomeVideo> {
                       width: screenSize.width,
                       child: Column(
                         children: [
+                          showNext
+                              ? Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      switch (nextPage) {
+                                        case Pages.school:
+                                          customPushReplacement(
+                                              context,
+                                              SchoolVideo(
+                                                from: Pages.home,
+                                                offsetHor: offsetHor,
+                                                offsetVer: offsetVer,
+                                              ));
+                                          break;
+                                        case Pages.bank:
+                                          customPushReplacement(
+                                              context,
+                                              BankVideo(
+                                                from: Pages.home,
+                                                offsetHor: offsetHor,
+                                                offsetVer: offsetVer,
+                                              ));
+                                          break;
+                                        case Pages.grocery:
+                                          customPushReplacement(
+                                              context,
+                                              GroceryShopVideo(
+                                                from: Pages.home,
+                                                offsetHor: offsetHor,
+                                                offsetVer: offsetVer,
+                                              ));
+                                          break;
+                                        case Pages.dataCenter:
+                                          customPushReplacement(
+                                              context,
+                                              DataCentreVideo(
+                                                from: Pages.home,
+                                                offsetHor: offsetHor,
+                                                offsetVer: offsetVer,
+                                              ));
+                                          break;
+                                        case Pages.fastfoods:
+                                          customPushReplacement(
+                                              context,
+                                              FastFoodVideo(
+                                                from: Pages.home,
+                                                offsetHor: offsetHor,
+                                                offsetVer: offsetVer,
+                                              ));
+                                          break;
+                                        case Pages.werehouse:
+                                          customPushReplacement(
+                                              context,
+                                              WarehouseVideo(
+                                                from: Pages.home,
+                                                offsetHor: offsetHor,
+                                                offsetVer: offsetVer,
+                                              ));
+                                          break;
+                                        case Pages.retail:
+                                          customPushReplacement(
+                                              context,
+                                              RetailVideo(
+                                                from: Pages.home,
+                                                offsetHor: offsetHor,
+                                                offsetVer: offsetVer,
+                                              ));
+                                          break;
+                                        default:
+                                      }
+                                      setState(() {
+                                        showNext = false;
+                                      });
+                                    },
+                                    child: Container(
+                                      width: screenSize.width *
+                                          0.091 *
+                                          Utils.getMultiplier(screenSize.width),
+                                      height: screenSize.width *
+                                          0.040 *
+                                          Utils.getMultiplier(screenSize.width),
+                                      decoration: const BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(nextImage),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : Container(),
                           show ? Container() : schoolMobile(screenSize.width),
                           show ? Container() : bankMobile(screenSize.width),
                           show
@@ -790,11 +975,13 @@ class _HomeVideoState extends State<HomeVideo> {
                   child: Container(
                     alignment: Alignment.bottomLeft,
                     child: TextAreaSmallWithClip(
-                      width: screenSize.width * 0.25,
+                      width: screenSize.width * 0.35,
                       screenSize: screenSize,
-                      prefixText: "64%",
+                      prefixText: TextsConstants
+                          .schoolTexts["TextAreaSmallWithClip"][0],
                       description:
-                          "of energy in school is used by HVAC and lightning",
+                          TextsConstants
+                          .schoolTexts["TextAreaSmallWithClip"][1],
                     ),
                   ),
                 )
@@ -806,11 +993,13 @@ class _HomeVideoState extends State<HomeVideo> {
                   child: Container(
                     alignment: Alignment.bottomLeft,
                     child: TextAreaSmallWithClip(
-                      width: width,
+                      width: screenSize.width * 0.35,
                       screenSize: screenSize,
-                      prefixText: "28%",
+                      prefixText: TextsConstants
+                          .fastFoodTexts["TextAreaSmallWithClip"][0],
                       description:
-                          "of restuarant energy costs are from HVAC on avarage",
+                          TextsConstants
+                          .fastFoodTexts["TextAreaSmallWithClip"][1],
                     ),
                   ),
                 )
@@ -822,11 +1011,12 @@ class _HomeVideoState extends State<HomeVideo> {
                   child: Container(
                     alignment: Alignment.bottomLeft,
                     child: TextAreaSmallWithClip(
-                      width: width,
+                      width: screenSize.width * 0.35,
                       screenSize: screenSize,
-                      prefixText: "40-60%",
+                      prefixText:
+                          TextsConstants.bankTexts["TextAreaSmallWithClip"][0],
                       description:
-                          "of energy in bank branches is used by HVAC and lightning",
+                          TextsConstants.bankTexts["TextAreaSmallWithClip"][1],
                     ),
                   ),
                 )
@@ -838,11 +1028,13 @@ class _HomeVideoState extends State<HomeVideo> {
                   child: Container(
                     alignment: Alignment.bottomLeft,
                     child: TextAreaSmallWithClip(
-                      width: width,
+                      width: screenSize.width * 0.35,
                       screenSize: screenSize,
-                      prefixText: "70%",
+                      prefixText: TextsConstants
+                          .retailTexts["TextAreaSmallWithClip"][0],
                       description:
-                          "of energy in retail is used by HVAC and lightning",
+                          TextsConstants
+                          .retailTexts["TextAreaSmallWithClip"][1],
                     ),
                   ),
                 )
@@ -854,11 +1046,13 @@ class _HomeVideoState extends State<HomeVideo> {
                   child: Container(
                     alignment: Alignment.bottomLeft,
                     child: TextAreaSmallWithClip(
-                      width: width,
+                      width: screenSize.width * 0.35,
                       screenSize: screenSize,
-                      prefixText: "75%",
+                      prefixText: TextsConstants
+                          .warehouseTexts["TextAreaSmallWithClip"][0],
                       description:
-                          "of energy in warehouse is used by HVAC and lightning",
+                          TextsConstants
+                          .warehouseTexts["TextAreaSmallWithClip"][1],
                     ),
                   ),
                 )
@@ -870,11 +1064,127 @@ class _HomeVideoState extends State<HomeVideo> {
                   child: Container(
                     alignment: Alignment.bottomLeft,
                     child: TextAreaSmallWithClip(
-                      width: width,
+                      width: screenSize.width * 0.35,
                       screenSize: screenSize,
-                      prefixText: "37%",
+                      prefixText: TextsConstants
+                          .dataCentreTexts["TextAreaSmallWithClip"][0],
                       description:
-                          "of energy in data centers is used by HVAC and lightning",
+                          TextsConstants
+                          .dataCentreTexts["TextAreaSmallWithClip"][1],
+                    ),
+                  ),
+                )
+              : Container(),
+          showTextAreaSmall && _groceryShopVideoPlaying
+              ? Padding(
+                  padding: EdgeInsets.only(
+                      bottom: Utils.getBottomPadding(screenSize, 200)),
+                  child: Container(
+                    alignment: Alignment.bottomLeft,
+                    child: TextAreaSmallWithClip(
+                      width: screenSize.width * 0.35,
+                      screenSize: screenSize,
+                      prefixText: TextsConstants
+                          .groceryShopTexts["TextAreaSmallWithClip"][0],
+                      description:
+                          TextsConstants
+                          .groceryShopTexts["TextAreaSmallWithClip"][1],
+                    ),
+                  ),
+                )
+              : Container(),
+          showNext && screenSize.width >= 500 && screenSize.height >= 500
+              ? Positioned(
+                  right: 0,
+                  bottom: Utils.getBottomPadding(screenSize, 200),
+                  child: Container(
+                    alignment: Alignment.bottomRight,
+                    child: GestureDetector(
+                      onTap: () {
+                        switch (nextPage) {
+                          case Pages.school:
+                            customPushReplacement(
+                                context,
+                                SchoolVideo(
+                                  from: Pages.home,
+                                  offsetHor: offsetHor,
+                                  offsetVer: offsetVer,
+                                ));
+                            break;
+                          case Pages.bank:
+                            customPushReplacement(
+                                context,
+                                BankVideo(
+                                  from: Pages.home,
+                                  offsetHor: offsetHor,
+                                  offsetVer: offsetVer,
+                                ));
+                            break;
+                          case Pages.grocery:
+                            customPushReplacement(
+                                context,
+                                GroceryShopVideo(
+                                  from: Pages.home,
+                                  offsetHor: offsetHor,
+                                  offsetVer: offsetVer,
+                                ));
+                            break;
+                          case Pages.dataCenter:
+                            customPushReplacement(
+                                context,
+                                DataCentreVideo(
+                                  from: Pages.home,
+                                  offsetHor: offsetHor,
+                                  offsetVer: offsetVer,
+                                ));
+                            break;
+                          case Pages.fastfoods:
+                            customPushReplacement(
+                                context,
+                                FastFoodVideo(
+                                  from: Pages.home,
+                                  offsetHor: offsetHor,
+                                  offsetVer: offsetVer,
+                                ));
+                            break;
+                          case Pages.werehouse:
+                            customPushReplacement(
+                                context,
+                                WarehouseVideo(
+                                  from: Pages.home,
+                                  offsetHor: offsetHor,
+                                  offsetVer: offsetVer,
+                                ));
+                            break;
+                          case Pages.retail:
+                            customPushReplacement(
+                                context,
+                                RetailVideo(
+                                  from: Pages.home,
+                                  offsetHor: offsetHor,
+                                  offsetVer: offsetVer,
+                                ));
+                            break;
+                          default:
+                        }
+                        setState(() {
+                          showNext = false;
+                        });
+                      },
+                      child: Container(
+                        width: screenSize.width *
+                            0.091 *
+                            Utils.getMultiplier(screenSize.width),
+                        height: screenSize.width *
+                            0.040 *
+                            Utils.getMultiplier(screenSize.width),
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(nextImage),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 )
@@ -987,20 +1297,17 @@ class _HomeVideoState extends State<HomeVideo> {
                     if (index > 1) {
                       _schoolVideoController.removeListener(() {});
 
-                      customPushReplacement(
-                          context,
-                          SchoolVideo(
-                            from: Pages.home,
-                            offsetHor: offsetHor,
-                            offsetVer: offsetVer,
-                          ));
+                      setState(() {
+                        showNext = true;
+                        nextPage = Pages.school;
+                      });
                     }
                   }
                 });
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Schools",
+                text: TextsConstants.schoolTexts["topic"],
                 type: 0,
               ),
             ),
@@ -1012,7 +1319,7 @@ class _HomeVideoState extends State<HomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "Schools",
+      title: TextsConstants.schoolTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -1052,13 +1359,10 @@ class _HomeVideoState extends State<HomeVideo> {
             if (index > 1) {
               _schoolVideoController.removeListener(() {});
 
-              customPushReplacement(
-                  context,
-                  SchoolVideo(
-                    from: Pages.home,
-                    offsetHor: offsetHor,
-                    offsetVer: offsetVer,
-                  ));
+              setState(() {
+                showNext = true;
+                nextPage = Pages.school;
+              });
             }
           }
         });
@@ -1113,20 +1417,17 @@ class _HomeVideoState extends State<HomeVideo> {
                       });
                       if (index > 1) {
                         _bankVideoController.removeListener(() {});
-                        customPushReplacement(
-                            context,
-                            BankVideo(
-                              from: Pages.home,
-                              offsetHor: offsetHor,
-                              offsetVer: offsetVer,
-                            ));
+                        setState(() {
+                          showNext = true;
+                          nextPage = Pages.bank;
+                        });
                       }
                     }
                   });
                 },
                 child: CustomButtonLabelWithClip(
                   screenSize: screenSize,
-                  text: "Banks",
+                  text: TextsConstants.bankTexts["topic"],
                   type: 0,
                 ),
               ),
@@ -1139,7 +1440,7 @@ class _HomeVideoState extends State<HomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "Banks",
+      title: TextsConstants.bankTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -1178,13 +1479,10 @@ class _HomeVideoState extends State<HomeVideo> {
             });
             if (index > 1) {
               _bankVideoController.removeListener(() {});
-              customPushReplacement(
-                  context,
-                  BankVideo(
-                    from: Pages.home,
-                    offsetHor: offsetHor,
-                    offsetVer: offsetVer,
-                  ));
+              setState(() {
+                showNext = true;
+                nextPage = Pages.bank;
+              });
             }
           }
         });
@@ -1238,20 +1536,17 @@ class _HomeVideoState extends State<HomeVideo> {
                     });
                     if (index > 1) {
                       _dataCentreVideoController.removeListener(() {});
-                      customPushReplacement(
-                          context,
-                          DataCentreVideo(
-                            from: Pages.home,
-                            offsetHor: offsetHor,
-                            offsetVer: offsetVer,
-                          ));
+                      setState(() {
+                        showNext = true;
+                        nextPage = Pages.dataCenter;
+                      });
                     }
                   }
                 });
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Data Centers",
+                text: TextsConstants.dataCentreTexts["topic"],
                 type: 0,
               ),
             ),
@@ -1263,7 +1558,7 @@ class _HomeVideoState extends State<HomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "Data Centers",
+      title: TextsConstants.schoolTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -1301,13 +1596,10 @@ class _HomeVideoState extends State<HomeVideo> {
             });
             if (index > 1) {
               _dataCentreVideoController.removeListener(() {});
-              customPushReplacement(
-                  context,
-                  DataCentreVideo(
-                    from: Pages.home,
-                    offsetHor: offsetHor,
-                    offsetVer: offsetVer,
-                  ));
+              setState(() {
+                showNext = true;
+                nextPage = Pages.dataCenter;
+              });
             }
           }
         });
@@ -1362,20 +1654,17 @@ class _HomeVideoState extends State<HomeVideo> {
                     });
                     if (index > 1) {
                       _warehouseVideoController.removeListener(() {});
-                      customPushReplacement(
-                          context,
-                          WarehouseVideo(
-                            from: Pages.home,
-                            offsetHor: offsetHor,
-                            offsetVer: offsetVer,
-                          ));
+                      setState(() {
+                        showNext = true;
+                        nextPage = Pages.werehouse;
+                      });
                     }
                   }
                 });
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Warehouses",
+                text: TextsConstants.warehouseTexts["topic"],
                 type: 0,
               ),
             ),
@@ -1387,7 +1676,7 @@ class _HomeVideoState extends State<HomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "Warehouses",
+      title: TextsConstants.schoolTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -1426,13 +1715,10 @@ class _HomeVideoState extends State<HomeVideo> {
             });
             if (index > 1) {
               _warehouseVideoController.removeListener(() {});
-              customPushReplacement(
-                  context,
-                  WarehouseVideo(
-                    from: Pages.home,
-                    offsetHor: offsetHor,
-                    offsetVer: offsetVer,
-                  ));
+              setState(() {
+                showNext = true;
+                nextPage = Pages.werehouse;
+              });
             }
           }
         });
@@ -1487,20 +1773,17 @@ class _HomeVideoState extends State<HomeVideo> {
                     if (index > 1) {
                       _retailVideoController.removeListener(() {});
 
-                      customPushReplacement(
-                          context,
-                          RetailVideo(
-                            from: Pages.home,
-                            offsetHor: offsetHor,
-                            offsetVer: offsetVer,
-                          ));
+                      setState(() {
+                        showNext = true;
+                        nextPage = Pages.retail;
+                      });
                     }
                   }
                 });
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Retail Stores",
+                text: TextsConstants.retailTexts["topic"],
                 type: 0,
               ),
             ),
@@ -1512,7 +1795,7 @@ class _HomeVideoState extends State<HomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "Retail Stores",
+      title: TextsConstants.schoolTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -1552,13 +1835,10 @@ class _HomeVideoState extends State<HomeVideo> {
             if (index > 1) {
               _retailVideoController.removeListener(() {});
 
-              customPushReplacement(
-                  context,
-                  RetailVideo(
-                    from: Pages.home,
-                    offsetHor: offsetHor,
-                    offsetVer: offsetVer,
-                  ));
+              setState(() {
+                showNext = true;
+                nextPage = Pages.retail;
+              });
             }
           }
         });
@@ -1613,20 +1893,17 @@ class _HomeVideoState extends State<HomeVideo> {
                     });
                     if (index > 1) {
                       _groceryShopVideoController.removeListener(() {});
-                      customPushReplacement(
-                          context,
-                          GroceryShopVideo(
-                            from: Pages.home,
-                            offsetHor: offsetHor,
-                            offsetVer: offsetVer,
-                          ));
+                      setState(() {
+                        showNext = true;
+                        nextPage = Pages.grocery;
+                      });
                     }
                   }
                 });
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Grocery Stores",
+                text: TextsConstants.groceryShopTexts["topic"],
                 type: 0,
               ),
             ),
@@ -1638,7 +1915,7 @@ class _HomeVideoState extends State<HomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "Grocery Stores",
+      title: TextsConstants.groceryShopTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -1677,13 +1954,10 @@ class _HomeVideoState extends State<HomeVideo> {
             });
             if (index > 1) {
               _groceryShopVideoController.removeListener(() {});
-              customPushReplacement(
-                  context,
-                  GroceryShopVideo(
-                    from: Pages.home,
-                    offsetHor: offsetHor,
-                    offsetVer: offsetVer,
-                  ));
+              setState(() {
+                showNext = true;
+                nextPage = Pages.grocery;
+              });
             }
           }
         });
@@ -1738,20 +2012,17 @@ class _HomeVideoState extends State<HomeVideo> {
                     });
                     if (index > 1) {
                       _fastFoodVideoController.removeListener(() {});
-                      customPushReplacement(
-                          context,
-                          FastFoodVideo(
-                            from: Pages.home,
-                            offsetHor: offsetHor,
-                            offsetVer: offsetVer,
-                          ));
+                      setState(() {
+                        showNext = true;
+                        nextPage = Pages.fastfoods;
+                      });
                     }
                   }
                 });
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Quick Serve Resturants",
+                text: TextsConstants.fastFoodTexts["topic"],
                 type: 0,
               ),
             ),
@@ -1763,7 +2034,7 @@ class _HomeVideoState extends State<HomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "Quick Serve Resturants",
+      title: TextsConstants.schoolTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -1802,13 +2073,10 @@ class _HomeVideoState extends State<HomeVideo> {
             });
             if (index > 1) {
               _fastFoodVideoController.removeListener(() {});
-              customPushReplacement(
-                  context,
-                  FastFoodVideo(
-                    from: Pages.home,
-                    offsetHor: offsetHor,
-                    offsetVer: offsetVer,
-                  ));
+              setState(() {
+                showNext = true;
+                nextPage = Pages.fastfoods;
+              });
             }
           }
         });

@@ -28,10 +28,12 @@ class TextAreaWithClip extends StatelessWidget {
       painter: SqureShapedCustomContainer(),
       child: Container(
         // width: screenSize.width < 1565 ? 1565 * 0.25 : screenSize.width * 0.25,
-        width: screenSize.width * 0.25 * Utils.getMultiplier(screenSize.width),
-        padding: EdgeInsets.symmetric(
-          vertical: screenSize.height * (35 / VideoAspectRatio.height),
-          horizontal: screenSize.width * (30 / VideoAspectRatio.width),
+        width: screenSize.width * 0.30 * Utils.getMultiplier(screenSize.width),
+        padding: EdgeInsets.only(
+          top: screenSize.height * (40 / VideoAspectRatio.height),
+          bottom: screenSize.height * (55 / VideoAspectRatio.height),
+          left: screenSize.width * (30 / VideoAspectRatio.width),
+          right: screenSize.width * (30 / VideoAspectRatio.width),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -43,19 +45,19 @@ class TextAreaWithClip extends StatelessWidget {
                 : TextAreaTextTopic(
                     screenSize: screenSize,
                     text: topic,
-                    fontSize: 21,
+                    fontSize: 31,
                   ),
             description == ''
                 ? const SizedBox()
                 : TextAreaTextDescription(
                     screenSize: screenSize,
                     text: description,
-                    fontSize: 17,
+                    fontSize: 27,
                   ),
             description == ''
                 ? const SizedBox()
                 : SizedBox(
-                    height: screenSize.height * (15 / VideoAspectRatio.height),
+                    height: screenSize.height * (45 / VideoAspectRatio.height),
                   ),
             texts.isEmpty
                 ? const SizedBox()
@@ -74,7 +76,7 @@ class TextAreaWithClip extends StatelessWidget {
                           .map<Widget>((text) => TextAreaTextRow(
                                 screenSize: screenSize,
                                 text: text,
-                                fontSize: 18,
+                                fontSize: 28,
                               ))
                           .toList(),
                     ),

@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:interactive_map/controller/appBind.dart';
@@ -27,7 +26,7 @@ class _InteractiveMapState extends State<InteractiveMap> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Video app',
+      title: 'Turntide App',
       initialBinding: AppBinding(),
       scrollBehavior: MyCustomScrollBehavior(),
       home: const HomeVideo(),
