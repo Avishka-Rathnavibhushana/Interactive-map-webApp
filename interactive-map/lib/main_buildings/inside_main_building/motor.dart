@@ -447,6 +447,23 @@ class _MotorState extends State<Motor> {
                       height:
                           25 * (screenSize.height / VideoAspectRatio.height),
                     ),
+                    widget.from == Pages.school ||
+                            widget.from == Pages.fastfoods ||
+                            widget.from == Pages.grocery ||
+                            widget.from == Pages.bank ||
+                            widget.from == Pages.retail ||
+                            widget.from == Pages.werehouse
+                        ? TextAreaWithClip(
+                            screenSize: screenSize,
+                            texts: const [
+                              "Optimal efficiency switched reluctance motor",
+                              "Standerd NEMA dimensions",
+                              "Available in 1-10 HP",
+                            ],
+                            topic: "",
+                            description: "",
+                          )
+                        :
                     TextAreaWithClip(
                       screenSize: screenSize,
                       texts: const [

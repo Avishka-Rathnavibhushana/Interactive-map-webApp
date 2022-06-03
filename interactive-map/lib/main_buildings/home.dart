@@ -10,17 +10,12 @@ import 'package:interactive_map/main_buildings/retail.dart';
 import 'package:interactive_map/main_buildings/school.dart';
 import 'package:interactive_map/main_buildings/warehouse.dart';
 import 'package:interactive_map/utills/utils.dart';
-import 'package:interactive_map/widgets/custom_button_label.dart';
 import 'package:interactive_map/widgets/custom_button_label_mobile.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
 import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
 import 'package:interactive_map/widgets/text_area_with_QR_with_clip.dart';
-import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
-
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class HomeVideo extends StatefulWidget {
   const HomeVideo({Key? key, this.offsetHor, this.offsetVer}) : super(key: key);
@@ -397,7 +392,7 @@ class _HomeVideoState extends State<HomeVideo> {
                                   child: GestureDetector(
                                     onTap: () {
                                       switch (nextPage) {
-                                        case 'Schools':
+                                        case Pages.school:
                                           customPushReplacement(
                                               context,
                                               SchoolVideo(
@@ -406,7 +401,7 @@ class _HomeVideoState extends State<HomeVideo> {
                                                 offsetVer: offsetVer,
                                               ));
                                           break;
-                                        case 'bank':
+                                        case Pages.bank:
                                           customPushReplacement(
                                               context,
                                               BankVideo(
@@ -415,7 +410,7 @@ class _HomeVideoState extends State<HomeVideo> {
                                                 offsetVer: offsetVer,
                                               ));
                                           break;
-                                        case 'grocery':
+                                        case Pages.grocery:
                                           customPushReplacement(
                                               context,
                                               GroceryShopVideo(
@@ -424,7 +419,7 @@ class _HomeVideoState extends State<HomeVideo> {
                                                 offsetVer: offsetVer,
                                               ));
                                           break;
-                                        case 'dataCenter':
+                                        case Pages.dataCenter:
                                           customPushReplacement(
                                               context,
                                               DataCentreVideo(
@@ -433,7 +428,7 @@ class _HomeVideoState extends State<HomeVideo> {
                                                 offsetVer: offsetVer,
                                               ));
                                           break;
-                                        case 'fastfoods':
+                                        case Pages.fastfoods:
                                           customPushReplacement(
                                               context,
                                               FastFoodVideo(
@@ -442,7 +437,7 @@ class _HomeVideoState extends State<HomeVideo> {
                                                 offsetVer: offsetVer,
                                               ));
                                           break;
-                                        case 'werehouse':
+                                        case Pages.werehouse:
                                           customPushReplacement(
                                               context,
                                               WarehouseVideo(
@@ -451,7 +446,7 @@ class _HomeVideoState extends State<HomeVideo> {
                                                 offsetVer: offsetVer,
                                               ));
                                           break;
-                                        case 'retail':
+                                        case Pages.retail:
                                           customPushReplacement(
                                               context,
                                               RetailVideo(
@@ -700,7 +695,7 @@ class _HomeVideoState extends State<HomeVideo> {
                                   child: GestureDetector(
                                     onTap: () {
                                       switch (nextPage) {
-                                        case 'Schools':
+                                        case Pages.school:
                                           customPushReplacement(
                                               context,
                                               SchoolVideo(
@@ -709,7 +704,7 @@ class _HomeVideoState extends State<HomeVideo> {
                                                 offsetVer: offsetVer,
                                               ));
                                           break;
-                                        case 'bank':
+                                        case Pages.bank:
                                           customPushReplacement(
                                               context,
                                               BankVideo(
@@ -718,7 +713,7 @@ class _HomeVideoState extends State<HomeVideo> {
                                                 offsetVer: offsetVer,
                                               ));
                                           break;
-                                        case 'grocery':
+                                        case Pages.grocery:
                                           customPushReplacement(
                                               context,
                                               GroceryShopVideo(
@@ -727,7 +722,7 @@ class _HomeVideoState extends State<HomeVideo> {
                                                 offsetVer: offsetVer,
                                               ));
                                           break;
-                                        case 'dataCenter':
+                                        case Pages.dataCenter:
                                           customPushReplacement(
                                               context,
                                               DataCentreVideo(
@@ -736,7 +731,7 @@ class _HomeVideoState extends State<HomeVideo> {
                                                 offsetVer: offsetVer,
                                               ));
                                           break;
-                                        case 'fastfoods':
+                                        case Pages.fastfoods:
                                           customPushReplacement(
                                               context,
                                               FastFoodVideo(
@@ -745,7 +740,7 @@ class _HomeVideoState extends State<HomeVideo> {
                                                 offsetVer: offsetVer,
                                               ));
                                           break;
-                                        case 'werehouse':
+                                        case Pages.werehouse:
                                           customPushReplacement(
                                               context,
                                               WarehouseVideo(
@@ -754,7 +749,7 @@ class _HomeVideoState extends State<HomeVideo> {
                                                 offsetVer: offsetVer,
                                               ));
                                           break;
-                                        case 'retail':
+                                        case Pages.retail:
                                           customPushReplacement(
                                               context,
                                               RetailVideo(
@@ -982,9 +977,11 @@ class _HomeVideoState extends State<HomeVideo> {
                     child: TextAreaSmallWithClip(
                       width: screenSize.width * 0.35,
                       screenSize: screenSize,
-                      prefixText: "64%",
+                      prefixText: TextsConstants
+                          .schoolTexts["TextAreaSmallWithClip"][0],
                       description:
-                          "of energy in school is used by HVAC and lightning",
+                          TextsConstants
+                          .schoolTexts["TextAreaSmallWithClip"][1],
                     ),
                   ),
                 )
@@ -998,9 +995,11 @@ class _HomeVideoState extends State<HomeVideo> {
                     child: TextAreaSmallWithClip(
                       width: screenSize.width * 0.35,
                       screenSize: screenSize,
-                      prefixText: "28%",
+                      prefixText: TextsConstants
+                          .fastFoodTexts["TextAreaSmallWithClip"][0],
                       description:
-                          "of restuarant energy costs are from HVAC on avarage",
+                          TextsConstants
+                          .fastFoodTexts["TextAreaSmallWithClip"][1],
                     ),
                   ),
                 )
@@ -1014,9 +1013,10 @@ class _HomeVideoState extends State<HomeVideo> {
                     child: TextAreaSmallWithClip(
                       width: screenSize.width * 0.35,
                       screenSize: screenSize,
-                      prefixText: "40-60%",
+                      prefixText:
+                          TextsConstants.bankTexts["TextAreaSmallWithClip"][0],
                       description:
-                          "of energy in bank branches is used by HVAC and lightning",
+                          TextsConstants.bankTexts["TextAreaSmallWithClip"][1],
                     ),
                   ),
                 )
@@ -1030,9 +1030,11 @@ class _HomeVideoState extends State<HomeVideo> {
                     child: TextAreaSmallWithClip(
                       width: screenSize.width * 0.35,
                       screenSize: screenSize,
-                      prefixText: "70%",
+                      prefixText: TextsConstants
+                          .retailTexts["TextAreaSmallWithClip"][0],
                       description:
-                          "of energy in retail is used by HVAC and lightning",
+                          TextsConstants
+                          .retailTexts["TextAreaSmallWithClip"][1],
                     ),
                   ),
                 )
@@ -1046,9 +1048,11 @@ class _HomeVideoState extends State<HomeVideo> {
                     child: TextAreaSmallWithClip(
                       width: screenSize.width * 0.35,
                       screenSize: screenSize,
-                      prefixText: "75%",
+                      prefixText: TextsConstants
+                          .warehouseTexts["TextAreaSmallWithClip"][0],
                       description:
-                          "of energy in warehouse is used by HVAC and lightning",
+                          TextsConstants
+                          .warehouseTexts["TextAreaSmallWithClip"][1],
                     ),
                   ),
                 )
@@ -1062,9 +1066,11 @@ class _HomeVideoState extends State<HomeVideo> {
                     child: TextAreaSmallWithClip(
                       width: screenSize.width * 0.35,
                       screenSize: screenSize,
-                      prefixText: "37%",
+                      prefixText: TextsConstants
+                          .dataCentreTexts["TextAreaSmallWithClip"][0],
                       description:
-                          "of energy in data centers is used by HVAC and lightning",
+                          TextsConstants
+                          .dataCentreTexts["TextAreaSmallWithClip"][1],
                     ),
                   ),
                 )
@@ -1078,9 +1084,11 @@ class _HomeVideoState extends State<HomeVideo> {
                     child: TextAreaSmallWithClip(
                       width: screenSize.width * 0.35,
                       screenSize: screenSize,
-                      prefixText: "37%",
+                      prefixText: TextsConstants
+                          .groceryShopTexts["TextAreaSmallWithClip"][0],
                       description:
-                          "of energy in data centers is used by HVAC and lightning",
+                          TextsConstants
+                          .groceryShopTexts["TextAreaSmallWithClip"][1],
                     ),
                   ),
                 )
@@ -1094,7 +1102,7 @@ class _HomeVideoState extends State<HomeVideo> {
                     child: GestureDetector(
                       onTap: () {
                         switch (nextPage) {
-                          case 'Schools':
+                          case Pages.school:
                             customPushReplacement(
                                 context,
                                 SchoolVideo(
@@ -1103,7 +1111,7 @@ class _HomeVideoState extends State<HomeVideo> {
                                   offsetVer: offsetVer,
                                 ));
                             break;
-                          case 'bank':
+                          case Pages.bank:
                             customPushReplacement(
                                 context,
                                 BankVideo(
@@ -1112,7 +1120,7 @@ class _HomeVideoState extends State<HomeVideo> {
                                   offsetVer: offsetVer,
                                 ));
                             break;
-                          case 'grocery':
+                          case Pages.grocery:
                             customPushReplacement(
                                 context,
                                 GroceryShopVideo(
@@ -1121,7 +1129,7 @@ class _HomeVideoState extends State<HomeVideo> {
                                   offsetVer: offsetVer,
                                 ));
                             break;
-                          case 'dataCenter':
+                          case Pages.dataCenter:
                             customPushReplacement(
                                 context,
                                 DataCentreVideo(
@@ -1130,7 +1138,7 @@ class _HomeVideoState extends State<HomeVideo> {
                                   offsetVer: offsetVer,
                                 ));
                             break;
-                          case 'fastfoods':
+                          case Pages.fastfoods:
                             customPushReplacement(
                                 context,
                                 FastFoodVideo(
@@ -1139,7 +1147,7 @@ class _HomeVideoState extends State<HomeVideo> {
                                   offsetVer: offsetVer,
                                 ));
                             break;
-                          case 'werehouse':
+                          case Pages.werehouse:
                             customPushReplacement(
                                 context,
                                 WarehouseVideo(
@@ -1148,7 +1156,7 @@ class _HomeVideoState extends State<HomeVideo> {
                                   offsetVer: offsetVer,
                                 ));
                             break;
-                          case 'retail':
+                          case Pages.retail:
                             customPushReplacement(
                                 context,
                                 RetailVideo(
@@ -1299,7 +1307,7 @@ class _HomeVideoState extends State<HomeVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Schools",
+                text: TextsConstants.schoolTexts["topic"],
                 type: 0,
               ),
             ),
@@ -1311,7 +1319,7 @@ class _HomeVideoState extends State<HomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "Schools",
+      title: TextsConstants.schoolTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -1419,7 +1427,7 @@ class _HomeVideoState extends State<HomeVideo> {
                 },
                 child: CustomButtonLabelWithClip(
                   screenSize: screenSize,
-                  text: "Banks",
+                  text: TextsConstants.bankTexts["topic"],
                   type: 0,
                 ),
               ),
@@ -1432,7 +1440,7 @@ class _HomeVideoState extends State<HomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "Banks",
+      title: TextsConstants.bankTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -1538,7 +1546,7 @@ class _HomeVideoState extends State<HomeVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Data Centers",
+                text: TextsConstants.dataCentreTexts["topic"],
                 type: 0,
               ),
             ),
@@ -1550,7 +1558,7 @@ class _HomeVideoState extends State<HomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "Data Centers",
+      title: TextsConstants.schoolTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -1656,7 +1664,7 @@ class _HomeVideoState extends State<HomeVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Warehouses",
+                text: TextsConstants.warehouseTexts["topic"],
                 type: 0,
               ),
             ),
@@ -1668,7 +1676,7 @@ class _HomeVideoState extends State<HomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "Warehouses",
+      title: TextsConstants.schoolTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -1775,7 +1783,7 @@ class _HomeVideoState extends State<HomeVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Retail Stores",
+                text: TextsConstants.retailTexts["topic"],
                 type: 0,
               ),
             ),
@@ -1787,7 +1795,7 @@ class _HomeVideoState extends State<HomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "Retail Stores",
+      title: TextsConstants.schoolTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -1895,7 +1903,7 @@ class _HomeVideoState extends State<HomeVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Grocery Stores",
+                text: TextsConstants.groceryShopTexts["topic"],
                 type: 0,
               ),
             ),
@@ -1907,7 +1915,7 @@ class _HomeVideoState extends State<HomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "Grocery Stores",
+      title: TextsConstants.groceryShopTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -2014,7 +2022,7 @@ class _HomeVideoState extends State<HomeVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Quick Serve Resturants",
+                text: TextsConstants.fastFoodTexts["topic"],
                 type: 0,
               ),
             ),
@@ -2026,7 +2034,7 @@ class _HomeVideoState extends State<HomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "Quick Serve Resturants",
+      title: TextsConstants.schoolTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {

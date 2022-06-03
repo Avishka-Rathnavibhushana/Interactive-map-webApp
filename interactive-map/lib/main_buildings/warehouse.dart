@@ -6,7 +6,6 @@ import 'package:interactive_map/main_buildings/inside_main_building/map_main_scr
 import 'package:interactive_map/widgets/custom_button_label_mobile.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
-import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 import 'package:interactive_map/utills/utils.dart';
@@ -289,7 +288,7 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
                                         decoration: const BoxDecoration(
                                           image: DecorationImage(
                                             image: AssetImage(
-                                                'assets/animations/Data_animation_512.gif'),
+                                                dataAnimationGif),
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -473,7 +472,7 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
                                         decoration: const BoxDecoration(
                                           image: DecorationImage(
                                             image: AssetImage(
-                                                'assets/animations/Data_animation_512.gif'),
+                                                dataAnimationGif),
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -624,7 +623,7 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
                           decoration: const BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage(
-                                  'assets/animations/Data_animation_512.gif'),
+                                  dataAnimationGif),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -654,14 +653,14 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
                       alignment: Alignment.topLeft,
                       child: TextAreaWithClip(
                           screenSize: screenSize,
-                          texts: const [
-                            "Smart Motor System",
-                            "Smart HVAC",
-                            "Smart Building Operations"
-                          ],
-                          topic: "Turntide for Banks",
-                          description:
-                              "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights"),
+                      texts: TextsConstants
+                          .warehouseTexts["TextAreaWithClipMain"]["texts"],
+                      topic: TextsConstants
+                          .warehouseTexts["TextAreaWithClipMain"]["topic"],
+                      description:
+                          TextsConstants.warehouseTexts["TextAreaWithClipMain"]
+                              ["description"],
+                    ),
                     ),
                   )
                 : Container(),
@@ -673,15 +672,16 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
                       alignment: Alignment.topLeft,
                       child: TextAreaWithClip(
                           screenSize: screenSize,
-                          texts: const [
-                            "Improve energy efficiency",
-                            "Maintain a comfortable environment",
-                            "Automate lighting and HVAC",
-                            "Extent equipment life",
-                            "Prevent learning disruption"
-                          ],
-                          topic: "Stratergies for Sustainable Operations",
-                          description: ""),
+                      texts: TextsConstants
+                              .warehouseTexts["TextAreaWithClipEnergySaving"]
+                          ["texts"],
+                      topic: TextsConstants
+                              .warehouseTexts["TextAreaWithClipEnergySaving"]
+                          ["topic"],
+                      description: TextsConstants
+                              .warehouseTexts["TextAreaWithClipEnergySaving"]
+                          ["description"],
+                    ),
                     ),
                   )
                 : Container(),
@@ -726,7 +726,7 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "Smart HVAC",
+      title: TextsConstants.warehouseTexts["subTopics"][0],
       onPressed: () async {
         setShow();
         setState(() {
@@ -762,7 +762,7 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "Energy-Saving Stratergies",
+      title: TextsConstants.warehouseTexts["subTopics"][1],
       onPressed: () async {
         setShow();
         setState(() {
@@ -776,7 +776,7 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "TurntideApp",
+      title: TextsConstants.warehouseTexts["subTopics"][2],
       onPressed: () async {
         setShow();
         setState(() {
@@ -898,7 +898,7 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Smart HVAC",
+                text: TextsConstants.warehouseTexts["subTopics"][0],
                 type: 2,
               ),
             ),
@@ -922,7 +922,7 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Energy-Saving Stratergies",
+                text: TextsConstants.warehouseTexts["subTopics"][1],
                 type: 1,
               ),
             ),
@@ -967,7 +967,7 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "TurntideApp",
+                text: TextsConstants.warehouseTexts["subTopics"][2],
                 type: 3,
               ),
             ),

@@ -38,10 +38,12 @@ class AppColors {
   static const Color fog = Color(0xFFEFEFEF);
 }
 
-//video links
+//assets links
 const homeImage = 'assets/graphics/HOME.png';
 const moreImage = 'assets/graphics/MORE.png';
 const nextImage = 'assets/graphics/Next.png';
+const dataAnimationGif = 'assets/animations/Data_animation_512.gif';
+const dataCenterAirFlowGif = 'assets/animations/Data_Center_airflow.gif';
 
 //pages
 class Pages {
@@ -85,4 +87,233 @@ class Fonts {
 class VideoAspectRatio {
   static const width = 1920.0;
   static const height = 1080.0;
+}
+
+// Application texts
+class TextsConstants {
+  static const Map<String, dynamic> schoolTexts = {
+    "topic": "Schools",
+    "TextAreaSmallWithClip": [
+      "64%",
+      "of energy in school is used by HVAC and lightning",
+    ],
+    "TextAreaWithClipMain": {
+      "texts": [
+        "Smart Motor System",
+        "Smart HVAC",
+        "Smart Building Operations",
+      ],
+      "topic": "Turntide for Schools",
+      "description":
+          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+    },
+    "TextAreaWithClipEnergySaving": {
+      "texts": [
+        "Improve energy efficiency",
+        "Maintain a comfortable environment",
+        "Automate lighting and HVAC",
+        "Extent equipment life",
+        "Prevent learning disruption",
+      ],
+      "topic": "Stratergies for Sustainable Operations",
+      "description": "",
+    },
+    "subTopics": [
+      "Smart HVAC",
+      "Energy-Saving Stratergies",
+      "TurntideApp",
+    ],
+  };
+  static const Map<String, dynamic> fastFoodTexts = {
+    "topic": "Quick Serve Resturants",
+    "TextAreaSmallWithClip": [
+      "28%",
+      "of restuarant energy costs are from HVAC on avarage",
+    ],
+    "TextAreaWithClipMain": {
+      "texts": [
+        "Smart Motor System",
+        "Smart HVAC",
+        "Smart Building Operations",
+      ],
+      "topic": "Turntide for Restaurants",
+      "description":
+          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+    },
+    "TextAreaWithClipEnergySaving": {
+      "texts": [
+        "Improve energy efficiency",
+        "Maintain a comfortable environment",
+        "Automate lighting and HVAC",
+        "Extent equipment life",
+      ],
+      "topic": "Stratergies for Sustainable Operations",
+      "description": "",
+    },
+    "subTopics": [
+      "Smart HVAC",
+      "Energy-Saving Stratergies",
+      "TurntideApp",
+    ],
+  };
+  static const Map<String, dynamic> bankTexts = {
+    "topic": "Banks",
+    "TextAreaSmallWithClip": [
+      "40-60%",
+      "of energy in bank branches is used by HVAC and lightning",
+    ],
+    "TextAreaWithClipMain": {
+      "texts": [
+        "Smart Motor System",
+        "Smart HVAC",
+        "Smart Building Operations",
+      ],
+      "topic": "Turntide for Banks",
+      "description":
+          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+    },
+    "TextAreaWithClipEnergySaving": {
+      "texts": [
+        "Improve energy efficiency",
+        "Maintain a comfortable environment",
+        "Automate lighting and HVAC",
+        "Extent equipment life",
+      ],
+      "topic": "Stratergies for Sustainable Operations",
+      "description": "",
+    },
+    "subTopics": [
+      "Smart HVAC",
+      "Energy-Saving Stratergies",
+      "TurntideApp",
+    ],
+  };
+  static const Map<String, dynamic> retailTexts = {
+    "topic": "Retail Stores",
+    "TextAreaSmallWithClip": [
+      "70%",
+      "of energy in retail is used by HVAC and lightning",
+    ],
+    "TextAreaWithClipMain": {
+      "texts": [
+        "Smart Motor System",
+        "Smart HVAC",
+        "Smart Building Operations",
+      ],
+      "topic": "Turntide for Retail Stores",
+      "description":
+          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+    },
+    "TextAreaWithClipEnergySaving": {
+      "texts": [
+        "Improve energy efficiency",
+        "Maintain a comfortable environment",
+        "Automate lighting and HVAC",
+        "Extent equipment life",
+      ],
+      "topic": "Stratergies for Sustainable Operations",
+      "description": "",
+    },
+    "subTopics": [
+      "Smart HVAC",
+      "Energy-Saving Stratergies",
+      "TurntideApp",
+    ],
+  };
+  static const Map<String, dynamic> warehouseTexts = {
+    "topic": "Warehouses",
+    "TextAreaSmallWithClip": [
+      "75%",
+      "of energy in warehouses is used by HVAC and lightning",
+    ],
+    "TextAreaWithClipMain": {
+      "texts": [
+        "Smart Motor System",
+        "Smart HVAC",
+        "Smart Building Operations",
+      ],
+      "topic": "Turntide for Warehouses",
+      "description":
+          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+    },
+    "TextAreaWithClipEnergySaving": {
+      "texts": [
+        "Improve energy efficiency",
+        "Maintain a comfortable environment",
+        "Automate lighting and HVAC",
+        "Extent equipment life",
+      ],
+      "topic": "Stratergies for Sustainable Operations",
+      "description": "",
+    },
+    "subTopics": [
+      "Smart HVAC",
+      "Energy-Saving Stratergies",
+      "TurntideApp",
+    ],
+  };
+  static const Map<String, dynamic> dataCentreTexts = {
+    "topic": "Data Centers",
+    "TextAreaSmallWithClip": [
+      "37%",
+      "of energy in data centers is used by HVAC and lightning",
+    ],
+    "TextAreaWithClipMain": {
+      "texts": [
+        "Smart Motor System",
+        "Smart HVAC",
+        "Smart Building Operations",
+      ],
+      "topic": "Turntide for Data Centers",
+      "description":
+          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+    },
+    "TextAreaWithClipEnergySaving": {
+      "texts": [
+        "Improve energy efficiency",
+        "Maintain a comfortable environment",
+        "Automate lighting and HVAC",
+        "Extent equipment life",
+      ],
+      "topic": "Stratergies for Sustainable Operations",
+      "description": "",
+    },
+    "subTopics": [
+      "Smart HVAC",
+      "Energy-Saving Stratergies",
+      "TurntideApp",
+    ],
+  };
+  static const Map<String, dynamic> groceryShopTexts = {
+    "topic": "Grocery Stores",
+    "TextAreaSmallWithClip": [
+      "50%",
+      "of energy in grocery stores is used by HVAC and lightning",
+    ],
+    "TextAreaWithClipMain": {
+      "texts": [
+        "Smart Motor System",
+        "Smart HVAC",
+        "Smart Building Operations",
+      ],
+      "topic": "Turntide for Grocery Stores",
+      "description":
+          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+    },
+    "TextAreaWithClipEnergySaving": {
+      "texts": [
+        "Improve energy efficiency",
+        "Maintain a comfortable environment",
+        "Automate lighting and HVAC",
+        "Extent equipment life",
+      ],
+      "topic": "Stratergies for Sustainable Operations",
+      "description": "",
+    },
+    "subTopics": [
+      "Smart HVAC",
+      "Energy-Saving Stratergies",
+      "TurntideApp",
+    ],
+  };
 }

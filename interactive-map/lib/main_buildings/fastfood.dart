@@ -6,7 +6,6 @@ import 'package:interactive_map/main_buildings/inside_main_building/map_main_scr
 import 'package:interactive_map/widgets/custom_button_label_mobile.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
-import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 import 'package:interactive_map/utills/utils.dart';
@@ -289,7 +288,7 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
                                         decoration: const BoxDecoration(
                                           image: DecorationImage(
                                             image: AssetImage(
-                                                'assets/animations/Data_animation_512.gif'),
+                                                dataAnimationGif),
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -473,7 +472,7 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
                                         decoration: const BoxDecoration(
                                           image: DecorationImage(
                                             image: AssetImage(
-                                                'assets/animations/Data_animation_512.gif'),
+                                                dataAnimationGif),
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -617,14 +616,15 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
                     : Container(),
                 show
                     ? Positioned(
-                        left: Utils.getVideoScreenWidth(screenSize) * 0.5,
+                          left: Utils.getVideoScreenWidth(screenSize) * 0.65,
                         child: Container(
-                          width: Utils.getVideoScreenWidth(screenSize) * 0.075,
-                          height: Utils.getVideoScreenHeight(screenSize) * 0.3,
+                            width: Utils.getVideoScreenWidth(screenSize) * 0.12,
+                            height:
+                                Utils.getVideoScreenHeight(screenSize) * 0.45,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage(
-                                  'assets/animations/Data_animation_512.gif'),
+                                  dataAnimationGif),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -654,14 +654,13 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
                       alignment: Alignment.topLeft,
                       child: TextAreaWithClip(
                           screenSize: screenSize,
-                          texts: const [
-                            "Smart Motor System",
-                            "Smart HVAC",
-                            "Smart Building Operations"
-                          ],
-                          topic: "Turntide for Banks",
-                          description:
-                              "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights"),
+                      texts: TextsConstants
+                          .fastFoodTexts["TextAreaWithClipMain"]["texts"],
+                      topic: TextsConstants
+                          .fastFoodTexts["TextAreaWithClipMain"]["topic"],
+                      description: TextsConstants
+                          .fastFoodTexts["TextAreaWithClipMain"]["description"],
+                    ),
                     ),
                   )
                 : Container(),
@@ -673,15 +672,16 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
                       alignment: Alignment.topLeft,
                       child: TextAreaWithClip(
                           screenSize: screenSize,
-                          texts: const [
-                            "Improve energy efficiency",
-                            "Maintain a comfortable environment",
-                            "Automate lighting and HVAC",
-                            "Extent equipment life",
-                            "Prevent learning disruption"
-                          ],
-                          topic: "Stratergies for Sustainable Operations",
-                          description: ""),
+                      texts: TextsConstants
+                              .fastFoodTexts["TextAreaWithClipEnergySaving"]
+                          ["texts"],
+                      topic: TextsConstants
+                              .fastFoodTexts["TextAreaWithClipEnergySaving"]
+                          ["topic"],
+                      description: TextsConstants
+                              .fastFoodTexts["TextAreaWithClipEnergySaving"]
+                          ["description"],
+                    ),
                     ),
                   )
                 : Container(),
@@ -726,7 +726,7 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "Smart HVAC",
+      title: TextsConstants.fastFoodTexts["subTopics"][0],
       onPressed: () async {
         setShow();
         setState(() {
@@ -762,7 +762,7 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "Energy-Saving Stratergies",
+      title: TextsConstants.fastFoodTexts["subTopics"][1],
       onPressed: () async {
         setShow();
         setState(() {
@@ -776,7 +776,7 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "TurntideApp",
+      title: TextsConstants.fastFoodTexts["subTopics"][2],
       onPressed: () async {
         setShow();
         setState(() {
@@ -863,8 +863,8 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
   Widget motor() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.536,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.325,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.725,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.42,
         child: Stack(
           children: [
             InkWell(
@@ -898,7 +898,7 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Smart HVAC",
+                text: TextsConstants.fastFoodTexts["subTopics"][0],
                 type: 2,
               ),
             ),
@@ -909,7 +909,7 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
   Widget energySaving() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.439,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.531,
         top: Utils.getVideoScreenHeight(screenSize) * 0.647,
         child: Stack(
           children: [
@@ -922,7 +922,7 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Energy-Saving Stratergies",
+                text: TextsConstants.fastFoodTexts["subTopics"][1],
                 type: 1,
               ),
             ),
@@ -933,8 +933,8 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
   Widget mapScreen() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.57,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.15,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.71,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.23,
         child: Stack(
           children: [
             InkWell(
@@ -967,7 +967,7 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "TurntideApp",
+                text: TextsConstants.fastFoodTexts["subTopics"][2],
                 type: 3,
               ),
             ),

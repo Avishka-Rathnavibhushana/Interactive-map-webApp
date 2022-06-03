@@ -6,7 +6,6 @@ import 'package:interactive_map/main_buildings/inside_main_building/map_main_scr
 import 'package:interactive_map/widgets/custom_button_label_mobile.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
-import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 import 'package:interactive_map/utills/utils.dart';
@@ -288,7 +287,7 @@ class _BankVideoState extends State<BankVideo> {
                                         decoration: const BoxDecoration(
                                           image: DecorationImage(
                                             image: AssetImage(
-                                                'assets/animations/Data_animation_512.gif'),
+                                                dataAnimationGif),
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -472,7 +471,7 @@ class _BankVideoState extends State<BankVideo> {
                                         decoration: const BoxDecoration(
                                           image: DecorationImage(
                                             image: AssetImage(
-                                                'assets/animations/Data_animation_512.gif'),
+                                                dataAnimationGif),
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -616,14 +615,15 @@ class _BankVideoState extends State<BankVideo> {
                     : Container(),
                 show
                     ? Positioned(
-                        left: Utils.getVideoScreenWidth(screenSize) * 0.5,
+                          left: Utils.getVideoScreenWidth(screenSize) * 0.7,
                         child: Container(
-                          width: Utils.getVideoScreenWidth(screenSize) * 0.075,
-                          height: Utils.getVideoScreenHeight(screenSize) * 0.3,
+                            width: Utils.getVideoScreenWidth(screenSize) * 0.08,
+                            height:
+                                Utils.getVideoScreenHeight(screenSize) * 0.33,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage(
-                                  'assets/animations/Data_animation_512.gif'),
+                                  dataAnimationGif),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -653,14 +653,13 @@ class _BankVideoState extends State<BankVideo> {
                       alignment: Alignment.topLeft,
                       child: TextAreaWithClip(
                           screenSize: screenSize,
-                          texts: const [
-                            "Smart Motor System",
-                            "Smart HVAC",
-                            "Smart Building Operations"
-                          ],
-                          topic: "Turntide for Banks",
-                          description:
-                              "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights"),
+                          texts: TextsConstants.bankTexts["TextAreaWithClipMain"]
+                          ["texts"],
+                      topic: TextsConstants.bankTexts["TextAreaWithClipMain"]
+                          ["topic"],
+                      description: TextsConstants
+                          .bankTexts["TextAreaWithClipMain"]["description"],
+                    ),
                     ),
                   )
                 : Container(),
@@ -672,15 +671,14 @@ class _BankVideoState extends State<BankVideo> {
                       alignment: Alignment.topLeft,
                       child: TextAreaWithClip(
                           screenSize: screenSize,
-                          texts: const [
-                            "Improve energy efficiency",
-                            "Maintain a comfortable environment",
-                            "Automate lighting and HVAC",
-                            "Extent equipment life",
-                            "Prevent learning disruption"
-                          ],
-                          topic: "Stratergies for Sustainable Operations",
-                          description: ""),
+                          texts: TextsConstants
+                          .bankTexts["TextAreaWithClipEnergySaving"]["texts"],
+                      topic: TextsConstants
+                          .bankTexts["TextAreaWithClipEnergySaving"]["topic"],
+                      description: TextsConstants
+                              .bankTexts["TextAreaWithClipEnergySaving"]
+                          ["description"],
+                    ),
                     ),
                   )
                 : Container(),
@@ -725,7 +723,7 @@ class _BankVideoState extends State<BankVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "Smart HVAC",
+      title: TextsConstants.bankTexts["subTopics"][0],
       onPressed: () async {
         setShow();
         setState(() {
@@ -761,7 +759,7 @@ class _BankVideoState extends State<BankVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "Energy-Saving Stratergies",
+      title: TextsConstants.bankTexts["subTopics"][1],
       onPressed: () async {
         setShow();
         setState(() {
@@ -775,7 +773,7 @@ class _BankVideoState extends State<BankVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "TurntideApp",
+      title: TextsConstants.bankTexts["subTopics"][2],
       onPressed: () async {
         setShow();
         setState(() {
@@ -862,8 +860,8 @@ class _BankVideoState extends State<BankVideo> {
   Widget motor() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.536,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.325,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.75,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.35,
         child: Stack(
           children: [
             InkWell(
@@ -897,7 +895,7 @@ class _BankVideoState extends State<BankVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Smart HVAC",
+                text: TextsConstants.bankTexts["subTopics"][0],
                 type: 2,
               ),
             ),
@@ -908,8 +906,8 @@ class _BankVideoState extends State<BankVideo> {
   Widget energySaving() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.439,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.647,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.5,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.62,
         child: Stack(
           children: [
             InkWell(
@@ -921,7 +919,7 @@ class _BankVideoState extends State<BankVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Energy-Saving Stratergies",
+                text: TextsConstants.bankTexts["subTopics"][1],
                 type: 1,
               ),
             ),
@@ -932,8 +930,8 @@ class _BankVideoState extends State<BankVideo> {
   Widget mapScreen() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.57,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.15,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.55,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.125,
         child: Stack(
           children: [
             InkWell(
@@ -966,7 +964,7 @@ class _BankVideoState extends State<BankVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "TurntideApp",
+                text: TextsConstants.bankTexts["subTopics"][2],
                 type: 3,
               ),
             ),
