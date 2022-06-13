@@ -396,7 +396,7 @@ class _ScreenRightState extends State<ScreenRight> {
               ? nextIndex
                   ? Padding(
                       padding: EdgeInsets.only(
-                          top: Utils.getTopPadding(screenSize, 100)),
+                          top: Utils.getTopPadding(screenSize, 190)),
                       child: Container(
                         alignment: Alignment.topLeft,
                         child: TextAreaWithClip(
@@ -411,7 +411,7 @@ class _ScreenRightState extends State<ScreenRight> {
                     )
                   : Padding(
                       padding: EdgeInsets.only(
-                          top: Utils.getTopPadding(screenSize, 100)),
+                          top: Utils.getTopPadding(screenSize, 190)),
                       child: Container(
                         alignment: Alignment.topLeft,
                         child: TextAreaWithClip(

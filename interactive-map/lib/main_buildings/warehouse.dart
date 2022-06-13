@@ -747,7 +747,7 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
               customPushReplacement(
                   context,
                   Motor(
-                    from: Pages.school,
+                    from: Pages.werehouse,
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                   ));

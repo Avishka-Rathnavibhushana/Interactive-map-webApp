@@ -13,12 +13,14 @@ class TextAreaWithClip extends StatelessWidget {
     required this.texts,
     required this.topic,
     required this.description,
+    this.ratio = 0.30,
   }) : super(key: key);
 
   final Size screenSize;
   final List<String> texts;
   final String topic;
   final String description;
+  final double ratio;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class TextAreaWithClip extends StatelessWidget {
       painter: SqureShapedCustomContainer(),
       child: Container(
         // width: screenSize.width < 1565 ? 1565 * 0.25 : screenSize.width * 0.25,
-        width: screenSize.width * 0.30 * Utils.getMultiplier(screenSize.width),
+        width: screenSize.width * ratio * Utils.getMultiplier(screenSize.width),
         padding: EdgeInsets.only(
           top: screenSize.height * (40 / VideoAspectRatio.height),
           bottom: screenSize.height * (55 / VideoAspectRatio.height),
@@ -46,6 +48,7 @@ class TextAreaWithClip extends StatelessWidget {
                     screenSize: screenSize,
                     text: topic,
                     fontSize: 31,
+                    ratio: ratio,
                   ),
             description == ''
                 ? const SizedBox()
@@ -53,6 +56,7 @@ class TextAreaWithClip extends StatelessWidget {
                     screenSize: screenSize,
                     text: description,
                     fontSize: 27,
+                    ratio: ratio,
                   ),
             description == ''
                 ? const SizedBox()
@@ -77,6 +81,7 @@ class TextAreaWithClip extends StatelessWidget {
                                 screenSize: screenSize,
                                 text: text,
                                 fontSize: 28,
+                                ratio: ratio,
                               ))
                           .toList(),
                     ),

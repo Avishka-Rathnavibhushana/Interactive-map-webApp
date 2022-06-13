@@ -462,6 +462,7 @@ class _MotorState extends State<Motor> {
                             ],
                             topic: "",
                             description: "",
+                            ratio: 0.38,
                           )
                         :
                     TextAreaWithClip(
@@ -474,6 +475,7 @@ class _MotorState extends State<Motor> {
                       ],
                       topic: "",
                       description: "",
+                            ratio: 0.38,
                     ),
                     SizedBox(
                       height:
