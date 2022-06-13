@@ -8,11 +8,13 @@ class TextAreaTextRow extends StatelessWidget {
     required this.screenSize,
     required this.text,
     required this.fontSize,
+    this.ratio = 0.30,
   }) : super(key: key);
 
   final Size screenSize;
   final String text;
   final double fontSize;
+  final double ratio;
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +22,19 @@ class TextAreaTextRow extends StatelessWidget {
       padding: EdgeInsets.symmetric(
           vertical: screenSize.height * (25 / VideoAspectRatio.height)),
       //width: screenSize.width < 1565 ? 1565 * 0.25 : screenSize.width * 0.25,
-      width: screenSize.width * 0.30 * Utils.getMultiplier(screenSize.width),
+      width: screenSize.width * ratio * Utils.getMultiplier(screenSize.width),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(
-            Icons.add,
-            color: AppColors.fern,
-            size: screenSize.height * (17 / VideoAspectRatio.height),
+          Padding(
+            padding: const EdgeInsets.only(top: 5),
+            child: Icon(
+              Icons.add,
+              color: AppColors.fern,
+              size: screenSize.height * (25 / VideoAspectRatio.height),
+            ),
           ),
           Container(
             width: screenSize.width *

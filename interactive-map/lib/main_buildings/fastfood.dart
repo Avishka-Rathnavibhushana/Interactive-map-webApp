@@ -747,7 +747,7 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
               customPushReplacement(
                   context,
                   Motor(
-                    from: Pages.school,
+                    from: Pages.fastfoods,
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                   ));
