@@ -10,6 +10,7 @@ import 'package:interactive_map/screens/main_buildings/retail.dart';
 import 'package:interactive_map/screens/main_buildings/school.dart';
 import 'package:interactive_map/screens/main_buildings/warehouse.dart';
 import 'package:interactive_map/screens/vechicles/avgNarm.dart';
+import 'package:interactive_map/screens/vechicles/excavator.dart';
 import 'package:interactive_map/screens/vechicles/train.dart';
 import 'package:interactive_map/utills/utils.dart';
 import 'package:interactive_map/widgets/custom_button_label_mobile.dart';
@@ -413,7 +414,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                                         case Pages.excavator:
                                           customPushReplacement(
                                               context,
-                                              GroceryShopVideo(
+                                              ExcavatorVideo(
                                                 from: Pages.vehicle,
                                                 offsetHor: offsetHor,
                                                 offsetVer: offsetVer,
@@ -714,7 +715,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                                         case Pages.excavator:
                                           customPushReplacement(
                                               context,
-                                              GroceryShopVideo(
+                                              ExcavatorVideo(
                                                 from: Pages.vehicle,
                                                 offsetHor: offsetHor,
                                                 offsetVer: offsetVer,
@@ -1113,7 +1114,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                           case Pages.excavator:
                             customPushReplacement(
                                 context,
-                                GroceryShopVideo(
+                                ExcavatorVideo(
                                   from: Pages.vehicle,
                                   offsetHor: offsetHor,
                                   offsetVer: offsetVer,

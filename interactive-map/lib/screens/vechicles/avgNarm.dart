@@ -229,27 +229,7 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
                               //         ),
                               //       )
                               //     : Container(),
-                              show
-                                  ? Positioned(
-                                      left: Utils.getVideoScreenWidth(
-                                              screenSizeMobile1) *
-                                          0.5,
-                                      child: Container(
-                                        width: Utils.getVideoScreenWidth(
-                                                screenSizeMobile1) *
-                                            0.075,
-                                        height: Utils.getVideoScreenHeight(
-                                                screenSizeMobile1) *
-                                            0.3,
-                                        decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                            image: AssetImage(dataAnimationGif),
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  : Container(),
+                             
                             ],
                           ),
                         ),
@@ -358,27 +338,7 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
                               //         ),
                               //       )
                               //     : Container(),
-                              show
-                                  ? Positioned(
-                                      left: Utils.getVideoScreenWidth(
-                                              screenSizeMobile2) *
-                                          0.5,
-                                      child: Container(
-                                        width: Utils.getVideoScreenWidth(
-                                                screenSizeMobile2) *
-                                            0.075,
-                                        height: Utils.getVideoScreenHeight(
-                                                screenSizeMobile2) *
-                                            0.3,
-                                        decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                            image: AssetImage(dataAnimationGif),
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  : Container(),
+                              
                             ],
                           ),
                         ),
@@ -471,25 +431,7 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
                         //         ),
                         //       )
                         //     : Container(),
-                        show
-                            ? Positioned(
-                                left:
-                                    Utils.getVideoScreenWidth(screenSize) * 0.5,
-                                child: Container(
-                                  width: Utils.getVideoScreenWidth(screenSize) *
-                                      0.075,
-                                  height:
-                                      Utils.getVideoScreenHeight(screenSize) *
-                                          0.3,
-                                  decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage(dataAnimationGif),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            : Container(),
+                        
                       ],
                     ),
                   ),

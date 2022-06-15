@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/screens/vechicles/avgNarm.dart';
+import 'package:interactive_map/screens/vechicles/excavator.dart';
 import 'package:interactive_map/screens/vechicles/train.dart';
 import 'package:interactive_map/widgets/custom_text_container.dart';
 import 'package:interactive_map/widgets/custom_topic.dart';
@@ -58,7 +59,14 @@ class _TransitionPageState extends State<TransitionPage> {
         offsetHor: offsetHor,
         offsetVer: offsetVer,
       );
+    } else if (from == Pages.excavator) {
+      return ExcavatorVideo(
+        from: current,
+        offsetHor: offsetHor,
+        offsetVer: offsetVer,
+      );
     }
+    
   }
 
   @override
@@ -409,6 +417,7 @@ class _TransitionPageState extends State<TransitionPage> {
                       ],
                       topic: "",
                       description: "",
+                      ratio: 0.38,
                     ),
                     SizedBox(
                       height:

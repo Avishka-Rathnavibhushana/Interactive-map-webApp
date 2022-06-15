@@ -520,9 +520,10 @@ class TextsConstants {
       "description": "",
     },
     "subTopics": [
-      "Smart HVAC",
-      "Energy-Saving Stratergies",
-      "TurntideApp",
+      "Battery loop",
+      "Drive loop",
+      "DCDC Converter",
+      "HD Mortor",
     ],
   };
   static const Map<String, dynamic> trainTexts = {
