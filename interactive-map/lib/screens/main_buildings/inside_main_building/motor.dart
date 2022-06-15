@@ -464,19 +464,6 @@ class _MotorState extends State<Motor> {
                             description: "",
                             ratio: 0.38,
                           )
-<<<<<<< HEAD:interactive-map/lib/screens/main_buildings/inside_main_building/motor.dart
-                        : TextAreaWithClip(
-                            screenSize: screenSize,
-                            texts: const [
-                              "Slim design for space efficiency",
-                              "IE5-level motor efficiency",
-                              "Ultra-reliable performance across all speeds",
-                              "Provides diagnostics like torque, speed, and HP"
-                            ],
-                            topic: "",
-                            description: "",
-                          ),
-=======
                         :
                     TextAreaWithClip(
                       screenSize: screenSize,
@@ -489,8 +476,7 @@ class _MotorState extends State<Motor> {
                       topic: "",
                       description: "",
                             ratio: 0.38,
-                    ),
->>>>>>> 3aa3aca1873897ea7aebe7637f5c2b3d327ad9e6:interactive-map/lib/main_buildings/inside_main_building/motor.dart
+                          ),
                     SizedBox(
                       height:
                           45 * (screenSize.height / VideoAspectRatio.height),
