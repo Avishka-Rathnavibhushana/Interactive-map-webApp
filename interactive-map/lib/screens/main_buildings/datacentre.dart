@@ -808,7 +808,7 @@ class _DataCentreVideoState extends State<DataCentreVideo> {
               customPushReplacement(
                   context,
                   Motor(
-                    from: Pages.school,
+                    from: Pages.dataCenter,
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                   ));

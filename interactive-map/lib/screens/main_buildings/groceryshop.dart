@@ -745,7 +745,7 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
               customPushReplacement(
                   context,
                   Motor(
-                    from: Pages.school,
+                    from: Pages.grocery,
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                   ));

@@ -740,7 +740,7 @@ class _BankVideoState extends State<BankVideo> {
               customPushReplacement(
                   context,
                   Motor(
-                    from: Pages.school,
+                    from: Pages.bank,
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                   ));
