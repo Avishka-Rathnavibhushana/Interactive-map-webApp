@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/screens/vechicles/avgNarm.dart';
+import 'package:interactive_map/screens/vechicles/bus.dart';
 import 'package:interactive_map/screens/vechicles/excavator.dart';
+import 'package:interactive_map/screens/vechicles/sportsCar.dart';
+import 'package:interactive_map/screens/vechicles/tractor.dart';
 import 'package:interactive_map/screens/vechicles/train.dart';
+import 'package:interactive_map/screens/vechicles/truck.dart';
 import 'package:interactive_map/widgets/custom_text_container.dart';
 import 'package:interactive_map/widgets/custom_topic.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
@@ -61,6 +65,30 @@ class _TransitionPageState extends State<TransitionPage> {
       );
     } else if (from == Pages.excavator) {
       return ExcavatorVideo(
+        from: current,
+        offsetHor: offsetHor,
+        offsetVer: offsetVer,
+      );
+    } else if (from == Pages.sportsCar) {
+      return SportsCarVideo(
+        from: current,
+        offsetHor: offsetHor,
+        offsetVer: offsetVer,
+      );
+    } else if (from == Pages.truck) {
+      return TruckVideo(
+        from: current,
+        offsetHor: offsetHor,
+        offsetVer: offsetVer,
+      );
+    } else if (from == Pages.tractor) {
+      return TractorVideo(
+        from: current,
+        offsetHor: offsetHor,
+        offsetVer: offsetVer,
+      );
+    } else if (from == Pages.bus) {
+      return BusVideo(
         from: current,
         offsetHor: offsetHor,
         offsetVer: offsetVer,

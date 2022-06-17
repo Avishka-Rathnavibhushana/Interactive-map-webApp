@@ -10,8 +10,12 @@ import 'package:interactive_map/screens/main_buildings/retail.dart';
 import 'package:interactive_map/screens/main_buildings/school.dart';
 import 'package:interactive_map/screens/main_buildings/warehouse.dart';
 import 'package:interactive_map/screens/vechicles/avgNarm.dart';
+import 'package:interactive_map/screens/vechicles/bus.dart';
 import 'package:interactive_map/screens/vechicles/excavator.dart';
+import 'package:interactive_map/screens/vechicles/sportsCar.dart';
+import 'package:interactive_map/screens/vechicles/tractor.dart';
 import 'package:interactive_map/screens/vechicles/train.dart';
+import 'package:interactive_map/screens/vechicles/truck.dart';
 import 'package:interactive_map/utills/utils.dart';
 import 'package:interactive_map/widgets/custom_button_label_mobile.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
@@ -423,7 +427,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                                         case Pages.dataCenter:
                                           customPushReplacement(
                                               context,
-                                              DataCentreVideo(
+                                              SportsCarVideo(
                                                 from: Pages.vehicle,
                                                 offsetHor: offsetHor,
                                                 offsetVer: offsetVer,
@@ -432,7 +436,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                                         case Pages.truck:
                                           customPushReplacement(
                                               context,
-                                              FastFoodVideo(
+                                              TruckVideo(
                                                 from: Pages.vehicle,
                                                 offsetHor: offsetHor,
                                                 offsetVer: offsetVer,
@@ -441,7 +445,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                                         case Pages.tractor:
                                           customPushReplacement(
                                               context,
-                                              WarehouseVideo(
+                                              TractorVideo(
                                                 from: Pages.vehicle,
                                                 offsetHor: offsetHor,
                                                 offsetVer: offsetVer,
@@ -450,7 +454,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                                         case Pages.bus:
                                           customPushReplacement(
                                               context,
-                                              RetailVideo(
+                                              BusVideo(
                                                 from: Pages.vehicle,
                                                 offsetHor: offsetHor,
                                                 offsetVer: offsetVer,
@@ -724,7 +728,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                                         case Pages.dataCenter:
                                           customPushReplacement(
                                               context,
-                                              DataCentreVideo(
+                                              SportsCarVideo(
                                                 from: Pages.vehicle,
                                                 offsetHor: offsetHor,
                                                 offsetVer: offsetVer,
@@ -733,7 +737,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                                         case Pages.truck:
                                           customPushReplacement(
                                               context,
-                                              FastFoodVideo(
+                                              TruckVideo(
                                                 from: Pages.vehicle,
                                                 offsetHor: offsetHor,
                                                 offsetVer: offsetVer,
@@ -742,7 +746,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                                         case Pages.tractor:
                                           customPushReplacement(
                                               context,
-                                              WarehouseVideo(
+                                              TractorVideo(
                                                 from: Pages.vehicle,
                                                 offsetHor: offsetHor,
                                                 offsetVer: offsetVer,
@@ -751,7 +755,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                                         case Pages.bus:
                                           customPushReplacement(
                                               context,
-                                              RetailVideo(
+                                              BusVideo(
                                                 from: Pages.vehicle,
                                                 offsetHor: offsetHor,
                                                 offsetVer: offsetVer,
@@ -1123,7 +1127,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                           case Pages.dataCenter:
                             customPushReplacement(
                                 context,
-                                DataCentreVideo(
+                                SportsCarVideo(
                                   from: Pages.vehicle,
                                   offsetHor: offsetHor,
                                   offsetVer: offsetVer,
@@ -1132,7 +1136,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                           case Pages.truck:
                             customPushReplacement(
                                 context,
-                                FastFoodVideo(
+                                TruckVideo(
                                   from: Pages.vehicle,
                                   offsetHor: offsetHor,
                                   offsetVer: offsetVer,
@@ -1141,7 +1145,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                           case Pages.tractor:
                             customPushReplacement(
                                 context,
-                                WarehouseVideo(
+                                TractorVideo(
                                   from: Pages.vehicle,
                                   offsetHor: offsetHor,
                                   offsetVer: offsetVer,
@@ -1150,7 +1154,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                           case Pages.bus:
                             customPushReplacement(
                                 context,
-                                RetailVideo(
+                                BusVideo(
                                   from: Pages.vehicle,
                                   offsetHor: offsetHor,
                                   offsetVer: offsetVer,

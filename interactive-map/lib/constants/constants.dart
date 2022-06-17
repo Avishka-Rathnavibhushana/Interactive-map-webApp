@@ -362,9 +362,8 @@ class TextsConstants {
       "description": "",
     },
     "subTopics": [
-      "Smart HVAC",
-      "Energy-Saving Stratergies",
-      "TurntideApp",
+      "Inverter",
+      "Motor",
     ],
   };
   static const Map<String, dynamic> tractorTexts = {
@@ -394,9 +393,9 @@ class TextsConstants {
       "description": "",
     },
     "subTopics": [
-      "Smart HVAC",
-      "Energy-Saving Stratergies",
-      "TurntideApp",
+      "Fan assemblies",
+      "Inverters",
+      "Mortors",
     ],
   };
   static const Map<String, dynamic> avgNarmTexts = {
@@ -456,9 +455,9 @@ class TextsConstants {
       "description": "",
     },
     "subTopics": [
-      "Smart HVAC",
-      "Energy-Saving Stratergies",
-      "TurntideApp",
+      "Fan assemblies",
+      "Inverters",
+      "Motors",
     ],
   };
   static const Map<String, dynamic> busTexts = {
@@ -488,9 +487,9 @@ class TextsConstants {
       "description": "",
     },
     "subTopics": [
-      "Smart HVAC",
-      "Energy-Saving Stratergies",
-      "TurntideApp",
+      "Fan assemblies",
+      "Inverters",
+      "Motors",
     ],
   };
   static const Map<String, dynamic> excavatorTexts = {
