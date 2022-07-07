@@ -312,7 +312,7 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
                   scrollDirection: Axis.vertical,
                   physics: const BouncingScrollPhysics(),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.symmetric(horizontal: 0),
                     child: Container(
                       width: screenSize.width - screenSize.width * 0.3,
                       child: Column(
@@ -493,7 +493,7 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.symmetric(horizontal: 0),
                     child: Container(
                       width: screenSize.width,
                       child: Column(

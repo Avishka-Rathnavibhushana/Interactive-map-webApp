@@ -385,7 +385,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                   scrollDirection: Axis.vertical,
                   physics: const BouncingScrollPhysics(),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.symmetric(horizontal: 0),
                     child: Container(
                       width: screenSize.width - screenSize.width * 0.3,
                       child: Column(
@@ -424,7 +424,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                                                 offsetVer: offsetVer,
                                               ));
                                           break;
-                                        case Pages.dataCenter:
+                                        case Pages.sportsCar:
                                           customPushReplacement(
                                               context,
                                               SportsCarVideo(
@@ -686,7 +686,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    padding: const EdgeInsets.symmetric(horizontal: 0),
                     child: Container(
                       width: screenSize.width,
                       child: Column(
@@ -725,7 +725,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                                                 offsetVer: offsetVer,
                                               ));
                                           break;
-                                        case Pages.dataCenter:
+                                        case Pages.sportsCar:
                                           customPushReplacement(
                                               context,
                                               SportsCarVideo(
@@ -1555,7 +1555,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.avgNarmTexts["topic"],
+      title: TextsConstants.sportsCarTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -1673,7 +1673,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.avgNarmTexts["topic"],
+      title: TextsConstants.tractorTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -1792,7 +1792,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.avgNarmTexts["topic"],
+      title: TextsConstants.busTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -2030,7 +2030,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.avgNarmTexts["topic"],
+      title: TextsConstants.truckTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
