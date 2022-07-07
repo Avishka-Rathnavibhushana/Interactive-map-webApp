@@ -812,8 +812,8 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
       child: Container(
         alignment: Alignment.topRight,
         height:
-            screenSize.width * 0.070 * Utils.getMultiplier(screenSize.width),
-        width: screenSize.width * 0.070 * Utils.getMultiplier(screenSize.width),
+            screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
+        width: screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
         child: GestureDetector(
           onTap: () {
             setShow();
@@ -841,10 +841,10 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
           },
           child: Container(
             height: screenSize.width *
-                0.070 *
+                0.050 *
                 Utils.getMultiplier(screenSize.width),
             width: screenSize.width *
-                0.070 *
+                0.050 *
                 Utils.getMultiplier(screenSize.width),
             decoration: const BoxDecoration(
               image: DecorationImage(
