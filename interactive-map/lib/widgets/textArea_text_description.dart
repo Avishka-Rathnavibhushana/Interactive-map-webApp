@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/utills/utils.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TextAreaTextDescription extends StatelessWidget {
   const TextAreaTextDescription({
@@ -31,12 +32,14 @@ class TextAreaTextDescription extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: TextStyle(
+              style: GoogleFonts.barlow(
+                textStyle: TextStyle(
                   color: AppColors.white,
                   fontSize: fontSize *
                       (screenSize.width / VideoAspectRatio.width) *
                       Utils.getMultiplier(screenSize.width),
-                  fontFamily: Fonts.regular),
+                ),
+              ),
               maxLines: 10,
               softWrap: true,
               overflow: TextOverflow.ellipsis,

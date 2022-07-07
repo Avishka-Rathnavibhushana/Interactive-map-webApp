@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/utills/utils.dart';
 
@@ -44,12 +45,13 @@ class TextAreaTextRow extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: TextStyle(
+              style: GoogleFonts.barlow(
+                textStyle: TextStyle(
                 color: AppColors.white,
                 fontSize: fontSize *
                     (screenSize.width / VideoAspectRatio.width) *
                     Utils.getMultiplier(screenSize.width),
-                fontFamily: Fonts.regular,
+                ),
               ),
               maxLines: 10,
               softWrap: true,

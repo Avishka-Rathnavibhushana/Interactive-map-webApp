@@ -38,6 +38,7 @@ dependencies:
   get: ^4.6.1
   flick_video_player: ^0.3.1
   chewie: ^1.2.2
+  google_fonts: ^3.0.1
 
 dev_dependencies:
   flutter_test:

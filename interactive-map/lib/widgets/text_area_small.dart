@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:interactive_map/constants/constants.dart';
 
 class TextAreaSmall extends StatelessWidget {
@@ -36,11 +37,12 @@ class TextAreaSmall extends StatelessWidget {
         children: [
           Text(
             prefixText,
-            style: const TextStyle(
+            style: GoogleFonts.barlow(
+              textStyle: TextStyle(
               color: AppColors.fern,
               fontSize: 55,
               fontWeight: FontWeight.bold,
-              fontFamily: Fonts.extraBold,
+              ),
             ),
             maxLines: 1,
             softWrap: true,
@@ -60,10 +62,11 @@ class TextAreaSmall extends StatelessWidget {
           Expanded(
             child: Text(
               description,
-              style: const TextStyle(
+              style: GoogleFonts.barlow(
+                textStyle: TextStyle(
                 color: AppColors.white,
                 fontSize: 20,
-                fontFamily: Fonts.regular,
+                ),
               ),
               maxLines: 10,
               softWrap: true,

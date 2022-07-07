@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/utills/utils.dart';
 
@@ -31,13 +32,14 @@ class CustomTextContainer extends StatelessWidget {
         children: [
           Text(
             topic,
-            style: TextStyle(
+            style: GoogleFonts.barlow(
+              textStyle: TextStyle(
               color: AppColors.sky,
               fontSize: 18 *
                   (screenSize.width / VideoAspectRatio.width) *
                   Utils.getMultiplier(screenSize.width),
               fontWeight: FontWeight.w600,
-              fontFamily: Fonts.bold,
+              ),
             ),
             maxLines: 2,
             softWrap: true,
@@ -49,13 +51,14 @@ class CustomTextContainer extends StatelessWidget {
           ),
           Text(
             description,
-            style: TextStyle(
+            style: GoogleFonts.barlow(
+              textStyle: TextStyle(
               color: AppColors.night,
               fontSize: 14 *
                   (screenSize.width / VideoAspectRatio.width) *
                   Utils.getMultiplier(screenSize.width),
               fontWeight: FontWeight.w600,
-              fontFamily: Fonts.regular,
+              ),
             ),
             maxLines: 3,
             softWrap: true,

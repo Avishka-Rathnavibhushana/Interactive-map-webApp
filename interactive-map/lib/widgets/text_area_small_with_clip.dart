@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/utills/utils.dart';
 import 'package:interactive_map/widgets/squre_shaped_custom_container.dart';
@@ -41,13 +42,14 @@ class TextAreaSmallWithClip extends StatelessWidget {
           children: [
             Text(
               prefixText,
-              style: TextStyle(
+              style: GoogleFonts.barlow(
+                textStyle: TextStyle(
                 color: AppColors.fern,
                 fontSize: 75 *
                     (screenSize.width / VideoAspectRatio.width) *
                     Utils.getMultiplier(screenSize.width),
                 fontWeight: FontWeight.bold,
-                fontFamily: Fonts.extraBold,
+                ),
               ),
               maxLines: 1,
               softWrap: true,
@@ -67,12 +69,13 @@ class TextAreaSmallWithClip extends StatelessWidget {
             Expanded(
               child: Text(
                 description,
-                style: TextStyle(
+                style: GoogleFonts.barlow(
+                  textStyle: TextStyle(
                   color: AppColors.white,
                   fontSize: 30 *
                       (screenSize.width / VideoAspectRatio.width) *
                       Utils.getMultiplier(screenSize.width),
-                  fontFamily: Fonts.regular,
+                  ),
                 ),
                 maxLines: 10,
                 softWrap: true,
