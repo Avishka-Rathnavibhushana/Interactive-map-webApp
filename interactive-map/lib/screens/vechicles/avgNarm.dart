@@ -175,7 +175,7 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
       var screenSizeMobile1 =
           Size(screenSize.width - screenSize.width * 0.3, screenSize.height);
       return Scaffold(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.black.withOpacity(0.5),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: floatingButtonPanel(),
         body: Row(
@@ -284,7 +284,7 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
       var screenSizeMobile2 =
           Size(screenSize.width, screenSize.height - screenSize.height * 0.3);
       return Scaffold(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.black.withOpacity(0.5),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: floatingButtonPanel(),
         body: Column(
