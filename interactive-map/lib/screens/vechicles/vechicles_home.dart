@@ -2,13 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:get/get.dart';
 import 'package:interactive_map/controller/controller.dart';
-import 'package:interactive_map/screens/main_buildings/bank.dart';
-import 'package:interactive_map/screens/main_buildings/datacentre.dart';
-import 'package:interactive_map/screens/main_buildings/fastfood.dart';
-import 'package:interactive_map/screens/main_buildings/groceryshop.dart';
-import 'package:interactive_map/screens/main_buildings/retail.dart';
-import 'package:interactive_map/screens/main_buildings/school.dart';
-import 'package:interactive_map/screens/main_buildings/warehouse.dart';
 import 'package:interactive_map/screens/vechicles/avgNarm.dart';
 import 'package:interactive_map/screens/vechicles/bus.dart';
 import 'package:interactive_map/screens/vechicles/excavator.dart';
@@ -23,6 +16,7 @@ import 'package:interactive_map/widgets/shared_widgets.dart';
 import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
 import 'package:interactive_map/widgets/text_area_with_QR_with_clip.dart';
 import 'package:video_player/video_player.dart';
+import 'package:interactive_map/widgets/full_screen_button.dart';
 
 class VechiclesHomeVideo extends StatefulWidget {
   const VechiclesHomeVideo({Key? key, this.offsetHor, this.offsetVer})
@@ -952,6 +946,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
         alignment: Alignment.topCenter,
         fit: StackFit.expand,
         children: [
+          FullScreenButton(),
           Padding(
             padding:
                 EdgeInsets.only(bottom: Utils.getBottomPadding(screenSize, 50)),

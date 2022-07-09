@@ -10,6 +10,7 @@ import 'package:interactive_map/widgets/shared_widgets.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 import 'package:interactive_map/utills/utils.dart';
+import 'package:interactive_map/widgets/full_screen_button.dart';
 
 class TrainVideo extends StatefulWidget {
   const TrainVideo({Key? key, this.from, this.offsetHor, this.offsetVer})
@@ -451,6 +452,7 @@ class _TrainVideoState extends State<TrainVideo> {
         alignment: Alignment.topCenter,
         fit: StackFit.expand,
         children: [
+          FullScreenButton(),
           show
               ? Padding(
                   padding: EdgeInsets.only(

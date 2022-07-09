@@ -12,6 +12,7 @@ import 'package:interactive_map/screens/main_buildings/warehouse.dart';
 import 'package:interactive_map/utills/utils.dart';
 import 'package:interactive_map/widgets/custom_button_label_mobile.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
+import 'package:interactive_map/widgets/full_screen_button.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
 import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
 import 'package:interactive_map/widgets/text_area_with_QR_with_clip.dart';
@@ -953,6 +954,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         alignment: Alignment.topCenter,
         fit: StackFit.expand,
         children: [
+          FullScreenButton(),
           Padding(
             padding:
                 EdgeInsets.only(bottom: Utils.getBottomPadding(screenSize, 50)),

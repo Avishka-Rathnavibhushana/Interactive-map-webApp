@@ -11,6 +11,7 @@ import 'package:video_player/video_player.dart';
 import 'package:interactive_map/utills/utils.dart';
 import 'package:get/get.dart';
 import 'package:interactive_map/controller/controller.dart';
+import 'package:interactive_map/widgets/full_screen_button.dart';
 
 class GroceryShopVideo extends StatefulWidget {
   const GroceryShopVideo({Key? key, this.from, this.offsetHor, this.offsetVer})
@@ -643,6 +644,7 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
         alignment: Alignment.topCenter,
         fit: StackFit.expand,
         children: [
+          FullScreenButton(),
           show
               ? Padding(
                   padding: EdgeInsets.only(

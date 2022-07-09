@@ -11,6 +11,7 @@ import 'package:interactive_map/widgets/shared_widgets.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 import 'package:interactive_map/utills/utils.dart';
+import 'package:interactive_map/widgets/full_screen_button.dart';
 
 class SchoolVideo extends StatefulWidget {
   const SchoolVideo({Key? key, this.from, this.offsetHor, this.offsetVer})
@@ -653,6 +654,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
         alignment: Alignment.topCenter,
         fit: StackFit.expand,
         children: [
+          FullScreenButton(),
           show
               ? Padding(
                   padding: EdgeInsets.only(

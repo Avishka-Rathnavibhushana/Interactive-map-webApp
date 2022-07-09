@@ -15,8 +15,8 @@ import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 import 'package:interactive_map/utills/utils.dart';
 import 'package:get/get.dart';
-
 import 'package:interactive_map/controller/controller.dart';
+import 'package:interactive_map/widgets/full_screen_button.dart';
 
 class MapMainScreens extends StatefulWidget {
   const MapMainScreens({Key? key, this.from, this.offsetHor, this.offsetVer})
@@ -527,6 +527,7 @@ class _MapMainScreensState extends State<MapMainScreens> {
         alignment: Alignment.topCenter,
         fit: StackFit.expand,
         children: [
+          FullScreenButton(),
           show ? menuButton() : Container(),
           show
               ? Padding(

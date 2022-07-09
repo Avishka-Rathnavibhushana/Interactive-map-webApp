@@ -10,6 +10,7 @@ import 'package:interactive_map/widgets/shared_widgets.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 import 'package:interactive_map/utills/utils.dart';
+import 'package:interactive_map/widgets/full_screen_button.dart';
 
 class AvgNArmVideo extends StatefulWidget {
   const AvgNArmVideo({Key? key, this.from, this.offsetHor, this.offsetVer})
@@ -451,6 +452,7 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
         alignment: Alignment.topCenter,
         fit: StackFit.expand,
         children: [
+          FullScreenButton(),
           show
               ? Padding(
                   padding: EdgeInsets.only(

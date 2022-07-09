@@ -14,6 +14,7 @@ import 'package:video_player/video_player.dart';
 import 'package:interactive_map/utills/utils.dart';
 import 'package:get/get.dart';
 import 'package:interactive_map/controller/controller.dart';
+import 'package:interactive_map/widgets/full_screen_button.dart';
 
 class Motor extends StatefulWidget {
   const Motor({Key? key, this.from, this.offsetHor, this.offsetVer})
@@ -419,6 +420,7 @@ class _MotorState extends State<Motor> {
         alignment: Alignment.topCenter,
         fit: StackFit.expand,
         children: [
+          FullScreenButton(),
           show && screenSize.width > 500 && screenSize.height > 500
               ? nextButton()
               : Container(),
