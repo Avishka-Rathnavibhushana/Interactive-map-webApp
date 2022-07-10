@@ -21,7 +21,9 @@ class TextAreaTextTopic extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(
-          bottom: screenSize.height * (15 / VideoAspectRatio.height)),
+          bottom: Utils.getTextPaddingRatio(screenSize.width) *
+              screenSize.height *
+              (15 / VideoAspectRatio.height)),
       // width: screenSize.width < 1565 ? 1565 * 0.25 : screenSize.width * 0.25,
       width: screenSize.width * ratio * Utils.getMultiplier(screenSize.width),
       child: Row(

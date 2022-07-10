@@ -32,8 +32,12 @@ class TextAreaWithClip extends StatelessWidget {
         // width: screenSize.width < 1565 ? 1565 * 0.25 : screenSize.width * 0.25,
         width: screenSize.width * ratio * Utils.getMultiplier(screenSize.width),
         padding: EdgeInsets.only(
-          top: screenSize.height * (40 / VideoAspectRatio.height),
-          bottom: screenSize.height * (55 / VideoAspectRatio.height),
+          top: Utils.getTextPaddingRatio(screenSize.width) *
+              screenSize.height *
+              (40 / VideoAspectRatio.height),
+          bottom: Utils.getTextPaddingRatio(screenSize.width) *
+              screenSize.height *
+              (55 / VideoAspectRatio.height),
           left: screenSize.width * (30 / VideoAspectRatio.width),
           right: screenSize.width * (30 / VideoAspectRatio.width),
         ),
@@ -61,13 +65,17 @@ class TextAreaWithClip extends StatelessWidget {
             description == ''
                 ? const SizedBox()
                 : SizedBox(
-                    height: screenSize.height * (45 / VideoAspectRatio.height),
+                    height: Utils.getTextPaddingRatio(screenSize.width) *
+                        screenSize.height *
+                        (45 / VideoAspectRatio.height),
                   ),
             texts.isEmpty
                 ? const SizedBox()
                 : Container(
                     padding: EdgeInsets.only(
-                      top: screenSize.height * (15 / VideoAspectRatio.height),
+                      top: Utils.getTextPaddingRatio(screenSize.width) *
+                          screenSize.height *
+                          (15 / VideoAspectRatio.height),
                       bottom:
                           screenSize.height * (15 / VideoAspectRatio.height),
                       left: screenSize.width * (15 / VideoAspectRatio.width),

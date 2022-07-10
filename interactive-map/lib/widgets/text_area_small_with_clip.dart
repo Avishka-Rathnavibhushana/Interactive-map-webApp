@@ -32,7 +32,9 @@ class TextAreaSmallWithClip extends StatelessWidget {
         padding: EdgeInsets.only(
           top: screenSize.width * (25 / VideoAspectRatio.height),
           bottom: screenSize.width * (25 / VideoAspectRatio.height),
-          left: screenSize.height * (75 / VideoAspectRatio.width),
+          left: Utils.getTextPaddingRatio(screenSize.width) *
+              screenSize.height *
+              (75 / VideoAspectRatio.width),
           right: screenSize.height * (35 / VideoAspectRatio.width),
         ),
         child: Row(
@@ -45,7 +47,7 @@ class TextAreaSmallWithClip extends StatelessWidget {
               style: GoogleFonts.barlow(
                 textStyle: TextStyle(
                 color: AppColors.fern,
-                fontSize: 75 *
+                  fontSize: Utils.getTopicTextSize(screenSize.width) *
                     (screenSize.width / VideoAspectRatio.width) *
                     Utils.getMultiplier(screenSize.width),
                 fontWeight: FontWeight.bold,
@@ -56,10 +58,10 @@ class TextAreaSmallWithClip extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
             Container(
-              height: 100,
-              padding: const EdgeInsets.only(
-                left: 30,
-                right: 10,
+              height: Utils.getVerticleDeviderHeight(screenSize.width),
+              padding: EdgeInsets.only(
+                left: Utils.getTextPaddingRatio(screenSize.width) * 30,
+                right: Utils.getTextPaddingRatio(screenSize.width) * 10,
               ),
               child: const VerticalDivider(
                 color: AppColors.fern,

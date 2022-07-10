@@ -21,7 +21,9 @@ class TextAreaTextRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
-          vertical: screenSize.height * (25 / VideoAspectRatio.height)),
+          vertical: Utils.getTextPaddingRatio(screenSize.width) *
+              screenSize.height *
+              (25 / VideoAspectRatio.height)),
       //width: screenSize.width < 1565 ? 1565 * 0.25 : screenSize.width * 0.25,
       width: screenSize.width * ratio * Utils.getMultiplier(screenSize.width),
       child: Row(
@@ -30,11 +32,14 @@ class TextAreaTextRow extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 5),
+            padding: EdgeInsets.only(
+                top: Utils.getIconTopPaddingRatio(screenSize.width) * 5),
             child: Icon(
               Icons.add,
               color: AppColors.fern,
-              size: screenSize.height * (25 / VideoAspectRatio.height),
+              size: Utils.getIconResizeRatio(screenSize.width) *
+                  screenSize.height *
+                  (25 / VideoAspectRatio.height),
             ),
           ),
           Container(

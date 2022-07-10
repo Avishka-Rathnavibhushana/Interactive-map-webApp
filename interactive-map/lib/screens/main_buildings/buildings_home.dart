@@ -1556,7 +1556,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.schoolTexts["topic"],
+      title: TextsConstants.dataCentreTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -1674,7 +1674,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.schoolTexts["topic"],
+      title: TextsConstants.warehouseTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -1793,7 +1793,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.schoolTexts["topic"],
+      title: TextsConstants.retailTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -2032,7 +2032,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.schoolTexts["topic"],
+      title: TextsConstants.fastFoodTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
