@@ -2,7 +2,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:interactive_map/controller/appBind.dart';
-import 'package:interactive_map/main_buildings/home.dart';
+import 'package:interactive_map/screens/home.dart';
+import 'package:interactive_map/screens/main_buildings/buildings_home.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +30,7 @@ class _InteractiveMapState extends State<InteractiveMap> {
       title: 'Turntide App',
       initialBinding: AppBinding(),
       scrollBehavior: MyCustomScrollBehavior(),
-      home: const HomeVideo(),
+      home: const Home(),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/utills/utils.dart';
 
@@ -28,7 +29,8 @@ class CustomTopic extends StatelessWidget {
         children: [
           Text(
             topic,
-            style: TextStyle(
+            style: GoogleFonts.barlow(
+              textStyle: TextStyle(
               color: AppColors.night,
               fontSize: screenSize.width > 500
                   ? 35 *
@@ -39,7 +41,7 @@ class CustomTopic extends StatelessWidget {
                       Utils.getMultiplier(screenSize.width),
               fontWeight: FontWeight.w600,
               letterSpacing: 2,
-              fontFamily: Fonts.regular,
+              ),
             ),
             maxLines: 1,
             softWrap: true,
@@ -51,7 +53,8 @@ class CustomTopic extends StatelessWidget {
           ),
           Text(
             subTopic,
-            style: TextStyle(
+            style: GoogleFonts.barlow(
+              textStyle: TextStyle(
               color: AppColors.sea,
               fontSize: screenSize.width > 500
                   ? 22 *
@@ -61,7 +64,7 @@ class CustomTopic extends StatelessWidget {
                       (screenSize.width / VideoAspectRatio.width) *
                       Utils.getMultiplier(screenSize.width),
               fontWeight: FontWeight.w600,
-              fontFamily: Fonts.bold,
+              ),
             ),
             maxLines: 1,
             softWrap: true,

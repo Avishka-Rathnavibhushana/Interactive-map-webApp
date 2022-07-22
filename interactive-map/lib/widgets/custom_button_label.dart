@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:interactive_map/constants/constants.dart';
 
 class CustomButtonLabel extends StatelessWidget {
@@ -49,10 +50,11 @@ class CustomButtonLabel extends StatelessWidget {
                   children: [
                     Text(
                       text,
-                      style: const TextStyle(
+                      style: GoogleFonts.barlow(
+                        textStyle: TextStyle(
                         color: AppColors.white,
                         fontSize: 18,
-                        fontFamily: Fonts.bold,
+                        ),
                       ),
                       maxLines: 1,
                       softWrap: true,

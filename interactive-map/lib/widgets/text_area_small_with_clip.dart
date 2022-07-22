@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/utills/utils.dart';
 import 'package:interactive_map/widgets/squre_shaped_custom_container.dart';
@@ -31,7 +32,9 @@ class TextAreaSmallWithClip extends StatelessWidget {
         padding: EdgeInsets.only(
           top: screenSize.width * (25 / VideoAspectRatio.height),
           bottom: screenSize.width * (25 / VideoAspectRatio.height),
-          left: screenSize.height * (75 / VideoAspectRatio.width),
+          left: Utils.getTextPaddingRatio(screenSize.width) *
+              screenSize.height *
+              (75 / VideoAspectRatio.width),
           right: screenSize.height * (35 / VideoAspectRatio.width),
         ),
         child: Row(
@@ -41,23 +44,24 @@ class TextAreaSmallWithClip extends StatelessWidget {
           children: [
             Text(
               prefixText,
-              style: TextStyle(
+              style: GoogleFonts.barlow(
+                textStyle: TextStyle(
                 color: AppColors.fern,
-                fontSize: 75 *
+                  fontSize: Utils.getTopicTextSize(screenSize.width) *
                     (screenSize.width / VideoAspectRatio.width) *
                     Utils.getMultiplier(screenSize.width),
                 fontWeight: FontWeight.bold,
-                fontFamily: Fonts.extraBold,
+                ),
               ),
               maxLines: 1,
               softWrap: true,
               overflow: TextOverflow.ellipsis,
             ),
             Container(
-              height: 100,
-              padding: const EdgeInsets.only(
-                left: 30,
-                right: 10,
+              height: Utils.getVerticleDeviderHeight(screenSize.width),
+              padding: EdgeInsets.only(
+                left: Utils.getTextPaddingRatio(screenSize.width) * 30,
+                right: Utils.getTextPaddingRatio(screenSize.width) * 10,
               ),
               child: const VerticalDivider(
                 color: AppColors.fern,
@@ -67,12 +71,13 @@ class TextAreaSmallWithClip extends StatelessWidget {
             Expanded(
               child: Text(
                 description,
-                style: TextStyle(
+                style: GoogleFonts.barlow(
+                  textStyle: TextStyle(
                   color: AppColors.white,
                   fontSize: 30 *
                       (screenSize.width / VideoAspectRatio.width) *
                       Utils.getMultiplier(screenSize.width),
-                  fontFamily: Fonts.regular,
+                  ),
                 ),
                 maxLines: 10,
                 softWrap: true,

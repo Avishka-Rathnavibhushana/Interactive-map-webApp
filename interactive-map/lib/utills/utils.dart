@@ -24,9 +24,65 @@ class Utils {
 
   static double getMultiplier(double width) {
     if (width < 500) {
-      return 3;
+      return 1.5;
     } else if (width < 1000) {
       return 1.5;
+    } else {
+      return 1;
+    }
+  }
+
+  static double getTopicTextSize(double width) {
+    if (width < 500) {
+      return 50;
+    } else if (width < 1000) {
+      return 60;
+    } else {
+      return 75;
+    }
+  }
+
+  static double getVerticleDeviderHeight(double width) {
+    if (width < 500) {
+      return 60;
+    } else if (width < 1000) {
+      return 80;
+    } else {
+      return 100;
+    }
+  }
+
+  static double getIconResizeRatio(double width) {
+    if (width < 500) {
+      return 0.5;
+    } else if (width < 1000) {
+      return 0.8;
+    } else {
+      return 1;
+    }
+  }
+
+  static double getIconTopPaddingRatio(double width) {
+    if (width < 500) {
+      return 0;
+    } else if (width < 700) {
+      return 0.6;
+    } else if (width < 1300) {
+      return 0.8;
+    } else {
+      return 1;
+    }
+  }
+
+  static double getTextPaddingRatio(double width) {
+    if (width < 500) {
+      return 0.2;
+    } else if (width < 700) {
+      return 0.4;
+    } else if (width < 900) {
+      return 0.6;
+    } else if (width < 1300) {
+      return 0.8;
     } else {
       return 1;
     }

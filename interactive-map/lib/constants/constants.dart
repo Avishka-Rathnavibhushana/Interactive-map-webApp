@@ -48,6 +48,8 @@ const dataCenterAirFlowGif = 'assets/animations/Data_Center_airflow.gif';
 //pages
 class Pages {
   static const home = 'home';
+
+  static const buildings = 'buildings';
   static const motor = 'motor';
   static const motorToHome = 'motorToHome';
   static const map = 'map';
@@ -59,6 +61,21 @@ class Pages {
   static const fastfoods = 'fastfoods';
   static const werehouse = 'werehouse';
   static const retail = 'retail';
+
+  static const vehicle = 'vehicle';
+  static const transition = 'transition';
+  static const transitionPageToHome = 'transitionPageToHome';
+  // static const map = 'map';
+
+  static const avgNarm = 'avgNarm';
+  static const train = 'train';
+  static const excavator = 'excavator';
+  static const sportsCar = 'sportsCar';
+  static const truck = 'truck';
+  static const tractor = 'tractor';
+  static const bus = 'bus';
+  
+  
 }
 
 //fonts
@@ -314,6 +331,228 @@ class TextsConstants {
       "Smart HVAC",
       "Energy-Saving Stratergies",
       "TurntideApp",
+    ],
+  };
+
+  static const Map<String, dynamic> sportsCarTexts = {
+    "topic": "Sports Cars",
+    "TextAreaSmallWithClip": [
+      "64%",
+      "of energy in sports Car is used by HVAC and lightning",
+    ],
+    "TextAreaWithClipMain": {
+      "texts": [
+        "Smart Motor System",
+        "Smart HVAC",
+        "Smart Building Operations",
+      ],
+      "topic": "Turntide for Sports Cars",
+      "description":
+          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+    },
+    "TextAreaWithClipEnergySaving": {
+      "texts": [
+        "Improve energy efficiency",
+        "Maintain a comfortable environment",
+        "Automate lighting and HVAC",
+        "Extent equipment life",
+        "Prevent learning disruption",
+      ],
+      "topic": "Stratergies for Sustainable Operations",
+      "description": "",
+    },
+    "subTopics": [
+      "Inverter",
+      "Motor",
+    ],
+  };
+  static const Map<String, dynamic> tractorTexts = {
+    "topic": "Tractors",
+    "TextAreaSmallWithClip": [
+      "28%",
+      "of tractor energy costs are from HVAC on avarage",
+    ],
+    "TextAreaWithClipMain": {
+      "texts": [
+        "Smart Motor System",
+        "Smart HVAC",
+        "Smart Building Operations",
+      ],
+      "topic": "Turntide for Tractors",
+      "description":
+          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+    },
+    "TextAreaWithClipEnergySaving": {
+      "texts": [
+        "Improve energy efficiency",
+        "Maintain a comfortable environment",
+        "Automate lighting and HVAC",
+        "Extent equipment life",
+      ],
+      "topic": "Stratergies for Sustainable Operations",
+      "description": "",
+    },
+    "subTopics": [
+      "Fan assemblies",
+      "Inverters",
+      "Mortors",
+    ],
+  };
+  static const Map<String, dynamic> avgNarmTexts = {
+    "topic": "AGV / AMRs",
+    "TextAreaSmallWithClip": [
+      "40-60%",
+      "of energy in AGV / AMR branches is used by HVAC and lightning",
+    ],
+    "TextAreaWithClipMain": {
+      "texts": [
+        "Smart Motor System",
+        "Smart HVAC",
+        "Smart Building Operations",
+      ],
+      "topic": "Turntide for AGV / AMRs",
+      "description":
+          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+    },
+    "TextAreaWithClipEnergySaving": {
+      "texts": [
+        "Improve energy efficiency",
+        "Maintain a comfortable environment",
+        "Automate lighting and HVAC",
+        "Extent equipment life",
+      ],
+      "topic": "Stratergies for Sustainable Operations",
+      "description": "",
+    },
+    "subTopics": [
+      "Battery loop",
+    ],
+  };
+  static const Map<String, dynamic> truckTexts = {
+    "topic": "Trucks",
+    "TextAreaSmallWithClip": [
+      "70%",
+      "of energy in Truck is used by HVAC and lightning",
+    ],
+    "TextAreaWithClipMain": {
+      "texts": [
+        "Smart Motor System",
+        "Smart HVAC",
+        "Smart Building Operations",
+      ],
+      "topic": "Turntide for Trucks",
+      "description":
+          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+    },
+    "TextAreaWithClipEnergySaving": {
+      "texts": [
+        "Improve energy efficiency",
+        "Maintain a comfortable environment",
+        "Automate lighting and HVAC",
+        "Extent equipment life",
+      ],
+      "topic": "Stratergies for Sustainable Operations",
+      "description": "",
+    },
+    "subTopics": [
+      "Fan assemblies",
+      "Inverters",
+      "Motors",
+    ],
+  };
+  static const Map<String, dynamic> busTexts = {
+    "topic": "Buses",
+    "TextAreaSmallWithClip": [
+      "75%",
+      "of energy in Buses is used by HVAC and lightning",
+    ],
+    "TextAreaWithClipMain": {
+      "texts": [
+        "Smart Motor System",
+        "Smart HVAC",
+        "Smart Building Operations",
+      ],
+      "topic": "Turntide for Buses",
+      "description":
+          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+    },
+    "TextAreaWithClipEnergySaving": {
+      "texts": [
+        "Improve energy efficiency",
+        "Maintain a comfortable environment",
+        "Automate lighting and HVAC",
+        "Extent equipment life",
+      ],
+      "topic": "Stratergies for Sustainable Operations",
+      "description": "",
+    },
+    "subTopics": [
+      "Fan assemblies",
+      "Inverters",
+      "Motors",
+    ],
+  };
+  static const Map<String, dynamic> excavatorTexts = {
+    "topic": "Excavators",
+    "TextAreaSmallWithClip": [
+      "37%",
+      "of energy in Excavators is used by HVAC and lightning",
+    ],
+    "TextAreaWithClipMain": {
+      "texts": [
+        "Smart Motor System",
+        "Smart HVAC",
+        "Smart Building Operations",
+      ],
+      "topic": "Turntide for Excavators",
+      "description":
+          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+    },
+    "TextAreaWithClipEnergySaving": {
+      "texts": [
+        "Improve energy efficiency",
+        "Maintain a comfortable environment",
+        "Automate lighting and HVAC",
+        "Extent equipment life",
+      ],
+      "topic": "Stratergies for Sustainable Operations",
+      "description": "",
+    },
+    "subTopics": [
+      "Battery loop",
+      "Drive loop",
+      "DCDC Converter",
+      "HD Mortor",
+    ],
+  };
+  static const Map<String, dynamic> trainTexts = {
+    "topic": "Trains",
+    "TextAreaSmallWithClip": [
+      "50%",
+      "of energy in Trains is used by HVAC and lightning",
+    ],
+    "TextAreaWithClipMain": {
+      "texts": [
+        "Smart Motor System",
+        "Smart HVAC",
+        "Smart Building Operations",
+      ],
+      "topic": "Turntide for Trains",
+      "description":
+          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+    },
+    "TextAreaWithClipEnergySaving": {
+      "texts": [
+        "Improve energy efficiency",
+        "Maintain a comfortable environment",
+        "Automate lighting and HVAC",
+        "Extent equipment life",
+      ],
+      "topic": "Stratergies for Sustainable Operations",
+      "description": "",
+    },
+    "subTopics": [
+      "Train Battery loop",
     ],
   };
 }
