@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:get/get.dart';
 import 'package:interactive_map/controller/controller.dart';
+import 'package:interactive_map/screens/main_buildings/buildings_home.dart';
 import 'package:interactive_map/screens/vechicles/avgNarm.dart';
 import 'package:interactive_map/screens/vechicles/bus.dart';
 import 'package:interactive_map/screens/vechicles/excavator.dart';
@@ -1195,29 +1196,35 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
         width: screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
         child: GestureDetector(
           onTap: () async {
-            if (showQR) {
-              setState(() {
-                width = 0;
-              });
+            // if (showQR) {
+            //   setState(() {
+            //     width = 0;
+            //   });
 
-              await Future.delayed(const Duration(milliseconds: 200));
-              setState(() {
-                showQR = false;
-              });
-              setShow();
-            } else {
-              setShow();
-              setState(() {
-                width = 0;
-                showQR = true;
-              });
+            //   await Future.delayed(const Duration(milliseconds: 200));
+            //   setState(() {
+            //     showQR = false;
+            //   });
+            //   setShow();
+            // } else {
+            //   setShow();
+            //   setState(() {
+            //     width = 0;
+            //     showQR = true;
+            //   });
 
-              await Future.delayed(const Duration(milliseconds: 200));
+            //   await Future.delayed(const Duration(milliseconds: 200));
 
-              setState(() {
-                width = screenSize.width * 0.2;
-              });
-            }
+            //   setState(() {
+            //     width = screenSize.width * 0.2;
+            //   });
+            // }
+            customPushReplacement(
+                context,
+                BuildingsHomeVideo(
+                  offsetHor: offsetHor,
+                  offsetVer: offsetVer,
+                ));
           },
           child: Container(
             height: screenSize.width *
