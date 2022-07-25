@@ -830,8 +830,8 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
   Widget transition1() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.536,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.325,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.43,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.59,
         child: Stack(
           children: [
             InkWell(
@@ -881,8 +881,8 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
   Widget transition2() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.436,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.125,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.41,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.47,
         child: Stack(
           children: [
             InkWell(
@@ -932,8 +932,8 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
   Widget transition3() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.636,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.525,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.61,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.545,
         child: Stack(
           children: [
             InkWell(
@@ -983,8 +983,8 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
   Widget transition4() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.236,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.625,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.58,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.635,
         child: Stack(
           children: [
             InkWell(

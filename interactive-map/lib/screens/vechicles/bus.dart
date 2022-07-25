@@ -744,8 +744,8 @@ class _BusVideoState extends State<BusVideo> {
   Widget transition1() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.536,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.325,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.37,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.52,
         child: Stack(
           children: [
             InkWell(
@@ -795,8 +795,8 @@ class _BusVideoState extends State<BusVideo> {
   Widget transition2() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.436,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.125,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.47,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.63,
         child: Stack(
           children: [
             InkWell(
@@ -846,8 +846,8 @@ class _BusVideoState extends State<BusVideo> {
   Widget transition3() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.636,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.525,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.595,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.705,
         child: Stack(
           children: [
             InkWell(

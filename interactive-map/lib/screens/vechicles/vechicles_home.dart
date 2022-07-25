@@ -1243,8 +1243,8 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
   Widget avgNarm() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.445,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.825,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.38,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.585,
         child: Stack(
           children: [
             InkWell(
@@ -1364,8 +1364,8 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
   Widget train() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.615,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.75,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.82,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.56,
         child: Stack(
           children: [
             Center(
@@ -1485,8 +1485,8 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
   Widget sportsCar() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.12,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.459,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.14,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.425,
         child: Stack(
           children: [
             InkWell(
@@ -1602,8 +1602,8 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
   Widget tractor() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.269,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.22,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.36,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.3,
         child: Stack(
           children: [
             InkWell(
@@ -1721,8 +1721,8 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
   Widget bus() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.62,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.13,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.56,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.28,
         child: Stack(
           children: [
             InkWell(
@@ -1842,7 +1842,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
         left: Utils.getVideoScreenWidth(screenSize) * 0.75,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.64,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.315,
         child: Stack(
           children: [
             InkWell(
@@ -1960,8 +1960,8 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
   Widget truck() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.346,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.35,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.62,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.51,
         child: Stack(
           children: [
             InkWell(

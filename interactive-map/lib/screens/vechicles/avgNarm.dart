@@ -573,8 +573,8 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
   Widget transition1() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.536,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.325,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.79,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.76,
         child: Stack(
           children: [
             InkWell(

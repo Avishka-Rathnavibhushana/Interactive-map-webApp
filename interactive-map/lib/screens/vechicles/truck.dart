@@ -744,8 +744,8 @@ class _TruckVideoState extends State<TruckVideo> {
   Widget transition1() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.536,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.325,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.34,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.72,
         child: Stack(
           children: [
             InkWell(
@@ -795,8 +795,8 @@ class _TruckVideoState extends State<TruckVideo> {
   Widget transition2() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.436,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.125,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.49,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.6,
         child: Stack(
           children: [
             InkWell(
@@ -846,8 +846,8 @@ class _TruckVideoState extends State<TruckVideo> {
   Widget transition3() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.636,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.525,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.57,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.75,
         child: Stack(
           children: [
             InkWell(

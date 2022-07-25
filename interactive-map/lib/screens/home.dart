@@ -463,8 +463,8 @@ class _HomeState extends State<Home> {
   Widget buildings() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.615,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.75,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.29,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.42,
         child: Stack(
           children: [
             Center(
@@ -564,8 +564,8 @@ class _HomeState extends State<Home> {
   Widget vechicles() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.12,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.459,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.63,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.48,
         child: Stack(
           children: [
             InkWell(

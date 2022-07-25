@@ -573,8 +573,8 @@ class _TrainVideoState extends State<TrainVideo> {
   Widget transition1() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.536,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.325,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.608,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.67,
         child: Stack(
           children: [
             InkWell(
