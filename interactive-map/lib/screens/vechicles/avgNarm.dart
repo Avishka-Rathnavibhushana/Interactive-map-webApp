@@ -509,6 +509,14 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
                         "assets/videos/vehicles/Product_loops/Battery_Loop.m4v",
                     back:
                         "assets/videos/vehicles/Product_transition/AGV_To_Battery.m4v",
+                    topic: TextsConstants.avgNarmTexts["subTopicsInside"][0]
+                        ["topic"],
+                    subTopic: TextsConstants.avgNarmTexts["subTopicsInside"][0]
+                        ["subTopic"],
+                    descriptioTexts: TextsConstants
+                        .avgNarmTexts["subTopicsInside"][0]["descriptioTexts"],
+                    blocks: TextsConstants.avgNarmTexts["subTopicsInside"][0]
+                        ["blocks"],
                   ));
             }
           }
@@ -606,6 +614,15 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
                                 "assets/videos/vehicles/Product_loops/Battery_Loop.m4v",
                             back:
                                 "assets/videos/vehicles/Product_transition/AGV_To_Battery.m4v",
+                            topic: TextsConstants
+                                .avgNarmTexts["subTopicsInside"][0]["topic"],
+                            subTopic: TextsConstants
+                                .avgNarmTexts["subTopicsInside"][0]["subTopic"],
+                            descriptioTexts:
+                                TextsConstants.avgNarmTexts["subTopicsInside"]
+                                    [0]["descriptioTexts"],
+                            blocks: TextsConstants
+                                .avgNarmTexts["subTopicsInside"][0]["blocks"],
                           ));
                     }
                   }

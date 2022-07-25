@@ -509,6 +509,14 @@ class _TrainVideoState extends State<TrainVideo> {
                         "assets/videos/vehicles/Product_loops/Train_Battery_Loop.m4v",
                     back:
                         "assets/videos/vehicles/Product_transition/Train_To_Battery.m4v",
+                    topic: TextsConstants.trainTexts["subTopicsInside"][0]
+                        ["topic"],
+                    subTopic: TextsConstants.trainTexts["subTopicsInside"][0]
+                        ["subTopic"],
+                    descriptioTexts: TextsConstants
+                        .trainTexts["subTopicsInside"][0]["descriptioTexts"],
+                    blocks: TextsConstants.trainTexts["subTopicsInside"][0]
+                        ["blocks"],
                   ));
             }
           }
@@ -606,6 +614,15 @@ class _TrainVideoState extends State<TrainVideo> {
                                 "assets/videos/vehicles/Product_loops/Train_Battery_Loop.m4v",
                             back:
                                 "assets/videos/vehicles/Product_transition/Train_To_Battery.m4v",
+                            topic: TextsConstants.trainTexts["subTopicsInside"]
+                                [0]["topic"],
+                            subTopic: TextsConstants
+                                .trainTexts["subTopicsInside"][0]["subTopic"],
+                            descriptioTexts:
+                                TextsConstants.trainTexts["subTopicsInside"][0]
+                                    ["descriptioTexts"],
+                            blocks: TextsConstants.trainTexts["subTopicsInside"]
+                                [0]["blocks"],
                           ));
                     }
                   }

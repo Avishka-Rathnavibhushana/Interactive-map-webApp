@@ -74,8 +74,6 @@ class Pages {
   static const truck = 'truck';
   static const tractor = 'tractor';
   static const bus = 'bus';
-  
-  
 }
 
 //fonts
@@ -341,14 +339,10 @@ class TextsConstants {
       "of energy in sports Car is used by HVAC and lightning",
     ],
     "TextAreaWithClipMain": {
-      "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
-      ],
-      "topic": "Turntide for Sports Cars",
+      "texts": [],
+      "topic": "Turntide for EVs",
       "description":
-          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+          "High performance motors and inverters featuring class leading power density (35kW/l for inverters, 6kW/kg for motors) and high levels of functional safety.",
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
@@ -362,8 +356,40 @@ class TextsConstants {
       "description": "",
     },
     "subTopics": [
-      "Inverter",
-      "Motor",
+      "Inverters",
+      "Motors",
+    ],
+    "subTopicsInside": [
+      {
+        "topic": "Smart Motor System - V Series",
+        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "descriptioTexts": [
+          "Optimal efficiency switched reluctance motor",
+          "Standerd NEMA dimensions",
+          "Available in 1-10 HP",
+        ],
+        "blocks": [
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+        ],
+      },
+      {
+        "topic": "Smart Motor System - V Series",
+        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "descriptioTexts": [
+          "Optimal efficiency switched reluctance motor",
+          "Standerd NEMA dimensions",
+          "Available in 1-10 HP",
+        ],
+        "blocks": [
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+        ],
+      },
     ],
   };
   static const Map<String, dynamic> tractorTexts = {
@@ -397,6 +423,53 @@ class TextsConstants {
       "Inverters",
       "Mortors",
     ],
+    "subTopicsInside": [
+      {
+        "topic": "Smart Motor System - V Series",
+        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "descriptioTexts": [
+          "Optimal efficiency switched reluctance motor",
+          "Standerd NEMA dimensions",
+          "Available in 1-10 HP",
+        ],
+        "blocks": [
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+        ],
+      },
+      {
+        "topic": "Smart Motor System - V Series",
+        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "descriptioTexts": [
+          "Optimal efficiency switched reluctance motor",
+          "Standerd NEMA dimensions",
+          "Available in 1-10 HP",
+        ],
+        "blocks": [
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+        ],
+      },
+      {
+        "topic": "Smart Motor System - V Series",
+        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "descriptioTexts": [
+          "Optimal efficiency switched reluctance motor",
+          "Standerd NEMA dimensions",
+          "Available in 1-10 HP",
+        ],
+        "blocks": [
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+        ],
+      },
+    ],
   };
   static const Map<String, dynamic> avgNarmTexts = {
     "topic": "AGV / AMRs",
@@ -426,6 +499,23 @@ class TextsConstants {
     },
     "subTopics": [
       "Battery loop",
+    ],
+    "subTopicsInside": [
+      {
+        "topic": "Smart Motor System - V Series",
+        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "descriptioTexts": [
+          "Optimal efficiency switched reluctance motor",
+          "Standerd NEMA dimensions",
+          "Available in 1-10 HP",
+        ],
+        "blocks": [
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+        ],
+      },
     ],
   };
   static const Map<String, dynamic> truckTexts = {
@@ -459,6 +549,53 @@ class TextsConstants {
       "Inverters",
       "Motors",
     ],
+    "subTopicsInside": [
+      {
+        "topic": "Smart Motor System - V Series",
+        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "descriptioTexts": [
+          "Optimal efficiency switched reluctance motor",
+          "Standerd NEMA dimensions",
+          "Available in 1-10 HP",
+        ],
+        "blocks": [
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+        ],
+      },
+      {
+        "topic": "Smart Motor System - V Series",
+        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "descriptioTexts": [
+          "Optimal efficiency switched reluctance motor",
+          "Standerd NEMA dimensions",
+          "Available in 1-10 HP",
+        ],
+        "blocks": [
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+        ],
+      },
+      {
+        "topic": "Smart Motor System - V Series",
+        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "descriptioTexts": [
+          "Optimal efficiency switched reluctance motor",
+          "Standerd NEMA dimensions",
+          "Available in 1-10 HP",
+        ],
+        "blocks": [
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+        ],
+      },
+    ],
   };
   static const Map<String, dynamic> busTexts = {
     "topic": "Buses",
@@ -490,6 +627,53 @@ class TextsConstants {
       "Fan assemblies",
       "Inverters",
       "Motors",
+    ],
+    "subTopicsInside": [
+      {
+        "topic": "Smart Motor System - V Series",
+        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "descriptioTexts": [
+          "Optimal efficiency switched reluctance motor",
+          "Standerd NEMA dimensions",
+          "Available in 1-10 HP",
+        ],
+        "blocks": [
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+        ],
+      },
+      {
+        "topic": "Smart Motor System - V Series",
+        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "descriptioTexts": [
+          "Optimal efficiency switched reluctance motor",
+          "Standerd NEMA dimensions",
+          "Available in 1-10 HP",
+        ],
+        "blocks": [
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+        ],
+      },
+      {
+        "topic": "Smart Motor System - V Series",
+        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "descriptioTexts": [
+          "Optimal efficiency switched reluctance motor",
+          "Standerd NEMA dimensions",
+          "Available in 1-10 HP",
+        ],
+        "blocks": [
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+        ],
+      },
     ],
   };
   static const Map<String, dynamic> excavatorTexts = {
@@ -524,6 +708,68 @@ class TextsConstants {
       "DCDC Converter",
       "HD Mortor",
     ],
+    "subTopicsInside": [
+      {
+        "topic": "Smart Motor System - V Series",
+        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "descriptioTexts": [
+          "Optimal efficiency switched reluctance motor",
+          "Standerd NEMA dimensions",
+          "Available in 1-10 HP",
+        ],
+        "blocks": [
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+        ],
+      },
+      {
+        "topic": "Smart Motor System - V Series",
+        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "descriptioTexts": [
+          "Optimal efficiency switched reluctance motor",
+          "Standerd NEMA dimensions",
+          "Available in 1-10 HP",
+        ],
+        "blocks": [
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+        ],
+      },
+      {
+        "topic": "Smart Motor System - V Series",
+        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "descriptioTexts": [
+          "Optimal efficiency switched reluctance motor",
+          "Standerd NEMA dimensions",
+          "Available in 1-10 HP",
+        ],
+        "blocks": [
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+        ],
+      },
+      {
+        "topic": "Smart Motor System - V Series",
+        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "descriptioTexts": [
+          "Optimal efficiency switched reluctance motor",
+          "Standerd NEMA dimensions",
+          "Available in 1-10 HP",
+        ],
+        "blocks": [
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+        ],
+      },
+    ],
   };
   static const Map<String, dynamic> trainTexts = {
     "topic": "Trains",
@@ -553,6 +799,23 @@ class TextsConstants {
     },
     "subTopics": [
       "Train Battery loop",
+    ],
+    "subTopicsInside": [
+      {
+        "topic": "Smart Motor System - V Series",
+        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "descriptioTexts": [
+          "Optimal efficiency switched reluctance motor",
+          "Standerd NEMA dimensions",
+          "Available in 1-10 HP",
+        ],
+        "blocks": [
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+        ],
+      },
     ],
   };
 }

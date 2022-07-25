@@ -24,19 +24,11 @@ class TransitionPage extends StatefulWidget {
       this.offsetVer,
       required this.url,
       required this.back,
-      this.topic = "Smart Motor System - V Series",
-      this.subTopic = "Includes: Smart Motor, Motor Controller, and Hub",
-      this.descriptioTexts = const [
-        "Optimal efficiency switched reluctance motor",
-        "Standerd NEMA dimensions",
-        "Available in 1-10 HP",
-      ],
-      this.blocks = const [
-        {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-        {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-        {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-        {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-      ]})
+    required this.topic,
+    required this.subTopic,
+    required this.descriptioTexts,
+    required this.blocks,
+  })
       : super(key: key);
   final offsetHor;
   final offsetVer;

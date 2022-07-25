@@ -600,6 +600,14 @@ class _TractorVideoState extends State<TractorVideo> {
                     url: "assets/videos/vehicles/Product_loops/Fan_Loop.m4v",
                     back:
                         "assets/videos/vehicles/Product_transition/Tractor_To_Fan.m4v",
+                    topic: TextsConstants.tractorTexts["subTopicsInside"][0]
+                        ["topic"],
+                    subTopic: TextsConstants.tractorTexts["subTopicsInside"][0]
+                        ["subTopic"],
+                    descriptioTexts: TextsConstants
+                        .tractorTexts["subTopicsInside"][0]["descriptioTexts"],
+                    blocks: TextsConstants.tractorTexts["subTopicsInside"][0]
+                        ["blocks"],
                   ));
             }
           }
@@ -640,6 +648,14 @@ class _TractorVideoState extends State<TractorVideo> {
                         "assets/videos/vehicles/Product_loops/Inverter_Loop.m4v",
                     back:
                         "assets/videos/vehicles/Product_transition/Tractor_To_Inverter.m4v",
+                    topic: TextsConstants.tractorTexts["subTopicsInside"][1]
+                        ["topic"],
+                    subTopic: TextsConstants.tractorTexts["subTopicsInside"][1]
+                        ["subTopic"],
+                    descriptioTexts: TextsConstants
+                        .tractorTexts["subTopicsInside"][1]["descriptioTexts"],
+                    blocks: TextsConstants.tractorTexts["subTopicsInside"][1]
+                        ["blocks"],
                   ));
             }
           }
@@ -680,6 +696,14 @@ class _TractorVideoState extends State<TractorVideo> {
                         "assets/videos/vehicles/Product_loops/HDMotor_Loop.m4v",
                     back:
                         "assets/videos/vehicles/Product_transition/Tractor_To_Motor.m4v",
+                    topic: TextsConstants.tractorTexts["subTopicsInside"][2]
+                        ["topic"],
+                    subTopic: TextsConstants.tractorTexts["subTopicsInside"][2]
+                        ["subTopic"],
+                    descriptioTexts: TextsConstants
+                        .tractorTexts["subTopicsInside"][2]["descriptioTexts"],
+                    blocks: TextsConstants.tractorTexts["subTopicsInside"][2]
+                        ["blocks"],
                   ));
             }
           }
@@ -777,6 +801,15 @@ class _TractorVideoState extends State<TractorVideo> {
                                 "assets/videos/vehicles/Product_loops/Fan_Loop.m4v",
                             back:
                                 "assets/videos/vehicles/Product_transition/Tractor_To_Fan.m4v",
+                            topic: TextsConstants
+                                .tractorTexts["subTopicsInside"][0]["topic"],
+                            subTopic: TextsConstants
+                                .tractorTexts["subTopicsInside"][0]["subTopic"],
+                            descriptioTexts:
+                                TextsConstants.tractorTexts["subTopicsInside"]
+                                    [0]["descriptioTexts"],
+                            blocks: TextsConstants
+                                .tractorTexts["subTopicsInside"][0]["blocks"],
                           ));
                     }
                   }
@@ -828,6 +861,15 @@ class _TractorVideoState extends State<TractorVideo> {
                                 "assets/videos/vehicles/Product_loops/Inverter_Loop.m4v",
                             back:
                                 "assets/videos/vehicles/Product_transition/Tractor_To_Inverter.m4v",
+                            topic: TextsConstants
+                                .tractorTexts["subTopicsInside"][1]["topic"],
+                            subTopic: TextsConstants
+                                .tractorTexts["subTopicsInside"][1]["subTopic"],
+                            descriptioTexts:
+                                TextsConstants.tractorTexts["subTopicsInside"]
+                                    [1]["descriptioTexts"],
+                            blocks: TextsConstants
+                                .tractorTexts["subTopicsInside"][1]["blocks"],
                           ));
                     }
                   }
@@ -879,6 +921,15 @@ class _TractorVideoState extends State<TractorVideo> {
                                 "assets/videos/vehicles/Product_loops/HDMotor_Loop.m4v",
                             back:
                                 "assets/videos/vehicles/Product_transition/Tractor_To_Motor.m4v",
+                            topic: TextsConstants
+                                .tractorTexts["subTopicsInside"][2]["topic"],
+                            subTopic: TextsConstants
+                                .tractorTexts["subTopicsInside"][2]["subTopic"],
+                            descriptioTexts:
+                                TextsConstants.tractorTexts["subTopicsInside"]
+                                    [2]["descriptioTexts"],
+                            blocks: TextsConstants
+                                .tractorTexts["subTopicsInside"][2]["blocks"],
                           ));
                     }
                   }
