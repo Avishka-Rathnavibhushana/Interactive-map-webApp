@@ -19,7 +19,7 @@ class CustomTextContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: screenSize.width *
-          0.08 *
+          0.12 *
           (screenSize.width / VideoAspectRatio.width) *
           Utils.getCustomTextContainerMultiplier(screenSize.width),
       height: 125 * (screenSize.height / VideoAspectRatio.height),
