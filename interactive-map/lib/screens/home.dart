@@ -608,7 +608,7 @@ class _HomeState extends State<Home> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Transport Electrification",
+                text: "Electrified Transport",
                 type: 0,
               ),
             ),
@@ -620,7 +620,7 @@ class _HomeState extends State<Home> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "Transport Electrification",
+      title: "Electrified Transport",
       onPressed: () async {
         setShow();
         setState(() {

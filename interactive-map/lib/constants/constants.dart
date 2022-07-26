@@ -334,216 +334,201 @@ class TextsConstants {
 
   static const Map<String, dynamic> sportsCarTexts = {
     "topic": "Sports Cars",
-    "TextAreaSmallWithClip": [
-      "64%",
-      "of energy in sports Car is used by HVAC and lightning",
-    ],
+    // "TextAreaSmallWithClip": [
+    //   "64%",
+    //   "of energy in sports Car is used by HVAC and lightning",
+    // ],
     "TextAreaWithClipMain": {
       "texts": [],
       "topic": "Turntide for EVs",
       "description":
           "High performance motors and inverters featuring class leading power density (35kW/l for inverters, 6kW/kg for motors) and high levels of functional safety.",
     },
-    "TextAreaWithClipEnergySaving": {
-      "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
-        "Prevent learning disruption",
-      ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
-    },
+    // "TextAreaWithClipEnergySaving": {
+    //   "texts": [
+    //     "Improve energy efficiency",
+    //     "Maintain a comfortable environment",
+    //     "Automate lighting and HVAC",
+    //     "Extent equipment life",
+    //     "Prevent learning disruption",
+    //   ],
+    //   "topic": "Stratergies for Sustainable Operations",
+    //   "description": "",
+    // },
     "subTopics": [
       "Inverters",
       "Motors",
     ],
     "subTopicsInside": [
       {
-        "topic": "Smart Motor System - V Series",
-        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "topic": "High Voltage High Power Drives",
+        "subTopic":
+            "Commercially available design for any automotive application",
         "descriptioTexts": [
-          "Optimal efficiency switched reluctance motor",
-          "Standerd NEMA dimensions",
-          "Available in 1-10 HP",
+          "Proven design allows fast implementation",
+          "Reduction in validation test programs",
+          "ISO26262 ASIL-D guaranteed safety standards",
         ],
         "blocks": [
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "450V", "description": "Maximum voltage"},
+          {"topic": "35kW/l", "description": "Peak power densities"},
+          {"topic": "150kW", "description": "Peak power level"},
+          {"topic": "25 kW/kg", "description": "Power to weight"},
         ],
       },
       {
-        "topic": "Smart Motor System - V Series",
-        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "topic": "High Power Density Motors",
+        "subTopic":
+            "For powertrain traction, generator and cooling fan operations",
         "descriptioTexts": [
-          "Optimal efficiency switched reluctance motor",
-          "Standerd NEMA dimensions",
-          "Available in 1-10 HP",
+          "Proven reliability",
+          "Flexible, stackable design",
+          "Excellent power & torque density for small spaces",
         ],
         "blocks": [
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "800V", "description": "Maximum battery voltage"},
+          {"topic": "100-800kW", "description": "7 sizes available"},
+          {"topic": "96%", "description": "Peak efficiency"}
         ],
       },
     ],
   };
   static const Map<String, dynamic> tractorTexts = {
     "topic": "Tractors",
-    "TextAreaSmallWithClip": [
-      "28%",
-      "of tractor energy costs are from HVAC on avarage",
-    ],
+    // "TextAreaSmallWithClip": [
+    //   "28%",
+    //   "of tractor energy costs are from HVAC on avarage",
+    // ],
     "TextAreaWithClipMain": {
-      "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
-      ],
-      "topic": "Turntide for Tractors",
+      "texts": [],
+      "topic": "Turntide for Electric Tractors",
       "description":
-          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+          "We'll deliver the intelligence, efficiency, and controls you need to build industry-leading vehicles, from tractors to combines, for years to come.",
     },
-    "TextAreaWithClipEnergySaving": {
-      "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
-      ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
-    },
+    // "TextAreaWithClipEnergySaving": {
+    //   "texts": [
+    //     "Improve energy efficiency",
+    //     "Maintain a comfortable environment",
+    //     "Automate lighting and HVAC",
+    //     "Extent equipment life",
+    //   ],
+    //   "topic": "Stratergies for Sustainable Operations",
+    //   "description": "",
+    // },
     "subTopics": [
       "Fan assemblies",
       "Inverters",
-      "Mortors",
+      "Motors",
     ],
     "subTopicsInside": [
       {
-        "topic": "Smart Motor System - V Series",
-        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "topic": "Pump & Fan Assemblies",
+        "subTopic": "",
         "descriptioTexts": [
-          "Optimal efficiency switched reluctance motor",
-          "Standerd NEMA dimensions",
-          "Available in 1-10 HP",
+          "Electric pump and fan assemblies, from 500W to 60kW cooling solutions for hybrid and electric buses",
+          "Sealless electric water pumps efficiently operate EV cooling circuits",
         ],
         "blocks": [
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "24 / 48 / 750V", "description": "Operating voltage"},
+          {"topic": "500-60kW", "description": "Power output"}
         ],
       },
       {
-        "topic": "Smart Motor System - V Series",
-        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "topic": "High Voltage High Power Drives",
+        "subTopic":
+            "Commercially available design for any automotive application",
         "descriptioTexts": [
-          "Optimal efficiency switched reluctance motor",
-          "Standerd NEMA dimensions",
-          "Available in 1-10 HP",
+          "Proven design allows fast implementation",
+          "Reduction in validation test programs",
+          "ISO26262 ASIL-D guaranteed safety standards",
         ],
         "blocks": [
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "450V", "description": "Maximum voltage"},
+          {"topic": "35kW/l", "description": "Peak power densities"},
+          {"topic": "150kW", "description": "Peak power level"},
+          {"topic": "25 kW/kg", "description": "Power to weight"},
         ],
       },
       {
-        "topic": "Smart Motor System - V Series",
-        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "topic": "High Power Density Motors",
+        "subTopic":
+            "For powertrain traction, generator and cooling fan operations",
         "descriptioTexts": [
-          "Optimal efficiency switched reluctance motor",
-          "Standerd NEMA dimensions",
-          "Available in 1-10 HP",
+          "Proven reliability",
+          "Flexible, stackable design",
+          "Excellent power & torque density for small spaces",
         ],
         "blocks": [
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "800V", "description": "Maximum battery voltage"},
+          {"topic": "100-800kW", "description": "7 sizes available"},
+          {"topic": "96%", "description": "Peak efficiency"}
         ],
       },
     ],
   };
   static const Map<String, dynamic> avgNarmTexts = {
-    "topic": "AGV / AMRs",
-    "TextAreaSmallWithClip": [
-      "40-60%",
-      "of energy in AGV / AMR branches is used by HVAC and lightning",
-    ],
+    "topic": "Material Handling",
+    // "TextAreaSmallWithClip": [
+    //   "40-60%",
+    //   "of energy in AGV / AMR branches is used by HVAC and lightning",
+    // ],
     "TextAreaWithClipMain": {
-      "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
-      ],
-      "topic": "Turntide for AGV / AMRs",
+      "texts": [],
+      "topic": "Turntide for Material Handling",
       "description":
-          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+          "We offer electrification solutions to increase the productivity of warehouses and distribution centers and autonomous mobile robots (AMRs) and automatic guided vehicles (AGVs) by minimizing downtime and taking advantage of opportunity charging.",
     },
-    "TextAreaWithClipEnergySaving": {
-      "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
-      ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
-    },
+    // "TextAreaWithClipEnergySaving": {
+    //   "texts": [
+    //     "Improve energy efficiency",
+    //     "Maintain a comfortable environment",
+    //     "Automate lighting and HVAC",
+    //     "Extent equipment life",
+    //   ],
+    //   "topic": "Stratergies for Sustainable Operations",
+    //   "description": "",
+    // },
     "subTopics": [
-      "Battery loop",
+      "Battery Packs",
     ],
     "subTopicsInside": [
       {
-        "topic": "Smart Motor System - V Series",
-        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "topic": "High Performance Lithium-Ion NMB Battery",
+        "subTopic": "With intelligent built-in battery management",
         "descriptioTexts": [
-          "Optimal efficiency switched reluctance motor",
-          "Standerd NEMA dimensions",
-          "Available in 1-10 HP",
+          "High energy density",
+          "For rapid deployment & volume manufacture",
+          "Flexible & scalable modular design",
         ],
         "blocks": [
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "48-630V", "description": "Series system voltage"},
+          {"topic": "4.97-700kWh", "description": "Capacity"}
         ],
       },
     ],
   };
   static const Map<String, dynamic> truckTexts = {
     "topic": "Trucks",
-    "TextAreaSmallWithClip": [
-      "70%",
-      "of energy in Truck is used by HVAC and lightning",
-    ],
+    // "TextAreaSmallWithClip": [
+    //   "70%",
+    //   "of energy in Truck is used by HVAC and lightning",
+    // ],
     "TextAreaWithClipMain": {
-      "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
-      ],
-      "topic": "Turntide for Trucks",
+      "texts": [],
+      "topic": "Turntide for Electric Trucks",
       "description":
-          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+          "From last-mile delivery to Class8 40T trucks we offer a range of highly reliable electrification solutions from high power electric traction drives to low power pumps fans and hotel loads to help you deliver your emissions targets.",
     },
-    "TextAreaWithClipEnergySaving": {
-      "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
-      ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
-    },
+    // "TextAreaWithClipEnergySaving": {
+    //   "texts": [
+    //     "Improve energy efficiency",
+    //     "Maintain a comfortable environment",
+    //     "Automate lighting and HVAC",
+    //     "Extent equipment life",
+    //   ],
+    //   "topic": "Stratergies for Sustainable Operations",
+    //   "description": "",
+    // },
     "subTopics": [
       "Fan assemblies",
       "Inverters",
@@ -551,269 +536,252 @@ class TextsConstants {
     ],
     "subTopicsInside": [
       {
-        "topic": "Smart Motor System - V Series",
-        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "topic": "Pump & Fan Assemblies",
+        "subTopic": "",
         "descriptioTexts": [
-          "Optimal efficiency switched reluctance motor",
-          "Standerd NEMA dimensions",
-          "Available in 1-10 HP",
+          "Electric pump and fan assemblies, from 500W to 60kW cooling solutions for hybrid and electric buses",
+          "Sealless electric water pumps efficiently operate EV cooling circuits",
         ],
         "blocks": [
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "24 / 48 / 750V", "description": "Operating voltage"},
+          {"topic": "500-60kW", "description": "Power output"}
         ],
       },
       {
-        "topic": "Smart Motor System - V Series",
-        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "topic": "High Voltage High Power Drives",
+        "subTopic":
+            "Commercially available design for any automotive application",
         "descriptioTexts": [
-          "Optimal efficiency switched reluctance motor",
-          "Standerd NEMA dimensions",
-          "Available in 1-10 HP",
+          "Proven design allows fast implementation",
+          "Reduction in validation test programs",
+          "ISO26262 ASIL-D guaranteed safety standards",
         ],
         "blocks": [
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "450V", "description": "Maximum voltage"},
+          {"topic": "35kW/l", "description": "Peak power densities"},
+          {"topic": "150kW", "description": "Peak power level"},
+          {"topic": "25 kW/kg", "description": "Power to weight"},
         ],
       },
       {
-        "topic": "Smart Motor System - V Series",
-        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "topic": "High Power Density Motors",
+        "subTopic":
+            "For powertrain traction, generator and cooling fan operations",
         "descriptioTexts": [
-          "Optimal efficiency switched reluctance motor",
-          "Standerd NEMA dimensions",
-          "Available in 1-10 HP",
+          "Proven reliability",
+          "Flexible, stackable design",
+          "Excellent power & torque density for small spaces",
         ],
         "blocks": [
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "800V", "description": "Maximum battery voltage"},
+          {"topic": "100-800kW", "description": "7 sizes available"},
+          {"topic": "96%", "description": "Peak efficiency"}
         ],
       },
     ],
   };
   static const Map<String, dynamic> busTexts = {
     "topic": "Buses",
-    "TextAreaSmallWithClip": [
-      "75%",
-      "of energy in Buses is used by HVAC and lightning",
-    ],
+    // "TextAreaSmallWithClip": [
+    //   "75%",
+    //   "of energy in Buses is used by HVAC and lightning",
+    // ],
     "TextAreaWithClipMain": {
-      "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
-      ],
-      "topic": "Turntide for Buses",
+      "texts": [],
+      "topic": "Turntide for Electric Buses",
       "description":
-          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+          "We offer powertrain systems to satisfy on-road functional safety to ISO26262 ASIL-D with all the power and torque you need.\n\nSelect from a range of low voltage and high voltage pump and fan cooling solutions.",
     },
-    "TextAreaWithClipEnergySaving": {
-      "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
-      ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
-    },
+    // "TextAreaWithClipEnergySaving": {
+    //   "texts": [
+    //     "Improve energy efficiency",
+    //     "Maintain a comfortable environment",
+    //     "Automate lighting and HVAC",
+    //     "Extent equipment life",
+    //   ],
+    //   "topic": "Stratergies for Sustainable Operations",
+    //   "description": "",
+    // },
     "subTopics": [
-      "Fan assemblies",
+      "Pump and Fan assemblies",
       "Inverters",
       "Motors",
     ],
     "subTopicsInside": [
       {
-        "topic": "Smart Motor System - V Series",
-        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "topic": "Pump & Fan Assemblies",
+        "subTopic": "",
         "descriptioTexts": [
-          "Optimal efficiency switched reluctance motor",
-          "Standerd NEMA dimensions",
-          "Available in 1-10 HP",
+          "Electric pump and fan assemblies, from 500W to 60kW cooling solutions for hybrid and electric buses",
+          "Sealless electric water pumps efficiently operate EV cooling circuits",
         ],
         "blocks": [
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "24 / 48 / 750V", "description": "Operating voltage"},
+          {"topic": "500-60kW", "description": "Power output"}
         ],
       },
       {
-        "topic": "Smart Motor System - V Series",
-        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "topic": "High Voltage High Power Drives",
+        "subTopic":
+            "Commercially available design for any automotive application",
         "descriptioTexts": [
-          "Optimal efficiency switched reluctance motor",
-          "Standerd NEMA dimensions",
-          "Available in 1-10 HP",
+          "Proven design allows fast implementation",
+          "Reduction in validation test programs",
+          "ISO26262 ASIL-D guaranteed safety standards",
         ],
         "blocks": [
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "450V", "description": "Maximum voltage"},
+          {"topic": "35kW/l", "description": "Peak power densities"},
+          {"topic": "150kW", "description": "Peak power level"},
+          {"topic": "25 kW/kg", "description": "Power to weight"},
         ],
       },
       {
-        "topic": "Smart Motor System - V Series",
-        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "topic": "High Power Density Motors",
+        "subTopic":
+            "For powertrain traction, generator and cooling fan operations",
         "descriptioTexts": [
-          "Optimal efficiency switched reluctance motor",
-          "Standerd NEMA dimensions",
-          "Available in 1-10 HP",
+          "Proven reliability",
+          "Flexible, stackable design",
+          "Excellent power & torque density for small spaces",
         ],
         "blocks": [
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "800V", "description": "Maximum battery voltage"},
+          {"topic": "100-800kW", "description": "7 sizes available"},
+          {"topic": "96%", "description": "Peak efficiency"}
         ],
       },
     ],
   };
   static const Map<String, dynamic> excavatorTexts = {
     "topic": "Excavators",
-    "TextAreaSmallWithClip": [
-      "37%",
-      "of energy in Excavators is used by HVAC and lightning",
-    ],
+    // "TextAreaSmallWithClip": [
+    //   "37%",
+    //   "of energy in Excavators is used by HVAC and lightning",
+    // ],
     "TextAreaWithClipMain": {
       "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
+        "Click here for case study",
       ],
-      "topic": "Turntide for Excavators",
+      "topic": "Turntide for Construction",
       "description":
-          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+          "Whether building excavators or backhoes, we'll help you electrify your construction ehicles and get to market quickly and easily with a fully scalable powertrain solution.",
     },
-    "TextAreaWithClipEnergySaving": {
-      "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
-      ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
-    },
+    // "TextAreaWithClipEnergySaving": {
+    //   "texts": [
+    //     "Improve energy efficiency",
+    //     "Maintain a comfortable environment",
+    //     "Automate lighting and HVAC",
+    //     "Extent equipment life",
+    //   ],
+    //   "topic": "Stratergies for Sustainable Operations",
+    //   "description": "",
+    // },
     "subTopics": [
-      "Battery loop",
-      "Drive loop",
-      "DCDC Converter",
-      "HD Mortor",
+      "Motors",
+      "Battery Packs",
+      "Inverters",
+      "DC/DC Convertors",
     ],
     "subTopicsInside": [
       {
-        "topic": "Smart Motor System - V Series",
-        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "topic": "High Power Density Motors",
+        "subTopic":
+            "For powertrain traction, generator and cooling fan operations",
         "descriptioTexts": [
-          "Optimal efficiency switched reluctance motor",
-          "Standerd NEMA dimensions",
-          "Available in 1-10 HP",
+          "Proven reliability",
+          "Flexible, stackable design",
+          "Excellent power & torque density for small spaces",
         ],
         "blocks": [
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "800V", "description": "Maximum battery voltage"},
+          {"topic": "100-800kW", "description": "7 sizes available"},
+          {"topic": "96%", "description": "Peak efficiency"}
         ],
       },
       {
-        "topic": "Smart Motor System - V Series",
-        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "topic": "High Performance Lithium-Ion NMB Battery",
+        "subTopic": "With intelligent built-in battery management",
         "descriptioTexts": [
-          "Optimal efficiency switched reluctance motor",
-          "Standerd NEMA dimensions",
-          "Available in 1-10 HP",
+          "High energy density",
+          "For rapid deployment & volume manufacture",
+          "Flexible & scalable modular design",
         ],
         "blocks": [
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "48-630V", "description": "Series system voltage"},
+          {"topic": "4.97-700kWh", "description": "Capacity"}
         ],
       },
       {
-        "topic": "Smart Motor System - V Series",
-        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "topic": "Low Voltage Drives",
+        "subTopic": "Powered mainstream EV's for over 10 years",
         "descriptioTexts": [
-          "Optimal efficiency switched reluctance motor",
-          "Standerd NEMA dimensions",
-          "Available in 1-10 HP",
+          "Proven reliability with almost 200,000 units shipped",
+          "Supports a wide range of motor types",
+          "Highly configurable operation & communications",
         ],
         "blocks": [
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "900A", "description": "Peak current"},
+          {"topic": "48-110V", "description": "Operating voltage"}
         ],
       },
       {
-        "topic": "Smart Motor System - V Series",
-        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "topic": "DC/DC Convertors",
+        "subTopic":
+            "Product range for low voltage electrification applications",
         "descriptioTexts": [
-          "Optimal efficiency switched reluctance motor",
-          "Standerd NEMA dimensions",
-          "Available in 1-10 HP",
+          "Low voltage and high voltage options",
+          "Can convert batteries to lower voltages",
+          "Powers vehicle ancillaries such as lights & radios",
         ],
         "blocks": [
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "12-14V", "description": "Output voltage"},
+          {"topic": "500-3.7kW", "description": "Power output"},
+          {"topic": "48 to 450V", "description": "Operating voltages"}
         ],
       },
     ],
   };
   static const Map<String, dynamic> trainTexts = {
     "topic": "Trains",
-    "TextAreaSmallWithClip": [
-      "50%",
-      "of energy in Trains is used by HVAC and lightning",
-    ],
+    // "TextAreaSmallWithClip": [
+    //   "50%",
+    //   "of energy in Trains is used by HVAC and lightning",
+    // ],
     "TextAreaWithClipMain": {
       "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
+        "Battery Packs",
       ],
       "topic": "Turntide for Trains",
       "description":
-          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+          "We provide high-performance electrification components for rail hybrid and pure electric solutions to provide train manufacturers a risk-free path to carbon reduction.",
     },
-    "TextAreaWithClipEnergySaving": {
-      "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
-      ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
-    },
+    // "TextAreaWithClipEnergySaving": {
+    //   "texts": [
+    //     "Improve energy efficiency",
+    //     "Maintain a comfortable environment",
+    //     "Automate lighting and HVAC",
+    //     "Extent equipment life",
+    //   ],
+    //   "topic": "Stratergies for Sustainable Operations",
+    //   "description": "",
+    // },
     "subTopics": [
-      "Train Battery loop",
+      "Battery Packs",
     ],
     "subTopicsInside": [
       {
-        "topic": "Smart Motor System - V Series",
-        "subTopic": "Includes: Smart Motor, Motor Controller, and Hub",
+        "topic": "High Performance Lithium-ion NMC battery",
+        "subTopic": "With intelligent built-in battery management",
         "descriptioTexts": [
-          "Optimal efficiency switched reluctance motor",
-          "Standerd NEMA dimensions",
-          "Available in 1-10 HP",
+          "High energy density",
+          "Flexible & scalable modular design",
+          "For rapid deployment & volume manufacture",
         ],
         "blocks": [
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
-          {"topic": "93.2%", "description": "PEAK MOTOR EFFICIENCY"},
+          {"topic": "48-630V", "description": "Series system voltage"},
+          {"topic": "4.97-700kWh", "description": "Capacity"},
+          {"topic": "Over 1000V", "description": "Rail applications"}
         ],
       },
     ],
