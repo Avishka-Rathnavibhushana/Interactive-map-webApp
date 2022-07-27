@@ -7,6 +7,7 @@ class AppColors {
 //Primary Palette
   static const Color night = Color(0xFF263349);
   static const Color sea = Color(0xFF003C71);
+  static const Color seaLight = Color.fromARGB(255, 56, 167, 231);
 
 //Gradients
   static const LinearGradient seaToSky = LinearGradient(
@@ -116,9 +117,9 @@ class TextsConstants {
     ],
     "TextAreaWithClipMain": {
       "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
+        ["TEXT", "Smart Motor System"],
+        ["TEXT", "Smart HVAC"],
+        ["TEXT", "Smart Building Operations"],
       ],
       "topic": "Turntide for Schools",
       "description":
@@ -126,11 +127,11 @@ class TextsConstants {
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
-        "Prevent learning disruption",
+        ["TEXT", "Improve energy efficiency"],
+        ["TEXT", "Maintain a comfortable environment"],
+        ["TEXT", "Automate lighting and HVAC"],
+        ["TEXT", "Extent equipment life"],
+        ["TEXT", "Prevent learning disruption"],
       ],
       "topic": "Stratergies for Sustainable Operations",
       "description": "",
@@ -149,9 +150,9 @@ class TextsConstants {
     ],
     "TextAreaWithClipMain": {
       "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
+        ["TEXT", "Smart Motor System"],
+        ["TEXT", "Smart HVAC"],
+        ["TEXT", "Smart Building Operations"],
       ],
       "topic": "Turntide for Restaurants",
       "description":
@@ -159,10 +160,10 @@ class TextsConstants {
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
+        ["TEXT", "Improve energy efficiency"],
+        ["TEXT", "Maintain a comfortable environment"],
+        ["TEXT", "Automate lighting and HVAC"],
+        ["TEXT", "Extent equipment life"],
       ],
       "topic": "Stratergies for Sustainable Operations",
       "description": "",
@@ -181,9 +182,9 @@ class TextsConstants {
     ],
     "TextAreaWithClipMain": {
       "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
+        ["TEXT", "Smart Motor System"],
+        ["TEXT", "Smart HVAC"],
+        ["TEXT", "Smart Building Operations"],
       ],
       "topic": "Turntide for Banks",
       "description":
@@ -191,10 +192,10 @@ class TextsConstants {
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
+        ["TEXT", "Improve energy efficiency"],
+        ["TEXT", "Maintain a comfortable environment"],
+        ["TEXT", "Automate lighting and HVAC"],
+        ["TEXT", "Extent equipment life"],
       ],
       "topic": "Stratergies for Sustainable Operations",
       "description": "",
@@ -213,9 +214,9 @@ class TextsConstants {
     ],
     "TextAreaWithClipMain": {
       "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
+        ["TEXT", "Smart Motor System"],
+        ["TEXT", "Smart HVAC"],
+        ["TEXT", "Smart Building Operations"],
       ],
       "topic": "Turntide for Retail Stores",
       "description":
@@ -223,10 +224,10 @@ class TextsConstants {
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
+        ["TEXT", "Improve energy efficiency"],
+        ["TEXT", "Maintain a comfortable environment"],
+        ["TEXT", "Automate lighting and HVAC"],
+        ["TEXT", "Extent equipment life"],
       ],
       "topic": "Stratergies for Sustainable Operations",
       "description": "",
@@ -245,9 +246,9 @@ class TextsConstants {
     ],
     "TextAreaWithClipMain": {
       "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
+        ["TEXT", "Smart Motor System"],
+        ["TEXT", "Smart HVAC"],
+        ["TEXT", "Smart Building Operations"],
       ],
       "topic": "Turntide for Warehouses",
       "description":
@@ -255,10 +256,10 @@ class TextsConstants {
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
+        ["TEXT", "Improve energy efficiency"],
+        ["TEXT", "Maintain a comfortable environment"],
+        ["TEXT", "Automate lighting and HVAC"],
+        ["TEXT", "Extent equipment life"],
       ],
       "topic": "Stratergies for Sustainable Operations",
       "description": "",
@@ -277,9 +278,9 @@ class TextsConstants {
     ],
     "TextAreaWithClipMain": {
       "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
+        ["TEXT", "Smart Motor System"],
+        ["TEXT", "Smart HVAC"],
+        ["TEXT", "Smart Building Operations"],
       ],
       "topic": "Turntide for Data Centers",
       "description":
@@ -287,10 +288,10 @@ class TextsConstants {
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
+        ["TEXT", "Improve energy efficiency"],
+        ["TEXT", "Maintain a comfortable environment"],
+        ["TEXT", "Automate lighting and HVAC"],
+        ["TEXT", "Extent equipment life"],
       ],
       "topic": "Stratergies for Sustainable Operations",
       "description": "",
@@ -309,9 +310,9 @@ class TextsConstants {
     ],
     "TextAreaWithClipMain": {
       "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
+        ["TEXT", "Smart Motor System"],
+        ["TEXT", "Smart HVAC"],
+        ["TEXT", "Smart Building Operations"],
       ],
       "topic": "Turntide for Grocery Stores",
       "description":
@@ -319,10 +320,10 @@ class TextsConstants {
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
+        ["TEXT", "Improve energy efficiency"],
+        ["TEXT", "Maintain a comfortable environment"],
+        ["TEXT", "Automate lighting and HVAC"],
+        ["TEXT", "Extent equipment life"],
       ],
       "topic": "Stratergies for Sustainable Operations",
       "description": "",
@@ -367,9 +368,9 @@ class TextsConstants {
         "subTopic":
             "Commercially available design for any automotive application",
         "descriptioTexts": [
-          "Proven design allows fast implementation",
-          "Reduction in validation test programs",
-          "ISO26262 ASIL-D guaranteed safety standards",
+          ["TEXT", "Proven design allows fast implementation"],
+          ["TEXT", "Reduction in validation test programs"],
+          ["TEXT", "ISO26262 ASIL-D guaranteed safety standards"],
         ],
         "blocks": [
           {"topic": "450V", "description": "Maximum voltage"},
@@ -383,9 +384,9 @@ class TextsConstants {
         "subTopic":
             "For powertrain traction, generator and cooling fan operations",
         "descriptioTexts": [
-          "Proven reliability",
-          "Flexible, stackable design",
-          "Excellent power & torque density for small spaces",
+          ["TEXT", "Proven reliability"],
+          ["TEXT", "Flexible, stackable design"],
+          ["TEXT", "Excellent power & torque density for small spaces"],
         ],
         "blocks": [
           {"topic": "800V", "description": "Maximum battery voltage"},
@@ -427,8 +428,14 @@ class TextsConstants {
         "topic": "Pump & Fan Assemblies",
         "subTopic": "",
         "descriptioTexts": [
-          "Electric pump and fan assemblies, from 500W to 60kW cooling solutions for hybrid and electric buses",
-          "Sealless electric water pumps efficiently operate EV cooling circuits",
+          [
+            "TEXT",
+            "Electric pump and fan assemblies, from 500W to 60kW cooling solutions for hybrid and electric buses"
+          ],
+          [
+            "TEXT",
+            "Sealless electric water pumps efficiently operate EV cooling circuits"
+          ],
         ],
         "blocks": [
           {"topic": "24 / 48 / 750V", "description": "Operating voltage"},
@@ -440,9 +447,9 @@ class TextsConstants {
         "subTopic":
             "Commercially available design for any automotive application",
         "descriptioTexts": [
-          "Proven design allows fast implementation",
-          "Reduction in validation test programs",
-          "ISO26262 ASIL-D guaranteed safety standards",
+          ["TEXT", "Proven design allows fast implementation"],
+          ["TEXT", "Reduction in validation test programs"],
+          ["TEXT", "ISO26262 ASIL-D guaranteed safety standards"],
         ],
         "blocks": [
           {"topic": "450V", "description": "Maximum voltage"},
@@ -456,9 +463,9 @@ class TextsConstants {
         "subTopic":
             "For powertrain traction, generator and cooling fan operations",
         "descriptioTexts": [
-          "Proven reliability",
-          "Flexible, stackable design",
-          "Excellent power & torque density for small spaces",
+          ["TEXT", "Proven reliability"],
+          ["TEXT", "Flexible, stackable design"],
+          ["TEXT", "Excellent power & torque density for small spaces"],
         ],
         "blocks": [
           {"topic": "800V", "description": "Maximum battery voltage"},
@@ -498,9 +505,9 @@ class TextsConstants {
         "topic": "High Performance Lithium-Ion NMB Battery",
         "subTopic": "With intelligent built-in battery management",
         "descriptioTexts": [
-          "High energy density",
-          "For rapid deployment & volume manufacture",
-          "Flexible & scalable modular design",
+          ["TEXT", "High energy density"],
+          ["TEXT", "For rapid deployment & volume manufacture"],
+          ["TEXT", "Flexible & scalable modular design"],
         ],
         "blocks": [
           {"topic": "48-630V", "description": "Series system voltage"},
@@ -541,8 +548,14 @@ class TextsConstants {
         "topic": "Pump & Fan Assemblies",
         "subTopic": "",
         "descriptioTexts": [
-          "Electric pump and fan assemblies, from 500W to 60kW cooling solutions for hybrid and electric buses",
-          "Sealless electric water pumps efficiently operate EV cooling circuits",
+          [
+            "TEXT",
+            "Electric pump and fan assemblies, from 500W to 60kW cooling solutions for hybrid and electric buses"
+          ],
+          [
+            "TEXT",
+            "Sealless electric water pumps efficiently operate EV cooling circuits"
+          ],
         ],
         "blocks": [
           {"topic": "24 / 48 / 750V", "description": "Operating voltage"},
@@ -554,9 +567,9 @@ class TextsConstants {
         "subTopic":
             "Commercially available design for any automotive application",
         "descriptioTexts": [
-          "Proven design allows fast implementation",
-          "Reduction in validation test programs",
-          "ISO26262 ASIL-D guaranteed safety standards",
+          ["TEXT", "Proven design allows fast implementation"],
+          ["TEXT", "Reduction in validation test programs"],
+          ["TEXT", "ISO26262 ASIL-D guaranteed safety standards"],
         ],
         "blocks": [
           {"topic": "450V", "description": "Maximum voltage"},
@@ -570,9 +583,9 @@ class TextsConstants {
         "subTopic":
             "For powertrain traction, generator and cooling fan operations",
         "descriptioTexts": [
-          "Proven reliability",
-          "Flexible, stackable design",
-          "Excellent power & torque density for small spaces",
+          ["TEXT", "Proven reliability"],
+          ["TEXT", "Flexible, stackable design"],
+          ["TEXT", "Excellent power & torque density for small spaces"],
         ],
         "blocks": [
           {"topic": "800V", "description": "Maximum battery voltage"},
@@ -614,8 +627,14 @@ class TextsConstants {
         "topic": "Pump & Fan Assemblies",
         "subTopic": "",
         "descriptioTexts": [
-          "Electric pump and fan assemblies, from 500W to 60kW cooling solutions for hybrid and electric buses",
-          "Sealless electric water pumps efficiently operate EV cooling circuits",
+          [
+            "TEXT",
+            "Electric pump and fan assemblies, from 500W to 60kW cooling solutions for hybrid and electric buses"
+          ],
+          [
+            "TEXT",
+            "Sealless electric water pumps efficiently operate EV cooling circuits"
+          ],
         ],
         "blocks": [
           {"topic": "24 / 48 / 750V", "description": "Operating voltage"},
@@ -627,9 +646,9 @@ class TextsConstants {
         "subTopic":
             "Commercially available design for any automotive application",
         "descriptioTexts": [
-          "Proven design allows fast implementation",
-          "Reduction in validation test programs",
-          "ISO26262 ASIL-D guaranteed safety standards",
+          ["TEXT", "Proven design allows fast implementation"],
+          ["TEXT", "Reduction in validation test programs"],
+          ["TEXT", "ISO26262 ASIL-D guaranteed safety standards"],
         ],
         "blocks": [
           {"topic": "450V", "description": "Maximum voltage"},
@@ -643,9 +662,9 @@ class TextsConstants {
         "subTopic":
             "For powertrain traction, generator and cooling fan operations",
         "descriptioTexts": [
-          "Proven reliability",
-          "Flexible, stackable design",
-          "Excellent power & torque density for small spaces",
+          ["TEXT", "Proven reliability"],
+          ["TEXT", "Flexible, stackable design"],
+          ["TEXT", "Excellent power & torque density for small spaces"],
         ],
         "blocks": [
           {"topic": "800V", "description": "Maximum battery voltage"},
@@ -663,7 +682,7 @@ class TextsConstants {
     // ],
     "TextAreaWithClipMain": {
       "texts": [
-        "Click here for case study",
+        ["HYPERLINK", "Click here for case study", "https://flutter.dev/"],
       ],
       "topic": "Turntide for Construction",
       "description":
@@ -691,9 +710,9 @@ class TextsConstants {
         "subTopic":
             "For powertrain traction, generator and cooling fan operations",
         "descriptioTexts": [
-          "Proven reliability",
-          "Flexible, stackable design",
-          "Excellent power & torque density for small spaces",
+          ["TEXT", "Proven reliability"],
+          ["TEXT", "Flexible, stackable design"],
+          ["TEXT", "Excellent power & torque density for small spaces"],
         ],
         "blocks": [
           {"topic": "800V", "description": "Maximum battery voltage"},
@@ -705,9 +724,9 @@ class TextsConstants {
         "topic": "High Performance Lithium-Ion NMB Battery",
         "subTopic": "With intelligent built-in battery management",
         "descriptioTexts": [
-          "High energy density",
-          "For rapid deployment & volume manufacture",
-          "Flexible & scalable modular design",
+          ["TEXT", "High energy density"],
+          ["TEXT", "For rapid deployment & volume manufacture"],
+          ["TEXT", "Flexible & scalable modular design"],
         ],
         "blocks": [
           {"topic": "48-630V", "description": "Series system voltage"},
@@ -718,9 +737,9 @@ class TextsConstants {
         "topic": "Low Voltage Drives",
         "subTopic": "Powered mainstream EV's for over 10 years",
         "descriptioTexts": [
-          "Proven reliability with almost 200,000 units shipped",
-          "Supports a wide range of motor types",
-          "Highly configurable operation & communications",
+          ["TEXT", "Proven reliability with almost 200,000 units shipped"],
+          ["TEXT", "Supports a wide range of motor types"],
+          ["TEXT", "Highly configurable operation & communications"],
         ],
         "blocks": [
           {"topic": "900A", "description": "Peak current"},
@@ -732,9 +751,9 @@ class TextsConstants {
         "subTopic":
             "Product range for low voltage electrification applications",
         "descriptioTexts": [
-          "Low voltage and high voltage options",
-          "Can convert batteries to lower voltages",
-          "Powers vehicle ancillaries such as lights & radios",
+          ["TEXT", "Low voltage and high voltage options"],
+          ["TEXT", "Can convert batteries to lower voltages"],
+          ["TEXT", "Powers vehicle ancillaries such as lights & radios"],
         ],
         "blocks": [
           {"topic": "12-14V", "description": "Output voltage"},
@@ -752,7 +771,7 @@ class TextsConstants {
     // ],
     "TextAreaWithClipMain": {
       "texts": [
-        "Battery Packs",
+        ["TEXT", "Battery Packs"],
       ],
       "topic": "Turntide for Trains",
       "description":
@@ -776,9 +795,9 @@ class TextsConstants {
         "topic": "High Performance Lithium-ion NMC battery",
         "subTopic": "With intelligent built-in battery management",
         "descriptioTexts": [
-          "High energy density",
-          "Flexible & scalable modular design",
-          "For rapid deployment & volume manufacture",
+          ["TEXT", "High energy density"],
+          ["TEXT", "Flexible & scalable modular design"],
+          ["TEXT", "For rapid deployment & volume manufacture"],
         ],
         "blocks": [
           {"topic": "48-630V", "description": "Series system voltage"},

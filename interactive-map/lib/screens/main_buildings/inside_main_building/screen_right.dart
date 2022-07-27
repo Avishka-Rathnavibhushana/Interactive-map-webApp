@@ -404,8 +404,14 @@ class _ScreenRightState extends State<ScreenRight> {
                         child: TextAreaWithClip(
                             screenSize: screenSize,
                             texts: const [
-                              "Monitor equipment performance with fault detection and alerts for preventative maintenance",
-                              "Reduce costs and resolve issues before customers are affected"
+                              [
+                                "TEXT",
+                                "Monitor equipment performance with fault detection and alerts for preventative maintenance"
+                              ],
+                              [
+                                "TEXT",
+                                "Reduce costs and resolve issues before customers are affected"
+                              ],
                             ],
                             topic: "Smart HVAC",
                             description: ""),
@@ -419,7 +425,10 @@ class _ScreenRightState extends State<ScreenRight> {
                         child: TextAreaWithClip(
                             screenSize: screenSize,
                             texts: const [
-                              "Easily mange temparature setpoints and scheduling anytime, anywhere 24/7",
+                              [
+                                "TEXT",
+                                "Easily mange temparature setpoints and scheduling anytime, anywhere 24/7"
+                              ],
                             ],
                             topic: "Smart HVAC",
                             description: ""),

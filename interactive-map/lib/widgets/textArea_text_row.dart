@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/utills/utils.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TextAreaTextRow extends StatelessWidget {
   const TextAreaTextRow({
@@ -13,7 +14,7 @@ class TextAreaTextRow extends StatelessWidget {
   }) : super(key: key);
 
   final Size screenSize;
-  final String text;
+  final List<String> text;
   final double fontSize;
   final double ratio;
 
@@ -26,7 +27,8 @@ class TextAreaTextRow extends StatelessWidget {
               (25 / VideoAspectRatio.height)),
       //width: screenSize.width < 1565 ? 1565 * 0.25 : screenSize.width * 0.25,
       width: screenSize.width * ratio * Utils.getMultiplier(screenSize.width),
-      child: Row(
+      child: text[0] == "TEXT"
+          ? Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,8 +50,8 @@ class TextAreaTextRow extends StatelessWidget {
                 (screenSize.width / VideoAspectRatio.width),
           ),
           Expanded(
-            child: Text(
-              text,
+                  child: Text(
+                    text[1],
               style: GoogleFonts.barlow(
                 textStyle: TextStyle(
                 color: AppColors.white,
@@ -61,10 +63,38 @@ class TextAreaTextRow extends StatelessWidget {
               maxLines: 10,
               softWrap: true,
               overflow: TextOverflow.ellipsis,
-            ),
+                  ),
           ),
         ],
-      ),
+            )
+          : text[0] == "HYPERLINK"
+              ? Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: InkWell(
+                        onTap: () => launch(text[2]),
+                        child: Text(
+                          text[1],
+                          style: GoogleFonts.barlow(
+                            textStyle: TextStyle(
+                              color: AppColors.seaLight,
+                              fontSize: fontSize *
+                                  (screenSize.width / VideoAspectRatio.width) *
+                                  Utils.getMultiplier(screenSize.width),
+                            ),
+                          ),
+                          maxLines: 10,
+                          softWrap: true,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              : Container(),
     );
   }
 }

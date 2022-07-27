@@ -458,9 +458,12 @@ class _MotorState extends State<Motor> {
                         ? TextAreaWithClip(
                             screenSize: screenSize,
                             texts: const [
-                              "Optimal efficiency switched reluctance motor",
-                              "Standerd NEMA dimensions",
-                              "Available in 1-10 HP",
+                              [
+                                "TEXT",
+                                "Optimal efficiency switched reluctance motor"
+                              ],
+                              ["TEXT", "Standerd NEMA dimensions"],
+                              ["TEXT", "Available in 1-10 HP"],
                             ],
                             topic: "",
                             description: "",
@@ -470,10 +473,16 @@ class _MotorState extends State<Motor> {
                     TextAreaWithClip(
                       screenSize: screenSize,
                       texts: const [
-                        "Slim design for space efficiency",
-                        "IE5-level motor efficiency",
-                        "Ultra-reliable performance across all speeds",
-                        "Provides diagnostics like torque, speed, and HP"
+                              ["TEXT", "Slim design for space efficiency"],
+                              ["TEXT", "IE5-level motor efficiency"],
+                              [
+                                "TEXT",
+                                "Ultra-reliable performance across all speeds"
+                              ],
+                              [
+                                "TEXT",
+                                "Provides diagnostics like torque, speed, and HP"
+                              ],
                       ],
                       topic: "",
                       description: "",

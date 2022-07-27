@@ -445,8 +445,14 @@ class _ScreenLeftState extends State<ScreenLeft> {
                         child: TextAreaWithClip(
                             screenSize: screenSize,
                             texts: const [
-                              "Multi-site management and global controls allow you to react quickly",
-                              "Scale efficiency measures across your entire portfolio"
+                              [
+                                "TEXT",
+                                "Multi-site management and global controls allow you to react quickly"
+                              ],
+                              [
+                                "TEXT",
+                                "Scale efficiency measures across your entire portfolio"
+                              ],
                             ],
                             topic: "Smart Building Operations",
                             description: ""),
@@ -461,8 +467,14 @@ class _ScreenLeftState extends State<ScreenLeft> {
                             child: TextAreaWithClip(
                                 screenSize: screenSize,
                                 texts: const [
-                                  "Open-platform works with existing building systems regardless of vendor",
-                                  "Complete visibility in a single pane of glass"
+                                  [
+                                    "TEXT",
+                                    "Open-platform works with existing building systems regardless of vendor"
+                                  ],
+                                  [
+                                    "TEXT",
+                                    "Complete visibility in a single pane of glass"
+                                  ],
                                 ],
                                 topic: "Smart Building Operations",
                                 description: ""),
@@ -476,8 +488,14 @@ class _ScreenLeftState extends State<ScreenLeft> {
                             child: TextAreaWithClip(
                                 screenSize: screenSize,
                                 texts: const [
-                                  "Monitor Indoor Air Quality (IAQ) standerds",
-                                  "Help keep your employees and customers safe"
+                                  [
+                                    "TEXT",
+                                    "Monitor Indoor Air Quality (IAQ) standerds"
+                                  ],
+                                  [
+                                    "TEXT",
+                                    "Help keep your employees and customers safe"
+                                  ],
                                 ],
                                 topic: "Smart Building Operations",
                                 description: ""),

@@ -14,7 +14,7 @@ class TextArea extends StatelessWidget {
   }) : super(key: key);
 
   final Size screenSize;
-  final List<String> texts;
+  final List<List<String>> texts;
   final String topic;
   final String description;
 
