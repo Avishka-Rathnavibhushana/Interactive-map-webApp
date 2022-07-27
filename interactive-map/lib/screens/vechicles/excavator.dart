@@ -38,16 +38,16 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
   bool show = false;
   bool _isPlaying = false;
 
-  final String url = 'assets/videos/vehicles/Veh_To_Exc_REV.m4v';
+  final String url = 'assets/videos/vehicles/Veh_To_Exc_REV.mp4';
 
   final String transition1Video =
-      'assets/videos/vehicles/Product_transition/Exc_to_Battery.m4v';
+      'assets/videos/vehicles/Product_transition/Exc_to_Battery.mp4';
   final String transition2Video =
-      'assets/videos/vehicles/Product_transition/Exc_to_Drive.m4v';
+      'assets/videos/vehicles/Product_transition/Exc_to_Drive.mp4';
   final String transition3Video =
-      'assets/videos/vehicles/Product_transition/Exc_to_DCDC.m4v';
+      'assets/videos/vehicles/Product_transition/Exc_to_DCDC.mp4';
   final String transition4Video =
-      'assets/videos/vehicles/Product_transition/Exc_to_HDMotor.m4v';
+      'assets/videos/vehicles/Product_transition/Exc_to_HDMotor.mp4';
 
   // final String schoolImage = 'assets/tempory images/School_Plain.png';
 
@@ -645,9 +645,9 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                     url:
-                        "assets/videos/vehicles/Product_loops/Battery_Loop.m4v",
+                        "assets/videos/vehicles/Product_loops/Battery_Loop.mp4",
                     back:
-                        "assets/videos/vehicles/Product_transition/Exc_to_Battery.m4v",
+                        "assets/videos/vehicles/Product_transition/Exc_to_Battery.mp4",
                     topic: TextsConstants.excavatorTexts["subTopicsInside"][0]
                         ["topic"],
                     subTopic: TextsConstants.excavatorTexts["subTopicsInside"]
@@ -693,9 +693,9 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                     from: Pages.excavator,
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
-                    url: "assets/videos/vehicles/Product_loops/Drive_Loop.m4v",
+                    url: "assets/videos/vehicles/Product_loops/Drive_Loop.mp4",
                     back:
-                        "assets/videos/vehicles/Product_transition/Exc_to_Drive.m4v",
+                        "assets/videos/vehicles/Product_transition/Exc_to_Drive.mp4",
                     topic: TextsConstants.excavatorTexts["subTopicsInside"][1]
                         ["topic"],
                     subTopic: TextsConstants.excavatorTexts["subTopicsInside"]
@@ -741,9 +741,9 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                     from: Pages.excavator,
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
-                    url: "assets/videos/vehicles/Product_loops/DCDC_Loop.m4v",
+                    url: "assets/videos/vehicles/Product_loops/DCDC_Loop.mp4",
                     back:
-                        "assets/videos/vehicles/Product_transition/Exc_to_DCDC.m4v",
+                        "assets/videos/vehicles/Product_transition/Exc_to_DCDC.mp4",
                     topic: TextsConstants.excavatorTexts["subTopicsInside"][2]
                         ["topic"],
                     subTopic: TextsConstants.excavatorTexts["subTopicsInside"]
@@ -790,9 +790,9 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                     url:
-                        "assets/videos/vehicles/Product_loops/HDMotor_Loop.m4v",
+                        "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
                     back:
-                        "assets/videos/vehicles/Product_transition/Exc_to_HDMotor.m4v",
+                        "assets/videos/vehicles/Product_transition/Exc_to_HDMotor.mp4",
                     topic: TextsConstants.excavatorTexts["subTopicsInside"][3]
                         ["topic"],
                     subTopic: TextsConstants.excavatorTexts["subTopicsInside"]
@@ -896,9 +896,9 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/Battery_Loop.m4v",
+                                "assets/videos/vehicles/Product_loops/Battery_Loop.mp4",
                             back:
-                                "assets/videos/vehicles/Product_transition/Exc_to_Battery.m4v",
+                                "assets/videos/vehicles/Product_transition/Exc_to_Battery.mp4",
                             topic: TextsConstants
                                 .excavatorTexts["subTopicsInside"][0]["topic"],
                             subTopic:
@@ -957,9 +957,9 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/Drive_Loop.m4v",
+                                "assets/videos/vehicles/Product_loops/Drive_Loop.mp4",
                             back:
-                                "assets/videos/vehicles/Product_transition/Exc_to_Drive.m4v",
+                                "assets/videos/vehicles/Product_transition/Exc_to_Drive.mp4",
                             topic: TextsConstants
                                 .excavatorTexts["subTopicsInside"][1]["topic"],
                             subTopic:
@@ -1018,9 +1018,9 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/DCDC_Loop.m4v",
+                                "assets/videos/vehicles/Product_loops/DCDC_Loop.mp4",
                             back:
-                                "assets/videos/vehicles/Product_transition/Exc_to_DCDC.m4v",
+                                "assets/videos/vehicles/Product_transition/Exc_to_DCDC.mp4",
                             topic: TextsConstants
                                 .excavatorTexts["subTopicsInside"][2]["topic"],
                             subTopic:
@@ -1079,9 +1079,9 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/HDMotor_Loop.m4v",
+                                "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
                             back:
-                                "assets/videos/vehicles/Product_transition/Exc_to_HDMotor.m4v",
+                                "assets/videos/vehicles/Product_transition/Exc_to_HDMotor.mp4",
                             topic: TextsConstants
                                 .excavatorTexts["subTopicsInside"][3]["topic"],
                             subTopic:
@@ -1100,7 +1100,7 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
                 text: TextsConstants.excavatorTexts["subTopics"][3],
-                type: 3,
+                type: 4,
               ),
             ),
           ],

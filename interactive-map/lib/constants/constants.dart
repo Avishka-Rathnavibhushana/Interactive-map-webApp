@@ -42,6 +42,8 @@ class AppColors {
 const homeImage = 'assets/graphics/HOME.png';
 const moreImage = 'assets/graphics/MORE.png';
 const nextImage = 'assets/graphics/Next.png';
+const buildingsTransitionImage = 'assets/graphics/Buildings.png';
+const vehiclesTransitionImage = 'assets/graphics/Vehicles.png';
 const dataAnimationGif = 'assets/animations/Data_animation_512.gif';
 const dataCenterAirFlowGif = 'assets/animations/Data_Center_airflow.gif';
 

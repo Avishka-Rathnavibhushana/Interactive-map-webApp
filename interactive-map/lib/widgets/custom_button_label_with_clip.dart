@@ -19,7 +19,8 @@ class CustomButtonLabelWithClip extends StatelessWidget {
     'assets/graphics/Hot_Spot_plain.png',
     'assets/graphics/Hot_Spot_1.png',
     'assets/graphics/Hot_Spot_2.png',
-    'assets/graphics/Hot_Spot_3.png'
+    'assets/graphics/Hot_Spot_3.png',
+    'assets/graphics/Hot_Spot_4.png'
   ];
 
   @override

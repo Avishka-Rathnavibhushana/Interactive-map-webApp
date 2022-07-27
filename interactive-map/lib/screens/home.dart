@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
   int index = 0;
   bool show = false;
 
-  final String timerVideoUrl = 'assets/videos/Intro_Loop.m4v';
+  final String timerVideoUrl = 'assets/videos/Intro_Loop.mp4';
 
   final String buildingsVideoUrl = 'assets/videos/Intro_To_Buildings.m4v';
   final String vechiclesVideoUrl = 'assets/videos/Intro_To_Vehicles.m4v';

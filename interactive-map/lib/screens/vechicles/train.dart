@@ -32,10 +32,10 @@ class _TrainVideoState extends State<TrainVideo> {
   bool show = false;
   bool _isPlaying = false;
 
-  final String url = 'assets/videos/vehicles/Veh_To_Train_REV.m4v';
+  final String url = 'assets/videos/vehicles/Veh_To_Train_REV.mp4';
 
   final String transition1Video =
-      'assets/videos/vehicles/Product_transition/Train_To_Battery.m4v';
+      'assets/videos/vehicles/Product_transition/Train_To_Battery.mp4';
 
   // final String schoolImage = 'assets/tempory images/School_Plain.png';
 
@@ -506,9 +506,9 @@ class _TrainVideoState extends State<TrainVideo> {
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                     url:
-                        "assets/videos/vehicles/Product_loops/Train_Battery_Loop.m4v",
+                        "assets/videos/vehicles/Product_loops/Train_Battery_Loop.mp4",
                     back:
-                        "assets/videos/vehicles/Product_transition/Train_To_Battery.m4v",
+                        "assets/videos/vehicles/Product_transition/Train_To_Battery.mp4",
                     topic: TextsConstants.trainTexts["subTopicsInside"][0]
                         ["topic"],
                     subTopic: TextsConstants.trainTexts["subTopicsInside"][0]
@@ -611,9 +611,9 @@ class _TrainVideoState extends State<TrainVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/Train_Battery_Loop.m4v",
+                                "assets/videos/vehicles/Product_loops/Train_Battery_Loop.mp4",
                             back:
-                                "assets/videos/vehicles/Product_transition/Train_To_Battery.m4v",
+                                "assets/videos/vehicles/Product_transition/Train_To_Battery.mp4",
                             topic: TextsConstants.trainTexts["subTopicsInside"]
                                 [0]["topic"],
                             subTopic: TextsConstants

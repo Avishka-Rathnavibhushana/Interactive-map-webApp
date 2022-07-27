@@ -36,14 +36,14 @@ class _TractorVideoState extends State<TractorVideo> {
   bool show = false;
   bool _isPlaying = false;
 
-  final String url = 'assets/videos/vehicles/Veh_To_Tractor_REV.m4v';
+  final String url = 'assets/videos/vehicles/Veh_To_Tractor_REV.mp4';
 
   final String transition1Video =
-      'assets/videos/vehicles/Product_transition/Tractor_To_Fan.m4v';
+      'assets/videos/vehicles/Product_transition/Tractor_To_Fan.mp4';
   final String transition2Video =
-      'assets/videos/vehicles/Product_transition/Tractor_To_Inverter.m4v';
+      'assets/videos/vehicles/Product_transition/Tractor_To_Inverter.mp4';
   final String transition3Video =
-      'assets/videos/vehicles/Product_transition/Tractor_To_Motor.m4v';
+      'assets/videos/vehicles/Product_transition/Tractor_To_HDMotor.mp4';
 
   // final String schoolImage = 'assets/tempory images/School_Plain.png';
 
@@ -597,9 +597,9 @@ class _TractorVideoState extends State<TractorVideo> {
                     from: Pages.tractor,
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
-                    url: "assets/videos/vehicles/Product_loops/Fan_Loop.m4v",
+                    url: "assets/videos/vehicles/Product_loops/Fan_Loop.mp4",
                     back:
-                        "assets/videos/vehicles/Product_transition/Tractor_To_Fan.m4v",
+                        "assets/videos/vehicles/Product_transition/Tractor_To_Fan.mp4",
                     topic: TextsConstants.tractorTexts["subTopicsInside"][0]
                         ["topic"],
                     subTopic: TextsConstants.tractorTexts["subTopicsInside"][0]
@@ -645,9 +645,9 @@ class _TractorVideoState extends State<TractorVideo> {
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                     url:
-                        "assets/videos/vehicles/Product_loops/Inverter_Loop.m4v",
+                        "assets/videos/vehicles/Product_loops/Inverter_Loop.mp4",
                     back:
-                        "assets/videos/vehicles/Product_transition/Tractor_To_Inverter.m4v",
+                        "assets/videos/vehicles/Product_transition/Tractor_To_Inverter.mp4",
                     topic: TextsConstants.tractorTexts["subTopicsInside"][1]
                         ["topic"],
                     subTopic: TextsConstants.tractorTexts["subTopicsInside"][1]
@@ -693,9 +693,9 @@ class _TractorVideoState extends State<TractorVideo> {
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                     url:
-                        "assets/videos/vehicles/Product_loops/HDMotor_Loop.m4v",
+                        "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
                     back:
-                        "assets/videos/vehicles/Product_transition/Tractor_To_Motor.m4v",
+                        "assets/videos/vehicles/Product_transition/Tractor_To_HDMotor.mp4",
                     topic: TextsConstants.tractorTexts["subTopicsInside"][2]
                         ["topic"],
                     subTopic: TextsConstants.tractorTexts["subTopicsInside"][2]
@@ -798,9 +798,9 @@ class _TractorVideoState extends State<TractorVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/Fan_Loop.m4v",
+                                "assets/videos/vehicles/Product_loops/Fan_Loop.mp4",
                             back:
-                                "assets/videos/vehicles/Product_transition/Tractor_To_Fan.m4v",
+                                "assets/videos/vehicles/Product_transition/Tractor_To_Fan.mp4",
                             topic: TextsConstants
                                 .tractorTexts["subTopicsInside"][0]["topic"],
                             subTopic: TextsConstants
@@ -858,9 +858,9 @@ class _TractorVideoState extends State<TractorVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/Inverter_Loop.m4v",
+                                "assets/videos/vehicles/Product_loops/Inverter_Loop.mp4",
                             back:
-                                "assets/videos/vehicles/Product_transition/Tractor_To_Inverter.m4v",
+                                "assets/videos/vehicles/Product_transition/Tractor_To_Inverter.mp4",
                             topic: TextsConstants
                                 .tractorTexts["subTopicsInside"][1]["topic"],
                             subTopic: TextsConstants
@@ -918,9 +918,9 @@ class _TractorVideoState extends State<TractorVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/HDMotor_Loop.m4v",
+                                "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
                             back:
-                                "assets/videos/vehicles/Product_transition/Tractor_To_Motor.m4v",
+                                "assets/videos/vehicles/Product_transition/Tractor_To_HDMotor.mp4",
                             topic: TextsConstants
                                 .tractorTexts["subTopicsInside"][2]["topic"],
                             subTopic: TextsConstants

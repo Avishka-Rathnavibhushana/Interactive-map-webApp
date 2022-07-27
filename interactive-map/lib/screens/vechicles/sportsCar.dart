@@ -34,12 +34,12 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
   bool show = false;
   bool _isPlaying = false;
 
-  final String url = 'assets/videos/vehicles/Veh_To_Car_REV.m4v';
+  final String url = 'assets/videos/vehicles/Veh_To_Car_REV.mp4';
 
   final String transition1Video =
-      'assets/videos/vehicles/Product_transition/Car_To_Inverter.m4v';
+      'assets/videos/vehicles/Product_transition/Car_To_Inverter.mp4';
   final String transition2Video =
-      'assets/videos/vehicles/Product_transition/Car_To_HDMotor.m4v';
+      'assets/videos/vehicles/Product_transition/Car_To_HDMotor.mp4';
 
   // final String schoolImage = 'assets/tempory images/School_Plain.png';
 
@@ -552,9 +552,9 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                     url:
-                        "assets/videos/vehicles/Product_loops/Inverter_Loop.m4v",
+                        "assets/videos/vehicles/Product_loops/Inverter_Loop.mp4",
                     back:
-                        "assets/videos/vehicles/Product_transition/Car_To_Inverter.m4v",
+                        "assets/videos/vehicles/Product_transition/Car_To_Inverter.mp4",
                     topic: TextsConstants.sportsCarTexts["subTopicsInside"][0]
                         ["topic"],
                     subTopic: TextsConstants.sportsCarTexts["subTopicsInside"]
@@ -601,9 +601,9 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                     url:
-                        "assets/videos/vehicles/Product_loops/HDMotor_Loop.m4v",
+                        "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
                     back:
-                        "assets/videos/vehicles/Product_transition/Car_To_HDMotor.m4v",
+                        "assets/videos/vehicles/Product_transition/Car_To_HDMotor.mp4",
                     topic: TextsConstants.sportsCarTexts["subTopicsInside"][1]
                         ["topic"],
                     subTopic: TextsConstants.sportsCarTexts["subTopicsInside"]
@@ -707,9 +707,9 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/Inverter_Loop.m4v",
+                                "assets/videos/vehicles/Product_loops/Inverter_Loop.mp4",
                             back:
-                                "assets/videos/vehicles/Product_transition/Car_To_Inverter.m4v",
+                                "assets/videos/vehicles/Product_transition/Car_To_Inverter.mp4",
                             topic: TextsConstants
                                 .sportsCarTexts["subTopicsInside"][0]["topic"],
                             subTopic:
@@ -768,9 +768,9 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/HDMotor_Loop.m4v",
+                                "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
                             back:
-                                "assets/videos/vehicles/Product_transition/Car_To_HDMotor.m4v",
+                                "assets/videos/vehicles/Product_transition/Car_To_HDMotor.mp4",
                             topic: TextsConstants
                                 .sportsCarTexts["subTopicsInside"][1]["topic"],
                             subTopic:
