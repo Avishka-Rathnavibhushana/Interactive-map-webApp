@@ -48,12 +48,15 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
   late VideoPlayerController _fastFoodVideoController;
   bool _fastFoodVideoPlaying = false;
 
+  late VideoPlayerController _vehicleTransitionVideoController;
+  bool _vehicleTransitionVideoPlaying = false;
+
   bool _isPlaying = false;
   int index = 0;
   bool show = false;
 
   final String timerVideoUrl =
-      'assets/videos/buildings/Buildings_menu_loop.mp4';
+      'assets/videos/buildings/Buildings_Main.mp4';
 
   final String bankVideoUrl = 'assets/videos/buildings/bank.mp4';
   final String dataCentreVideoUrl = 'assets/videos/buildings/datacentre.mp4';
@@ -66,6 +69,9 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
   final String buildingImage = 'assets/tempory images/Buildings_menu_still.png';
   final String qrBackgroundImage =
       'assets/tempory images/Buildings_menu_QR.png';
+
+  final String buildingTransitionVideoUrl =
+      'assets/videos/Buildings_To_Vehicles.mp4';
 
   bool timerOFF = false;
 
@@ -111,6 +117,14 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
       setShow();
     });
 
+    _vehicleTransitionVideoController =
+        VideoPlayerController.asset(buildingTransitionVideoUrl)
+          ..initialize().then((_) => {
+                setState(() {
+                  _vehicleTransitionVideoController.setVolume(0);
+                  _vehicleTransitionVideoController.setLooping(false);
+                })
+              });
     _bankVideoController = VideoPlayerController.asset(bankVideoUrl)
       ..initialize().then((_) => {
             setState(() {
@@ -179,6 +193,8 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
     _warehouseVideoController.dispose();
     _groceryShopVideoController.dispose();
     _fastFoodVideoController.dispose();
+
+    _vehicleTransitionVideoController.dispose();
 
     super.dispose();
   }
@@ -262,6 +278,16 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                           height: Utils.getVideoScreenHeight(screenSizeMobile1),
                           child: Stack(
                             children: [
+                              _vehicleTransitionVideoPlaying
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile1),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile1),
+                                      child: VideoPlayer(
+                                          _vehicleTransitionVideoController),
+                                    )
+                                  : Container(),
                               _bankVideoPlaying
                                   ? SizedBox(
                                       width: Utils.getVideoScreenWidth(
@@ -566,6 +592,16 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                           height: Utils.getVideoScreenHeight(screenSizeMobile2),
                           child: Stack(
                             children: [
+                              _vehicleTransitionVideoPlaying
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile2),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile2),
+                                      child: VideoPlayer(
+                                          _vehicleTransitionVideoController),
+                                    )
+                                  : Container(),
                               _bankVideoPlaying
                                   ? SizedBox(
                                       width: Utils.getVideoScreenWidth(
@@ -853,6 +889,14 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                     height: Utils.getVideoScreenHeight(screenSize),
                     child: Stack(
                       children: [
+                        _vehicleTransitionVideoPlaying
+                            ? SizedBox(
+                                width: Utils.getVideoScreenWidth(screenSize),
+                                height: Utils.getVideoScreenHeight(screenSize),
+                                child: VideoPlayer(
+                                    _vehicleTransitionVideoController),
+                              )
+                            : Container(),
                         _bankVideoPlaying
                             ? SizedBox(
                                 width: Utils.getVideoScreenWidth(screenSize),
@@ -1204,35 +1248,54 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         width: screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
         child: GestureDetector(
           onTap: () async {
-            // if (showQR) {
-            //   setState(() {
-            //     width = 0;
-            //   });
+            setShow();
+            setState(() {
+              timerOFF = true;
+            });
 
-            //   await Future.delayed(const Duration(milliseconds: 200));
-            //   setState(() {
-            //     showQR = false;
-            //   });
-            //   setShow();
-            // } else {
-            //   setShow();
-            //   setState(() {
-            //     width = 0;
-            //     showQR = true;
-            //   });
+            _timerVideoController.pause();
 
-            //   await Future.delayed(const Duration(milliseconds: 200));
+            setState(() {
+              _vehicleTransitionVideoPlaying = true;
+            });
 
-            //   setState(() {
-            //     width = screenSize.width * 0.2;
-            //   });
-            // }
-            customPushReplacement(
-                context,
-                VechiclesHomeVideo(
-                  offsetHor: offsetHor,
-                  offsetVer: offsetVer,
-                ));
+            setState(() {
+              width = 0;
+            });
+
+            _vehicleTransitionVideoController.play();
+
+            await Future.delayed(const Duration(milliseconds: 200));
+
+            setState(() {
+              width = screenSize.width * 0.25;
+            });
+            _vehicleTransitionVideoController.addListener(() {
+              final bool isPlaying =
+                  _vehicleTransitionVideoController.value.isPlaying;
+              print(isPlaying);
+              if (isPlaying != _isPlaying) {
+                setState(() {
+                  _isPlaying = isPlaying;
+                  setIndex(++index);
+                });
+                if (index > 1) {
+                  _vehicleTransitionVideoController.removeListener(() {});
+
+                  // setState(() {
+                  //   showNext = true;
+                  //   nextPage = Pages.sportscar;
+                  // });
+                  customPushReplacement(
+                      context,
+                      VechiclesHomeVideo(
+                        offsetHor: offsetHor,
+                        offsetVer: offsetVer,
+                      ));
+                }
+              }
+            });
+           
           },
           child: Container(
             height: screenSize.width *
@@ -1245,7 +1308,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
               image: DecorationImage(
                 image: showQR
                     ? const AssetImage(homeImage)
-                    : const AssetImage(moreImage),
+                    : const AssetImage(vehiclesTransitionImage),
                 fit: BoxFit.cover,
               ),
             ),
