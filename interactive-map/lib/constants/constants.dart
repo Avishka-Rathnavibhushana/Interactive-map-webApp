@@ -127,18 +127,16 @@ class TextsConstants {
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
-        ["TEXT", "Improve energy efficiency"],
-        ["TEXT", "Maintain a comfortable environment"],
-        ["TEXT", "Automate lighting and HVAC"],
-        ["TEXT", "Extent equipment life"],
-        ["TEXT", "Prevent learning disruption"],
+        ["TOPIC", "Energy savings", ":"],
+        ["DECORATEDTEXT", "", "87% compared to baseline"],
+        ["DECORATEDTEXT", "", "34% compared to VFD retrofit"],
       ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
+      "topic": "Leading National University",
+      "description": "School Gymnasium",
     },
     "subTopics": [
       "Smart HVAC",
-      "Energy-Saving Stratergies",
+      "Case Study",
       "TurntideApp",
     ],
   };
@@ -160,17 +158,22 @@ class TextsConstants {
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
-        ["TEXT", "Improve energy efficiency"],
-        ["TEXT", "Maintain a comfortable environment"],
-        ["TEXT", "Automate lighting and HVAC"],
-        ["TEXT", "Extent equipment life"],
+        ["DECORATEDTEXT", "Energy reduction", ": 70% annually"],
+        ["DECORATEDTEXT", "Annual savings", ": \$2.3K per location"],
+        ["DECORATEDTEXT", "Energy saved", ": 19,174 KWH"],
+        ["DECORATEDTEXT", "Time to payback", ": 1.6 years"],
+        [
+          "HYPERLINK",
+          "Case Study Link",
+          "https://turntide.com/wp-content/uploads/2021/09/TT-Case-Study-Five-Guys_v04TL.pdf"
+        ],
       ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
+      "topic": "Five Guys",
+      "description": "Quick Serve Restaurant",
     },
     "subTopics": [
       "Smart HVAC",
-      "Energy-Saving Stratergies",
+      "Case Study",
       "TurntideApp",
     ],
   };
@@ -192,17 +195,21 @@ class TextsConstants {
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
-        ["TEXT", "Improve energy efficiency"],
-        ["TEXT", "Maintain a comfortable environment"],
-        ["TEXT", "Automate lighting and HVAC"],
-        ["TEXT", "Extent equipment life"],
+        ["DECORATEDTEXT", "Locations", ": 300+"],
+        ["DECORATEDTEXT", "Energy reduction", ":  15%"],
+        ["DECORATEDTEXT", "Annual savings", ": \$500k"],
+        [
+          "HYPERLINK",
+          "Case Study Link",
+          "https://turntide.com/wp-content/uploads/2021/09/TT-Case-Study-Five-Guys_v04TL.pdf"
+        ],
       ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
+      "topic": "Fifth Third",
+      "description": "Bank",
     },
     "subTopics": [
       "Smart HVAC",
-      "Energy-Saving Stratergies",
+      "Case Study",
       "TurntideApp",
     ],
   };
@@ -224,17 +231,18 @@ class TextsConstants {
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
-        ["TEXT", "Improve energy efficiency"],
-        ["TEXT", "Maintain a comfortable environment"],
-        ["TEXT", "Automate lighting and HVAC"],
-        ["TEXT", "Extent equipment life"],
+        ["DECORATEDTEXT", "Locations", ": 400+"],
+        ["DECORATEDTEXT", "Energy reduction", ": 60% annually"],
+        ["DECORATEDTEXT", "Annual savings", ": \$K per location"],
+        ["DECORATEDTEXT", "Energy saved", ":  KWH"],
+        ["DECORATEDTEXT", "Time to payback", ":  3 years"],
       ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
+      "topic": "Wilko",
+      "description": "Retail Stores",
     },
     "subTopics": [
       "Smart HVAC",
-      "Energy-Saving Stratergies",
+      "Case Study",
       "TurntideApp",
     ],
   };
@@ -255,18 +263,13 @@ class TextsConstants {
           "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
     },
     "TextAreaWithClipEnergySaving": {
-      "texts": [
-        ["TEXT", "Improve energy efficiency"],
-        ["TEXT", "Maintain a comfortable environment"],
-        ["TEXT", "Automate lighting and HVAC"],
-        ["TEXT", "Extent equipment life"],
-      ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
+      "texts": [],
+      "topic": "Turntide for Warehouses",
+      "description": "No case study",
     },
     "subTopics": [
       "Smart HVAC",
-      "Energy-Saving Stratergies",
+      "Case Study",
       "TurntideApp",
     ],
   };
@@ -287,18 +290,13 @@ class TextsConstants {
           "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
     },
     "TextAreaWithClipEnergySaving": {
-      "texts": [
-        ["TEXT", "Improve energy efficiency"],
-        ["TEXT", "Maintain a comfortable environment"],
-        ["TEXT", "Automate lighting and HVAC"],
-        ["TEXT", "Extent equipment life"],
-      ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
+      "texts": [],
+      "topic": "Turntide for Data Centers",
+      "description": "No case study",
     },
     "subTopics": [
       "Smart HVAC",
-      "Energy-Saving Stratergies",
+      "Case Study",
       "TurntideApp",
     ],
   };
@@ -320,17 +318,22 @@ class TextsConstants {
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
-        ["TEXT", "Improve energy efficiency"],
-        ["TEXT", "Maintain a comfortable environment"],
-        ["TEXT", "Automate lighting and HVAC"],
-        ["TEXT", "Extent equipment life"],
+        ["DECORATEDTEXT", "Energy reduction", ": 75% annually"],
+        ["DECORATEDTEXT", "Annual savings", ": \$18.4K per location"],
+        ["DECORATEDTEXT", "Energy saved", ": 153,649 KWH"],
+        ["DECORATEDTEXT", "Time to payback", ": 1.37 years"],
+        [
+          "HYPERLINK",
+          "Case Study Link",
+          "https://turntide.com/wp-content/uploads/2021/09/TT-Case-Study-Five-Guys_v04TL.pdf"
+        ],
       ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
+      "topic": "Sprouts",
+      "description": "Grocery Store",
     },
     "subTopics": [
       "Smart HVAC",
-      "Energy-Saving Stratergies",
+      "Case Study",
       "TurntideApp",
     ],
   };
@@ -682,7 +685,11 @@ class TextsConstants {
     // ],
     "TextAreaWithClipMain": {
       "texts": [
-        ["HYPERLINK", "Click here for case study", "https://flutter.dev/"],
+        [
+          "HYPERLINK",
+          "Click here for case study",
+          "https://turntide.com/wp-content/uploads/2021/09/TT-Case-Study-Five-Guys_v04TL.pdf"
+        ],
       ],
       "topic": "Turntide for Construction",
       "description":
