@@ -35,10 +35,10 @@ class CustomTextContainer extends StatelessWidget {
             style: GoogleFonts.barlow(
               textStyle: TextStyle(
               color: AppColors.sky,
-              fontSize: 18 *
+                fontSize: 28 *
                   (screenSize.width / VideoAspectRatio.width) *
                   Utils.getMultiplier(screenSize.width),
-              fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w400,
               ),
             ),
             maxLines: 2,
@@ -54,7 +54,7 @@ class CustomTextContainer extends StatelessWidget {
             style: GoogleFonts.barlow(
               textStyle: TextStyle(
               color: AppColors.night,
-              fontSize: 14 *
+                fontSize: 18 *
                   (screenSize.width / VideoAspectRatio.width) *
                   Utils.getMultiplier(screenSize.width),
               fontWeight: FontWeight.w600,
