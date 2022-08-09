@@ -33,13 +33,13 @@ class CustomTopic extends StatelessWidget {
               textStyle: TextStyle(
               color: AppColors.night,
               fontSize: screenSize.width > 500
-                  ? 35 *
+                    ? 50 *
                       (screenSize.width / VideoAspectRatio.width) *
                       Utils.getMultiplier(screenSize.width)
-                  : 27 *
+                    : 50 *
                       (screenSize.width / VideoAspectRatio.width) *
                       Utils.getMultiplier(screenSize.width),
-              fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w300,
               letterSpacing: 2,
               ),
             ),
@@ -57,10 +57,10 @@ class CustomTopic extends StatelessWidget {
               textStyle: TextStyle(
               color: AppColors.sea,
               fontSize: screenSize.width > 500
-                  ? 22 *
+                    ? 24 *
                       (screenSize.width / VideoAspectRatio.width) *
                       Utils.getMultiplier(screenSize.width)
-                  : 20 *
+                    : 24 *
                       (screenSize.width / VideoAspectRatio.width) *
                       Utils.getMultiplier(screenSize.width),
               fontWeight: FontWeight.w600,
