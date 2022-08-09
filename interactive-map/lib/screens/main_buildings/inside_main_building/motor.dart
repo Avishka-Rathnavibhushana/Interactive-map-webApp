@@ -177,11 +177,11 @@ class _MotorState extends State<Motor> {
     }
 
     if (screenSize.height < 500 && screenSize.width > 500) {
-      if (screenSize.width - screenSize.width * 0.3 / screenSize.height ==
+      if (screenSize.width - screenSize.width * 0.1 / screenSize.height ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
         h = false;
-      } else if (screenSize.width - screenSize.width * 0.3 / screenSize.height <
+      } else if (screenSize.width - screenSize.width * 0.1 / screenSize.height <
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
         h = true;
@@ -190,7 +190,7 @@ class _MotorState extends State<Motor> {
         h = false;
       }
       var screenSizeMobile1 =
-          Size(screenSize.width - screenSize.width * 0.3, screenSize.height);
+          Size(screenSize.width - screenSize.width * 0.1, screenSize.height);
       return Scaffold(
         backgroundColor: Colors.black.withOpacity(0.5),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -198,7 +198,7 @@ class _MotorState extends State<Motor> {
         body: Row(
           children: [
             Container(
-              width: screenSize.width - screenSize.width * 0.3,
+              width: screenSize.width - screenSize.width * 0.1,
               height: screenSize.height,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -244,7 +244,7 @@ class _MotorState extends State<Motor> {
             Expanded(
               child: Container(
                 height: screenSize.height,
-                width: screenSize.width - screenSize.width * 0.3,
+                width: screenSize.width - screenSize.width * 0.1,
                 alignment: Alignment.topRight,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
@@ -252,7 +252,7 @@ class _MotorState extends State<Motor> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 0),
                     child: Container(
-                      width: screenSize.width - screenSize.width * 0.3,
+                      width: screenSize.width - screenSize.width * 0.1,
                       child: Column(
                         children: [
                           show ? nextButtonMobile() : Container(),
@@ -267,12 +267,12 @@ class _MotorState extends State<Motor> {
         ),
       );
     } else if (screenSize.width < 500) {
-      if (screenSize.width / screenSize.height - screenSize.height * 0.3 ==
+      if (screenSize.width / screenSize.height - screenSize.height * 0.1 ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
         h = false;
       } else if (screenSize.width / screenSize.height -
-              screenSize.height * 0.3 <
+              screenSize.height * 0.1 <
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
         h = true;
@@ -281,7 +281,7 @@ class _MotorState extends State<Motor> {
         h = false;
       }
       var screenSizeMobile2 =
-          Size(screenSize.width, screenSize.height - screenSize.height * 0.3);
+          Size(screenSize.width, screenSize.height - screenSize.height * 0.1);
       return Scaffold(
         backgroundColor: Colors.black.withOpacity(0.5),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -290,7 +290,7 @@ class _MotorState extends State<Motor> {
           children: [
             Container(
               width: screenSize.width,
-              height: screenSize.height - screenSize.height * 0.3,
+              height: screenSize.height - screenSize.height * 0.1,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 controller: _scrollControllerHrizontal,
@@ -334,7 +334,7 @@ class _MotorState extends State<Motor> {
             ),
             Expanded(
               child: Container(
-                height: screenSize.height * 0.3,
+                height: screenSize.height * 0.1,
                 width: screenSize.width,
                 alignment: Alignment.topCenter,
                 child: SingleChildScrollView(
@@ -822,9 +822,9 @@ class _MotorState extends State<Motor> {
   Widget menuButton() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-      right: Utils.getRightPadding(screenSize, 0),
+      right: screenSize.height < 500 ? screenSize.width * 0.1 : 0,
       child: Container(
-        alignment: Alignment.topRight,
+        alignment: Alignment.center,
         height:
             screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
         width: screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
