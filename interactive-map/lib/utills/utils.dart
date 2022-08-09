@@ -26,7 +26,7 @@ class Utils {
     if (width < 500) {
       return 1.5;
     } else if (width < 1000) {
-      return 1.5;
+      return 1;
     } else {
       return 1;
     }
@@ -44,9 +44,9 @@ class Utils {
 
   static double getVerticleDeviderHeight(double width) {
     if (width < 500) {
-      return 60;
+      return 50;
     } else if (width < 1000) {
-      return 80;
+      return 70;
     } else {
       return 100;
     }
@@ -54,11 +54,11 @@ class Utils {
 
   static double getIconResizeRatio(double width) {
     if (width < 500) {
-      return 0.5;
+      return 0.4;
     } else if (width < 1000) {
-      return 0.8;
+      return 0.6;
     } else {
-      return 1;
+      return 1.2;
     }
   }
 
@@ -66,9 +66,9 @@ class Utils {
     if (width < 500) {
       return 0;
     } else if (width < 700) {
-      return 0.6;
+      return 0.3;
     } else if (width < 1300) {
-      return 0.8;
+      return 0.5;
     } else {
       return 1;
     }
@@ -92,11 +92,11 @@ class Utils {
     if (width < 500) {
       return 3;
     } else if (width < 800) {
-      return 4;
+      return 1;
     } else if (width < 1000) {
-      return 2.5;
+      return 1;
     } else if (width < 1400) {
-      return 1.5;
+      return 1;
     } else {
       return 1;
     }
