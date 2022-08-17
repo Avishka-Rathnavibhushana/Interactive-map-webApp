@@ -502,7 +502,7 @@ class _IpadScreenState extends State<IpadScreen> {
                                 texts: const [],
                                 topic: "DairyBOS",
                                 description:
-                                    "Automate and control the ventilation, lighting and cooling to create an optimized, consistent, animal-centered environment."),
+                                    "Lorem Ipsum"),
                           ),
                         )
                       : nextIndex == 2
@@ -516,7 +516,7 @@ class _IpadScreenState extends State<IpadScreen> {
                                     texts: const [],
                                     topic: "DairyBOS",
                                     description:
-                                        "Automate and control the ventilation, lighting and cooling to create an optimized, consistent, animal-centered environment."),
+                                        "Lorem Ipsum"),
                               ),
                             )
                           : Padding(
@@ -529,7 +529,7 @@ class _IpadScreenState extends State<IpadScreen> {
                                     texts: const [],
                                     topic: "DairyBOS",
                                     description:
-                                        "Automate and control the ventilation, lighting and cooling to create an optimized, consistent, animal-centered environment."),
+                                        "Lorem Ipsum"),
                               ),
                             )
               : Container(),
