@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/screens/main_buildings/bank.dart';
+import 'package:interactive_map/screens/main_buildings/dairy_barns.dart';
 import 'package:interactive_map/screens/main_buildings/datacentre.dart';
 import 'package:interactive_map/screens/main_buildings/fastfood.dart';
 import 'package:interactive_map/screens/main_buildings/groceryshop.dart';
@@ -92,6 +93,12 @@ class _MotorState extends State<Motor> {
         offsetHor: offsetHor,
         offsetVer: offsetVer,
       );
+    } else if (from == Pages.dairyBarns) {
+      return DairyBarnsVideo(
+        from: current,
+        offsetHor: offsetHor,
+        offsetVer: offsetVer,
+      );
     }
   }
 
@@ -101,7 +108,7 @@ class _MotorState extends State<Motor> {
     nextIndex = false;
     show = false;
 
-    if (widget.from == Pages.dataCenter) {
+    if (widget.from == Pages.dataCenter || widget.from == Pages.dairyBarns) {
       url = 'assets/videos/buildings/TX_MAIN.mp4';
     } else {
       url = 'assets/videos/buildings/motor_MAIN.mp4';
@@ -115,7 +122,7 @@ class _MotorState extends State<Motor> {
             })
           });
     String back;
-    if (widget.from == Pages.dataCenter) {
+    if (widget.from == Pages.dataCenter || widget.from == Pages.dairyBarns) {
       back = 'assets/videos/buildings/datacentre_MOTOR.mp4';
     } else {
       back = 'assets/videos/buildings/school_MOTOR.mp4';
@@ -437,7 +444,8 @@ class _MotorState extends State<Motor> {
                     Padding(
                       padding: EdgeInsets.only(left: 25),
                       child: CustomTopic(
-                        topic: widget.from == Pages.dataCenter
+                        topic: widget.from == Pages.dataCenter ||
+                                widget.from == Pages.dairyBarns
                             ? "Smart Motor System - TX Series"
                             : "Smart Motor System - V Series",
                         subTopic:
@@ -499,7 +507,8 @@ class _MotorState extends State<Motor> {
                                 width: screenSize.width *
                                     0.25 *
                                     Utils.getMultiplier(screenSize.width),
-                                child: widget.from == Pages.dataCenter
+                                child: widget.from == Pages.dataCenter ||
+                                        widget.from == Pages.dairyBarns
                                     ? Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
@@ -623,7 +632,8 @@ class _MotorState extends State<Motor> {
                               )
                         : screenSize.width < 500 || screenSize.height < 500
                             ? Container()
-                            : widget.from == Pages.dataCenter
+                            : widget.from == Pages.dataCenter ||
+                                    widget.from == Pages.dairyBarns
                                 ? Container(
                                     width: screenSize.width *
                                         0.35 *

@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
-import 'package:interactive_map/screens/main_buildings/bank.dart';
-import 'package:interactive_map/screens/main_buildings/datacentre.dart';
-import 'package:interactive_map/screens/main_buildings/fastfood.dart';
-import 'package:interactive_map/screens/main_buildings/groceryshop.dart';
-import 'package:interactive_map/screens/main_buildings/retail.dart';
-import 'package:interactive_map/screens/main_buildings/school.dart';
-import 'package:interactive_map/screens/main_buildings/inside_main_building/screen_left.dart';
-import 'package:interactive_map/screens/main_buildings/inside_main_building/screen_right.dart';
-import 'package:interactive_map/screens/main_buildings/warehouse.dart';
+import 'package:interactive_map/screens/main_buildings/buildings_home.dart';
+import 'package:interactive_map/screens/main_buildings/inside_main_building/ipad_screen.dart';
+import 'package:interactive_map/screens/main_buildings/inside_main_building/motor.dart';
+import 'package:interactive_map/screens/main_buildings/inside_main_building/map_main_screen.dart';
+import 'package:interactive_map/screens/vechicles/tractor.dart';
 import 'package:interactive_map/widgets/custom_button_label_mobile.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
+import 'package:interactive_map/widgets/shared_widgets.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 import 'package:interactive_map/utills/utils.dart';
@@ -18,30 +15,38 @@ import 'package:get/get.dart';
 import 'package:interactive_map/controller/controller.dart';
 import 'package:interactive_map/widgets/full_screen_button.dart';
 
-class MapMainScreens extends StatefulWidget {
-  const MapMainScreens({Key? key, this.from, this.offsetHor, this.offsetVer})
+class DairyBarnsVideo extends StatefulWidget {
+  const DairyBarnsVideo({Key? key, this.from, this.offsetHor, this.offsetVer})
       : super(key: key);
   final offsetHor;
   final offsetVer;
   final from;
   @override
-  _MapMainScreensState createState() => _MapMainScreensState();
+  _DairyBarnsVideoState createState() => _DairyBarnsVideoState();
 }
 
-class _MapMainScreensState extends State<MapMainScreens> {
+class _DairyBarnsVideoState extends State<DairyBarnsVideo> {
   late VideoPlayerController _controller;
 
-  late VideoPlayerController _leftScreenVideoController;
-  bool _leftScreenVideoPlaying = false;
-  late VideoPlayerController _rightScreenVideoController;
-  bool _rightScreenVideoPlaying = false;
+  late VideoPlayerController _motorVideoController;
+  bool _motorVideoPlaying = false;
+  late VideoPlayerController _tractorVideoController;
+  bool _tractorVideoPlaying = false;
+  late VideoPlayerController _ipadVideoController;
+  bool _ipadVideoPlaying = false;
 
-  bool _isPlaying = false;
   int index = 0;
   bool show = false;
-  String url = '';
+  bool _isPlaying = false;
 
-  String mapMainScreenImage = 'assets/tempory images/screen_MAIN.png';
+  final String url = 'assets/videos/buildings/barn_REV.mp4';
+
+  final String motorVideo = 'assets/videos/buildings/barn_MOTOR.mp4';
+  final String tractorVideo = 'assets/videos/buildings/barn_tractor.mp4';
+  final String ipadVideo = 'assets/videos/buildings/barn_ipad.mp4';
+
+  final String barnImage = 'assets/tempory images/barn_Plain.png';
+  final String ipadScreenImage = 'assets/tempory images/screen_MAIN.png';
 
   setIndex(value) {
     index = value;
@@ -68,106 +73,81 @@ class _MapMainScreensState extends State<MapMainScreens> {
     videoHandler();
 
     super.initState();
-  }
-
-  toNavigate(String from) {
-    if (from == Pages.school) {
-      return SchoolVideo(
-        from: Pages.map,
-        offsetHor: offsetHor,
-        offsetVer: offsetVer,
-      );
-    } else if (from == Pages.bank) {
-      return BankVideo(
-        from: Pages.map,
-        offsetHor: offsetHor,
-        offsetVer: offsetVer,
-      );
-    } else if (from == Pages.grocery) {
-      return GroceryShopVideo(
-        from: Pages.map,
-        offsetHor: offsetHor,
-        offsetVer: offsetVer,
-      );
-    } else if (from == Pages.dataCenter) {
-      return DataCentreVideo(
-        from: Pages.map,
-        offsetHor: offsetHor,
-        offsetVer: offsetVer,
-      );
-    } else if (from == Pages.fastfoods) {
-      return FastFoodVideo(
-        from: Pages.map,
-        offsetHor: offsetHor,
-        offsetVer: offsetVer,
-      );
-    } else if (from == Pages.werehouse) {
-      return WarehouseVideo(
-        from: Pages.map,
-        offsetHor: offsetHor,
-        offsetVer: offsetVer,
-      );
-    } else if (from == Pages.retail) {
-      return RetailVideo(
-        from: Pages.map,
-        offsetHor: offsetHor,
-        offsetVer: offsetVer,
-      );
-    } else if (from == Pages.dairyBarns) {
-      return RetailVideo(
-        from: Pages.map,
-        offsetHor: offsetHor,
-        offsetVer: offsetVer,
-      );
-    }
+    setState(() {
+      offsetHor = widget.offsetHor;
+      offsetVer = widget.offsetVer;
+    });
   }
 
   videoHandler() async {
-    if (widget.from == Pages.school) {
-      url = 'assets/videos/buildings/school_REV.mp4';
-    } else if (widget.from == Pages.bank) {
-      url = 'assets/videos/buildings/bank_REV.mp4';
-    } else if (widget.from == Pages.grocery) {
-      url = 'assets/videos/buildings/groceryshop_REV.mp4';
-    } else if (widget.from == Pages.dataCenter) {
-      url = 'assets/videos/buildings/datacentre_REV.mp4';
-    } else if (widget.from == Pages.fastfoods) {
-      url = 'assets/videos/buildings/fastfood_REV.mp4';
-    } else if (widget.from == Pages.werehouse) {
-      url = 'assets/videos/buildings/warehouse_REV.mp4';
-    } else if (widget.from == Pages.retail) {
-      url = 'assets/videos/buildings/retail_REV.mp4';
-    } else if (widget.from == Pages.dairyBarns) {
-      url = 'assets/videos/buildings/barn_REV.mp4';
-    }
     _controller = VideoPlayerController.asset(url);
     await _controller.initialize();
     setState(() {
       _controller.setVolume(0);
       _controller.setLooping(false);
-      show = true;
     });
+    if (widget.from == Pages.motorToHome) {
+      await Future.delayed(Duration(milliseconds: 1000));
+      _controller.play();
 
-    _leftScreenVideoController =
-        VideoPlayerController.asset("assets/videos/buildings/screen_LEFT.mp4")
-          ..initialize().then((_) => {
-                setState(() {
-                  _leftScreenVideoController.setVolume(0);
-                  _leftScreenVideoController.setLooping(false);
-                })
-              });
-    _rightScreenVideoController =
-        VideoPlayerController.asset("assets/videos/buildings/screen_RIGHT.mp4")
-          ..initialize().then((_) => {
-                setState(() {
-                  _rightScreenVideoController.setVolume(0);
-                  _rightScreenVideoController.setLooping(false);
-                })
-              });
+      _controller.addListener(() {
+        final bool isPlaying = _controller.value.isPlaying;
 
+        if (isPlaying != _isPlaying) {
+          setState(() {
+            _isPlaying = isPlaying;
+            setIndex(++index);
+          });
+          if (index > 1) {
+            _controller.removeListener(() {});
+
+            customPushReplacement(
+                context,
+                BuildingsHomeVideo(
+                  offsetHor: offsetHor,
+                  offsetVer: offsetVer,
+                ));
+          }
+        }
+      });
+    } else {
+      setShow();
+    }
+
+    _motorVideoController = VideoPlayerController.asset(motorVideo)
+      ..initialize().then((_) => {
+            setState(() {
+              _motorVideoController.setVolume(0);
+              _motorVideoController.setLooping(false);
+            })
+          });
+    _tractorVideoController = VideoPlayerController.asset(tractorVideo)
+      ..initialize().then((_) => {
+            setState(() {
+              _tractorVideoController.setVolume(0);
+              _tractorVideoController.setLooping(false);
+            })
+          });
+    _ipadVideoController = VideoPlayerController.asset(ipadVideo)
+      ..initialize().then((_) => {
+            setState(() {
+              _ipadVideoController.setVolume(0);
+              _ipadVideoController.setLooping(false);
+            })
+          });
     setState(() {
       loading = false;
     });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _motorVideoController.dispose();
+    _tractorVideoController.dispose();
+    _ipadVideoController.dispose();
+
+    super.dispose();
   }
 
   bool h = false;
@@ -250,29 +230,34 @@ class _MapMainScreensState extends State<MapMainScreens> {
                                     screenSizeMobile1),
                                 height: Utils.getVideoScreenHeight(
                                     screenSizeMobile1),
-                                child: Image.asset(
-                                  mapMainScreenImage,
-                                  fit: BoxFit.fill,
-                                ),
+                                child: VideoPlayer(_controller),
                               ),
-                              _leftScreenVideoPlaying
+                              _motorVideoPlaying
                                   ? SizedBox(
                                       width: Utils.getVideoScreenWidth(
                                           screenSizeMobile1),
                                       height: Utils.getVideoScreenHeight(
                                           screenSizeMobile1),
-                                      child: VideoPlayer(
-                                          _leftScreenVideoController),
+                                      child: VideoPlayer(_motorVideoController),
                                     )
                                   : Container(),
-                              _rightScreenVideoPlaying
+                              _tractorVideoPlaying
                                   ? SizedBox(
                                       width: Utils.getVideoScreenWidth(
                                           screenSizeMobile1),
                                       height: Utils.getVideoScreenHeight(
                                           screenSizeMobile1),
-                                      child: VideoPlayer(
-                                          _rightScreenVideoController),
+                                      child:
+                                          VideoPlayer(_tractorVideoController),
+                                    )
+                                  : Container(),
+                              _ipadVideoPlaying
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile1),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile1),
+                                      child: VideoPlayer(_ipadVideoController),
                                     )
                                   : Container(),
                               loading
@@ -282,7 +267,7 @@ class _MapMainScreensState extends State<MapMainScreens> {
                                       height: Utils.getVideoScreenHeight(
                                           screenSizeMobile1),
                                       child: Image.asset(
-                                        mapMainScreenImage,
+                                        barnImage,
                                         fit: BoxFit.fill,
                                       ),
                                     )
@@ -310,14 +295,18 @@ class _MapMainScreensState extends State<MapMainScreens> {
                       width: screenSize.width - screenSize.width * 0.3,
                       child: Column(
                         children: [
-                          show
-                              ? screenLeftMobile(
-                                  screenSize.width - screenSize.width * 0.3)
-                              : Container(),
-                          show
-                              ? screenRightMobile(
-                                  screenSize.width - screenSize.width * 0.3)
-                              : Container(),
+                          !show
+                              ? Container()
+                              : motorMobile(
+                                  screenSize.width - screenSize.width * 0.3),
+                          !show
+                              ? Container()
+                              : tractorMobile(
+                                  screenSize.width - screenSize.width * 0.3),
+                          !show
+                              ? Container()
+                              : ipadScreenMobile(
+                                  screenSize.width - screenSize.width * 0.3),
                         ],
                       ),
                     ),
@@ -370,31 +359,38 @@ class _MapMainScreensState extends State<MapMainScreens> {
                           child: Stack(
                             children: [
                               SizedBox(
-                                width: Utils.getVideoScreenWidth(screenSize),
-                                height: Utils.getVideoScreenHeight(screenSize),
-                                child: Image.asset(
-                                  mapMainScreenImage,
-                                  fit: BoxFit.fill,
-                                ),
+                                width: Utils.getVideoScreenWidth(
+                                    screenSizeMobile2),
+                                height: Utils.getVideoScreenHeight(
+                                    screenSizeMobile2),
+                                child: VideoPlayer(_controller),
                               ),
-                              _leftScreenVideoPlaying
+                              _motorVideoPlaying
                                   ? SizedBox(
                                       width: Utils.getVideoScreenWidth(
                                           screenSizeMobile2),
                                       height: Utils.getVideoScreenHeight(
                                           screenSizeMobile2),
-                                      child: VideoPlayer(
-                                          _leftScreenVideoController),
+                                      child: VideoPlayer(_motorVideoController),
                                     )
                                   : Container(),
-                              _rightScreenVideoPlaying
+                              _tractorVideoPlaying
                                   ? SizedBox(
                                       width: Utils.getVideoScreenWidth(
                                           screenSizeMobile2),
                                       height: Utils.getVideoScreenHeight(
                                           screenSizeMobile2),
-                                      child: VideoPlayer(
-                                          _rightScreenVideoController),
+                                      child:
+                                          VideoPlayer(_tractorVideoController),
+                                    )
+                                  : Container(),
+                              _ipadVideoPlaying
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile2),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile2),
+                                      child: VideoPlayer(_ipadVideoController),
                                     )
                                   : Container(),
                               loading
@@ -404,7 +400,7 @@ class _MapMainScreensState extends State<MapMainScreens> {
                                       height: Utils.getVideoScreenHeight(
                                           screenSizeMobile2),
                                       child: Image.asset(
-                                        mapMainScreenImage,
+                                        barnImage,
                                         fit: BoxFit.fill,
                                       ),
                                     )
@@ -431,14 +427,11 @@ class _MapMainScreensState extends State<MapMainScreens> {
                       width: screenSize.width,
                       child: Column(
                         children: [
-                          show
-                              ? screenLeftMobile(
-                                  screenSize.width - screenSize.width * 0.3)
-                              : Container(),
-                          show
-                              ? screenRightMobile(
-                                  screenSize.width - screenSize.width * 0.3)
-                              : Container(),
+                          !show ? Container() : motorMobile(screenSize.width),
+                          !show ? Container() : tractorMobile(screenSize.width),
+                          !show
+                              ? Container()
+                              : ipadScreenMobile(screenSize.width),
                         ],
                       ),
                     ),
@@ -480,45 +473,42 @@ class _MapMainScreensState extends State<MapMainScreens> {
                   SizedBox(
                     width: Utils.getVideoScreenWidth(screenSize),
                     height: Utils.getVideoScreenHeight(screenSize),
-                    child: Stack(
-                      children: [
-                        SizedBox(
+                    child: VideoPlayer(_controller),
+                  ),
+                  show ? motor() : Container(),
+                  show ? tractor() : Container(),
+                  show ? ipadScreen() : Container(),
+                  _motorVideoPlaying
+                      ? SizedBox(
+                          width: Utils.getVideoScreenWidth(screenSize),
+                          height: Utils.getVideoScreenHeight(screenSize),
+                          child: VideoPlayer(_motorVideoController),
+                        )
+                      : Container(),
+                  _tractorVideoPlaying
+                      ? SizedBox(
+                          width: Utils.getVideoScreenWidth(screenSize),
+                          height: Utils.getVideoScreenHeight(screenSize),
+                          child: VideoPlayer(_tractorVideoController),
+                        )
+                      : Container(),
+                  _ipadVideoPlaying
+                      ? SizedBox(
+                          width: Utils.getVideoScreenWidth(screenSize),
+                          height: Utils.getVideoScreenHeight(screenSize),
+                          child: VideoPlayer(_ipadVideoController),
+                        )
+                      : Container(),
+                  loading
+                      ? SizedBox(
                           width: Utils.getVideoScreenWidth(screenSize),
                           height: Utils.getVideoScreenHeight(screenSize),
                           child: Image.asset(
-                            mapMainScreenImage,
+                            barnImage,
                             fit: BoxFit.fill,
                           ),
-                        ),
-                        show ? screenLeft() : Container(),
-                        show ? screenRight() : Container(),
-                        _leftScreenVideoPlaying
-                            ? SizedBox(
-                                width: Utils.getVideoScreenWidth(screenSize),
-                                height: Utils.getVideoScreenHeight(screenSize),
-                                child: VideoPlayer(_leftScreenVideoController),
-                              )
-                            : Container(),
-                        _rightScreenVideoPlaying
-                            ? SizedBox(
-                                width: Utils.getVideoScreenWidth(screenSize),
-                                height: Utils.getVideoScreenHeight(screenSize),
-                                child: VideoPlayer(_rightScreenVideoController),
-                              )
-                            : Container(),
-                        loading
-                            ? SizedBox(
-                                width: Utils.getVideoScreenWidth(screenSize),
-                                height: Utils.getVideoScreenHeight(screenSize),
-                                child: Image.asset(
-                                  mapMainScreenImage,
-                                  fit: BoxFit.fill,
-                                ),
-                              )
-                            : Container(),
-                      ],
-                    ),
-                  ),
+                        )
+                      : Container(),
                 ],
               ),
             ),
@@ -536,98 +526,45 @@ class _MapMainScreensState extends State<MapMainScreens> {
         fit: StackFit.expand,
         children: [
           FullScreenButton(),
-          show ? menuButton() : Container(),
           show
               ? Padding(
                   padding: EdgeInsets.only(
-                      bottom: Utils.getBottomPadding(screenSize, 200)),
+                      top: Utils.getTopPadding(screenSize, 100)),
                   child: Container(
-                    alignment: Alignment.bottomLeft,
+                    alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: [],
-                      topic: "Trntide App for Mobile and Desktop",
+                      texts: TextsConstants
+                          .dairyBarnsTexts["TextAreaWithClipMain"]["texts"],
+                      topic: TextsConstants
+                          .dairyBarnsTexts["TextAreaWithClipMain"]["topic"],
                       description:
-                          "Remotely monitor and manage HVAC equipment and yor entire building",
+                          TextsConstants.dairyBarnsTexts["TextAreaWithClipMain"]
+                              ["description"],
                     ),
                   ),
                 )
               : Container(),
+          show ? menuButton() : Container(),
         ],
       ),
     );
   }
 
-  Widget screenLeft() {
-    var screenSize = MediaQuery.of(context).size;
-    return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.35,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.34,
-        child: Stack(
-          children: [
-            GestureDetector(
-              onTap: () async {
-                setShow();
-                setState(() {
-                  _leftScreenVideoPlaying = true;
-                });
-                _leftScreenVideoController.play();
-
-                _leftScreenVideoController.addListener(() {
-                  final bool isPlaying =
-                      _leftScreenVideoController.value.isPlaying;
-                  print(isPlaying);
-                  if (isPlaying != _isPlaying) {
-                    setState(() {
-                      _isPlaying = isPlaying;
-                      setIndex(++index);
-                    });
-                    if (index > 1) {
-                      _leftScreenVideoController.removeListener(() {});
-
-                      Navigator.pushReplacement(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder: (context, animation1, animation2) =>
-                              ScreenLeft(
-                                  to: widget.from,
-                                  offsetHor: offsetHor,
-                                  offsetVer: offsetVer),
-                          transitionDuration: Duration(seconds: 2),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) =>
-                                  FadeTransition(
-                            opacity: animation,
-                            child: child,
-                          ),
-                        ),
-                      );
-                    }
-                  }
-                });
-              },
-              child: CustomButtonLabelWithClip(
-                screenSize: screenSize,
-                text: "Smart Building Operations",
-                type: 1,
-              ),
-            ),
-          ],
-        ));
-  }
-
-  Widget screenLeftMobile(width) {
+  Widget motorMobile(width) {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
+      width: width,
+      title: TextsConstants.dairyBarnsTexts["subTopics"][0],
       onPressed: () async {
         setShow();
         setState(() {
-          _leftScreenVideoPlaying = true;
+          _motorVideoPlaying = true;
         });
-        _leftScreenVideoController.play();
+        _motorVideoController.play();
 
-        _leftScreenVideoController.addListener(() {
-          final bool isPlaying = _leftScreenVideoController.value.isPlaying;
+        _motorVideoController.addListener(() {
+          final bool isPlaying = _motorVideoController.value.isPlaying;
           print(isPlaying);
           if (isPlaying != _isPlaying) {
             setState(() {
@@ -635,112 +572,35 @@ class _MapMainScreensState extends State<MapMainScreens> {
               setIndex(++index);
             });
             if (index > 1) {
-              _leftScreenVideoController.removeListener(() {});
-
-              Navigator.pushReplacement(
-                context,
-                PageRouteBuilder(
-                  pageBuilder: (context, animation1, animation2) => ScreenLeft(
-                      to: widget.from,
-                      offsetHor: offsetHor,
-                      offsetVer: offsetVer),
-                  transitionDuration: Duration(seconds: 2),
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) =>
-                          FadeTransition(
-                    opacity: animation,
-                    child: child,
-                  ),
-                ),
-              );
+              _motorVideoController.removeListener(() {});
+              customPushReplacement(
+                  context,
+                  Motor(
+                    from: Pages.dairyBarns,
+                    offsetHor: offsetHor,
+                    offsetVer: offsetVer,
+                  ));
             }
           }
         });
       },
-      title: "Smart Building Operations",
-      width: width,
     );
   }
 
-  Widget screenRight() {
-    var screenSize = MediaQuery.of(context).size;
-    return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.75,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.38,
-        child: Stack(
-          children: [
-            GestureDetector(
-              onTap: () {
-                setShow();
-                if (_controller.value.isPlaying) {
-                  _controller.pause();
-                }
-
-                setState(() {
-                  _rightScreenVideoPlaying = true;
-                });
-                _rightScreenVideoController.play();
-
-                _rightScreenVideoController.addListener(() {
-                  final bool isPlaying =
-                      _rightScreenVideoController.value.isPlaying;
-                  print(isPlaying);
-                  if (isPlaying != _isPlaying) {
-                    setState(() {
-                      _isPlaying = isPlaying;
-                      setIndex(++index);
-                    });
-                    if (index > 1) {
-                      _rightScreenVideoController.removeListener(() {});
-
-                      Navigator.pushReplacement(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder: (context, animation1, animation2) =>
-                              ScreenRight(
-                            to: widget.from,
-                            offsetHor: offsetHor,
-                            offsetVer: offsetVer,
-                          ),
-                          transitionDuration: Duration(seconds: 2),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) =>
-                                  FadeTransition(
-                            opacity: animation,
-                            child: child,
-                          ),
-                        ),
-                      );
-                    }
-                  }
-                });
-              },
-              child: CustomButtonLabelWithClip(
-                screenSize: screenSize,
-                text: "Smart HVAC",
-                type: 2,
-              ),
-            ),
-          ],
-        ));
-  }
-
-  Widget screenRightMobile(width) {
+  Widget ipadScreenMobile(width) {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
-      onPressed: () {
+      width: width,
+      title: TextsConstants.dairyBarnsTexts["subTopics"][1],
+      onPressed: () async {
         setShow();
-        if (_controller.value.isPlaying) {
-          _controller.pause();
-        }
-
         setState(() {
-          _rightScreenVideoPlaying = true;
+          _ipadVideoPlaying = true;
         });
-        _rightScreenVideoController.play();
+        _ipadVideoController.play();
 
-        _rightScreenVideoController.addListener(() {
-          final bool isPlaying = _rightScreenVideoController.value.isPlaying;
+        _ipadVideoController.addListener(() {
+          final bool isPlaying = _ipadVideoController.value.isPlaying;
           print(isPlaying);
           if (isPlaying != _isPlaying) {
             setState(() {
@@ -748,31 +608,51 @@ class _MapMainScreensState extends State<MapMainScreens> {
               setIndex(++index);
             });
             if (index > 1) {
-              _rightScreenVideoController.removeListener(() {});
-
-              Navigator.pushReplacement(
-                context,
-                PageRouteBuilder(
-                  pageBuilder: (context, animation1, animation2) => ScreenRight(
-                    to: widget.from,
+              customPushReplacement(
+                  context,
+                  IpadScreen(
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
-                  ),
-                  transitionDuration: Duration(seconds: 2),
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) =>
-                          FadeTransition(
-                    opacity: animation,
-                    child: child,
-                  ),
-                ),
-              );
+                  ));
             }
           }
         });
       },
-      title: "Smart HVAC",
+    );
+  }
+
+  Widget tractorMobile(width) {
+    var screenSize = MediaQuery.of(context).size;
+    return CustomButtonLabelMobile(
       width: width,
+      title: TextsConstants.dairyBarnsTexts["subTopics"][2],
+      onPressed: () async {
+        setShow();
+        setState(() {
+          _ipadVideoPlaying = true;
+        });
+        _tractorVideoController.play();
+
+        _tractorVideoController.addListener(() {
+          final bool isPlaying = _tractorVideoController.value.isPlaying;
+          print(isPlaying);
+          if (isPlaying != _isPlaying) {
+            setState(() {
+              _isPlaying = isPlaying;
+              setIndex(++index);
+            });
+            if (index > 1) {
+              customPushReplacement(
+                  context,
+                  TractorVideo(
+                    from: Pages.dairyBarns,
+                    offsetHor: offsetHor,
+                    offsetVer: offsetVer,
+                  ));
+            }
+          }
+        });
+      },
     );
   }
 
@@ -787,22 +667,28 @@ class _MapMainScreensState extends State<MapMainScreens> {
         width: screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
         child: GestureDetector(
           onTap: () {
-            _controller.pause();
-            _controller.removeListener(() {});
-            Navigator.pushReplacement(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (context, animation1, animation2) =>
-                    toNavigate(widget.from),
-                transitionDuration: const Duration(seconds: 2),
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) =>
-                        FadeTransition(
-                  opacity: animation,
-                  child: child,
-                ),
-              ),
-            );
+            setShow();
+            _controller.play();
+
+            _controller.addListener(() {
+              final bool isPlaying = _controller.value.isPlaying;
+
+              if (isPlaying != _isPlaying) {
+                setState(() {
+                  _isPlaying = isPlaying;
+                  setIndex(++index);
+                });
+                if (index > 1) {
+                  _controller.removeListener(() {});
+                  customPushReplacement(
+                      context,
+                      BuildingsHomeVideo(
+                        offsetHor: offsetHor,
+                        offsetVer: offsetVer,
+                      ));
+                }
+              }
+            });
           },
           child: Container(
             height: screenSize.width *
@@ -821,5 +707,141 @@ class _MapMainScreensState extends State<MapMainScreens> {
         ),
       ),
     );
+  }
+
+  Widget motor() {
+    var screenSize = MediaQuery.of(context).size;
+    return Positioned(
+        left: Utils.getVideoScreenWidth(screenSize) * 0.73,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.19,
+        child: Stack(
+          children: [
+            InkWell(
+              onTap: () async {
+                setShow();
+                setState(() {
+                  _motorVideoPlaying = true;
+                });
+                _motorVideoController.play();
+
+                _motorVideoController.addListener(() {
+                  final bool isPlaying = _motorVideoController.value.isPlaying;
+                  print(isPlaying);
+                  if (isPlaying != _isPlaying) {
+                    setState(() {
+                      _isPlaying = isPlaying;
+                      setIndex(++index);
+                    });
+                    if (index > 1) {
+                      _motorVideoController.removeListener(() {});
+                      customPushReplacement(
+                          context,
+                          Motor(
+                            from: Pages.dairyBarns,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
+                    }
+                  }
+                });
+              },
+              child: CustomButtonLabelWithClip(
+                screenSize: screenSize,
+                text: TextsConstants.dairyBarnsTexts["subTopics"][0],
+                type: 1,
+              ),
+            ),
+          ],
+        ));
+  }
+
+  Widget ipadScreen() {
+    var screenSize = MediaQuery.of(context).size;
+    return Positioned(
+        left: Utils.getVideoScreenWidth(screenSize) * 0.65,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.75,
+        child: Stack(
+          children: [
+            InkWell(
+              onTap: () async {
+                setShow();
+                setState(() {
+                  _ipadVideoPlaying = true;
+                });
+                _ipadVideoController.play();
+
+                _ipadVideoController.addListener(() {
+                  final bool isPlaying = _ipadVideoController.value.isPlaying;
+                  print(isPlaying);
+                  if (isPlaying != _isPlaying) {
+                    setState(() {
+                      _isPlaying = isPlaying;
+                      setIndex(++index);
+                    });
+                    if (index > 1) {
+                      customPushReplacement(
+                          context,
+                          IpadScreen(
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
+                    }
+                  }
+                });
+              },
+              child: CustomButtonLabelWithClip(
+                screenSize: screenSize,
+                text: TextsConstants.dairyBarnsTexts["subTopics"][1],
+                type: 2,
+              ),
+            ),
+          ],
+        ));
+  }
+
+  Widget tractor() {
+    var screenSize = MediaQuery.of(context).size;
+    return Positioned(
+        left: Utils.getVideoScreenWidth(screenSize) * 0.81,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.385,
+        child: Stack(
+          children: [
+            InkWell(
+              onTap: () async {
+                setShow();
+                setState(() {
+                  _tractorVideoPlaying = true;
+                });
+                _tractorVideoController.play();
+
+                _tractorVideoController.addListener(() {
+                  final bool isPlaying =
+                      _tractorVideoController.value.isPlaying;
+                  print(isPlaying);
+                  if (isPlaying != _isPlaying) {
+                    setState(() {
+                      _isPlaying = isPlaying;
+                      setIndex(++index);
+                    });
+                    if (index > 1) {
+                      customPushReplacement(
+                          context,
+                          TractorVideo(
+                            from: Pages.dairyBarns,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
+                    }
+                  }
+                });
+              },
+              child: CustomButtonLabelWithClip(
+                screenSize: screenSize,
+                text: TextsConstants.dairyBarnsTexts["subTopics"][2],
+                type: 3,
+              ),
+            ),
+          ],
+        ));
   }
 }

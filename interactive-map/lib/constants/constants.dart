@@ -56,6 +56,7 @@ class Pages {
   static const motor = 'motor';
   static const motorToHome = 'motorToHome';
   static const map = 'map';
+  static const ipad = 'ipad';
 
   static const school = 'Schools';
   static const bank = 'bank';
@@ -64,6 +65,7 @@ class Pages {
   static const fastfoods = 'fastfoods';
   static const werehouse = 'werehouse';
   static const retail = 'retail';
+  static const dairyBarns = 'dairyBarns';
 
   static const vehicle = 'vehicle';
   static const transition = 'transition';
@@ -335,6 +337,29 @@ class TextsConstants {
       "Smart HVAC",
       "Case Study",
       "TurntideApp",
+    ],
+  };
+  static const Map<String, dynamic> dairyBarnsTexts = {
+    "topic": "Dairy Barns",
+    "TextAreaSmallWithClip": [
+      "X%",
+      "Barn statistics",
+    ],
+    "TextAreaWithClipMain": {
+      "texts": [],
+      "topic": "Turntide Intelligent Barn",
+      "description":
+          "A fully automated and integrated barn operating system that helps dairy farmers optimized animal well-being and drive operational efficiency.",
+    },
+    "TextAreaWithClipEnergySaving": {
+      "texts": [],
+      "topic": "",
+      "description": "",
+    },
+    "subTopics": [
+      "TX Motor",
+      "Intelligent Barn \npowered by DairyBOS",
+      "Tractors",
     ],
   };
 

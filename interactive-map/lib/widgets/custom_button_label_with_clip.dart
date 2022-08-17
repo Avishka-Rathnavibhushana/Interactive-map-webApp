@@ -71,10 +71,10 @@ class CustomButtonLabelWithClip extends StatelessWidget {
                                   
                                   ),
                                 ),
-                                maxLines: 1,
+                                maxLines: 2,
                                 softWrap: true,
                                 overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.center,
+                                textAlign: TextAlign.left,
                               ),
                             ),
                           ),
