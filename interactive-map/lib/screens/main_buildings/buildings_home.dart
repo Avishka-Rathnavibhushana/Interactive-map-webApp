@@ -505,15 +505,15 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                                                 offsetVer: offsetVer,
                                               ));
                                           break;
-                                        case Pages.dairyBarns:
-                                          customPushReplacement(
-                                              context,
-                                              DairyBarnsVideo(
-                                                from: Pages.buildings,
-                                                offsetHor: offsetHor,
-                                                offsetVer: offsetVer,
-                                              ));
-                                          break;
+                                        // case Pages.dairyBarns:
+                                        //   customPushReplacement(
+                                        //       context,
+                                        //       DairyBarnsVideo(
+                                        //         from: Pages.buildings,
+                                        //         offsetHor: offsetHor,
+                                        //         offsetVer: offsetVer,
+                                        //       ));
+                                        //   break;
                                         default:
                                       }
                                       setState(() {
@@ -841,15 +841,15 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                                                 offsetVer: offsetVer,
                                               ));
                                           break;
-                                        case Pages.dairyBarns:
-                                          customPushReplacement(
-                                              context,
-                                              DairyBarnsVideo(
-                                                from: Pages.buildings,
-                                                offsetHor: offsetHor,
-                                                offsetVer: offsetVer,
-                                              ));
-                                          break;
+                                        // case Pages.dairyBarns:
+                                        //   customPushReplacement(
+                                        //       context,
+                                        //       DairyBarnsVideo(
+                                        //         from: Pages.buildings,
+                                        //         offsetHor: offsetHor,
+                                        //         offsetVer: offsetVer,
+                                        //       ));
+                                        //   break;
                                         default:
                                       }
                                       setState(() {
@@ -1199,23 +1199,23 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                   ),
                 )
               : Container(),
-          showTextAreaSmall && _dairyBarnsVideoPlaying
-              ? Padding(
-                  padding: EdgeInsets.only(
-                      bottom: Utils.getBottomPadding(screenSize, 200)),
-                  child: Container(
-                    alignment: Alignment.bottomLeft,
-                    child: TextAreaSmallWithClip(
-                      width: screenSize.width * 0.35,
-                      screenSize: screenSize,
-                      prefixText: TextsConstants
-                          .dairyBarnsTexts["TextAreaSmallWithClip"][0],
-                      description: TextsConstants
-                          .dairyBarnsTexts["TextAreaSmallWithClip"][1],
-                    ),
-                  ),
-                )
-              : Container(),
+          // showTextAreaSmall && _dairyBarnsVideoPlaying
+          //     ? Padding(
+          //         padding: EdgeInsets.only(
+          //             bottom: Utils.getBottomPadding(screenSize, 200)),
+          //         child: Container(
+          //           alignment: Alignment.bottomLeft,
+          //           child: TextAreaSmallWithClip(
+          //             width: screenSize.width * 0.35,
+          //             screenSize: screenSize,
+          //             prefixText: TextsConstants
+          //                 .dairyBarnsTexts["TextAreaSmallWithClip"][0],
+          //             description: TextsConstants
+          //                 .dairyBarnsTexts["TextAreaSmallWithClip"][1],
+          //           ),
+          //         ),
+          //       )
+          //     : Container(),
           showNext && screenSize.width >= 500 && screenSize.height >= 500
               ? Positioned(
                   right: 0,
@@ -1288,15 +1288,15 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                                   offsetVer: offsetVer,
                                 ));
                             break;
-                          case Pages.dairyBarns:
-                            customPushReplacement(
-                                context,
-                                DairyBarnsVideo(
-                                  from: Pages.buildings,
-                                  offsetHor: offsetHor,
-                                  offsetVer: offsetVer,
-                                ));
-                            break;
+                          // case Pages.dairyBarns:
+                          //   customPushReplacement(
+                          //       context,
+                          //       DairyBarnsVideo(
+                          //         from: Pages.buildings,
+                          //         offsetHor: offsetHor,
+                          //         offsetVer: offsetVer,
+                          //       ));
+                          //   break;
                           default:
                         }
                         setState(() {
@@ -2266,9 +2266,9 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
 
                 _dairyBarnsVideoController.play();
 
-                setState(() {
-                  showTextAreaSmall = true;
-                });
+                // setState(() {
+                //   showTextAreaSmall = true;
+                // });
 
                 await Future.delayed(const Duration(milliseconds: 200));
 
@@ -2289,9 +2289,17 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                       _dairyBarnsVideoController.removeListener(() {});
 
                       setState(() {
-                        showNext = true;
+                        //showNext = true;
                         nextPage = Pages.dairyBarns;
                       });
+
+                      customPushReplacement(
+                          context,
+                          DairyBarnsVideo(
+                            from: Pages.buildings,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
                     }
                   }
                 });
@@ -2329,9 +2337,9 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
 
         _dairyBarnsVideoController.play();
 
-        setState(() {
-          showTextAreaSmall = true;
-        });
+        // setState(() {
+        //   showTextAreaSmall = true;
+        // });
 
         await Future.delayed(const Duration(milliseconds: 200));
 
@@ -2351,9 +2359,17 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
               _dairyBarnsVideoController.removeListener(() {});
 
               setState(() {
-                showNext = true;
+                // showNext = true;
                 nextPage = Pages.dairyBarns;
               });
+
+              customPushReplacement(
+                  context,
+                  DairyBarnsVideo(
+                    from: Pages.buildings,
+                    offsetHor: offsetHor,
+                    offsetVer: offsetVer,
+                  ));
             }
           }
         });

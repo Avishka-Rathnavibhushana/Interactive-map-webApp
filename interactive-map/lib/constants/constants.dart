@@ -358,10 +358,10 @@ class TextsConstants {
   };
   static const Map<String, dynamic> dairyBarnsTexts = {
     "topic": "Dairy Barns",
-    "TextAreaSmallWithClip": [
-      "X%",
-      "Barn statistics",
-    ],
+    // "TextAreaSmallWithClip": [
+    //   "X%",
+    //   "Barn statistics",
+    // ],
     "TextAreaWithClipMain": {
       "texts": [],
       "topic": "Turntide Intelligent Barn",
