@@ -183,7 +183,8 @@ class _MotorState extends State<Motor> {
       Get.find<Controller>().verticalOffset.value = offsetVer;
     }
 
-    if (screenSize.height < 500 && screenSize.width > 500) {
+    if (screenSize.height < ScreenSizes.Mobile.height &&
+        screenSize.width > ScreenSizes.Mobile.width) {
       if (screenSize.width - screenSize.width * 0.1 / screenSize.height ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -273,7 +274,7 @@ class _MotorState extends State<Motor> {
           ],
         ),
       );
-    } else if (screenSize.width < 500) {
+    } else if (screenSize.width < ScreenSizes.Mobile.width) {
       if (screenSize.width / screenSize.height - screenSize.height * 0.1 ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -428,7 +429,9 @@ class _MotorState extends State<Motor> {
         fit: StackFit.expand,
         children: [
           FullScreenButton(),
-          show && screenSize.width > 500 && screenSize.height > 500
+          show &&
+                  screenSize.width > ScreenSizes.Mobile.width &&
+                  screenSize.height > ScreenSizes.Mobile.height
               ? nextButton()
               : Container(),
           show ? menuButton() : Container(),
@@ -501,7 +504,8 @@ class _MotorState extends State<Motor> {
                           45 * (screenSize.height / VideoAspectRatio.height),
                     ),
                     nextIndex
-                        ? screenSize.width < 500 || screenSize.height < 500
+                        ? screenSize.width < ScreenSizes.Mobile.width ||
+                                screenSize.height < ScreenSizes.Mobile.height
                             ? Container()
                             : Container(
                                 width: screenSize.width *
@@ -630,7 +634,8 @@ class _MotorState extends State<Motor> {
                                         ],
                                       ),
                               )
-                        : screenSize.width < 500 || screenSize.height < 500
+                        : screenSize.width < ScreenSizes.Mobile.width ||
+                                screenSize.height < ScreenSizes.Mobile.height
                             ? Container()
                             : widget.from == Pages.dataCenter ||
                                     widget.from == Pages.dairyBarns
@@ -793,7 +798,8 @@ class _MotorState extends State<Motor> {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: GestureDetector(
         onTap: () {
-          if (screenSize.width < 500 || screenSize.height < 500) {
+          if (screenSize.width < ScreenSizes.Mobile.width ||
+              screenSize.height < ScreenSizes.Mobile.height) {
             setShow();
             _controller.pause();
             _controller.removeListener(() {});
@@ -832,7 +838,9 @@ class _MotorState extends State<Motor> {
   Widget menuButton() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-      right: screenSize.height < 500 ? screenSize.width * 0.1 : 0,
+      right: screenSize.height < ScreenSizes.Mobile.height
+          ? screenSize.width * 0.1
+          : 0,
       child: Container(
         alignment: Alignment.center,
         height:

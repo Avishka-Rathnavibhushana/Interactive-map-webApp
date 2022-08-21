@@ -32,7 +32,7 @@ class CustomTopic extends StatelessWidget {
             style: GoogleFonts.barlow(
               textStyle: TextStyle(
               color: AppColors.night,
-              fontSize: screenSize.width > 500
+                fontSize: screenSize.width > ScreenSizes.Mobile.width
                     ? 50 *
                       (screenSize.width / VideoAspectRatio.width) *
                       Utils.getMultiplier(screenSize.width)
@@ -56,7 +56,7 @@ class CustomTopic extends StatelessWidget {
             style: GoogleFonts.barlow(
               textStyle: TextStyle(
               color: AppColors.sea,
-              fontSize: screenSize.width > 500
+                fontSize: screenSize.width > ScreenSizes.Mobile.width
                     ? 24 *
                       (screenSize.width / VideoAspectRatio.width) *
                       Utils.getMultiplier(screenSize.width)

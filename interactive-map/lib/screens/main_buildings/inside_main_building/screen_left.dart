@@ -103,7 +103,8 @@ class _ScreenLeftState extends State<ScreenLeft> {
       Get.find<Controller>().verticalOffset.value = offsetVer;
     }
 
-    if (screenSize.height < 500 && screenSize.width > 500) {
+    if (screenSize.height < ScreenSizes.Mobile.height &&
+        screenSize.width > ScreenSizes.Mobile.width) {
       if (screenSize.width - screenSize.width * 0.3 / screenSize.height ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -221,7 +222,7 @@ class _ScreenLeftState extends State<ScreenLeft> {
           ],
         ),
       );
-    } else if (screenSize.width < 500) {
+    } else if (screenSize.width < ScreenSizes.Mobile.width) {
       if (screenSize.width / screenSize.height - screenSize.height * 0.3 ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -431,7 +432,9 @@ class _ScreenLeftState extends State<ScreenLeft> {
         fit: StackFit.expand,
         children: [
           FullScreenButton(),
-          show && screenSize.width > 500 && screenSize.height > 500
+          show &&
+                  screenSize.width > ScreenSizes.Mobile.width &&
+                  screenSize.height > ScreenSizes.Mobile.height
               ? nextButton()
               : Container(),
           show ? menuButton() : Container(),

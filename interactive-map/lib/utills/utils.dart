@@ -23,7 +23,7 @@ class Utils {
   }
 
   static double getMultiplier(double width) {
-    if (width < 500) {
+    if (width < ScreenSizes.Mobile.width) {
       return 1.5;
     } else if (width < 1000) {
       return 1;
@@ -33,7 +33,7 @@ class Utils {
   }
 
   static double getTopicTextSize(double width) {
-    if (width < 500) {
+    if (width < ScreenSizes.Mobile.width) {
       return 50;
     } else if (width < 1000) {
       return 60;
@@ -43,7 +43,7 @@ class Utils {
   }
 
   static double getVerticleDeviderHeight(double width) {
-    if (width < 500) {
+    if (width < ScreenSizes.Mobile.width) {
       return 50;
     } else if (width < 1000) {
       return 70;
@@ -53,7 +53,7 @@ class Utils {
   }
 
   static double getIconResizeRatio(double width) {
-    if (width < 500) {
+    if (width < ScreenSizes.Mobile.width) {
       return 0.4;
     } else if (width < 1000) {
       return 0.6;
@@ -63,7 +63,7 @@ class Utils {
   }
 
   static double getIconTopPaddingRatio(double width) {
-    if (width < 500) {
+    if (width < ScreenSizes.Mobile.width) {
       return 0;
     } else if (width < 700) {
       return 0.3;
@@ -75,7 +75,7 @@ class Utils {
   }
 
   static double getTextPaddingRatio(double width) {
-    if (width < 500) {
+    if (width < ScreenSizes.Mobile.width) {
       return 0.2;
     } else if (width < 700) {
       return 0.4;
@@ -89,7 +89,7 @@ class Utils {
   }
 
   static double getCustomTextContainerMultiplier(double width) {
-    if (width < 500) {
+    if (width < ScreenSizes.Mobile.width) {
       return 3;
     } else if (width < 800) {
       return 1;
@@ -105,13 +105,14 @@ class Utils {
   static double getBottomPadding(Size screenSize, double padding) {
     double transformedPadding =
         padding * (screenSize.height / VideoAspectRatio.height);
-    if (screenSize.height < 500 && screenSize.width < 500) {
+    if (screenSize.height < ScreenSizes.Mobile.height &&
+        screenSize.width < ScreenSizes.Mobile.width) {
       return screenSize.height * 0.3 + transformedPadding;
     }
-    if (screenSize.height < 500) {
+    if (screenSize.height < ScreenSizes.Mobile.height) {
       return transformedPadding;
     }
-    if (screenSize.width < 500) {
+    if (screenSize.width < ScreenSizes.Mobile.width) {
       return screenSize.width * 0.3 + transformedPadding;
     } else {
       return transformedPadding - transformedPadding * 0.5;
@@ -121,13 +122,14 @@ class Utils {
   static double getRightPadding(Size screenSize, double padding) {
     double transformedPadding =
         padding * (screenSize.width / VideoAspectRatio.width);
-    if (screenSize.height < 500 && screenSize.width < 500) {
+    if (screenSize.height < ScreenSizes.Mobile.height &&
+        screenSize.width < ScreenSizes.Mobile.width) {
       return transformedPadding;
     }
-    if (screenSize.height < 500) {
+    if (screenSize.height < ScreenSizes.Mobile.height) {
       return screenSize.width * 0.3 + transformedPadding;
     }
-    if (screenSize.width < 500) {
+    if (screenSize.width < ScreenSizes.Mobile.width) {
       return transformedPadding;
     } else {
       return transformedPadding;

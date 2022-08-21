@@ -109,6 +109,11 @@ class VideoAspectRatio {
   static const height = 1080.0;
 }
 
+//VideoAspect Ratio
+class ScreenSizes {
+  static const Size Mobile = Size(500, 300);
+}
+
 // Application texts
 class TextsConstants {
   static const Map<String, dynamic> schoolTexts = {
