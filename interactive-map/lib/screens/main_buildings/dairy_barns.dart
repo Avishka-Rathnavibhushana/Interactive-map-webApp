@@ -41,8 +41,8 @@ class _DairyBarnsVideoState extends State<DairyBarnsVideo> {
 
   final String url = 'assets/videos/buildings/barn_REV.mp4';
 
-  final String motorVideo = 'assets/videos/buildings/barn_MOTOR.mp4';
-  final String tractorVideo = 'assets/videos/buildings/barn_tractor.mp4';
+  final String motorVideo = 'assets/videos/buildings/barn_to_TXMotor.mp4';
+  final String tractorVideo = 'assets/videos/buildings/barn_To_Tractor.mp4';
   final String ipadVideo = 'assets/videos/buildings/barn_ipad.mp4';
 
   final String barnImage = 'assets/tempory images/barn_Plain.png';
