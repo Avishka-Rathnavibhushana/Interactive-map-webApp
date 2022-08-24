@@ -115,7 +115,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
     await _timerVideoController.initialize();
     setState(() {
       _timerVideoController.setVolume(0);
-      _timerVideoController.play();
+      _timerVideoController.pause();
       _timerVideoController.setLooping(true);
       setShow();
     });
@@ -185,8 +185,8 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
               _dairyBarnsVideoController.setLooping(false);
             })
           });
-    await Future.delayed(const Duration(seconds: 2));
-
+    //await Future.delayed(const Duration(seconds: 2));
+    _timerVideoController.play();
     setState(() {
       loading = false;
     });

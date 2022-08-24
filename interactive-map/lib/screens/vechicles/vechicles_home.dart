@@ -111,7 +111,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
     await _timerVideoController.initialize();
     setState(() {
       _timerVideoController.setVolume(0);
-      _timerVideoController.play();
+      _timerVideoController.pause();
       _timerVideoController.setLooping(true);
       setShow();
     });
@@ -174,8 +174,8 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
             })
           });
 
-    await Future.delayed(const Duration(seconds: 2));
-
+    //await Future.delayed(const Duration(seconds: 2));
+    _timerVideoController.play();
     setState(() {
       loading = false;
     });
@@ -865,11 +865,13 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
               height: Utils.getVideoScreenHeight(screenSize),
               child: Stack(
                 children: [
-                  SizedBox(
+                  !loading
+                      ? SizedBox(
                     width: Utils.getVideoScreenWidth(screenSize),
                     height: Utils.getVideoScreenHeight(screenSize),
                     child: VideoPlayer(_timerVideoController),
-                  ),
+                        )
+                      : Container(),
                   show ? Container() : train(),
                   show ? Container() : sportsCar(),
                   show ? Container() : avgNarm(),
