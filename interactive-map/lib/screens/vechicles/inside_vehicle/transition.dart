@@ -478,21 +478,25 @@ class _TransitionPageState extends State<TransitionPage> {
                     ),
                     Container(
                       width: screenSize.width *
-                          0.30 *
+                          0.38 *
                           Utils.getMultiplier(screenSize.width),
-                      child: Column(
+                      child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            width: screenSize.width *
-                                    0.12 *
-                                    (screenSize.width /
-                                        VideoAspectRatio.width) *
-                                    Utils.getCustomTextContainerMultiplier(
-                                        screenSize.width) *
+                            width: screenSize.width >= 2000
+                                ? 312.5 * 2 + 35
+                                : screenSize.width *
+                                        0.15 *
+                                        (screenSize.width /
+                                            VideoAspectRatio.width) *
+                                        Utils.getCustomTextContainerMultiplier(
+                                            screenSize.width) *
                                     2 +
                                 35,
                             child: Wrap(
+
                               runSpacing: 15,
                               spacing: 25,
                               alignment: WrapAlignment.center,

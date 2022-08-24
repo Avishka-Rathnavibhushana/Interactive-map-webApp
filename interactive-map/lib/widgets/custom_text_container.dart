@@ -18,13 +18,15 @@ class CustomTextContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: screenSize.width *
-          0.12 *
-          (screenSize.width / VideoAspectRatio.width) *
-          Utils.getCustomTextContainerMultiplier(screenSize.width),
-      height: 125 * (screenSize.height / VideoAspectRatio.height),
+      width: screenSize.width >= 2000
+          ? 312.5
+          : screenSize.width *
+              0.15 *
+              (screenSize.width / VideoAspectRatio.width) *
+              Utils.getCustomTextContainerMultiplier(screenSize.width),
+      //height: 125 * (screenSize.height / VideoAspectRatio.height),
       color: AppColors.fern,
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -34,10 +36,10 @@ class CustomTextContainer extends StatelessWidget {
             topic,
             style: GoogleFonts.barlow(
               textStyle: TextStyle(
-              color: AppColors.sky,
+                color: AppColors.sky,
                 fontSize: 28 *
-                  (screenSize.width / VideoAspectRatio.width) *
-                  Utils.getMultiplier(screenSize.width),
+                    (screenSize.width / VideoAspectRatio.width) *
+                    Utils.getMultiplier(screenSize.width),
                 fontWeight: FontWeight.w400,
               ),
             ),
@@ -53,11 +55,11 @@ class CustomTextContainer extends StatelessWidget {
             description,
             style: GoogleFonts.barlow(
               textStyle: TextStyle(
-              color: AppColors.night,
+                color: AppColors.night,
                 fontSize: 18 *
-                  (screenSize.width / VideoAspectRatio.width) *
-                  Utils.getMultiplier(screenSize.width),
-              fontWeight: FontWeight.w600,
+                    (screenSize.width / VideoAspectRatio.width) *
+                    Utils.getMultiplier(screenSize.width),
+                fontWeight: FontWeight.w600,
               ),
             ),
             maxLines: 3,
