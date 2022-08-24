@@ -32,6 +32,16 @@ class Utils {
     }
   }
 
+  static double getTopRightButtonMultiplier(double width) {
+    if (width < ScreenSizes.Mobile.width) {
+      return 2.5;
+    } else if (width < 1000) {
+      return 1;
+    } else {
+      return 1;
+    }
+  }
+
   static double getTopicTextSize(double width) {
     if (width < ScreenSizes.Mobile.width) {
       return 50;
