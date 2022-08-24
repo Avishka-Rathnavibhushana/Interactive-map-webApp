@@ -146,62 +146,76 @@ class _IpadScreenState extends State<IpadScreen> {
                           height: Utils.getVideoScreenHeight(screenSizeMobile1),
                           child: Stack(
                             children: [
-                              SizedBox(
+                              nextIndex == 3
+                                  ? SizedBox(
                                 width: Utils.getVideoScreenWidth(
                                     screenSizeMobile1),
                                 height: Utils.getVideoScreenHeight(
                                     screenSizeMobile1),
                                 child: VideoPlayer(_controller),
-                              ),
+                                    )
+                                  : Container(),
                               show
-                                  ? nextIndex == 0
-                                      ? SizedBox(
-                                          width: Utils.getVideoScreenWidth(
-                                              screenSizeMobile1),
-                                          height: Utils.getVideoScreenHeight(
-                                              screenSizeMobile1),
-                                          child: Image.asset(
-                                            Image_1,
-                                            fit: BoxFit.fill,
-                                          ),
-                                        )
-                                      : nextIndex == 1
-                                          ? SizedBox(
-                                              width: Utils.getVideoScreenWidth(
-                                                  screenSizeMobile1),
-                                              height:
-                                                  Utils.getVideoScreenHeight(
-                                                      screenSizeMobile1),
-                                              child: Image.asset(
-                                                Image_2,
-                                                fit: BoxFit.fill,
-                                              ),
-                                            )
-                                          : nextIndex == 2
-                                              ? SizedBox(
-                                                  width:
-                                                      Utils.getVideoScreenWidth(
-                                                          screenSizeMobile1),
-                                                  height: Utils
-                                                      .getVideoScreenHeight(
-                                                          screenSizeMobile1),
-                                                  child: Image.asset(
-                                                    Image_3,
-                                                    fit: BoxFit.fill,
-                                                  ),
-                                                )
-                                              : SizedBox(
-                                                  width:
-                                                      Utils.getVideoScreenWidth(
-                                                          screenSizeMobile1),
-                                                  height: Utils
-                                                      .getVideoScreenHeight(
-                                                          screenSizeMobile1),
-                                                  child: Image.asset(
-                                                    Image_4,
-                                                    fit: BoxFit.fill,
-                                                  ),
-                                                )
+                                  ? Stack(
+                                      children: [
+                                        nextIndex <= 3
+                                            ? SizedBox(
+                                                width:
+                                                    Utils.getVideoScreenWidth(
+                                                        screenSizeMobile1),
+                                                height:
+                                                    Utils.getVideoScreenHeight(
+                                                        screenSizeMobile1),
+                                                child: Image.asset(
+                                                  Image_4,
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              )
+                                            : Container(),
+                                        nextIndex <= 2
+                                            ? SizedBox(
+                                                width:
+                                                    Utils.getVideoScreenWidth(
+                                                        screenSizeMobile1),
+                                                height:
+                                                    Utils.getVideoScreenHeight(
+                                                        screenSizeMobile1),
+                                                child: Image.asset(
+                                                  Image_3,
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              )
+                                            : Container(),
+                                        nextIndex <= 1
+                                            ? SizedBox(
+                                                width:
+                                                    Utils.getVideoScreenWidth(
+                                                        screenSizeMobile1),
+                                                height:
+                                                    Utils.getVideoScreenHeight(
+                                                        screenSizeMobile1),
+                                                child: Image.asset(
+                                                  Image_2,
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              )
+                                            : Container(),
+                                        nextIndex <= 0
+                                            ? SizedBox(
+                                                width:
+                                                    Utils.getVideoScreenWidth(
+                                                        screenSizeMobile1),
+                                                height:
+                                                    Utils.getVideoScreenHeight(
+                                                        screenSizeMobile1),
+                                                child: Image.asset(
+                                                  Image_1,
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              )
+                                            : Container(),
+                                      ],
+                                    )
                                   : Container(),
                             ],
                           ),
@@ -279,62 +293,76 @@ class _IpadScreenState extends State<IpadScreen> {
                           height: Utils.getVideoScreenHeight(screenSizeMobile2),
                           child: Stack(
                             children: [
-                              SizedBox(
+                              nextIndex == 3
+                                  ? SizedBox(
                                 width: Utils.getVideoScreenWidth(
                                     screenSizeMobile2),
                                 height: Utils.getVideoScreenHeight(
                                     screenSizeMobile2),
                                 child: VideoPlayer(_controller),
-                              ),
+                                    )
+                                  : Container(),
                               show
-                                  ? nextIndex == 0
-                                      ? SizedBox(
-                                          width: Utils.getVideoScreenWidth(
-                                              screenSizeMobile2),
-                                          height: Utils.getVideoScreenHeight(
-                                              screenSizeMobile2),
-                                          child: Image.asset(
-                                            Image_1,
-                                            fit: BoxFit.fill,
-                                          ),
-                                        )
-                                      : nextIndex == 1
-                                          ? SizedBox(
-                                              width: Utils.getVideoScreenWidth(
-                                                  screenSizeMobile2),
-                                              height:
-                                                  Utils.getVideoScreenHeight(
-                                                      screenSizeMobile2),
-                                              child: Image.asset(
-                                                Image_2,
-                                                fit: BoxFit.fill,
-                                              ),
-                                            )
-                                          : nextIndex == 2
-                                              ? SizedBox(
-                                                  width:
-                                                      Utils.getVideoScreenWidth(
-                                                          screenSizeMobile2),
-                                                  height: Utils
-                                                      .getVideoScreenHeight(
-                                                          screenSizeMobile2),
-                                                  child: Image.asset(
-                                                    Image_3,
-                                                    fit: BoxFit.fill,
-                                                  ),
-                                                )
-                                              : SizedBox(
-                                                  width:
-                                                      Utils.getVideoScreenWidth(
-                                                          screenSizeMobile2),
-                                                  height: Utils
-                                                      .getVideoScreenHeight(
-                                                          screenSizeMobile2),
-                                                  child: Image.asset(
-                                                    Image_4,
-                                                    fit: BoxFit.fill,
-                                                  ),
-                                                )
+                                  ? Stack(
+                                      children: [
+                                        nextIndex <= 3
+                                            ? SizedBox(
+                                                width:
+                                                    Utils.getVideoScreenWidth(
+                                                        screenSizeMobile2),
+                                                height:
+                                                    Utils.getVideoScreenHeight(
+                                                        screenSizeMobile2),
+                                                child: Image.asset(
+                                                  Image_4,
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              )
+                                            : Container(),
+                                        nextIndex <= 2
+                                            ? SizedBox(
+                                                width:
+                                                    Utils.getVideoScreenWidth(
+                                                        screenSizeMobile2),
+                                                height:
+                                                    Utils.getVideoScreenHeight(
+                                                        screenSizeMobile2),
+                                                child: Image.asset(
+                                                  Image_3,
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              )
+                                            : Container(),
+                                        nextIndex <= 1
+                                            ? SizedBox(
+                                                width:
+                                                    Utils.getVideoScreenWidth(
+                                                        screenSizeMobile2),
+                                                height:
+                                                    Utils.getVideoScreenHeight(
+                                                        screenSizeMobile2),
+                                                child: Image.asset(
+                                                  Image_2,
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              )
+                                            : Container(),
+                                        nextIndex <= 0
+                                            ? SizedBox(
+                                                width:
+                                                    Utils.getVideoScreenWidth(
+                                                        screenSizeMobile2),
+                                                height:
+                                                    Utils.getVideoScreenHeight(
+                                                        screenSizeMobile2),
+                                                child: Image.asset(
+                                                  Image_1,
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              )
+                                            : Container(),
+                                      ],
+                                    )
                                   : Container(),
                             ],
                           ),
@@ -403,55 +431,66 @@ class _IpadScreenState extends State<IpadScreen> {
                     height: Utils.getVideoScreenHeight(screenSize),
                     child: Stack(
                       children: [
-                        SizedBox(
+                        nextIndex == 3
+                            ? SizedBox(
                           width: Utils.getVideoScreenWidth(screenSize),
                           height: Utils.getVideoScreenHeight(screenSize),
                           child: VideoPlayer(_controller),
-                        ),
+                              )
+                            : Container(),
                         show
-                            ? nextIndex == 0
-                                ? SizedBox(
-                                    width:
-                                        Utils.getVideoScreenWidth(screenSize),
-                                    height:
-                                        Utils.getVideoScreenHeight(screenSize),
-                                    child: Image.asset(
-                                      Image_1,
-                                      fit: BoxFit.fill,
-                                    ),
-                                  )
-                                : nextIndex == 1
-                                    ? SizedBox(
-                                        width: Utils.getVideoScreenWidth(
-                                            screenSize),
-                                        height: Utils.getVideoScreenHeight(
-                                            screenSize),
-                                        child: Image.asset(
-                                          Image_2,
-                                          fit: BoxFit.fill,
-                                        ),
-                                      )
-                                    : nextIndex == 2
-                                        ? SizedBox(
-                                            width: Utils.getVideoScreenWidth(
-                                                screenSize),
-                                            height: Utils.getVideoScreenHeight(
-                                                screenSize),
-                                            child: Image.asset(
-                                              Image_3,
-                                              fit: BoxFit.fill,
-                                            ),
-                                          )
-                                        : SizedBox(
-                                            width: Utils.getVideoScreenWidth(
-                                                screenSize),
-                                            height: Utils.getVideoScreenHeight(
-                                                screenSize),
-                                            child: Image.asset(
-                                              Image_4,
-                                              fit: BoxFit.fill,
-                                            ),
-                                          )
+                            ? Stack(
+                                children: [
+                                  nextIndex <= 3
+                                      ? SizedBox(
+                                          width: Utils.getVideoScreenWidth(
+                                              screenSize),
+                                          height: Utils.getVideoScreenHeight(
+                                              screenSize),
+                                          child: Image.asset(
+                                            Image_4,
+                                            fit: BoxFit.fill,
+                                          ),
+                                        )
+                                      : Container(),
+                                  nextIndex <= 2
+                                      ? SizedBox(
+                                          width: Utils.getVideoScreenWidth(
+                                              screenSize),
+                                          height: Utils.getVideoScreenHeight(
+                                              screenSize),
+                                          child: Image.asset(
+                                            Image_3,
+                                            fit: BoxFit.fill,
+                                          ),
+                                        )
+                                      : Container(),
+                                  nextIndex <= 1
+                                      ? SizedBox(
+                                          width: Utils.getVideoScreenWidth(
+                                              screenSize),
+                                          height: Utils.getVideoScreenHeight(
+                                              screenSize),
+                                          child: Image.asset(
+                                            Image_2,
+                                            fit: BoxFit.fill,
+                                          ),
+                                        )
+                                      : Container(),
+                                  nextIndex <= 0
+                                      ? SizedBox(
+                                          width: Utils.getVideoScreenWidth(
+                                              screenSize),
+                                          height: Utils.getVideoScreenHeight(
+                                              screenSize),
+                                          child: Image.asset(
+                                            Image_1,
+                                            fit: BoxFit.fill,
+                                          ),
+                                        )
+                                      : Container(),
+                                ],
+                              )
                             : Container(),
                       ],
                     ),
