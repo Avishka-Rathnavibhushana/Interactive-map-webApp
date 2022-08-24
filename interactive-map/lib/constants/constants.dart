@@ -900,7 +900,7 @@ class TextsConstants {
     // ],
     "TextAreaWithClipMain": {
       "texts": [
-        ["TEXT", "Battery Packs"],
+        //["TEXT", "Battery Packs"],
       ],
       "topic": "Turntide for Trains",
       "description":
