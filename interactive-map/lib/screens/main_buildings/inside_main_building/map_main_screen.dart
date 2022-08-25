@@ -113,6 +113,12 @@ class _MapMainScreensState extends State<MapMainScreens> {
         offsetHor: offsetHor,
         offsetVer: offsetVer,
       );
+    } else if (from == Pages.dairyBarns) {
+      return RetailVideo(
+        from: Pages.map,
+        offsetHor: offsetHor,
+        offsetVer: offsetVer,
+      );
     }
   }
 
@@ -131,6 +137,8 @@ class _MapMainScreensState extends State<MapMainScreens> {
       url = 'assets/videos/buildings/warehouse_REV.mp4';
     } else if (widget.from == Pages.retail) {
       url = 'assets/videos/buildings/retail_REV.mp4';
+    } else if (widget.from == Pages.dairyBarns) {
+      url = 'assets/videos/buildings/barn_REV.mp4';
     }
     _controller = VideoPlayerController.asset(url);
     await _controller.initialize();
@@ -197,7 +205,8 @@ class _MapMainScreensState extends State<MapMainScreens> {
       Get.find<Controller>().verticalOffset.value = offsetVer;
     }
 
-    if (screenSize.height < 500 && screenSize.width > 500) {
+    if (screenSize.height < ScreenSizes.Mobile.height &&
+        screenSize.width > ScreenSizes.Mobile.width) {
       if (screenSize.width - screenSize.width * 0.3 / screenSize.height ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -320,7 +329,7 @@ class _MapMainScreensState extends State<MapMainScreens> {
           ],
         ),
       );
-    } else if (screenSize.width < 500) {
+    } else if (screenSize.width < ScreenSizes.Mobile.width) {
       if (screenSize.width / screenSize.height - screenSize.height * 0.3 ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -775,8 +784,12 @@ class _MapMainScreensState extends State<MapMainScreens> {
       child: Container(
         alignment: Alignment.topRight,
         height:
-            screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
-        width: screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
+            screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
+        width: screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
         child: GestureDetector(
           onTap: () {
             _controller.pause();
@@ -799,10 +812,10 @@ class _MapMainScreensState extends State<MapMainScreens> {
           child: Container(
             height: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             width: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(homeImage),

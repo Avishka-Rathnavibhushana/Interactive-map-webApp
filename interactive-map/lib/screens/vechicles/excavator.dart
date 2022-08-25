@@ -38,16 +38,16 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
   bool show = false;
   bool _isPlaying = false;
 
-  final String url = 'assets/videos/vehicles/Veh_To_Exc_REV.m4v';
+  final String url = 'assets/videos/vehicles/Veh_To_Exc_REV.mp4';
 
   final String transition1Video =
-      'assets/videos/vehicles/Product_transition/Exc_to_Battery.m4v';
+      'assets/videos/vehicles/Product_transition/Exc_to_HDMotor.mp4';
   final String transition2Video =
-      'assets/videos/vehicles/Product_transition/Exc_to_Drive.m4v';
+      'assets/videos/vehicles/Product_transition/Exc_to_Battery.mp4';
   final String transition3Video =
-      'assets/videos/vehicles/Product_transition/Exc_to_DCDC.m4v';
+      'assets/videos/vehicles/Product_transition/Exc_to_Drive.mp4';
   final String transition4Video =
-      'assets/videos/vehicles/Product_transition/Exc_to_HDMotor.m4v';
+      'assets/videos/vehicles/Product_transition/Exc_to_DCDC.mp4';
 
   // final String schoolImage = 'assets/tempory images/School_Plain.png';
 
@@ -196,7 +196,8 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
       Get.find<Controller>().verticalOffset.value = offsetVer;
     }
 
-    if (screenSize.height < 500 && screenSize.width > 500) {
+    if (screenSize.height < ScreenSizes.Mobile.height &&
+        screenSize.width > ScreenSizes.Mobile.width) {
       if (screenSize.width - screenSize.width * 0.3 / screenSize.height ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -345,7 +346,7 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
           ],
         ),
       );
-    } else if (screenSize.width < 500) {
+    } else if (screenSize.width < ScreenSizes.Mobile.width) {
       if (screenSize.width / screenSize.height - screenSize.height * 0.3 ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -645,9 +646,18 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                     url:
-                        "assets/videos/vehicles/Product_loops/Battery_Loop.m4v",
+                        "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
                     back:
-                        "assets/videos/vehicles/Product_transition/Exc_to_Battery.m4v",
+                        "assets/videos/vehicles/Product_transition/Exc_to_HDMotor.mp4",
+                    topic: TextsConstants.excavatorTexts["subTopicsInside"][0]
+                        ["topic"],
+                    subTopic: TextsConstants.excavatorTexts["subTopicsInside"]
+                        [0]["subTopic"],
+                    descriptioTexts:
+                        TextsConstants.excavatorTexts["subTopicsInside"][0]
+                            ["descriptioTexts"],
+                    blocks: TextsConstants.excavatorTexts["subTopicsInside"][0]
+                        ["blocks"],
                   ));
             }
           }
@@ -684,9 +694,19 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                     from: Pages.excavator,
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
-                    url: "assets/videos/vehicles/Product_loops/Drive_Loop.m4v",
+                    url:
+                        "assets/videos/vehicles/Product_loops/Battery_Loop.mp4",
                     back:
-                        "assets/videos/vehicles/Product_transition/Exc_to_Drive.m4v",
+                        "assets/videos/vehicles/Product_transition/Exc_to_Battery.mp4",
+                    topic: TextsConstants.excavatorTexts["subTopicsInside"][1]
+                        ["topic"],
+                    subTopic: TextsConstants.excavatorTexts["subTopicsInside"]
+                        [1]["subTopic"],
+                    descriptioTexts:
+                        TextsConstants.excavatorTexts["subTopicsInside"][1]
+                            ["descriptioTexts"],
+                    blocks: TextsConstants.excavatorTexts["subTopicsInside"][1]
+                        ["blocks"],
                   ));
             }
           }
@@ -723,9 +743,18 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                     from: Pages.excavator,
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
-                    url: "assets/videos/vehicles/Product_loops/DCDC_Loop.m4v",
+                    url: "assets/videos/vehicles/Product_loops/Drive_Loop.mp4",
                     back:
-                        "assets/videos/vehicles/Product_transition/Exc_to_DCDC.m4v",
+                        "assets/videos/vehicles/Product_transition/Exc_to_Drive.mp4",
+                    topic: TextsConstants.excavatorTexts["subTopicsInside"][2]
+                        ["topic"],
+                    subTopic: TextsConstants.excavatorTexts["subTopicsInside"]
+                        [2]["subTopic"],
+                    descriptioTexts:
+                        TextsConstants.excavatorTexts["subTopicsInside"][2]
+                            ["descriptioTexts"],
+                    blocks: TextsConstants.excavatorTexts["subTopicsInside"][2]
+                        ["blocks"],
                   ));
             }
           }
@@ -763,9 +792,18 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                     url:
-                        "assets/videos/vehicles/Product_loops/HDMotor_Loop.m4v",
+                        "assets/videos/vehicles/Product_loops/DCDC_Loop.mp4",
                     back:
-                        "assets/videos/vehicles/Product_transition/Exc_to_HDMotor.m4v",
+                        "assets/videos/vehicles/Product_transition/Exc_to_DCDC.mp4",
+                    topic: TextsConstants.excavatorTexts["subTopicsInside"][3]
+                        ["topic"],
+                    subTopic: TextsConstants.excavatorTexts["subTopicsInside"]
+                        [3]["subTopic"],
+                    descriptioTexts:
+                        TextsConstants.excavatorTexts["subTopicsInside"][3]
+                            ["descriptioTexts"],
+                    blocks: TextsConstants.excavatorTexts["subTopicsInside"][3]
+                        ["blocks"],
                   ));
             }
           }
@@ -781,8 +819,12 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
       child: Container(
         alignment: Alignment.topRight,
         height:
-            screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
-        width: screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
+            screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
+        width: screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
         child: GestureDetector(
           onTap: () {
             setShow();
@@ -811,10 +853,10 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
           child: Container(
             height: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             width: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(homeImage),
@@ -830,8 +872,8 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
   Widget transition1() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.536,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.325,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.43,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.59,
         child: Stack(
           children: [
             InkWell(
@@ -860,9 +902,19 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/Battery_Loop.m4v",
+                                "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
                             back:
-                                "assets/videos/vehicles/Product_transition/Exc_to_Battery.m4v",
+                                "assets/videos/vehicles/Product_transition/Exc_to_HDMotor.mp4",
+                            topic: TextsConstants
+                                .excavatorTexts["subTopicsInside"][0]["topic"],
+                            subTopic:
+                                TextsConstants.excavatorTexts["subTopicsInside"]
+                                    [0]["subTopic"],
+                            descriptioTexts:
+                                TextsConstants.excavatorTexts["subTopicsInside"]
+                                    [0]["descriptioTexts"],
+                            blocks: TextsConstants
+                                .excavatorTexts["subTopicsInside"][0]["blocks"],
                           ));
                     }
                   }
@@ -881,8 +933,8 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
   Widget transition2() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.436,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.125,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.41,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.47,
         child: Stack(
           children: [
             InkWell(
@@ -911,9 +963,19 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/Drive_Loop.m4v",
+                                "assets/videos/vehicles/Product_loops/Battery_Loop.mp4",
                             back:
-                                "assets/videos/vehicles/Product_transition/Exc_to_Drive.m4v",
+                                "assets/videos/vehicles/Product_transition/Exc_to_Battery.mp4",
+                            topic: TextsConstants
+                                .excavatorTexts["subTopicsInside"][1]["topic"],
+                            subTopic:
+                                TextsConstants.excavatorTexts["subTopicsInside"]
+                                    [1]["subTopic"],
+                            descriptioTexts:
+                                TextsConstants.excavatorTexts["subTopicsInside"]
+                                    [1]["descriptioTexts"],
+                            blocks: TextsConstants
+                                .excavatorTexts["subTopicsInside"][1]["blocks"],
                           ));
                     }
                   }
@@ -932,8 +994,8 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
   Widget transition3() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.636,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.525,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.61,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.545,
         child: Stack(
           children: [
             InkWell(
@@ -962,9 +1024,19 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/DCDC_Loop.m4v",
+                                "assets/videos/vehicles/Product_loops/Drive_Loop.mp4",
                             back:
-                                "assets/videos/vehicles/Product_transition/Exc_to_DCDC.m4v",
+                                "assets/videos/vehicles/Product_transition/Exc_to_Drive.mp4",
+                            topic: TextsConstants
+                                .excavatorTexts["subTopicsInside"][2]["topic"],
+                            subTopic:
+                                TextsConstants.excavatorTexts["subTopicsInside"]
+                                    [2]["subTopic"],
+                            descriptioTexts:
+                                TextsConstants.excavatorTexts["subTopicsInside"]
+                                    [2]["descriptioTexts"],
+                            blocks: TextsConstants
+                                .excavatorTexts["subTopicsInside"][2]["blocks"],
                           ));
                     }
                   }
@@ -983,8 +1055,8 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
   Widget transition4() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.236,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.625,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.58,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.635,
         child: Stack(
           children: [
             InkWell(
@@ -1013,9 +1085,19 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/HDMotor_Loop.m4v",
+                                "assets/videos/vehicles/Product_loops/DCDC_Loop.mp4",
                             back:
-                                "assets/videos/vehicles/Product_transition/Exc_to_HDMotor.m4v",
+                                "assets/videos/vehicles/Product_transition/Exc_to_DCDC.mp4",
+                            topic: TextsConstants
+                                .excavatorTexts["subTopicsInside"][3]["topic"],
+                            subTopic:
+                                TextsConstants.excavatorTexts["subTopicsInside"]
+                                    [3]["subTopic"],
+                            descriptioTexts:
+                                TextsConstants.excavatorTexts["subTopicsInside"]
+                                    [3]["descriptioTexts"],
+                            blocks: TextsConstants
+                                .excavatorTexts["subTopicsInside"][3]["blocks"],
                           ));
                     }
                   }
@@ -1024,7 +1106,7 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
                 text: TextsConstants.excavatorTexts["subTopics"][3],
-                type: 3,
+                type: 4,
               ),
             ),
           ],

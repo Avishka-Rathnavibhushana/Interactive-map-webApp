@@ -186,7 +186,8 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
       Get.find<Controller>().verticalOffset.value = offsetVer;
     }
 
-    if (screenSize.height < 500 && screenSize.width > 500) {
+    if (screenSize.height < ScreenSizes.Mobile.height &&
+        screenSize.width > ScreenSizes.Mobile.width) {
       if (screenSize.width - screenSize.width * 0.3 / screenSize.height ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -367,7 +368,7 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
           ],
         ),
       );
-    } else if (screenSize.width < 500) {
+    } else if (screenSize.width < ScreenSizes.Mobile.width) {
       if (screenSize.width / screenSize.height - screenSize.height * 0.3 ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -682,7 +683,9 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
                   ),
                 )
               : Container(),
-          showEnergySaving && screenSize.width > 500 && screenSize.height > 500
+          showEnergySaving &&
+                  screenSize.width > ScreenSizes.Mobile.width &&
+                  screenSize.height > ScreenSizes.Mobile.height
               ? Positioned(
                   right: 0,
                   bottom: Utils.getBottomPadding(screenSize, 200),
@@ -811,8 +814,12 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
       child: Container(
         alignment: Alignment.topRight,
         height:
-            screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
-        width: screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
+            screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
+        width: screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
         child: GestureDetector(
           onTap: () {
             setShow();
@@ -841,10 +848,10 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
           child: Container(
             height: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             width: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(homeImage),

@@ -23,13 +23,22 @@ class TransitionPage extends StatefulWidget {
       this.offsetHor,
       this.offsetVer,
       required this.url,
-      required this.back})
+      required this.back,
+    required this.topic,
+    required this.subTopic,
+    required this.descriptioTexts,
+    required this.blocks,
+  })
       : super(key: key);
   final offsetHor;
   final offsetVer;
   final from;
   final url;
   final back;
+  final topic;
+  final subTopic;
+  final descriptioTexts;
+  final blocks;
   @override
   _TransitionPageState createState() => _TransitionPageState();
 }
@@ -167,7 +176,8 @@ class _TransitionPageState extends State<TransitionPage> {
       Get.find<Controller>().verticalOffset.value = offsetVer;
     }
 
-    if (screenSize.height < 500 && screenSize.width > 500) {
+    if (screenSize.height < ScreenSizes.Mobile.height &&
+        screenSize.width > ScreenSizes.Mobile.width) {
       if (screenSize.width - screenSize.width * 0.3 / screenSize.height ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -185,7 +195,12 @@ class _TransitionPageState extends State<TransitionPage> {
       return Scaffold(
         backgroundColor: Colors.black.withOpacity(0.5),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: floatingButtonPanel(),
+        floatingActionButton: floatingButtonPanel(
+          widget.topic,
+          widget.subTopic,
+          widget.descriptioTexts,
+          widget.blocks,
+        ),
         body: Row(
           children: [
             Container(
@@ -257,7 +272,7 @@ class _TransitionPageState extends State<TransitionPage> {
           ],
         ),
       );
-    } else if (screenSize.width < 500) {
+    } else if (screenSize.width < ScreenSizes.Mobile.width) {
       if (screenSize.width / screenSize.height - screenSize.height * 0.3 ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -276,7 +291,12 @@ class _TransitionPageState extends State<TransitionPage> {
       return Scaffold(
         backgroundColor: Colors.black.withOpacity(0.5),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: floatingButtonPanel(),
+        floatingActionButton: floatingButtonPanel(
+          widget.topic,
+          widget.subTopic,
+          widget.descriptioTexts,
+          widget.blocks,
+        ),
         body: Column(
           children: [
             Container(
@@ -363,7 +383,12 @@ class _TransitionPageState extends State<TransitionPage> {
       return Scaffold(
         backgroundColor: Colors.transparent,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: floatingButtonPanel(),
+        floatingActionButton: floatingButtonPanel(
+          widget.topic,
+          widget.subTopic,
+          widget.descriptioTexts,
+          widget.blocks,
+        ),
         body: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           controller: _scrollControllerHrizontal,
@@ -404,7 +429,8 @@ class _TransitionPageState extends State<TransitionPage> {
     }
   }
 
-  Widget floatingButtonPanel() {
+  Widget floatingButtonPanel(String topic, String subTopic,
+      List<dynamic> descriptioTexts, dynamic blocks) {
     var screenSize = MediaQuery.of(context).size;
     return Container(
       child: Stack(
@@ -412,7 +438,9 @@ class _TransitionPageState extends State<TransitionPage> {
         fit: StackFit.expand,
         children: [
           FullScreenButton(),
-          show && screenSize.width > 500 && screenSize.height > 500
+          show &&
+                  screenSize.width > ScreenSizes.Mobile.width &&
+                  screenSize.height > ScreenSizes.Mobile.height
               ? nextButton()
               : Container(),
           show ? menuButton() : Container(),
@@ -428,9 +456,8 @@ class _TransitionPageState extends State<TransitionPage> {
                     Padding(
                       padding: EdgeInsets.only(left: 25),
                       child: CustomTopic(
-                        topic: "Smart Motor System - V Series",
-                        subTopic:
-                            "Includes: Smart Motor, Motor Controller, and Hub",
+                        topic: topic,
+                        subTopic: subTopic,
                         screenSize: screenSize,
                       ),
                     ),
@@ -440,11 +467,7 @@ class _TransitionPageState extends State<TransitionPage> {
                     ),
                     TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: const [
-                        "Optimal efficiency switched reluctance motor",
-                        "Standerd NEMA dimensions",
-                        "Available in 1-10 HP",
-                      ],
+                      texts: descriptioTexts,
                       topic: "",
                       description: "",
                       ratio: 0.38,
@@ -453,130 +476,172 @@ class _TransitionPageState extends State<TransitionPage> {
                       height:
                           45 * (screenSize.height / VideoAspectRatio.height),
                     ),
-                    screenSize.width < 500 || screenSize.height < 500
-                        ? Container()
-                        : Container(
-                            width: screenSize.width *
-                                0.25 *
-                                Utils.getMultiplier(screenSize.width),
-                            child: widget.from == Pages.avgNarm
-                                ? Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        width: screenSize.width *
-                                            0.25 *
-                                            Utils.getMultiplier(
-                                                screenSize.width),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            CustomTextContainer(
-                                              screenSize: screenSize,
-                                              topic: "93.2%",
-                                              description:
-                                                  "PEAK MOTOR EFFICIENCY",
-                                            ),
-                                            SizedBox(
-                                              width: 25 *
-                                                  (screenSize.width /
-                                                      VideoAspectRatio.width),
-                                            ),
-                                            CustomTextContainer(
-                                              screenSize: screenSize,
-                                              topic: "0%",
-                                              description: "RARE EARTH METALS",
-                                            ),
-                                          ],
-                                        ),
+                    Container(
+                      width: screenSize.width *
+                          0.38 *
+                          Utils.getMultiplier(screenSize.width),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: screenSize.width >= 2000
+                                ? 312.5 * 2 + 35
+                                : screenSize.width *
+                                        0.15 *
+                                        (screenSize.width /
+                                            VideoAspectRatio.width) *
+                                        Utils.getCustomTextContainerMultiplier(
+                                            screenSize.width) *
+                                    2 +
+                                35,
+                            child: Wrap(
+
+                              runSpacing: 15,
+                              spacing: 25,
+                              alignment: WrapAlignment.center,
+                              children: [
+                                ...blocks
+                                    .map(
+                                      (block) => CustomTextContainer(
+                                        screenSize: screenSize,
+                                        topic: block["topic"],
+                                        description: block["description"],
                                       ),
-                                      SizedBox(
-                                        height: 25 *
-                                            (screenSize.height /
-                                                VideoAspectRatio.height),
-                                      ),
-                                      Container(
-                                        width: screenSize.width *
-                                            0.25 *
-                                            Utils.getMultiplier(
-                                                screenSize.width),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            CustomTextContainer(
-                                              screenSize: screenSize,
-                                              topic: "50%",
-                                              description: "LIGHTER WEIGHT",
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                : Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        width: screenSize.width *
-                                            0.25 *
-                                            Utils.getMultiplier(
-                                                screenSize.width),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            CustomTextContainer(
-                                              screenSize: screenSize,
-                                              topic: "IE5+",
-                                              description: "ACROSS MOST HP",
-                                            ),
-                                            SizedBox(
-                                              width: 25 *
-                                                  (screenSize.width /
-                                                      VideoAspectRatio.width),
-                                            ),
-                                            CustomTextContainer(
-                                              screenSize: screenSize,
-                                              topic: "Up to 13%",
-                                              description:
-                                                  "ETRA ENERGY SAVINGS OVER VFD",
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 25 *
-                                            (screenSize.height /
-                                                VideoAspectRatio.height),
-                                      ),
-                                      Container(
-                                        width: screenSize.width *
-                                            0.25 *
-                                            Utils.getMultiplier(
-                                                screenSize.width),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            CustomTextContainer(
-                                              screenSize: screenSize,
-                                              topic: "92%",
-                                              description:
-                                                  "PEAK EFFICIENCY AT 3 HP",
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                    )
+                                    .toList(),
+                              ],
+                            ),
                           ),
-                    //  screenSize.width < 500 || screenSize.height < 500
+                        ],
+                      ),
+                    ),
+                    // screenSize.width < ScreenSizes.Mobile.width || screenSize.height < ScreenSizes.Mobile.height
+                    //     ? Container()
+                    //     : Container(
+                    //         width: screenSize.width *
+                    //             0.25 *
+                    //             Utils.getMultiplier(screenSize.width),
+                    //         child: widget.from == Pages.avgNarm
+                    //             ? Column(
+                    //                 mainAxisAlignment: MainAxisAlignment.start,
+                    //                 crossAxisAlignment:
+                    //                     CrossAxisAlignment.center,
+                    //                 children: [
+                    //                   Container(
+                    //                     width: screenSize.width *
+                    //                         0.25 *
+                    //                         Utils.getMultiplier(
+                    //                             screenSize.width),
+                    //                     child: Row(
+                    //                       mainAxisAlignment:
+                    //                           MainAxisAlignment.center,
+                    //                       children: [
+                    //                         CustomTextContainer(
+                    //                           screenSize: screenSize,
+                    //                           topic: blocks["topic"],
+                    //                           description:
+                    //                               blocks["description"],
+                    //                         ),
+                    //                         SizedBox(
+                    //                           width: 25 *
+                    //                               (screenSize.width /
+                    //                                   VideoAspectRatio.width),
+                    //                         ),
+                    //                         CustomTextContainer(
+                    //                           screenSize: screenSize,
+                    //                           topic: blocks["topic"],
+                    //                           description:
+                    //                               blocks["description"],
+                    //                         ),
+                    //                       ],
+                    //                     ),
+                    //                   ),
+                    //                   SizedBox(
+                    //                     height: 25 *
+                    //                         (screenSize.height /
+                    //                             VideoAspectRatio.height),
+                    //                   ),
+                    //                   Container(
+                    //                     width: screenSize.width *
+                    //                         0.25 *
+                    //                         Utils.getMultiplier(
+                    //                             screenSize.width),
+                    //                     child: Row(
+                    //                       mainAxisAlignment:
+                    //                           MainAxisAlignment.center,
+                    //                       children: [
+                    //                         CustomTextContainer(
+                    //                           screenSize: screenSize,
+                    //                           topic: blocks["topic"],
+                    //                           description:
+                    //                               blocks["description"],
+                    //                         ),
+                    //                       ],
+                    //                     ),
+                    //                   ),
+                    //                 ],
+                    //               )
+                    //             : Column(
+                    //                 mainAxisAlignment: MainAxisAlignment.start,
+                    //                 crossAxisAlignment:
+                    //                     CrossAxisAlignment.center,
+                    //                 children: [
+                    //                   Container(
+                    //                     width: screenSize.width *
+                    //                         0.25 *
+                    //                         Utils.getMultiplier(
+                    //                             screenSize.width),
+                    //                     child: Row(
+                    //                       mainAxisAlignment:
+                    //                           MainAxisAlignment.center,
+                    //                       children: [
+                    //                         CustomTextContainer(
+                    //                           screenSize: screenSize,
+                    //                           topic: "IE5+",
+                    //                           description: "ACROSS MOST HP",
+                    //                         ),
+                    //                         SizedBox(
+                    //                           width: 25 *
+                    //                               (screenSize.width /
+                    //                                   VideoAspectRatio.width),
+                    //                         ),
+                    //                         CustomTextContainer(
+                    //                           screenSize: screenSize,
+                    //                           topic: "Up to 13%",
+                    //                           description:
+                    //                               "ETRA ENERGY SAVINGS OVER VFD",
+                    //                         ),
+                    //                       ],
+                    //                     ),
+                    //                   ),
+                    //                   SizedBox(
+                    //                     height: 25 *
+                    //                         (screenSize.height /
+                    //                             VideoAspectRatio.height),
+                    //                   ),
+                    //                   Container(
+                    //                     width: screenSize.width *
+                    //                         0.25 *
+                    //                         Utils.getMultiplier(
+                    //                             screenSize.width),
+                    //                     child: Row(
+                    //                       mainAxisAlignment:
+                    //                           MainAxisAlignment.center,
+                    //                       children: [
+                    //                         CustomTextContainer(
+                    //                           screenSize: screenSize,
+                    //                           topic: "92%",
+                    //                           description:
+                    //                               "PEAK EFFICIENCY AT 3 HP",
+                    //                         ),
+                    //                       ],
+                    //                     ),
+                    //                   ),
+                    //                 ],
+                    //               ),
+                    //       ),
+                    //  screenSize.width < ScreenSizes.Mobile.width || screenSize.height < ScreenSizes.Mobile.height
                     //     ? Container()
                     //     : widget.from == Pages.dataCenter
                     //         ? Container(
@@ -732,7 +797,8 @@ class _TransitionPageState extends State<TransitionPage> {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: GestureDetector(
         onTap: () {
-          if (screenSize.width < 500 || screenSize.height < 500) {
+          if (screenSize.width < ScreenSizes.Mobile.width ||
+              screenSize.height < ScreenSizes.Mobile.height) {
             setShow();
             _controller.pause();
             _controller.removeListener(() {});
@@ -775,8 +841,12 @@ class _TransitionPageState extends State<TransitionPage> {
       child: Container(
         alignment: Alignment.topRight,
         height:
-            screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
-        width: screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
+            screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
+        width: screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
         child: GestureDetector(
           onTap: () {
             _controller.pause();
@@ -799,10 +869,10 @@ class _TransitionPageState extends State<TransitionPage> {
           child: Container(
             height: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             width: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(homeImage),

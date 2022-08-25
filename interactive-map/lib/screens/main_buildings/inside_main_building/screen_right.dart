@@ -101,7 +101,8 @@ class _ScreenRightState extends State<ScreenRight> {
       Get.find<Controller>().verticalOffset.value = offsetVer;
     }
 
-    if (screenSize.height < 500 && screenSize.width > 500) {
+    if (screenSize.height < ScreenSizes.Mobile.height &&
+        screenSize.width > ScreenSizes.Mobile.width) {
       if (screenSize.width - screenSize.width * 0.3 / screenSize.height ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -205,7 +206,7 @@ class _ScreenRightState extends State<ScreenRight> {
           ],
         ),
       );
-    } else if (screenSize.width < 500) {
+    } else if (screenSize.width < ScreenSizes.Mobile.width) {
       if (screenSize.width / screenSize.height - screenSize.height * 0.3 ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -390,7 +391,9 @@ class _ScreenRightState extends State<ScreenRight> {
         fit: StackFit.expand,
         children: [
           FullScreenButton(),
-          show && screenSize.width > 500 && screenSize.height > 500
+          show &&
+                  screenSize.width > ScreenSizes.Mobile.width &&
+                  screenSize.height > ScreenSizes.Mobile.height
               ? nextButton()
               : Container(),
           show ? menuButton() : Container(),
@@ -404,8 +407,14 @@ class _ScreenRightState extends State<ScreenRight> {
                         child: TextAreaWithClip(
                             screenSize: screenSize,
                             texts: const [
-                              "Monitor equipment performance with fault detection and alerts for preventative maintenance",
-                              "Reduce costs and resolve issues before customers are affected"
+                              [
+                                "TEXT",
+                                "Monitor equipment performance with fault detection and alerts for preventative maintenance"
+                              ],
+                              [
+                                "TEXT",
+                                "Reduce costs and resolve issues before customers are affected"
+                              ],
                             ],
                             topic: "Smart HVAC",
                             description: ""),
@@ -419,7 +428,10 @@ class _ScreenRightState extends State<ScreenRight> {
                         child: TextAreaWithClip(
                             screenSize: screenSize,
                             texts: const [
-                              "Easily mange temparature setpoints and scheduling anytime, anywhere 24/7",
+                              [
+                                "TEXT",
+                                "Easily mange temparature setpoints and scheduling anytime, anywhere 24/7"
+                              ],
                             ],
                             topic: "Smart HVAC",
                             description: ""),
@@ -567,8 +579,12 @@ class _ScreenRightState extends State<ScreenRight> {
       child: Container(
         alignment: Alignment.topRight,
         height:
-            screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
-        width: screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
+            screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
+        width: screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
         child: GestureDetector(
           onTap: () {
             _controller.pause();
@@ -594,10 +610,10 @@ class _ScreenRightState extends State<ScreenRight> {
           child: Container(
             width: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             height: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(homeImage),

@@ -1,9 +1,14 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/controller/appBind.dart';
 import 'package:interactive_map/screens/home.dart';
 import 'package:interactive_map/screens/main_buildings/buildings_home.dart';
+import 'package:interactive_map/screens/vechicles/excavator.dart';
+import 'package:interactive_map/screens/vechicles/sportsCar.dart';
+import 'package:interactive_map/screens/vechicles/train.dart';
+import 'package:interactive_map/screens/vechicles/vechicles_home.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();

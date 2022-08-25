@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:get/get.dart';
 import 'package:interactive_map/controller/controller.dart';
+import 'package:interactive_map/screens/main_buildings/buildings_home.dart';
 import 'package:interactive_map/screens/vechicles/avgNarm.dart';
 import 'package:interactive_map/screens/vechicles/bus.dart';
 import 'package:interactive_map/screens/vechicles/excavator.dart';
@@ -47,23 +48,29 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
   late VideoPlayerController _truckVideoController;
   bool _truckVideoPlaying = false;
 
+  late VideoPlayerController _buildingTransitionVideoController;
+  bool _buildingTransitionVideoPlaying = false;
+
   bool _isPlaying = false;
   int index = 0;
   bool show = false;
 
-  final String timerVideoUrl = 'assets/videos/vehicles/Vehicles_Main_Loop.m4v';
+  final String timerVideoUrl = 'assets/videos/vehicles/Vehicles_Main_Loop.mp4';
 
-  final String trainVideoUrl = 'assets/videos/vehicles/Veh_To_Train.m4v';
-  final String sportsCarVideoUrl = 'assets/videos/vehicles/Veh_To_Car.m4v';
-  final String avgNarmVideoUrl = 'assets/videos/vehicles/Veh_To_AGV.m4v';
-  final String busVideoUrl = 'assets/videos/vehicles/Veh_To_Bus.m4v';
-  final String tractorVideoUrl = 'assets/videos/vehicles/Veh_To_Tractor.m4v';
-  final String excavatorVideoUrl = 'assets/videos/vehicles/Veh_To_Exc.m4v';
-  final String truckVideoUrl = 'assets/videos/vehicles/Veh_To_Truck.m4v';
+  final String trainVideoUrl = 'assets/videos/vehicles/Veh_To_Train.mp4';
+  final String sportsCarVideoUrl = 'assets/videos/vehicles/Veh_To_Car.mp4';
+  final String avgNarmVideoUrl = 'assets/videos/vehicles/Veh_To_AGV.mp4';
+  final String busVideoUrl = 'assets/videos/vehicles/Veh_To_Bus.mp4';
+  final String tractorVideoUrl = 'assets/videos/vehicles/Veh_To_Tractor.mp4';
+  final String excavatorVideoUrl = 'assets/videos/vehicles/Veh_To_Exc.mp4';
+  final String truckVideoUrl = 'assets/videos/vehicles/Veh_To_Truck.mp4';
 
-  final String buildingImage = 'assets/videos/vehicles/Vehicles_Still.png';
+  final String buildingImage = 'assets/videos/vehicles/Vehicles_Still.jpg';
   final String qrBackgroundImage =
       'assets/tempory images/Buildings_menu_QR.png';
+
+  final String buildingTransitionVideoUrl =
+      'assets/videos/Vehicles_To_Buildings.mp4';
 
   bool timerOFF = false;
 
@@ -104,11 +111,19 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
     await _timerVideoController.initialize();
     setState(() {
       _timerVideoController.setVolume(0);
-      _timerVideoController.play();
+      _timerVideoController.pause();
       _timerVideoController.setLooping(true);
       setShow();
     });
 
+    _buildingTransitionVideoController =
+        VideoPlayerController.asset(buildingTransitionVideoUrl)
+          ..initialize().then((_) => {
+                setState(() {
+                  _buildingTransitionVideoController.setVolume(0);
+                  _buildingTransitionVideoController.setLooping(false);
+                })
+              });
     _trainVideoController = VideoPlayerController.asset(trainVideoUrl)
       ..initialize().then((_) => {
             setState(() {
@@ -159,8 +174,8 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
             })
           });
 
-    await Future.delayed(const Duration(seconds: 2));
-
+    //await Future.delayed(const Duration(seconds: 2));
+    _timerVideoController.play();
     setState(() {
       loading = false;
     });
@@ -176,6 +191,8 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
     _tractorVideoController.dispose();
     _excavatorVideoController.dispose();
     _truckVideoController.dispose();
+
+    _buildingTransitionVideoController.dispose();
 
     super.dispose();
   }
@@ -214,7 +231,8 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
       Get.find<Controller>().verticalOffset.value = offsetVer;
     }
 
-    if (screenSize.height < 500 && screenSize.width > 500) {
+    if (screenSize.height < ScreenSizes.Mobile.height &&
+        screenSize.width > ScreenSizes.Mobile.width) {
       if (screenSize.width - screenSize.width * 0.3 / screenSize.height ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -259,6 +277,16 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                           height: Utils.getVideoScreenHeight(screenSizeMobile1),
                           child: Stack(
                             children: [
+                              _buildingTransitionVideoPlaying
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile1),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile1),
+                                      child: VideoPlayer(
+                                          _buildingTransitionVideoController),
+                                    )
+                                  : Container(),
                               _trainVideoPlaying
                                   ? SizedBox(
                                       width: Utils.getVideoScreenWidth(
@@ -384,99 +412,99 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                       width: screenSize.width - screenSize.width * 0.3,
                       child: Column(
                         children: [
-                          showNext
-                              ? Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 10),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      switch (nextPage) {
-                                        case Pages.avgNarm:
-                                          customPushReplacement(
-                                              context,
-                                              AvgNArmVideo(
-                                                from: Pages.vehicle,
-                                                offsetHor: offsetHor,
-                                                offsetVer: offsetVer,
-                                              ));
-                                          break;
-                                        case Pages.train:
-                                          customPushReplacement(
-                                              context,
-                                              TrainVideo(
-                                                from: Pages.vehicle,
-                                                offsetHor: offsetHor,
-                                                offsetVer: offsetVer,
-                                              ));
-                                          break;
-                                        case Pages.excavator:
-                                          customPushReplacement(
-                                              context,
-                                              ExcavatorVideo(
-                                                from: Pages.vehicle,
-                                                offsetHor: offsetHor,
-                                                offsetVer: offsetVer,
-                                              ));
-                                          break;
-                                        case Pages.sportsCar:
-                                          customPushReplacement(
-                                              context,
-                                              SportsCarVideo(
-                                                from: Pages.vehicle,
-                                                offsetHor: offsetHor,
-                                                offsetVer: offsetVer,
-                                              ));
-                                          break;
-                                        case Pages.truck:
-                                          customPushReplacement(
-                                              context,
-                                              TruckVideo(
-                                                from: Pages.vehicle,
-                                                offsetHor: offsetHor,
-                                                offsetVer: offsetVer,
-                                              ));
-                                          break;
-                                        case Pages.tractor:
-                                          customPushReplacement(
-                                              context,
-                                              TractorVideo(
-                                                from: Pages.vehicle,
-                                                offsetHor: offsetHor,
-                                                offsetVer: offsetVer,
-                                              ));
-                                          break;
-                                        case Pages.bus:
-                                          customPushReplacement(
-                                              context,
-                                              BusVideo(
-                                                from: Pages.vehicle,
-                                                offsetHor: offsetHor,
-                                                offsetVer: offsetVer,
-                                              ));
-                                          break;
-                                        default:
-                                      }
-                                      setState(() {
-                                        showNext = false;
-                                      });
-                                    },
-                                    child: Container(
-                                      width: screenSize.width *
-                                          0.091 *
-                                          Utils.getMultiplier(screenSize.width),
-                                      height: screenSize.width *
-                                          0.040 *
-                                          Utils.getMultiplier(screenSize.width),
-                                      decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                          image: AssetImage(nextImage),
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              : Container(),
+                          // showNext
+                          //     ? Padding(
+                          //         padding:
+                          //             const EdgeInsets.symmetric(vertical: 10),
+                          //         child: GestureDetector(
+                          //           onTap: () {
+                          //             switch (nextPage) {
+                          //               case Pages.avgNarm:
+                          //                 customPushReplacement(
+                          //                     context,
+                          //                     AvgNArmVideo(
+                          //                       from: Pages.vehicle,
+                          //                       offsetHor: offsetHor,
+                          //                       offsetVer: offsetVer,
+                          //                     ));
+                          //                 break;
+                          //               case Pages.train:
+                          //                 customPushReplacement(
+                          //                     context,
+                          //                     TrainVideo(
+                          //                       from: Pages.vehicle,
+                          //                       offsetHor: offsetHor,
+                          //                       offsetVer: offsetVer,
+                          //                     ));
+                          //                 break;
+                          //               case Pages.excavator:
+                          //                 customPushReplacement(
+                          //                     context,
+                          //                     ExcavatorVideo(
+                          //                       from: Pages.vehicle,
+                          //                       offsetHor: offsetHor,
+                          //                       offsetVer: offsetVer,
+                          //                     ));
+                          //                 break;
+                          //               case Pages.sportsCar:
+                          //                 customPushReplacement(
+                          //                     context,
+                          //                     SportsCarVideo(
+                          //                       from: Pages.vehicle,
+                          //                       offsetHor: offsetHor,
+                          //                       offsetVer: offsetVer,
+                          //                     ));
+                          //                 break;
+                          //               case Pages.truck:
+                          //                 customPushReplacement(
+                          //                     context,
+                          //                     TruckVideo(
+                          //                       from: Pages.vehicle,
+                          //                       offsetHor: offsetHor,
+                          //                       offsetVer: offsetVer,
+                          //                     ));
+                          //                 break;
+                          //               case Pages.tractor:
+                          //                 customPushReplacement(
+                          //                     context,
+                          //                     TractorVideo(
+                          //                       from: Pages.vehicle,
+                          //                       offsetHor: offsetHor,
+                          //                       offsetVer: offsetVer,
+                          //                     ));
+                          //                 break;
+                          //               case Pages.bus:
+                          //                 customPushReplacement(
+                          //                     context,
+                          //                     BusVideo(
+                          //                       from: Pages.vehicle,
+                          //                       offsetHor: offsetHor,
+                          //                       offsetVer: offsetVer,
+                          //                     ));
+                          //                 break;
+                          //               default:
+                          //             }
+                          //             setState(() {
+                          //               showNext = false;
+                          //             });
+                          //           },
+                          //           child: Container(
+                          //             width: screenSize.width *
+                          //                 0.091 *
+                          //                 Utils.getMultiplier(screenSize.width),
+                          //             height: screenSize.width *
+                          //                 0.040 *
+                          //                 Utils.getMultiplier(screenSize.width),
+                          //             decoration: const BoxDecoration(
+                          //               image: DecorationImage(
+                          //                 image: AssetImage(nextImage),
+                          //                 fit: BoxFit.cover,
+                          //               ),
+                          //             ),
+                          //           ),
+                          //         ),
+                          //       )
+                          //     : Container(),
                           show
                               ? Container()
                               : avgNarmMobile(
@@ -515,7 +543,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
           ],
         ),
       );
-    } else if (screenSize.width < 500) {
+    } else if (screenSize.width < ScreenSizes.Mobile.width) {
       if (screenSize.width / screenSize.height - screenSize.height * 0.3 ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -561,6 +589,16 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                           height: Utils.getVideoScreenHeight(screenSizeMobile2),
                           child: Stack(
                             children: [
+                              _buildingTransitionVideoPlaying
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile2),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile2),
+                                      child: VideoPlayer(
+                                          _buildingTransitionVideoController),
+                                    )
+                                  : Container(),
                               _trainVideoPlaying
                                   ? SizedBox(
                                       width: Utils.getVideoScreenWidth(
@@ -685,99 +723,99 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                       width: screenSize.width,
                       child: Column(
                         children: [
-                          showNext
-                              ? Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 10),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      switch (nextPage) {
-                                        case Pages.avgNarm:
-                                          customPushReplacement(
-                                              context,
-                                              AvgNArmVideo(
-                                                from: Pages.vehicle,
-                                                offsetHor: offsetHor,
-                                                offsetVer: offsetVer,
-                                              ));
-                                          break;
-                                        case Pages.train:
-                                          customPushReplacement(
-                                              context,
-                                              TrainVideo(
-                                                from: Pages.vehicle,
-                                                offsetHor: offsetHor,
-                                                offsetVer: offsetVer,
-                                              ));
-                                          break;
-                                        case Pages.excavator:
-                                          customPushReplacement(
-                                              context,
-                                              ExcavatorVideo(
-                                                from: Pages.vehicle,
-                                                offsetHor: offsetHor,
-                                                offsetVer: offsetVer,
-                                              ));
-                                          break;
-                                        case Pages.sportsCar:
-                                          customPushReplacement(
-                                              context,
-                                              SportsCarVideo(
-                                                from: Pages.vehicle,
-                                                offsetHor: offsetHor,
-                                                offsetVer: offsetVer,
-                                              ));
-                                          break;
-                                        case Pages.truck:
-                                          customPushReplacement(
-                                              context,
-                                              TruckVideo(
-                                                from: Pages.vehicle,
-                                                offsetHor: offsetHor,
-                                                offsetVer: offsetVer,
-                                              ));
-                                          break;
-                                        case Pages.tractor:
-                                          customPushReplacement(
-                                              context,
-                                              TractorVideo(
-                                                from: Pages.vehicle,
-                                                offsetHor: offsetHor,
-                                                offsetVer: offsetVer,
-                                              ));
-                                          break;
-                                        case Pages.bus:
-                                          customPushReplacement(
-                                              context,
-                                              BusVideo(
-                                                from: Pages.vehicle,
-                                                offsetHor: offsetHor,
-                                                offsetVer: offsetVer,
-                                              ));
-                                          break;
-                                        default:
-                                      }
-                                      setState(() {
-                                        showNext = false;
-                                      });
-                                    },
-                                    child: Container(
-                                      width: screenSize.width *
-                                          0.091 *
-                                          Utils.getMultiplier(screenSize.width),
-                                      height: screenSize.width *
-                                          0.040 *
-                                          Utils.getMultiplier(screenSize.width),
-                                      decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                          image: AssetImage(nextImage),
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              : Container(),
+                          // showNext
+                          //     ? Padding(
+                          //         padding:
+                          //             const EdgeInsets.symmetric(vertical: 10),
+                          //         child: GestureDetector(
+                          //           onTap: () {
+                          //             switch (nextPage) {
+                          //               case Pages.avgNarm:
+                          //                 customPushReplacement(
+                          //                     context,
+                          //                     AvgNArmVideo(
+                          //                       from: Pages.vehicle,
+                          //                       offsetHor: offsetHor,
+                          //                       offsetVer: offsetVer,
+                          //                     ));
+                          //                 break;
+                          //               case Pages.train:
+                          //                 customPushReplacement(
+                          //                     context,
+                          //                     TrainVideo(
+                          //                       from: Pages.vehicle,
+                          //                       offsetHor: offsetHor,
+                          //                       offsetVer: offsetVer,
+                          //                     ));
+                          //                 break;
+                          //               case Pages.excavator:
+                          //                 customPushReplacement(
+                          //                     context,
+                          //                     ExcavatorVideo(
+                          //                       from: Pages.vehicle,
+                          //                       offsetHor: offsetHor,
+                          //                       offsetVer: offsetVer,
+                          //                     ));
+                          //                 break;
+                          //               case Pages.sportsCar:
+                          //                 customPushReplacement(
+                          //                     context,
+                          //                     SportsCarVideo(
+                          //                       from: Pages.vehicle,
+                          //                       offsetHor: offsetHor,
+                          //                       offsetVer: offsetVer,
+                          //                     ));
+                          //                 break;
+                          //               case Pages.truck:
+                          //                 customPushReplacement(
+                          //                     context,
+                          //                     TruckVideo(
+                          //                       from: Pages.vehicle,
+                          //                       offsetHor: offsetHor,
+                          //                       offsetVer: offsetVer,
+                          //                     ));
+                          //                 break;
+                          //               case Pages.tractor:
+                          //                 customPushReplacement(
+                          //                     context,
+                          //                     TractorVideo(
+                          //                       from: Pages.vehicle,
+                          //                       offsetHor: offsetHor,
+                          //                       offsetVer: offsetVer,
+                          //                     ));
+                          //                 break;
+                          //               case Pages.bus:
+                          //                 customPushReplacement(
+                          //                     context,
+                          //                     BusVideo(
+                          //                       from: Pages.vehicle,
+                          //                       offsetHor: offsetHor,
+                          //                       offsetVer: offsetVer,
+                          //                     ));
+                          //                 break;
+                          //               default:
+                          //             }
+                          //             setState(() {
+                          //               showNext = false;
+                          //             });
+                          //           },
+                          //           child: Container(
+                          //             width: screenSize.width *
+                          //                 0.091 *
+                          //                 Utils.getMultiplier(screenSize.width),
+                          //             height: screenSize.width *
+                          //                 0.040 *
+                          //                 Utils.getMultiplier(screenSize.width),
+                          //             decoration: const BoxDecoration(
+                          //               image: DecorationImage(
+                          //                 image: AssetImage(nextImage),
+                          //                 fit: BoxFit.cover,
+                          //               ),
+                          //             ),
+                          //           ),
+                          //         ),
+                          //       )
+                          //     : Container(),
                           show ? Container() : avgNarmMobile(screenSize.width),
                           show ? Container() : trainMobile(screenSize.width),
                           show
@@ -827,11 +865,13 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
               height: Utils.getVideoScreenHeight(screenSize),
               child: Stack(
                 children: [
-                  SizedBox(
+                  !loading
+                      ? SizedBox(
                     width: Utils.getVideoScreenWidth(screenSize),
                     height: Utils.getVideoScreenHeight(screenSize),
                     child: VideoPlayer(_timerVideoController),
-                  ),
+                        )
+                      : Container(),
                   show ? Container() : train(),
                   show ? Container() : sportsCar(),
                   show ? Container() : avgNarm(),
@@ -844,6 +884,14 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                     height: Utils.getVideoScreenHeight(screenSize),
                     child: Stack(
                       children: [
+                        _buildingTransitionVideoPlaying
+                            ? SizedBox(
+                                width: Utils.getVideoScreenWidth(screenSize),
+                                height: Utils.getVideoScreenHeight(screenSize),
+                                child: VideoPlayer(
+                                    _buildingTransitionVideoController),
+                              )
+                            : Container(),
                         _trainVideoPlaying
                             ? SizedBox(
                                 width: Utils.getVideoScreenWidth(screenSize),
@@ -964,221 +1012,221 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
           ),
           showQR ? qrButton() : Container(),
           show ? Container() : qrButton(),
-          showTextAreaSmall && _avgNarmVideoPlaying
-              ? Padding(
-                  padding: EdgeInsets.only(
-                      bottom: Utils.getBottomPadding(screenSize, 200)),
-                  child: Container(
-                    alignment: Alignment.bottomLeft,
-                    child: TextAreaSmallWithClip(
-                      width: screenSize.width * 0.35,
-                      screenSize: screenSize,
-                      prefixText: TextsConstants
-                          .avgNarmTexts["TextAreaSmallWithClip"][0],
-                      description: TextsConstants
-                          .avgNarmTexts["TextAreaSmallWithClip"][1],
-                    ),
-                  ),
-                )
-              : Container(),
-          showTextAreaSmall && _truckVideoPlaying
-              ? Padding(
-                  padding: EdgeInsets.only(
-                      bottom: Utils.getBottomPadding(screenSize, 200)),
-                  child: Container(
-                    alignment: Alignment.bottomLeft,
-                    child: TextAreaSmallWithClip(
-                      width: screenSize.width * 0.35,
-                      screenSize: screenSize,
-                      prefixText:
-                          TextsConstants.truckTexts["TextAreaSmallWithClip"][0],
-                      description:
-                          TextsConstants.truckTexts["TextAreaSmallWithClip"][1],
-                    ),
-                  ),
-                )
-              : Container(),
-          showTextAreaSmall && _trainVideoPlaying
-              ? Padding(
-                  padding: EdgeInsets.only(
-                      bottom: Utils.getBottomPadding(screenSize, 200)),
-                  child: Container(
-                    alignment: Alignment.bottomLeft,
-                    child: TextAreaSmallWithClip(
-                      width: screenSize.width * 0.35,
-                      screenSize: screenSize,
-                      prefixText:
-                          TextsConstants.trainTexts["TextAreaSmallWithClip"][0],
-                      description:
-                          TextsConstants.trainTexts["TextAreaSmallWithClip"][1],
-                    ),
-                  ),
-                )
-              : Container(),
-          showTextAreaSmall && _busVideoPlaying
-              ? Padding(
-                  padding: EdgeInsets.only(
-                      bottom: Utils.getBottomPadding(screenSize, 200)),
-                  child: Container(
-                    alignment: Alignment.bottomLeft,
-                    child: TextAreaSmallWithClip(
-                      width: screenSize.width * 0.35,
-                      screenSize: screenSize,
-                      prefixText:
-                          TextsConstants.busTexts["TextAreaSmallWithClip"][0],
-                      description:
-                          TextsConstants.busTexts["TextAreaSmallWithClip"][1],
-                    ),
-                  ),
-                )
-              : Container(),
-          showTextAreaSmall && _tractorVideoPlaying
-              ? Padding(
-                  padding: EdgeInsets.only(
-                      bottom: Utils.getBottomPadding(screenSize, 200)),
-                  child: Container(
-                    alignment: Alignment.bottomLeft,
-                    child: TextAreaSmallWithClip(
-                      width: screenSize.width * 0.35,
-                      screenSize: screenSize,
-                      prefixText: TextsConstants
-                          .tractorTexts["TextAreaSmallWithClip"][0],
-                      description: TextsConstants
-                          .tractorTexts["TextAreaSmallWithClip"][1],
-                    ),
-                  ),
-                )
-              : Container(),
-          showTextAreaSmall && _sportsCarVideoPlaying
-              ? Padding(
-                  padding: EdgeInsets.only(
-                      bottom: Utils.getBottomPadding(screenSize, 200)),
-                  child: Container(
-                    alignment: Alignment.bottomLeft,
-                    child: TextAreaSmallWithClip(
-                      width: screenSize.width * 0.35,
-                      screenSize: screenSize,
-                      prefixText: TextsConstants
-                          .sportsCarTexts["TextAreaSmallWithClip"][0],
-                      description: TextsConstants
-                          .sportsCarTexts["TextAreaSmallWithClip"][1],
-                    ),
-                  ),
-                )
-              : Container(),
-          showTextAreaSmall && _excavatorVideoPlaying
-              ? Padding(
-                  padding: EdgeInsets.only(
-                      bottom: Utils.getBottomPadding(screenSize, 200)),
-                  child: Container(
-                    alignment: Alignment.bottomLeft,
-                    child: TextAreaSmallWithClip(
-                      width: screenSize.width * 0.35,
-                      screenSize: screenSize,
-                      prefixText: TextsConstants
-                          .excavatorTexts["TextAreaSmallWithClip"][0],
-                      description: TextsConstants
-                          .excavatorTexts["TextAreaSmallWithClip"][1],
-                    ),
-                  ),
-                )
-              : Container(),
-          showNext && screenSize.width >= 500 && screenSize.height >= 500
-              ? Positioned(
-                  right: 0,
-                  bottom: Utils.getBottomPadding(screenSize, 200),
-                  child: Container(
-                    alignment: Alignment.bottomRight,
-                    child: GestureDetector(
-                      onTap: () {
-                        switch (nextPage) {
-                          case Pages.avgNarm:
-                            customPushReplacement(
-                                context,
-                                AvgNArmVideo(
-                                  from: Pages.vehicle,
-                                  offsetHor: offsetHor,
-                                  offsetVer: offsetVer,
-                                ));
-                            break;
-                          case Pages.train:
-                            customPushReplacement(
-                                context,
-                                TrainVideo(
-                                  from: Pages.vehicle,
-                                  offsetHor: offsetHor,
-                                  offsetVer: offsetVer,
-                                ));
-                            break;
-                          case Pages.excavator:
-                            customPushReplacement(
-                                context,
-                                ExcavatorVideo(
-                                  from: Pages.vehicle,
-                                  offsetHor: offsetHor,
-                                  offsetVer: offsetVer,
-                                ));
-                            break;
-                          case Pages.dataCenter:
-                            customPushReplacement(
-                                context,
-                                SportsCarVideo(
-                                  from: Pages.vehicle,
-                                  offsetHor: offsetHor,
-                                  offsetVer: offsetVer,
-                                ));
-                            break;
-                          case Pages.truck:
-                            customPushReplacement(
-                                context,
-                                TruckVideo(
-                                  from: Pages.vehicle,
-                                  offsetHor: offsetHor,
-                                  offsetVer: offsetVer,
-                                ));
-                            break;
-                          case Pages.tractor:
-                            customPushReplacement(
-                                context,
-                                TractorVideo(
-                                  from: Pages.vehicle,
-                                  offsetHor: offsetHor,
-                                  offsetVer: offsetVer,
-                                ));
-                            break;
-                          case Pages.bus:
-                            customPushReplacement(
-                                context,
-                                BusVideo(
-                                  from: Pages.vehicle,
-                                  offsetHor: offsetHor,
-                                  offsetVer: offsetVer,
-                                ));
-                            break;
-                          default:
-                        }
-                        setState(() {
-                          showNext = false;
-                        });
-                      },
-                      child: Container(
-                        width: screenSize.width *
-                            0.091 *
-                            Utils.getMultiplier(screenSize.width),
-                        height: screenSize.width *
-                            0.040 *
-                            Utils.getMultiplier(screenSize.width),
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(nextImage),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                )
-              : Container(),
+          // showTextAreaSmall && _avgNarmVideoPlaying
+          //     ? Padding(
+          //         padding: EdgeInsets.only(
+          //             bottom: Utils.getBottomPadding(screenSize, 200)),
+          //         child: Container(
+          //           alignment: Alignment.bottomLeft,
+          //           child: TextAreaSmallWithClip(
+          //             width: screenSize.width * 0.35,
+          //             screenSize: screenSize,
+          //             prefixText: TextsConstants
+          //                 .avgNarmTexts["TextAreaSmallWithClip"][0],
+          //             description: TextsConstants
+          //                 .avgNarmTexts["TextAreaSmallWithClip"][1],
+          //           ),
+          //         ),
+          //       )
+          //     : Container(),
+          // showTextAreaSmall && _truckVideoPlaying
+          //     ? Padding(
+          //         padding: EdgeInsets.only(
+          //             bottom: Utils.getBottomPadding(screenSize, 200)),
+          //         child: Container(
+          //           alignment: Alignment.bottomLeft,
+          //           child: TextAreaSmallWithClip(
+          //             width: screenSize.width * 0.35,
+          //             screenSize: screenSize,
+          //             prefixText:
+          //                 TextsConstants.truckTexts["TextAreaSmallWithClip"][0],
+          //             description:
+          //                 TextsConstants.truckTexts["TextAreaSmallWithClip"][1],
+          //           ),
+          //         ),
+          //       )
+          //     : Container(),
+          // showTextAreaSmall && _trainVideoPlaying
+          //     ? Padding(
+          //         padding: EdgeInsets.only(
+          //             bottom: Utils.getBottomPadding(screenSize, 200)),
+          //         child: Container(
+          //           alignment: Alignment.bottomLeft,
+          //           child: TextAreaSmallWithClip(
+          //             width: screenSize.width * 0.35,
+          //             screenSize: screenSize,
+          //             prefixText:
+          //                 TextsConstants.trainTexts["TextAreaSmallWithClip"][0],
+          //             description:
+          //                 TextsConstants.trainTexts["TextAreaSmallWithClip"][1],
+          //           ),
+          //         ),
+          //       )
+          //     : Container(),
+          // showTextAreaSmall && _busVideoPlaying
+          //     ? Padding(
+          //         padding: EdgeInsets.only(
+          //             bottom: Utils.getBottomPadding(screenSize, 200)),
+          //         child: Container(
+          //           alignment: Alignment.bottomLeft,
+          //           child: TextAreaSmallWithClip(
+          //             width: screenSize.width * 0.35,
+          //             screenSize: screenSize,
+          //             prefixText:
+          //                 TextsConstants.busTexts["TextAreaSmallWithClip"][0],
+          //             description:
+          //                 TextsConstants.busTexts["TextAreaSmallWithClip"][1],
+          //           ),
+          //         ),
+          //       )
+          //     : Container(),
+          // showTextAreaSmall && _tractorVideoPlaying
+          //     ? Padding(
+          //         padding: EdgeInsets.only(
+          //             bottom: Utils.getBottomPadding(screenSize, 200)),
+          //         child: Container(
+          //           alignment: Alignment.bottomLeft,
+          //           child: TextAreaSmallWithClip(
+          //             width: screenSize.width * 0.35,
+          //             screenSize: screenSize,
+          //             prefixText: TextsConstants
+          //                 .tractorTexts["TextAreaSmallWithClip"][0],
+          //             description: TextsConstants
+          //                 .tractorTexts["TextAreaSmallWithClip"][1],
+          //           ),
+          //         ),
+          //       )
+          //     : Container(),
+          // showTextAreaSmall && _sportsCarVideoPlaying
+          //     ? Padding(
+          //         padding: EdgeInsets.only(
+          //             bottom: Utils.getBottomPadding(screenSize, 200)),
+          //         child: Container(
+          //           alignment: Alignment.bottomLeft,
+          //           child: TextAreaSmallWithClip(
+          //             width: screenSize.width * 0.35,
+          //             screenSize: screenSize,
+          //             prefixText: TextsConstants
+          //                 .sportsCarTexts["TextAreaSmallWithClip"][0],
+          //             description: TextsConstants
+          //                 .sportsCarTexts["TextAreaSmallWithClip"][1],
+          //           ),
+          //         ),
+          //       )
+          //     : Container(),
+          // showTextAreaSmall && _excavatorVideoPlaying
+          //     ? Padding(
+          //         padding: EdgeInsets.only(
+          //             bottom: Utils.getBottomPadding(screenSize, 200)),
+          //         child: Container(
+          //           alignment: Alignment.bottomLeft,
+          //           child: TextAreaSmallWithClip(
+          //             width: screenSize.width * 0.35,
+          //             screenSize: screenSize,
+          //             prefixText: TextsConstants
+          //                 .excavatorTexts["TextAreaSmallWithClip"][0],
+          //             description: TextsConstants
+          //                 .excavatorTexts["TextAreaSmallWithClip"][1],
+          //           ),
+          //         ),
+          //       )
+          //     : Container(),
+          // showNext && screenSize.width >= ScreenSizes.Mobile.width && screenSize.height >= ScreenSizes.Mobile.height
+          //     ? Positioned(
+          //         right: 0,
+          //         bottom: Utils.getBottomPadding(screenSize, 200),
+          //         child: Container(
+          //           alignment: Alignment.bottomRight,
+          //           child: GestureDetector(
+          //             onTap: () {
+          //               switch (nextPage) {
+          //                 case Pages.avgNarm:
+          //                   customPushReplacement(
+          //                       context,
+          //                       AvgNArmVideo(
+          //                         from: Pages.vehicle,
+          //                         offsetHor: offsetHor,
+          //                         offsetVer: offsetVer,
+          //                       ));
+          //                   break;
+          //                 case Pages.train:
+          //                   customPushReplacement(
+          //                       context,
+          //                       TrainVideo(
+          //                         from: Pages.vehicle,
+          //                         offsetHor: offsetHor,
+          //                         offsetVer: offsetVer,
+          //                       ));
+          //                   break;
+          //                 case Pages.excavator:
+          //                   customPushReplacement(
+          //                       context,
+          //                       ExcavatorVideo(
+          //                         from: Pages.vehicle,
+          //                         offsetHor: offsetHor,
+          //                         offsetVer: offsetVer,
+          //                       ));
+          //                   break;
+          //                 case Pages.sportsCar:
+          //                   customPushReplacement(
+          //                       context,
+          //                       SportsCarVideo(
+          //                         from: Pages.vehicle,
+          //                         offsetHor: offsetHor,
+          //                         offsetVer: offsetVer,
+          //                       ));
+          //                   break;
+          //                 case Pages.truck:
+          //                   customPushReplacement(
+          //                       context,
+          //                       TruckVideo(
+          //                         from: Pages.vehicle,
+          //                         offsetHor: offsetHor,
+          //                         offsetVer: offsetVer,
+          //                       ));
+          //                   break;
+          //                 case Pages.tractor:
+          //                   customPushReplacement(
+          //                       context,
+          //                       TractorVideo(
+          //                         from: Pages.vehicle,
+          //                         offsetHor: offsetHor,
+          //                         offsetVer: offsetVer,
+          //                       ));
+          //                   break;
+          //                 case Pages.bus:
+          //                   customPushReplacement(
+          //                       context,
+          //                       BusVideo(
+          //                         from: Pages.vehicle,
+          //                         offsetHor: offsetHor,
+          //                         offsetVer: offsetVer,
+          //                       ));
+          //                   break;
+          //                 default:
+          //               }
+          //               setState(() {
+          //                 showNext = false;
+          //               });
+          //             },
+          //             child: Container(
+          //               width: screenSize.width *
+          //                   0.091 *
+          //                   Utils.getMultiplier(screenSize.width),
+          //               height: screenSize.width *
+          //                   0.040 *
+          //                   Utils.getMultiplier(screenSize.width),
+          //               decoration: const BoxDecoration(
+          //                 image: DecorationImage(
+          //                   image: AssetImage(nextImage),
+          //                   fit: BoxFit.cover,
+          //                 ),
+          //               ),
+          //             ),
+          //           ),
+          //         ),
+          //       )
+          //     : Container(),
         ],
       ),
     );
@@ -1191,46 +1239,78 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
       child: Container(
         alignment: Alignment.topRight,
         height:
-            screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
-        width: screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
+            screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
+        width: screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
         child: GestureDetector(
           onTap: () async {
-            if (showQR) {
-              setState(() {
-                width = 0;
-              });
+            setShow();
+            setState(() {
+              timerOFF = true;
+            });
 
-              await Future.delayed(const Duration(milliseconds: 200));
-              setState(() {
-                showQR = false;
-              });
-              setShow();
-            } else {
-              setShow();
-              setState(() {
-                width = 0;
-                showQR = true;
-              });
+            _timerVideoController.pause();
 
-              await Future.delayed(const Duration(milliseconds: 200));
+            setState(() {
+              _buildingTransitionVideoPlaying = true;
+            });
 
-              setState(() {
-                width = screenSize.width * 0.2;
-              });
-            }
+            setState(() {
+              width = 0;
+            });
+
+            _buildingTransitionVideoController.play();
+
+            setState(() {
+              showTextAreaSmall = true;
+            });
+
+            await Future.delayed(const Duration(milliseconds: 200));
+
+            setState(() {
+              width = screenSize.width * 0.25;
+            });
+            _buildingTransitionVideoController.addListener(() {
+              final bool isPlaying =
+                  _buildingTransitionVideoController.value.isPlaying;
+              print(isPlaying);
+              if (isPlaying != _isPlaying) {
+                setState(() {
+                  _isPlaying = isPlaying;
+                  setIndex(++index);
+                });
+                if (index > 1) {
+                  _buildingTransitionVideoController.removeListener(() {});
+
+                  // setState(() {
+                  //   showNext = true;
+                  //   nextPage = Pages.sportscar;
+                  // });
+                  customPushReplacement(
+                      context,
+                      BuildingsHomeVideo(
+                        offsetHor: offsetHor,
+                        offsetVer: offsetVer,
+                      ));
+                }
+              }
+            });
           },
           child: Container(
             height: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             width: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: showQR
                     ? const AssetImage(homeImage)
-                    : const AssetImage(moreImage),
+                    : const AssetImage(buildingsTransitionImage),
                 fit: BoxFit.cover,
               ),
             ),
@@ -1243,8 +1323,8 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
   Widget avgNarm() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.445,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.825,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.38,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.585,
         child: Stack(
           children: [
             InkWell(
@@ -1288,10 +1368,17 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                     if (index > 1) {
                       _avgNarmVideoController.removeListener(() {});
 
-                      setState(() {
-                        showNext = true;
-                        nextPage = Pages.avgNarm;
-                      });
+                      // setState(() {
+                      //   showNext = true;
+                      //   nextPage = Pages.avgNarm;
+                      // });
+                      customPushReplacement(
+                          context,
+                          AvgNArmVideo(
+                            from: Pages.vehicle,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
                     }
                   }
                 });
@@ -1350,10 +1437,17 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
             if (index > 1) {
               _avgNarmVideoController.removeListener(() {});
 
-              setState(() {
-                showNext = true;
-                nextPage = Pages.avgNarm;
-              });
+              // setState(() {
+              //   showNext = true;
+              //   nextPage = Pages.avgNarm;
+              // });
+              customPushReplacement(
+                  context,
+                  AvgNArmVideo(
+                    from: Pages.vehicle,
+                    offsetHor: offsetHor,
+                    offsetVer: offsetVer,
+                  ));
             }
           }
         });
@@ -1364,8 +1458,8 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
   Widget train() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.615,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.75,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.82,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.56,
         child: Stack(
           children: [
             Center(
@@ -1409,10 +1503,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                       });
                       if (index > 1) {
                         _trainVideoController.removeListener(() {});
-                        setState(() {
-                          showNext = true;
-                          nextPage = Pages.train;
-                        });
+
+                        // setState(() {
+                        //   showNext = true;
+                        //   nextPage = Pages.train;
+                        // });
+                        customPushReplacement(
+                            context,
+                            TrainVideo(
+                              from: Pages.vehicle,
+                              offsetHor: offsetHor,
+                              offsetVer: offsetVer,
+                            ));
                       }
                     }
                   });
@@ -1471,10 +1573,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
             });
             if (index > 1) {
               _trainVideoController.removeListener(() {});
-              setState(() {
-                showNext = true;
-                nextPage = Pages.train;
-              });
+
+              // setState(() {
+              //   showNext = true;
+              //   nextPage = Pages.train;
+              // });
+              customPushReplacement(
+                  context,
+                  TrainVideo(
+                    from: Pages.vehicle,
+                    offsetHor: offsetHor,
+                    offsetVer: offsetVer,
+                  ));
             }
           }
         });
@@ -1485,8 +1595,8 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
   Widget sportsCar() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.12,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.459,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.14,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.425,
         child: Stack(
           children: [
             InkWell(
@@ -1528,10 +1638,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                     });
                     if (index > 1) {
                       _sportsCarVideoController.removeListener(() {});
-                      setState(() {
-                        showNext = true;
-                        nextPage = Pages.dataCenter;
-                      });
+
+                      // setState(() {
+                      //   showNext = true;
+                      //   nextPage = Pages.sportscar;
+                      // });
+                      customPushReplacement(
+                          context,
+                          SportsCarVideo(
+                            from: Pages.vehicle,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
                     }
                   }
                 });
@@ -1588,10 +1706,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
             });
             if (index > 1) {
               _sportsCarVideoController.removeListener(() {});
-              setState(() {
-                showNext = true;
-                nextPage = Pages.dataCenter;
-              });
+
+              // setState(() {
+              //   showNext = true;
+              //   nextPage = Pages.sportsCar;
+              // });
+              customPushReplacement(
+                  context,
+                  SportsCarVideo(
+                    from: Pages.vehicle,
+                    offsetHor: offsetHor,
+                    offsetVer: offsetVer,
+                  ));
             }
           }
         });
@@ -1602,8 +1728,8 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
   Widget tractor() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.269,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.22,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.36,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.3,
         child: Stack(
           children: [
             InkWell(
@@ -1646,10 +1772,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                     });
                     if (index > 1) {
                       _tractorVideoController.removeListener(() {});
-                      setState(() {
-                        showNext = true;
-                        nextPage = Pages.tractor;
-                      });
+
+                      // setState(() {
+                      //   showNext = true;
+                      //   nextPage = Pages.tractor;
+                      // });
+                      customPushReplacement(
+                          context,
+                          TractorVideo(
+                            from: Pages.vehicle,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
                     }
                   }
                 });
@@ -1707,10 +1841,19 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
             });
             if (index > 1) {
               _tractorVideoController.removeListener(() {});
-              setState(() {
-                showNext = true;
-                nextPage = Pages.tractor;
-              });
+
+              // setState(() {
+              //   showNext = true;
+              //   nextPage = Pages.tractor;
+              // });
+
+              customPushReplacement(
+                  context,
+                  TractorVideo(
+                    from: Pages.vehicle,
+                    offsetHor: offsetHor,
+                    offsetVer: offsetVer,
+                  ));
             }
           }
         });
@@ -1721,8 +1864,8 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
   Widget bus() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.62,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.13,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.56,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.28,
         child: Stack(
           children: [
             InkWell(
@@ -1765,10 +1908,17 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                     if (index > 1) {
                       _busVideoController.removeListener(() {});
 
-                      setState(() {
-                        showNext = true;
-                        nextPage = Pages.bus;
-                      });
+                      // setState(() {
+                      //   showNext = true;
+                      //   nextPage = Pages.bus;
+                      // });
+                      customPushReplacement(
+                          context,
+                          BusVideo(
+                            from: Pages.vehicle,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
                     }
                   }
                 });
@@ -1827,10 +1977,17 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
             if (index > 1) {
               _busVideoController.removeListener(() {});
 
-              setState(() {
-                showNext = true;
-                nextPage = Pages.bus;
-              });
+              // setState(() {
+              //   showNext = true;
+              //   nextPage = Pages.bus;
+              // });
+              customPushReplacement(
+                  context,
+                  BusVideo(
+                    from: Pages.vehicle,
+                    offsetHor: offsetHor,
+                    offsetVer: offsetVer,
+                  ));
             }
           }
         });
@@ -1842,7 +1999,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
         left: Utils.getVideoScreenWidth(screenSize) * 0.75,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.64,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.315,
         child: Stack(
           children: [
             InkWell(
@@ -1885,10 +2042,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                     });
                     if (index > 1) {
                       _excavatorVideoController.removeListener(() {});
-                      setState(() {
-                        showNext = true;
-                        nextPage = Pages.excavator;
-                      });
+
+                      // setState(() {
+                      //   showNext = true;
+                      //   nextPage = Pages.excavator;
+                      // });
+                      customPushReplacement(
+                          context,
+                          ExcavatorVideo(
+                            from: Pages.vehicle,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
                     }
                   }
                 });
@@ -1946,10 +2111,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
             });
             if (index > 1) {
               _excavatorVideoController.removeListener(() {});
-              setState(() {
-                showNext = true;
-                nextPage = Pages.excavator;
-              });
+
+              // setState(() {
+              //   showNext = true;
+              //   nextPage = Pages.excavator;
+              // });
+              customPushReplacement(
+                  context,
+                  ExcavatorVideo(
+                    from: Pages.vehicle,
+                    offsetHor: offsetHor,
+                    offsetVer: offsetVer,
+                  ));
             }
           }
         });
@@ -1960,8 +2133,8 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
   Widget truck() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.346,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.35,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.62,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.51,
         child: Stack(
           children: [
             InkWell(
@@ -2003,10 +2176,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                     });
                     if (index > 1) {
                       _truckVideoController.removeListener(() {});
-                      setState(() {
-                        showNext = true;
-                        nextPage = Pages.truck;
-                      });
+
+                      // setState(() {
+                      //   showNext = true;
+                      //   nextPage = Pages.truck;
+                      // });
+                      customPushReplacement(
+                          context,
+                          TruckVideo(
+                            from: Pages.vehicle,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
                     }
                   }
                 });
@@ -2064,10 +2245,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
             });
             if (index > 1) {
               _truckVideoController.removeListener(() {});
-              setState(() {
-                showNext = true;
-                nextPage = Pages.truck;
-              });
+
+              // setState(() {
+              //   showNext = true;
+              //   nextPage = Pages.truck;
+              // });
+              customPushReplacement(
+                  context,
+                  TruckVideo(
+                    from: Pages.vehicle,
+                    offsetHor: offsetHor,
+                    offsetVer: offsetVer,
+                  ));
             }
           }
         });

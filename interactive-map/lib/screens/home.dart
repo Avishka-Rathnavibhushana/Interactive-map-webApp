@@ -34,10 +34,10 @@ class _HomeState extends State<Home> {
   int index = 0;
   bool show = false;
 
-  final String timerVideoUrl = 'assets/videos/Intro_Loop.m4v';
+  final String timerVideoUrl = 'assets/videos/Intro_Loop.mp4';
 
-  final String buildingsVideoUrl = 'assets/videos/Intro_To_Buildings.m4v';
-  final String vechiclesVideoUrl = 'assets/videos/Intro_To_Vehicles.m4v';
+  final String buildingsVideoUrl = 'assets/videos/Intro_to_Buildings.mp4';
+  final String vechiclesVideoUrl = 'assets/videos/Intro_to_Vehicles.mp4';
 
   final String introImage = 'assets/videos/Intro_still.png';
 
@@ -73,7 +73,7 @@ class _HomeState extends State<Home> {
     await _timerVideoController.initialize();
     setState(() {
       _timerVideoController.setVolume(0);
-      _timerVideoController.play();
+      _timerVideoController.pause();
       _timerVideoController.setLooping(true);
       setShow();
     });
@@ -93,8 +93,8 @@ class _HomeState extends State<Home> {
             })
           });
 
-    await Future.delayed(const Duration(seconds: 2));
-
+    //await Future.delayed(const Duration(seconds: 2));
+    _timerVideoController.play();
     setState(() {
       loading = false;
     });
@@ -143,7 +143,8 @@ class _HomeState extends State<Home> {
       Get.find<Controller>().verticalOffset.value = offsetVer;
     }
 
-    if (screenSize.height < 500 && screenSize.width > 500) {
+    if (screenSize.height < ScreenSizes.Mobile.height &&
+        screenSize.width > ScreenSizes.Mobile.width) {
       if (screenSize.width - screenSize.width * 0.3 / screenSize.height ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -259,7 +260,7 @@ class _HomeState extends State<Home> {
           ],
         ),
       );
-    } else if (screenSize.width < 500) {
+    } else if (screenSize.width < ScreenSizes.Mobile.width) {
       if (screenSize.width / screenSize.height - screenSize.height * 0.3 ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -463,8 +464,8 @@ class _HomeState extends State<Home> {
   Widget buildings() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.615,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.75,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.29,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.42,
         child: Stack(
           children: [
             Center(
@@ -564,8 +565,8 @@ class _HomeState extends State<Home> {
   Widget vechicles() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.12,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.459,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.63,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.48,
         child: Stack(
           children: [
             InkWell(
@@ -608,7 +609,7 @@ class _HomeState extends State<Home> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: "Transport Electrification",
+                text: "Electrified Transport",
                 type: 0,
               ),
             ),
@@ -620,7 +621,7 @@ class _HomeState extends State<Home> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: "Transport Electrification",
+      title: "Electrified Transport",
       onPressed: () async {
         setShow();
         setState(() {

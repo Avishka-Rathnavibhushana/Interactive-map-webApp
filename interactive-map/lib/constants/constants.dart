@@ -7,6 +7,7 @@ class AppColors {
 //Primary Palette
   static const Color night = Color(0xFF263349);
   static const Color sea = Color(0xFF003C71);
+  static const Color seaLight = Color.fromARGB(255, 56, 167, 231);
 
 //Gradients
   static const LinearGradient seaToSky = LinearGradient(
@@ -42,6 +43,8 @@ class AppColors {
 const homeImage = 'assets/graphics/HOME.png';
 const moreImage = 'assets/graphics/MORE.png';
 const nextImage = 'assets/graphics/Next.png';
+const buildingsTransitionImage = 'assets/graphics/Buildings.png';
+const vehiclesTransitionImage = 'assets/graphics/Vehicles.png';
 const dataAnimationGif = 'assets/animations/Data_animation_512.gif';
 const dataCenterAirFlowGif = 'assets/animations/Data_Center_airflow.gif';
 
@@ -53,6 +56,7 @@ class Pages {
   static const motor = 'motor';
   static const motorToHome = 'motorToHome';
   static const map = 'map';
+  static const ipad = 'ipad';
 
   static const school = 'Schools';
   static const bank = 'bank';
@@ -61,6 +65,7 @@ class Pages {
   static const fastfoods = 'fastfoods';
   static const werehouse = 'werehouse';
   static const retail = 'retail';
+  static const dairyBarns = 'dairyBarns';
 
   static const vehicle = 'vehicle';
   static const transition = 'transition';
@@ -74,8 +79,6 @@ class Pages {
   static const truck = 'truck';
   static const tractor = 'tractor';
   static const bus = 'bus';
-  
-  
 }
 
 //fonts
@@ -106,116 +109,132 @@ class VideoAspectRatio {
   static const height = 1080.0;
 }
 
+//VideoAspect Ratio
+class ScreenSizes {
+  static const Size Mobile = Size(500, 300);
+}
+
 // Application texts
 class TextsConstants {
   static const Map<String, dynamic> schoolTexts = {
     "topic": "Schools",
     "TextAreaSmallWithClip": [
       "64%",
-      "of energy in school is used by HVAC and lightning",
+      "of energy in school is used by HVAC and lighting",
     ],
     "TextAreaWithClipMain": {
       "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
+        // ["TEXT", "Smart Motor System"],
+        // ["TEXT", "Smart HVAC"],
+        // ["TEXT", "Smart Building Operations"],
       ],
       "topic": "Turntide for Schools",
       "description":
-          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+          "Maximise energy efficiency and lower operating costs with smart equipment, controls, and insights",
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
-        "Prevent learning disruption",
+        // ["TOPIC", "Energy savings", ":"],
+        [
+          "DECORATEDTEXT",
+          "Energy Savings:",
+          " 87% compared to baseline, 34% compared to VFD retrofit"
+        ],
+        ["DECORATEDTEXT", "Time to payback:", " 3.1 years"],
       ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
+      "topic": "Leading National University",
+      "description": "School Gymnasium",
     },
     "subTopics": [
       "Smart HVAC",
-      "Energy-Saving Stratergies",
-      "TurntideApp",
+      "Case Study",
+      "Turntide App",
     ],
   };
   static const Map<String, dynamic> fastFoodTexts = {
-    "topic": "Quick Serve Resturants",
+    "topic": "Quick Serve Restaurants",
     "TextAreaSmallWithClip": [
       "28%",
-      "of restuarant energy costs are from HVAC on avarage",
+      "of restaurant energy costs are from HVAC on average",
     ],
     "TextAreaWithClipMain": {
       "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
+        // ["TEXT", "Smart Motor System"],
+        // ["TEXT", "Smart HVAC"],
+        // ["TEXT", "Smart Building Operations"],
       ],
       "topic": "Turntide for Restaurants",
       "description":
-          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+          "Maximise energy efficiency and lower operating costs with smart equipment, controls, and insights",
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
+        ["DECORATEDTEXT", "Energy reduction:", " 70% annually"],
+        ["DECORATEDTEXT", "Annual savings:", " \$2.3K per location"],
+        ["DECORATEDTEXT", "Energy saved:", " 19,174 KWH"],
+        ["DECORATEDTEXT", "Time to payback:", " 1.6 years"],
+        [
+          "HYPERLINK",
+          "Case Study Link",
+          "https://turntide.com/wp-content/uploads/2021/09/TT-Case-Study-Five-Guys_v04TL.pdf"
+        ],
       ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
+      "topic": "Five Guys",
+      "description": "Quick Serve Restaurant",
     },
     "subTopics": [
       "Smart HVAC",
-      "Energy-Saving Stratergies",
-      "TurntideApp",
+      "Case Study",
+      "Turntide App",
     ],
   };
   static const Map<String, dynamic> bankTexts = {
     "topic": "Banks",
     "TextAreaSmallWithClip": [
       "40-60%",
-      "of energy in bank branches is used by HVAC and lightning",
+      "of energy in bank branches is used by HVAC and lighting",
     ],
     "TextAreaWithClipMain": {
       "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
+        // ["TEXT", "Smart Motor System"],
+        // ["TEXT", "Smart HVAC"],
+        // ["TEXT", "Smart Building Operations"],
       ],
       "topic": "Turntide for Banks",
       "description":
-          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+          "Maximise energy efficiency and lower operating costs with smart equipment, controls, and insights",
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
+        ["DECORATEDTEXT", "Locations:", " 300+"],
+        ["DECORATEDTEXT", "Energy reduction:", " 15%"],
+        ["DECORATEDTEXT", "Annual savings:", " \$500k"],
+        [
+          "HYPERLINK",
+          "Case Study Link",
+          "https://turntide.com/wp-content/uploads/2021/10/Case-Study-Fifth-Third-Bank_v07.pdf"
+        ],
       ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
+      "topic": "Fifth Third",
+      "description": "Bank",
     },
     "subTopics": [
       "Smart HVAC",
-      "Energy-Saving Stratergies",
-      "TurntideApp",
+      "Case Study",
+      "Turntide App",
     ],
   };
   static const Map<String, dynamic> retailTexts = {
     "topic": "Retail Stores",
     "TextAreaSmallWithClip": [
       "70%",
-      "of energy in retail is used by HVAC and lightning",
+      "of energy in retail is used by HVAC and lighting",
     ],
     "TextAreaWithClipMain": {
       "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
+        // ["TEXT", "Smart Motor System"],
+        // ["TEXT", "Smart HVAC"],
+        // ["TEXT", "Smart Building Operations"],
       ],
       "topic": "Turntide for Retail Stores",
       "description":
@@ -223,31 +242,37 @@ class TextsConstants {
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
+        ["DECORATEDTEXT", "Locations:", " 400+"],
+        ["DECORATEDTEXT", "Energy reduction:", " 60% annually"],
+        ["DECORATEDTEXT", "Annual savings:", " \$K per location"],
+        ["DECORATEDTEXT", "Energy saved:", " KWH"],
+        ["DECORATEDTEXT", "Time to payback:", " 3 years"],
+        [
+          "HYPERLINK",
+          "Case Study Link",
+          "https://turntide.com/wp-content/uploads/2022/08/Case-Study-Ivanhoe-Cambridge_v04.pdf"
+        ],
       ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
+      "topic": "Wilko",
+      "description": "Retail Stores",
     },
     "subTopics": [
       "Smart HVAC",
-      "Energy-Saving Stratergies",
-      "TurntideApp",
+      "Case Study",
+      "Turntide App",
     ],
   };
   static const Map<String, dynamic> warehouseTexts = {
     "topic": "Warehouses",
     "TextAreaSmallWithClip": [
       "75%",
-      "of energy in warehouses is used by HVAC and lightning",
+      "of energy in warehouses is used by HVAC and lighting",
     ],
     "TextAreaWithClipMain": {
       "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
+        // ["TEXT", "Smart Motor System"],
+        // ["TEXT", "Smart HVAC"],
+        // ["TEXT", "Smart Building Operations"],
       ],
       "topic": "Turntide for Warehouses",
       "description":
@@ -255,31 +280,30 @@ class TextsConstants {
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
+        ["DECORATEDTEXT", "Placeholder:", " XXX"],
+        ["DECORATEDTEXT", "Placeholder:", " XXX"],
+        ["DECORATEDTEXT", "Placeholder:", " XXX"],
       ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
+      "topic": "Anonymous",
+      "description": "Warehouses",
     },
     "subTopics": [
       "Smart HVAC",
-      "Energy-Saving Stratergies",
-      "TurntideApp",
+      "Case Study",
+      "Turntide App",
     ],
   };
   static const Map<String, dynamic> dataCentreTexts = {
     "topic": "Data Centers",
     "TextAreaSmallWithClip": [
       "37%",
-      "of energy in data centers is used by HVAC and lightning",
+      "of energy in data centers is used by HVAC and lighting",
     ],
     "TextAreaWithClipMain": {
       "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
+        // ["TEXT", "Smart Motor System"],
+        // ["TEXT", "Smart HVAC"],
+        // ["TEXT", "Smart Building Operations"],
       ],
       "topic": "Turntide for Data Centers",
       "description":
@@ -287,31 +311,30 @@ class TextsConstants {
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
+        ["DECORATEDTEXT", "Placeholder:", " XXX"],
+        ["DECORATEDTEXT", "Placeholder:", " XXX"],
+        ["DECORATEDTEXT", "Placeholder:", " XXX"],
       ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
+      "topic": "Anonymous",
+      "description": "Datacenter",
     },
     "subTopics": [
       "Smart HVAC",
-      "Energy-Saving Stratergies",
-      "TurntideApp",
+      "Case Study",
+      "Turntide App",
     ],
   };
   static const Map<String, dynamic> groceryShopTexts = {
     "topic": "Grocery Stores",
     "TextAreaSmallWithClip": [
       "50%",
-      "of energy in grocery stores is used by HVAC and lightning",
+      "of energy in grocery stores is used by HVAC and lighting",
     ],
     "TextAreaWithClipMain": {
       "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
+        // ["TEXT", "Smart Motor System"],
+        // ["TEXT", "Smart HVAC"],
+        // ["TEXT", "Smart Building Operations"],
       ],
       "topic": "Turntide for Grocery Stores",
       "description":
@@ -319,240 +342,603 @@ class TextsConstants {
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
+        ["DECORATEDTEXT", "Energy reduction:", " 75% annually"],
+        ["DECORATEDTEXT", "Annual savings:", " \$18.4K per location"],
+        ["DECORATEDTEXT", "Energy saved:", " 153,649 KWH"],
+        ["DECORATEDTEXT", "Time to payback:", " 1.37 years"],
+        [
+          "HYPERLINK",
+          "Case Study Link",
+          "https://turntide.com/wp-content/uploads/2021/09/TT-Case-Study-Sprouts_v04TL.pdf"
+        ],
       ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
+      "topic": "Sprouts",
+      "description": "Grocery Store",
     },
     "subTopics": [
       "Smart HVAC",
-      "Energy-Saving Stratergies",
-      "TurntideApp",
+      "Case Study",
+      "Turntide App",
+    ],
+  };
+  static const Map<String, dynamic> dairyBarnsTexts = {
+    "topic": "Dairy Barns",
+    // "TextAreaSmallWithClip": [
+    //   "X%",
+    //   "Barn statistics",
+    // ],
+    "TextAreaWithClipMain": {
+      "texts": [],
+      "topic": "Turntide Intelligent Barn",
+      "description":
+          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+    },
+    "TextAreaWithClipEnergySaving": {
+      "texts": [],
+      "topic": "",
+      "description": "",
+    },
+    "subTopics": [
+      "TX Motor",
+      "Intelligent Barn \npowered by DairyBOS",
+      "Tractors",
     ],
   };
 
   static const Map<String, dynamic> sportsCarTexts = {
     "topic": "Sports Cars",
-    "TextAreaSmallWithClip": [
-      "64%",
-      "of energy in sports Car is used by HVAC and lightning",
-    ],
+    // "TextAreaSmallWithClip": [
+    //   "64%",
+    //   "of energy in sports Car is used by HVAC and lightning",
+    // ],
     "TextAreaWithClipMain": {
-      "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
-      ],
-      "topic": "Turntide for Sports Cars",
+      "texts": [],
+      "topic": "Turntide for EVs",
       "description":
-          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+          "High performance motors and inverters featuring class leading power density (35kW/l for inverters, 6kW/kg for motors) and high levels of functional safety.",
     },
-    "TextAreaWithClipEnergySaving": {
-      "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
-        "Prevent learning disruption",
-      ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
-    },
+    // "TextAreaWithClipEnergySaving": {
+    //   "texts": [
+    //     "Improve energy efficiency",
+    //     "Maintain a comfortable environment",
+    //     "Automate lighting and HVAC",
+    //     "Extent equipment life",
+    //     "Prevent learning disruption",
+    //   ],
+    //   "topic": "Stratergies for Sustainable Operations",
+    //   "description": "",
+    // },
     "subTopics": [
-      "Inverter",
-      "Motor",
+      "Inverters",
+      "Motors",
+    ],
+    "subTopicsInside": [
+      {
+        "topic": "High Voltage High Power Drives",
+        "subTopic":
+            "Commercially available design for any automotive application",
+        "descriptioTexts": [
+          ["TEXT", "Proven design allows fast implementation"],
+          ["TEXT", "Reduction in validation test programs"],
+          ["TEXT", "ISO26262 ASIL-D guaranteed safety standards"],
+          [
+            "HYPERLINK",
+            "Find out more...",
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Inverters.pdf"
+          ],
+        ],
+        "blocks": [
+          {"topic": "450V", "description": "MAXIMUM VOLTAGE"},
+          {"topic": "35kW/l", "description": "PEAK POWER DENSITIES"},
+          {"topic": "150kW", "description": "PEAK POWER LEVEL"},
+          {"topic": "25kW/kg", "description": "POWER TO WEIGHT"},
+        ],
+      },
+      {
+        "topic": "High Power Density Motors",
+        "subTopic":
+            "For powertrain traction, generator and cooling fan operations",
+        "descriptioTexts": [
+          ["TEXT", "Proven reliability"],
+          ["TEXT", "Flexible, stackable design"],
+          ["TEXT", "Excellent power & torque density for small spaces"],
+          [
+            "HYPERLINK",
+            "Find out more...",
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Motors.pdf"
+          ],
+        ],
+        "blocks": [
+          {"topic": "800V", "description": "MAXIMUM BATTERY VOLTAGE"},
+          {"topic": "100-800kW", "description": "7 SIZES AVAILABLE"},
+          {"topic": "96%", "description": "PEAK EFFICIENCY"}
+        ],
+      },
     ],
   };
   static const Map<String, dynamic> tractorTexts = {
     "topic": "Tractors",
-    "TextAreaSmallWithClip": [
-      "28%",
-      "of tractor energy costs are from HVAC on avarage",
-    ],
+    // "TextAreaSmallWithClip": [
+    //   "28%",
+    //   "of tractor energy costs are from HVAC on avarage",
+    // ],
     "TextAreaWithClipMain": {
-      "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
-      ],
-      "topic": "Turntide for Tractors",
+      "texts": [],
+      "topic": "Turntide for Electric Tractors",
       "description":
-          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+          "We'll deliver the intelligence, efficiency, and controls you need to build industry-leading vehicles, from tractors to combines, for years to come.",
     },
-    "TextAreaWithClipEnergySaving": {
-      "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
-      ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
-    },
+    // "TextAreaWithClipEnergySaving": {
+    //   "texts": [
+    //     "Improve energy efficiency",
+    //     "Maintain a comfortable environment",
+    //     "Automate lighting and HVAC",
+    //     "Extent equipment life",
+    //   ],
+    //   "topic": "Stratergies for Sustainable Operations",
+    //   "description": "",
+    // },
     "subTopics": [
       "Fan assemblies",
       "Inverters",
-      "Mortors",
+      "Motors",
+    ],
+    "subTopicsInside": [
+      {
+        "topic": "Pump & Fan Assemblies",
+        "subTopic": "",
+        "descriptioTexts": [
+          [
+            "TEXT",
+            "Electric pump and fan assemblies, from 500W to 60kW cooling solutions for hybrid and electric buses"
+          ],
+          [
+            "TEXT",
+            "Sealless electric water pumps efficiently operate EV cooling circuits"
+          ],
+          [
+            "HYPERLINK",
+            "Find out more...",
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Fans.pdf"
+          ],
+        ],
+        "blocks": [
+          {"topic": "24 / 48 / 750V", "description": "OPERATING VOLTAGE"},
+          {"topic": "500-60kW", "description": "POWER OUTPUT"}
+        ],
+      },
+      {
+        "topic": "High Voltage High Power Drives",
+        "subTopic":
+            "Commercially available design for any automotive application",
+        "descriptioTexts": [
+          ["TEXT", "Proven design allows fast implementation"],
+          ["TEXT", "Reduction in validation test programs"],
+          ["TEXT", "ISO26262 ASIL-D guaranteed safety standards"],
+          [
+            "HYPERLINK",
+            "Find out more...",
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Inverters.pdf"
+          ],
+        ],
+        "blocks": [
+          {"topic": "450V", "description": "MAXIMUM VOLTAGE"},
+          {"topic": "35kW/l", "description": "PEAK POWER DENSITIES"},
+          {"topic": "150kW", "description": "PEAK POWER LEVEL"},
+          {"topic": "25kW/kg", "description": "POWER TO WEIGHT"},
+        ],
+      },
+      {
+        "topic": "High Power Density Motors",
+        "subTopic":
+            "For powertrain traction, generator and cooling fan operations",
+        "descriptioTexts": [
+          ["TEXT", "Proven reliability"],
+          ["TEXT", "Flexible, stackable design"],
+          ["TEXT", "Excellent power & torque density for small spaces"],
+          [
+            "HYPERLINK",
+            "Find out more...",
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Motors.pdf"
+          ],
+        ],
+        "blocks": [
+          {"topic": "800V", "description": "MAXIMUM BATTERY VOLTAGE"},
+          {"topic": "100-800kW", "description": "7 SIZES AVAILABLE"},
+          {"topic": "96%", "description": "PEAK EFFICIENCY"}
+        ],
+      },
     ],
   };
   static const Map<String, dynamic> avgNarmTexts = {
-    "topic": "AGV / AMRs",
-    "TextAreaSmallWithClip": [
-      "40-60%",
-      "of energy in AGV / AMR branches is used by HVAC and lightning",
-    ],
+    "topic": "Material Handling",
+    // "TextAreaSmallWithClip": [
+    //   "40-60%",
+    //   "of energy in AGV / AMR branches is used by HVAC and lightning",
+    // ],
     "TextAreaWithClipMain": {
-      "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
-      ],
-      "topic": "Turntide for AGV / AMRs",
+      "texts": [],
+      "topic": "Turntide for Material Handling",
       "description":
-          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+          "We offer electrification solutions to increase the productivity of warehouses and distribution centers and autonomous mobile robots (AMRs) and automatic guided vehicles (AGVs) by minimizing downtime and taking advantage of opportunity charging.",
     },
-    "TextAreaWithClipEnergySaving": {
-      "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
-      ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
-    },
+    // "TextAreaWithClipEnergySaving": {
+    //   "texts": [
+    //     "Improve energy efficiency",
+    //     "Maintain a comfortable environment",
+    //     "Automate lighting and HVAC",
+    //     "Extent equipment life",
+    //   ],
+    //   "topic": "Stratergies for Sustainable Operations",
+    //   "description": "",
+    // },
     "subTopics": [
-      "Battery loop",
+      "Battery Packs",
+    ],
+    "subTopicsInside": [
+      {
+        "topic": "High Performance Lithium-ion NMB battery",
+        "subTopic": "With intelligent built-in Battery Management",
+        "descriptioTexts": [
+          ["TEXT", "High energy density"],
+          ["TEXT", "Flexible & scalable modular design"],
+          ["TEXT", "For rapid deployment & volume manufacture"],
+          [
+            "HYPERLINK",
+            "Find out more...",
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Batteries.pdf"
+          ],
+        ],
+        "blocks": [
+          {"topic": "48-630V", "description": "Series system voltage"},
+          {"topic": "4.97-700kWh", "description": "Capacity"}
+        ],
+      },
     ],
   };
   static const Map<String, dynamic> truckTexts = {
     "topic": "Trucks",
-    "TextAreaSmallWithClip": [
-      "70%",
-      "of energy in Truck is used by HVAC and lightning",
-    ],
+    // "TextAreaSmallWithClip": [
+    //   "70%",
+    //   "of energy in Truck is used by HVAC and lightning",
+    // ],
     "TextAreaWithClipMain": {
-      "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
-      ],
-      "topic": "Turntide for Trucks",
+      "texts": [],
+      "topic": "Turntide for Electric Trucks",
       "description":
-          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+          "From last-mile delivery to Class8 40T trucks we offer a range of highly reliable electrification solutions from high power electrific traction drives to low power pumps, fans, and hotel loads to help you deliver your emissions targets.",
     },
-    "TextAreaWithClipEnergySaving": {
-      "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
-      ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
-    },
+    // "TextAreaWithClipEnergySaving": {
+    //   "texts": [
+    //     "Improve energy efficiency",
+    //     "Maintain a comfortable environment",
+    //     "Automate lighting and HVAC",
+    //     "Extent equipment life",
+    //   ],
+    //   "topic": "Stratergies for Sustainable Operations",
+    //   "description": "",
+    // },
     "subTopics": [
       "Fan assemblies",
       "Inverters",
       "Motors",
+    ],
+    "subTopicsInside": [
+      {
+        "topic": "Pump & Fan Assemblies",
+        "subTopic": "",
+        "descriptioTexts": [
+          [
+            "TEXT",
+            "Electric pump and fan assemblies, from 500W to 60kW cooling solutions for hybrid and electric buses"
+          ],
+          [
+            "TEXT",
+            "Sealless electric water pumps efficiently operate EV cooling circuits"
+          ],
+          [
+            "HYPERLINK",
+            "Find out more...",
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Fans.pdf"
+          ],
+        ],
+        "blocks": [
+          {"topic": "24 / 48 / 750V", "description": "OPERATING VOLTAGE"},
+          {"topic": "500-60kW", "description": "POWER OUTPUT"}
+        ],
+      },
+      {
+        "topic": "High Voltage High Power Drives",
+        "subTopic":
+            "Commercially available design for any automotive application",
+        "descriptioTexts": [
+          ["TEXT", "Proven design allows fast implementation"],
+          ["TEXT", "Reduction in validation test programs"],
+          ["TEXT", "ISO26262 ASIL-D guaranteed safety standards"],
+          [
+            "HYPERLINK",
+            "Find out more...",
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Inverters.pdf"
+          ],
+        ],
+        "blocks": [
+          {"topic": "450V", "description": "MAXIMUM VOLTAGE"},
+          {"topic": "35kW/l", "description": "PEAK POWER DENSITIES"},
+          {"topic": "150kW", "description": "PEAK POWER LEVEL"},
+          {"topic": "25kW/kg", "description": "POWER TO WEIGHT"},
+        ],
+      },
+      {
+        "topic": "High Power Density Motors",
+        "subTopic":
+            "For powertrain traction, generator and cooling fan operations",
+        "descriptioTexts": [
+          ["TEXT", "Proven reliability"],
+          ["TEXT", "Flexible, stackable design"],
+          ["TEXT", "Excellent power & torque density for small spaces"],
+          [
+            "HYPERLINK",
+            "Find out more...",
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Motors.pdf"
+          ],
+        ],
+        "blocks": [
+          {"topic": "800V", "description": "MAXIMUM BATTERY VOLTAGE"},
+          {"topic": "100-800kW", "description": "7 SIZES AVAILABLE"},
+          {"topic": "96%", "description": "PEAK EFFICIENCY"}
+        ],
+      },
     ],
   };
   static const Map<String, dynamic> busTexts = {
     "topic": "Buses",
-    "TextAreaSmallWithClip": [
-      "75%",
-      "of energy in Buses is used by HVAC and lightning",
-    ],
+    // "TextAreaSmallWithClip": [
+    //   "75%",
+    //   "of energy in Buses is used by HVAC and lightning",
+    // ],
     "TextAreaWithClipMain": {
-      "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
-      ],
-      "topic": "Turntide for Buses",
+      "texts": [],
+      "topic": "Turntide for Electric Buses",
       "description":
-          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+          "We offer powertrain systems to satisfy on-road functional safety to ISO26262 ASIL-D with all the power and torque you need.\n\nSelect from a range of low voltage and high voltage pump and fan cooling solutions.",
     },
-    "TextAreaWithClipEnergySaving": {
-      "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
-      ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
-    },
+    // "TextAreaWithClipEnergySaving": {
+    //   "texts": [
+    //     "Improve energy efficiency",
+    //     "Maintain a comfortable environment",
+    //     "Automate lighting and HVAC",
+    //     "Extent equipment life",
+    //   ],
+    //   "topic": "Stratergies for Sustainable Operations",
+    //   "description": "",
+    // },
     "subTopics": [
       "Fan assemblies",
       "Inverters",
       "Motors",
     ],
+    "subTopicsInside": [
+      {
+        "topic": "Pump & Fan Assemblies",
+        "subTopic": "",
+        "descriptioTexts": [
+          [
+            "TEXT",
+            "Electric pump and fan assemblies, from 500W to 60kW cooling solutions for hybrid and electric buses"
+          ],
+          [
+            "TEXT",
+            "Sealless electric water pumps efficiently operate EV cooling circuits"
+          ],
+          [
+            "HYPERLINK",
+            "Find out more...",
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Fans.pdf"
+          ],
+        ],
+        "blocks": [
+          {"topic": "24 / 48 / 750V", "description": "OPERATING VOLTAGE"},
+          {"topic": "500-60kW", "description": "POWER OUTPUT"}
+        ],
+      },
+      {
+        "topic": "High Voltage High Power Drives",
+        "subTopic":
+            "Commercially available design for any automotive application",
+        "descriptioTexts": [
+          ["TEXT", "Proven design allows fast implementation"],
+          ["TEXT", "Reduction in validation test programs"],
+          ["TEXT", "ISO26262 ASIL-D guaranteed safety standards"],
+          [
+            "HYPERLINK",
+            "Find out more...",
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Inverters.pdf"
+          ],
+        ],
+        "blocks": [
+          {"topic": "450V", "description": "MAXIMUM VOLTAGE"},
+          {"topic": "35kW/l", "description": "PEAK POWER DENSITIES"},
+          {"topic": "150kW", "description": "PEAK POWER LEVEL"},
+          {"topic": "25kW/kg", "description": "POWER TO WEIGHT"},
+        ],
+      },
+      {
+        "topic": "High Power Density Motors",
+        "subTopic":
+            "For powertrain traction, generator and cooling fan operations",
+        "descriptioTexts": [
+          ["TEXT", "Proven reliability"],
+          ["TEXT", "Flexible, stackable design"],
+          ["TEXT", "Excellent power & torque density for small spaces"],
+          [
+            "HYPERLINK",
+            "Find out more...",
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Motors.pdf"
+          ],
+        ],
+        "blocks": [
+          {"topic": "800V", "description": "MAXIMUM BATTERY VOLTAGE"},
+          {"topic": "100-800kW", "description": "7 SIZES AVAILABLE"},
+          {"topic": "96%", "description": "PEAK EFFICIENCY"}
+        ],
+      },
+    ],
   };
   static const Map<String, dynamic> excavatorTexts = {
     "topic": "Excavators",
-    "TextAreaSmallWithClip": [
-      "37%",
-      "of energy in Excavators is used by HVAC and lightning",
-    ],
+    // "TextAreaSmallWithClip": [
+    //   "37%",
+    //   "of energy in Excavators is used by HVAC and lightning",
+    // ],
     "TextAreaWithClipMain": {
       "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
+        [
+          "HYPERLINK",
+          "Case study",
+          "https://turntide.com/wp-content/uploads/2022/08/Case-Study-Mini-Excavator_v07JCB-1.pdf"
+        ],
       ],
-      "topic": "Turntide for Excavators",
+      "topic": "Turntide for Construction",
       "description":
-          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+          "Whether building excavators or backhoes, we'll help you electrify your construction vehicles and get to market quickly and easily with a fully scalable powertrain solution.",
     },
-    "TextAreaWithClipEnergySaving": {
-      "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
-      ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
-    },
+    // "TextAreaWithClipEnergySaving": {
+    //   "texts": [
+    //     "Improve energy efficiency",
+    //     "Maintain a comfortable environment",
+    //     "Automate lighting and HVAC",
+    //     "Extent equipment life",
+    //   ],
+    //   "topic": "Stratergies for Sustainable Operations",
+    //   "description": "",
+    // },
     "subTopics": [
-      "Battery loop",
-      "Drive loop",
-      "DCDC Converter",
-      "HD Mortor",
+      "Motors",
+      "Battery Packs",
+      "Inverters",
+      "DC/DC Convertors",
+    ],
+    "subTopicsInside": [
+      {
+        "topic": "High Power Density Motors",
+        "subTopic":
+            "For powertrain traction, generator and cooling fan operations",
+        "descriptioTexts": [
+          ["TEXT", "Proven reliability"],
+          ["TEXT", "Flexible, stackable design"],
+          ["TEXT", "Excellent power & torque density for small spaces"],
+          [
+            "HYPERLINK",
+            "Find out more...",
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Motors.pdf"
+          ],
+        ],
+        "blocks": [
+          {"topic": "800V", "description": "MAXIMUM BATTERY VOLTAGE"},
+          {"topic": "100-800kW", "description": "7 SIZES AVAILABLE"},
+          {"topic": "96%", "description": "PEAK EFFICIENCY"}
+        ],
+      },
+      {
+        "topic": "High Performance Lithium-ion NMB battery",
+        "subTopic": "With intelligent built-in Battery Management",
+        "descriptioTexts": [
+          ["TEXT", "High energy density"],
+          ["TEXT", "Flexible & scalable modular design"],
+          ["TEXT", "For rapid deployment & volume manufacture"],
+          [
+            "HYPERLINK",
+            "Find out more...",
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Batteries.pdf"
+          ],
+        ],
+        "blocks": [
+          {"topic": "48-630V", "description": "Series system voltage"},
+          {"topic": "4.97-700kWh", "description": "Capacity"}
+        ],
+      },
+      {
+        "topic": "Low Voltage Drives",
+        "subTopic": "Powered mainstream EV's for over 10 years",
+        "descriptioTexts": [
+          ["TEXT", "Proven reliability with almost 200,000 units shipped"],
+          ["TEXT", "Supports a wide range of motor types"],
+          ["TEXT", "Highly configurable operation & communications"],
+        ],
+        "blocks": [
+          {"topic": "900A", "description": "PEAK CURRENT"},
+          {"topic": "48-110V", "description": "OPERATING VOLTAGE"}
+        ],
+      },
+      {
+        "topic": "DC/DC Convertors",
+        "subTopic":
+            "Product range for low voltage electrification applications",
+        "descriptioTexts": [
+          ["TEXT", "Low voltage and high voltage options"],
+          ["TEXT", "Can convert batteries to lower voltages"],
+          ["TEXT", "Powers vehicle ancillaries such as lights & radios"],
+          [
+            "HYPERLINK",
+            "Find out more...",
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-DCDCs.pdf"
+          ],
+        ],
+        "blocks": [
+          {"topic": "12-14V", "description": "OUTPUT VOLTAGE"},
+          {"topic": "500-3.7kW", "description": "POWER OUTPUT"},
+          {"topic": "48 to 450V", "description": "OPERATING VOLTAGES"}
+        ],
+      },
     ],
   };
   static const Map<String, dynamic> trainTexts = {
     "topic": "Trains",
-    "TextAreaSmallWithClip": [
-      "50%",
-      "of energy in Trains is used by HVAC and lightning",
-    ],
+    // "TextAreaSmallWithClip": [
+    //   "50%",
+    //   "of energy in Trains is used by HVAC and lightning",
+    // ],
     "TextAreaWithClipMain": {
       "texts": [
-        "Smart Motor System",
-        "Smart HVAC",
-        "Smart Building Operations",
+        //["TEXT", "Battery Packs"],
       ],
       "topic": "Turntide for Trains",
       "description":
-          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
+          "We provide high-performance electrification components for rail hybrid and pure electric solutions to provide train manufacturers a risk-free path to carbon reduction.",
     },
-    "TextAreaWithClipEnergySaving": {
-      "texts": [
-        "Improve energy efficiency",
-        "Maintain a comfortable environment",
-        "Automate lighting and HVAC",
-        "Extent equipment life",
-      ],
-      "topic": "Stratergies for Sustainable Operations",
-      "description": "",
-    },
+    // "TextAreaWithClipEnergySaving": {
+    //   "texts": [
+    //     "Improve energy efficiency",
+    //     "Maintain a comfortable environment",
+    //     "Automate lighting and HVAC",
+    //     "Extent equipment life",
+    //   ],
+    //   "topic": "Stratergies for Sustainable Operations",
+    //   "description": "",
+    // },
     "subTopics": [
-      "Train Battery loop",
+      "Battery Packs",
+    ],
+    "subTopicsInside": [
+      {
+        "topic": "High Performance Lithium-ion NMC battery",
+        "subTopic": "With intelligent built-in battery management",
+        "descriptioTexts": [
+          ["TEXT", "High energy density"],
+          ["TEXT", "Flexible & scalable modular design"],
+          ["TEXT", "For rapid deployment & volume manufacture"],
+          [
+            "HYPERLINK",
+            "Find out more...",
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Batteries.pdf"
+          ],
+        ],
+        "blocks": [
+          {"topic": "48-630V", "description": "SERIES SYSTEM VOLTAGE"},
+          {"topic": "4.97-700kWh", "description": "CAPACITY"},
+          {"topic": "Over 1000V", "description": "RAIL APPLICATIONS"}
+        ],
+      },
     ],
   };
 }

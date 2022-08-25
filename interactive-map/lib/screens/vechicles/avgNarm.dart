@@ -32,10 +32,10 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
   bool show = false;
   bool _isPlaying = false;
 
-  final String url = 'assets/videos/vehicles/Veh_To_AGV_REV.m4v';
+  final String url = 'assets/videos/vehicles/Veh_To_AGV_REV.mp4';
 
   final String transition1Video =
-      'assets/videos/vehicles/Product_transition/AGV_To_Battery.m4v';
+      'assets/videos/vehicles/Product_transition/AGV_To_Battery.mp4';
 
   // final String schoolImage = 'assets/tempory images/School_Plain.png';
 
@@ -160,7 +160,8 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
       Get.find<Controller>().verticalOffset.value = offsetVer;
     }
 
-    if (screenSize.height < 500 && screenSize.width > 500) {
+    if (screenSize.height < ScreenSizes.Mobile.height &&
+        screenSize.width > ScreenSizes.Mobile.width) {
       if (screenSize.width - screenSize.width * 0.3 / screenSize.height ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -268,7 +269,7 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
           ],
         ),
       );
-    } else if (screenSize.width < 500) {
+    } else if (screenSize.width < ScreenSizes.Mobile.width) {
       if (screenSize.width / screenSize.height - screenSize.height * 0.3 ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -506,9 +507,17 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                     url:
-                        "assets/videos/vehicles/Product_loops/Battery_Loop.m4v",
+                        "assets/videos/vehicles/Product_loops/Battery_Loop.mp4",
                     back:
-                        "assets/videos/vehicles/Product_transition/AGV_To_Battery.m4v",
+                        "assets/videos/vehicles/Product_transition/AGV_To_Battery.mp4",
+                    topic: TextsConstants.avgNarmTexts["subTopicsInside"][0]
+                        ["topic"],
+                    subTopic: TextsConstants.avgNarmTexts["subTopicsInside"][0]
+                        ["subTopic"],
+                    descriptioTexts: TextsConstants
+                        .avgNarmTexts["subTopicsInside"][0]["descriptioTexts"],
+                    blocks: TextsConstants.avgNarmTexts["subTopicsInside"][0]
+                        ["blocks"],
                   ));
             }
           }
@@ -524,8 +533,12 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
       child: Container(
         alignment: Alignment.topRight,
         height:
-            screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
-        width: screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
+            screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
+        width: screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
         child: GestureDetector(
           onTap: () {
             setShow();
@@ -554,10 +567,10 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
           child: Container(
             height: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             width: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(homeImage),
@@ -573,8 +586,8 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
   Widget transition1() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.536,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.325,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.79,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.76,
         child: Stack(
           children: [
             InkWell(
@@ -603,9 +616,18 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/Battery_Loop.m4v",
+                                "assets/videos/vehicles/Product_loops/Battery_Loop.mp4",
                             back:
-                                "assets/videos/vehicles/Product_transition/AGV_To_Battery.m4v",
+                                "assets/videos/vehicles/Product_transition/AGV_To_Battery.mp4",
+                            topic: TextsConstants
+                                .avgNarmTexts["subTopicsInside"][0]["topic"],
+                            subTopic: TextsConstants
+                                .avgNarmTexts["subTopicsInside"][0]["subTopic"],
+                            descriptioTexts:
+                                TextsConstants.avgNarmTexts["subTopicsInside"]
+                                    [0]["descriptioTexts"],
+                            blocks: TextsConstants
+                                .avgNarmTexts["subTopicsInside"][0]["blocks"],
                           ));
                     }
                   }

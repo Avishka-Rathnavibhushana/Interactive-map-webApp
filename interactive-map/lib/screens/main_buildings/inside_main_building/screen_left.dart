@@ -103,7 +103,8 @@ class _ScreenLeftState extends State<ScreenLeft> {
       Get.find<Controller>().verticalOffset.value = offsetVer;
     }
 
-    if (screenSize.height < 500 && screenSize.width > 500) {
+    if (screenSize.height < ScreenSizes.Mobile.height &&
+        screenSize.width > ScreenSizes.Mobile.width) {
       if (screenSize.width - screenSize.width * 0.3 / screenSize.height ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -221,7 +222,7 @@ class _ScreenLeftState extends State<ScreenLeft> {
           ],
         ),
       );
-    } else if (screenSize.width < 500) {
+    } else if (screenSize.width < ScreenSizes.Mobile.width) {
       if (screenSize.width / screenSize.height - screenSize.height * 0.3 ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -431,7 +432,9 @@ class _ScreenLeftState extends State<ScreenLeft> {
         fit: StackFit.expand,
         children: [
           FullScreenButton(),
-          show && screenSize.width > 500 && screenSize.height > 500
+          show &&
+                  screenSize.width > ScreenSizes.Mobile.width &&
+                  screenSize.height > ScreenSizes.Mobile.height
               ? nextButton()
               : Container(),
           show ? menuButton() : Container(),
@@ -445,8 +448,14 @@ class _ScreenLeftState extends State<ScreenLeft> {
                         child: TextAreaWithClip(
                             screenSize: screenSize,
                             texts: const [
-                              "Multi-site management and global controls allow you to react quickly",
-                              "Scale efficiency measures across your entire portfolio"
+                              [
+                                "TEXT",
+                                "Multi-site management and global controls allow you to react quickly"
+                              ],
+                              [
+                                "TEXT",
+                                "Scale efficiency measures across your entire portfolio"
+                              ],
                             ],
                             topic: "Smart Building Operations",
                             description: ""),
@@ -461,8 +470,14 @@ class _ScreenLeftState extends State<ScreenLeft> {
                             child: TextAreaWithClip(
                                 screenSize: screenSize,
                                 texts: const [
-                                  "Open-platform works with existing building systems regardless of vendor",
-                                  "Complete visibility in a single pane of glass"
+                                  [
+                                    "TEXT",
+                                    "Open-platform works with existing building systems regardless of vendor"
+                                  ],
+                                  [
+                                    "TEXT",
+                                    "Complete visibility in a single pane of glass"
+                                  ],
                                 ],
                                 topic: "Smart Building Operations",
                                 description: ""),
@@ -476,8 +491,14 @@ class _ScreenLeftState extends State<ScreenLeft> {
                             child: TextAreaWithClip(
                                 screenSize: screenSize,
                                 texts: const [
-                                  "Monitor Indoor Air Quality (IAQ) standerds",
-                                  "Help keep your employees and customers safe"
+                                  [
+                                    "TEXT",
+                                    "Monitor Indoor Air Quality (IAQ) standerds"
+                                  ],
+                                  [
+                                    "TEXT",
+                                    "Help keep your employees and customers safe"
+                                  ],
                                 ],
                                 topic: "Smart Building Operations",
                                 description: ""),
@@ -625,8 +646,12 @@ class _ScreenLeftState extends State<ScreenLeft> {
       child: Container(
         alignment: Alignment.topRight,
         height:
-            screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
-        width: screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
+            screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
+        width: screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
         child: GestureDetector(
           onTap: () {
             _controller.pause();
@@ -652,10 +677,10 @@ class _ScreenLeftState extends State<ScreenLeft> {
           child: Container(
             width: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             height: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(homeImage),

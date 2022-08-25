@@ -17,7 +17,7 @@ class TextAreaWithClip extends StatelessWidget {
   }) : super(key: key);
 
   final Size screenSize;
-  final List<String> texts;
+  final List<dynamic> texts;
   final String topic;
   final String description;
   final double ratio;
@@ -62,14 +62,14 @@ class TextAreaWithClip extends StatelessWidget {
                     fontSize: 27,
                     ratio: ratio,
                   ),
-            description == ''
+            description == '' || texts.length == 0
                 ? const SizedBox()
                 : SizedBox(
                     height: Utils.getTextPaddingRatio(screenSize.width) *
                         screenSize.height *
                         (45 / VideoAspectRatio.height),
                   ),
-            texts.isEmpty
+            texts.isEmpty || texts.length == 0
                 ? const SizedBox()
                 : Container(
                     padding: EdgeInsets.only(

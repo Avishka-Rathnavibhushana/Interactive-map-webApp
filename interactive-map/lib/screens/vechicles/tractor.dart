@@ -36,14 +36,14 @@ class _TractorVideoState extends State<TractorVideo> {
   bool show = false;
   bool _isPlaying = false;
 
-  final String url = 'assets/videos/vehicles/Veh_To_Tractor_REV.m4v';
+  final String url = 'assets/videos/vehicles/Veh_To_Tractor_REV.mp4';
 
   final String transition1Video =
-      'assets/videos/vehicles/Product_transition/Tractor_To_Fan.m4v';
+      'assets/videos/vehicles/Product_transition/Tractor_To_Fan.mp4';
   final String transition2Video =
-      'assets/videos/vehicles/Product_transition/Tractor_To_Inverter.m4v';
+      'assets/videos/vehicles/Product_transition/Tractor_To_Inverter.mp4';
   final String transition3Video =
-      'assets/videos/vehicles/Product_transition/Tractor_To_Motor.m4v';
+      'assets/videos/vehicles/Product_transition/Tractor_To_HDMotor.mp4';
 
   // final String schoolImage = 'assets/tempory images/School_Plain.png';
 
@@ -185,7 +185,8 @@ class _TractorVideoState extends State<TractorVideo> {
       Get.find<Controller>().verticalOffset.value = offsetVer;
     }
 
-    if (screenSize.height < 500 && screenSize.width > 500) {
+    if (screenSize.height < ScreenSizes.Mobile.height &&
+        screenSize.width > ScreenSizes.Mobile.width) {
       if (screenSize.width - screenSize.width * 0.3 / screenSize.height ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -320,7 +321,7 @@ class _TractorVideoState extends State<TractorVideo> {
           ],
         ),
       );
-    } else if (screenSize.width < 500) {
+    } else if (screenSize.width < ScreenSizes.Mobile.width) {
       if (screenSize.width / screenSize.height - screenSize.height * 0.3 ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -597,9 +598,17 @@ class _TractorVideoState extends State<TractorVideo> {
                     from: Pages.tractor,
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
-                    url: "assets/videos/vehicles/Product_loops/Fan_Loop.m4v",
+                    url: "assets/videos/vehicles/Product_loops/Fan_Loop.mp4",
                     back:
-                        "assets/videos/vehicles/Product_transition/Tractor_To_Fan.m4v",
+                        "assets/videos/vehicles/Product_transition/Tractor_To_Fan.mp4",
+                    topic: TextsConstants.tractorTexts["subTopicsInside"][0]
+                        ["topic"],
+                    subTopic: TextsConstants.tractorTexts["subTopicsInside"][0]
+                        ["subTopic"],
+                    descriptioTexts: TextsConstants
+                        .tractorTexts["subTopicsInside"][0]["descriptioTexts"],
+                    blocks: TextsConstants.tractorTexts["subTopicsInside"][0]
+                        ["blocks"],
                   ));
             }
           }
@@ -637,9 +646,17 @@ class _TractorVideoState extends State<TractorVideo> {
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                     url:
-                        "assets/videos/vehicles/Product_loops/Inverter_Loop.m4v",
+                        "assets/videos/vehicles/Product_loops/Inverter_Loop.mp4",
                     back:
-                        "assets/videos/vehicles/Product_transition/Tractor_To_Inverter.m4v",
+                        "assets/videos/vehicles/Product_transition/Tractor_To_Inverter.mp4",
+                    topic: TextsConstants.tractorTexts["subTopicsInside"][1]
+                        ["topic"],
+                    subTopic: TextsConstants.tractorTexts["subTopicsInside"][1]
+                        ["subTopic"],
+                    descriptioTexts: TextsConstants
+                        .tractorTexts["subTopicsInside"][1]["descriptioTexts"],
+                    blocks: TextsConstants.tractorTexts["subTopicsInside"][1]
+                        ["blocks"],
                   ));
             }
           }
@@ -677,9 +694,17 @@ class _TractorVideoState extends State<TractorVideo> {
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                     url:
-                        "assets/videos/vehicles/Product_loops/HDMotor_Loop.m4v",
+                        "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
                     back:
-                        "assets/videos/vehicles/Product_transition/Tractor_To_Motor.m4v",
+                        "assets/videos/vehicles/Product_transition/Tractor_To_HDMotor.mp4",
+                    topic: TextsConstants.tractorTexts["subTopicsInside"][2]
+                        ["topic"],
+                    subTopic: TextsConstants.tractorTexts["subTopicsInside"][2]
+                        ["subTopic"],
+                    descriptioTexts: TextsConstants
+                        .tractorTexts["subTopicsInside"][2]["descriptioTexts"],
+                    blocks: TextsConstants.tractorTexts["subTopicsInside"][2]
+                        ["blocks"],
                   ));
             }
           }
@@ -695,8 +720,12 @@ class _TractorVideoState extends State<TractorVideo> {
       child: Container(
         alignment: Alignment.topRight,
         height:
-            screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
-        width: screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
+            screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
+        width: screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
         child: GestureDetector(
           onTap: () {
             setShow();
@@ -725,10 +754,10 @@ class _TractorVideoState extends State<TractorVideo> {
           child: Container(
             height: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             width: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(homeImage),
@@ -744,8 +773,8 @@ class _TractorVideoState extends State<TractorVideo> {
   Widget transition1() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.536,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.325,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.47,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.75,
         child: Stack(
           children: [
             InkWell(
@@ -774,9 +803,18 @@ class _TractorVideoState extends State<TractorVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/Fan_Loop.m4v",
+                                "assets/videos/vehicles/Product_loops/Fan_Loop.mp4",
                             back:
-                                "assets/videos/vehicles/Product_transition/Tractor_To_Fan.m4v",
+                                "assets/videos/vehicles/Product_transition/Tractor_To_Fan.mp4",
+                            topic: TextsConstants
+                                .tractorTexts["subTopicsInside"][0]["topic"],
+                            subTopic: TextsConstants
+                                .tractorTexts["subTopicsInside"][0]["subTopic"],
+                            descriptioTexts:
+                                TextsConstants.tractorTexts["subTopicsInside"]
+                                    [0]["descriptioTexts"],
+                            blocks: TextsConstants
+                                .tractorTexts["subTopicsInside"][0]["blocks"],
                           ));
                     }
                   }
@@ -795,8 +833,8 @@ class _TractorVideoState extends State<TractorVideo> {
   Widget transition2() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.436,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.125,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.56,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.58,
         child: Stack(
           children: [
             InkWell(
@@ -825,9 +863,18 @@ class _TractorVideoState extends State<TractorVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/Inverter_Loop.m4v",
+                                "assets/videos/vehicles/Product_loops/Inverter_Loop.mp4",
                             back:
-                                "assets/videos/vehicles/Product_transition/Tractor_To_Inverter.m4v",
+                                "assets/videos/vehicles/Product_transition/Tractor_To_Inverter.mp4",
+                            topic: TextsConstants
+                                .tractorTexts["subTopicsInside"][1]["topic"],
+                            subTopic: TextsConstants
+                                .tractorTexts["subTopicsInside"][1]["subTopic"],
+                            descriptioTexts:
+                                TextsConstants.tractorTexts["subTopicsInside"]
+                                    [1]["descriptioTexts"],
+                            blocks: TextsConstants
+                                .tractorTexts["subTopicsInside"][1]["blocks"],
                           ));
                     }
                   }
@@ -846,8 +893,8 @@ class _TractorVideoState extends State<TractorVideo> {
   Widget transition3() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.636,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.525,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.63,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.66,
         child: Stack(
           children: [
             InkWell(
@@ -876,9 +923,18 @@ class _TractorVideoState extends State<TractorVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/HDMotor_Loop.m4v",
+                                "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
                             back:
-                                "assets/videos/vehicles/Product_transition/Tractor_To_Motor.m4v",
+                                "assets/videos/vehicles/Product_transition/Tractor_To_HDMotor.mp4",
+                            topic: TextsConstants
+                                .tractorTexts["subTopicsInside"][2]["topic"],
+                            subTopic: TextsConstants
+                                .tractorTexts["subTopicsInside"][2]["subTopic"],
+                            descriptioTexts:
+                                TextsConstants.tractorTexts["subTopicsInside"]
+                                    [2]["descriptioTexts"],
+                            blocks: TextsConstants
+                                .tractorTexts["subTopicsInside"][2]["blocks"],
                           ));
                     }
                   }

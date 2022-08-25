@@ -34,12 +34,12 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
   bool show = false;
   bool _isPlaying = false;
 
-  final String url = 'assets/videos/vehicles/Veh_To_Car_REV.m4v';
+  final String url = 'assets/videos/vehicles/Veh_To_Car_REV.mp4';
 
   final String transition1Video =
-      'assets/videos/vehicles/Product_transition/Car_To_Inverter.m4v';
+      'assets/videos/vehicles/Product_transition/Car_To_Inverter.mp4';
   final String transition2Video =
-      'assets/videos/vehicles/Product_transition/Car_To_HDMotor.m4v';
+      'assets/videos/vehicles/Product_transition/Car_To_HDMotor.mp4';
 
   // final String schoolImage = 'assets/tempory images/School_Plain.png';
 
@@ -173,7 +173,8 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
       Get.find<Controller>().verticalOffset.value = offsetVer;
     }
 
-    if (screenSize.height < 500 && screenSize.width > 500) {
+    if (screenSize.height < ScreenSizes.Mobile.height &&
+        screenSize.width > ScreenSizes.Mobile.width) {
       if (screenSize.width - screenSize.width * 0.3 / screenSize.height ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -294,7 +295,7 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
           ],
         ),
       );
-    } else if (screenSize.width < 500) {
+    } else if (screenSize.width < ScreenSizes.Mobile.width) {
       if (screenSize.width / screenSize.height - screenSize.height * 0.3 ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -552,9 +553,18 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                     url:
-                        "assets/videos/vehicles/Product_loops/Inverter_Loop.m4v",
+                        "assets/videos/vehicles/Product_loops/Inverter_Loop.mp4",
                     back:
-                        "assets/videos/vehicles/Product_transition/Car_To_Inverter.m4v",
+                        "assets/videos/vehicles/Product_transition/Car_To_Inverter.mp4",
+                    topic: TextsConstants.sportsCarTexts["subTopicsInside"][0]
+                        ["topic"],
+                    subTopic: TextsConstants.sportsCarTexts["subTopicsInside"]
+                        [0]["subTopic"],
+                    descriptioTexts:
+                        TextsConstants.sportsCarTexts["subTopicsInside"][0]
+                            ["descriptioTexts"],
+                    blocks: TextsConstants.sportsCarTexts["subTopicsInside"][0]
+                        ["blocks"],
                   ));
             }
           }
@@ -592,9 +602,18 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                     url:
-                        "assets/videos/vehicles/Product_loops/HDMotor_Loop.m4v",
+                        "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
                     back:
-                        "assets/videos/vehicles/Product_transition/Car_To_HDMotor.m4v",
+                        "assets/videos/vehicles/Product_transition/Car_To_HDMotor.mp4",
+                    topic: TextsConstants.sportsCarTexts["subTopicsInside"][1]
+                        ["topic"],
+                    subTopic: TextsConstants.sportsCarTexts["subTopicsInside"]
+                        [1]["subTopic"],
+                    descriptioTexts:
+                        TextsConstants.sportsCarTexts["subTopicsInside"][1]
+                            ["descriptioTexts"],
+                    blocks: TextsConstants.sportsCarTexts["subTopicsInside"][1]
+                        ["blocks"],
                   ));
             }
           }
@@ -610,8 +629,12 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
       child: Container(
         alignment: Alignment.topRight,
         height:
-            screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
-        width: screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
+            screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
+        width: screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
         child: GestureDetector(
           onTap: () {
             setShow();
@@ -640,10 +663,10 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
           child: Container(
             height: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             width: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(homeImage),
@@ -659,8 +682,8 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
   Widget transition1() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.536,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.325,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.46,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.57,
         child: Stack(
           children: [
             InkWell(
@@ -689,9 +712,19 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/Inverter_Loop.m4v",
+                                "assets/videos/vehicles/Product_loops/Inverter_Loop.mp4",
                             back:
-                                "assets/videos/vehicles/Product_transition/Car_To_Inverter.m4v",
+                                "assets/videos/vehicles/Product_transition/Car_To_Inverter.mp4",
+                            topic: TextsConstants
+                                .sportsCarTexts["subTopicsInside"][0]["topic"],
+                            subTopic:
+                                TextsConstants.sportsCarTexts["subTopicsInside"]
+                                    [0]["subTopic"],
+                            descriptioTexts:
+                                TextsConstants.sportsCarTexts["subTopicsInside"]
+                                    [0]["descriptioTexts"],
+                            blocks: TextsConstants
+                                .sportsCarTexts["subTopicsInside"][0]["blocks"],
                           ));
                     }
                   }
@@ -710,8 +743,8 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
   Widget transition2() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-        left: Utils.getVideoScreenWidth(screenSize) * 0.436,
-        top: Utils.getVideoScreenHeight(screenSize) * 0.125,
+        left: Utils.getVideoScreenWidth(screenSize) * 0.68,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.698,
         child: Stack(
           children: [
             InkWell(
@@ -740,9 +773,19 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/HDMotor_Loop.m4v",
+                                "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
                             back:
-                                "assets/videos/vehicles/Product_transition/Car_To_HDMotor.m4v",
+                                "assets/videos/vehicles/Product_transition/Car_To_HDMotor.mp4",
+                            topic: TextsConstants
+                                .sportsCarTexts["subTopicsInside"][1]["topic"],
+                            subTopic:
+                                TextsConstants.sportsCarTexts["subTopicsInside"]
+                                    [1]["subTopic"],
+                            descriptioTexts:
+                                TextsConstants.sportsCarTexts["subTopicsInside"]
+                                    [1]["descriptioTexts"],
+                            blocks: TextsConstants
+                                .sportsCarTexts["subTopicsInside"][1]["blocks"],
                           ));
                     }
                   }

@@ -3,12 +3,14 @@ import 'package:interactive_map/constants/constants.dart';
 import 'package:get/get.dart';
 import 'package:interactive_map/controller/controller.dart';
 import 'package:interactive_map/screens/main_buildings/bank.dart';
+import 'package:interactive_map/screens/main_buildings/dairy_barns.dart';
 import 'package:interactive_map/screens/main_buildings/datacentre.dart';
 import 'package:interactive_map/screens/main_buildings/fastfood.dart';
 import 'package:interactive_map/screens/main_buildings/groceryshop.dart';
 import 'package:interactive_map/screens/main_buildings/retail.dart';
 import 'package:interactive_map/screens/main_buildings/school.dart';
 import 'package:interactive_map/screens/main_buildings/warehouse.dart';
+import 'package:interactive_map/screens/vechicles/vechicles_home.dart';
 import 'package:interactive_map/utills/utils.dart';
 import 'package:interactive_map/widgets/custom_button_label_mobile.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
@@ -46,13 +48,17 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
   bool _groceryShopVideoPlaying = false;
   late VideoPlayerController _fastFoodVideoController;
   bool _fastFoodVideoPlaying = false;
+  late VideoPlayerController _dairyBarnsVideoController;
+  bool _dairyBarnsVideoPlaying = false;
+
+  late VideoPlayerController _vehicleTransitionVideoController;
+  bool _vehicleTransitionVideoPlaying = false;
 
   bool _isPlaying = false;
   int index = 0;
   bool show = false;
 
-  final String timerVideoUrl =
-      'assets/videos/buildings/Buildings_menu_loop.mp4';
+  final String timerVideoUrl = 'assets/videos/buildings/Buildings_Main.mp4';
 
   final String bankVideoUrl = 'assets/videos/buildings/bank.mp4';
   final String dataCentreVideoUrl = 'assets/videos/buildings/datacentre.mp4';
@@ -61,10 +67,14 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
   final String warehouseVideoUrl = 'assets/videos/buildings/warehouse.mp4';
   final String groceryShopVideoUrl = 'assets/videos/buildings/groceryshop.mp4';
   final String fastFoodVideoUrl = 'assets/videos/buildings/fastfood.mp4';
+  final String dairyBarnsVideoUrl = 'assets/videos/buildings/barn.mp4';
 
   final String buildingImage = 'assets/tempory images/Buildings_menu_still.png';
   final String qrBackgroundImage =
       'assets/tempory images/Buildings_menu_QR.png';
+
+  final String buildingTransitionVideoUrl =
+      'assets/videos/Buildings_To_Vehicles.mp4';
 
   bool timerOFF = false;
 
@@ -105,11 +115,19 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
     await _timerVideoController.initialize();
     setState(() {
       _timerVideoController.setVolume(0);
-      _timerVideoController.play();
+      _timerVideoController.pause();
       _timerVideoController.setLooping(true);
       setShow();
     });
 
+    _vehicleTransitionVideoController =
+        VideoPlayerController.asset(buildingTransitionVideoUrl)
+          ..initialize().then((_) => {
+                setState(() {
+                  _vehicleTransitionVideoController.setVolume(0);
+                  _vehicleTransitionVideoController.setLooping(false);
+                })
+              });
     _bankVideoController = VideoPlayerController.asset(bankVideoUrl)
       ..initialize().then((_) => {
             setState(() {
@@ -160,9 +178,15 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
               _fastFoodVideoController.setLooping(false);
             })
           });
-
-    await Future.delayed(const Duration(seconds: 2));
-
+    _dairyBarnsVideoController = VideoPlayerController.asset(dairyBarnsVideoUrl)
+      ..initialize().then((_) => {
+            setState(() {
+              _dairyBarnsVideoController.setVolume(0);
+              _dairyBarnsVideoController.setLooping(false);
+            })
+          });
+    //await Future.delayed(const Duration(seconds: 2));
+    _timerVideoController.play();
     setState(() {
       loading = false;
     });
@@ -178,6 +202,9 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
     _warehouseVideoController.dispose();
     _groceryShopVideoController.dispose();
     _fastFoodVideoController.dispose();
+    _dairyBarnsVideoController.dispose();
+
+    _vehicleTransitionVideoController.dispose();
 
     super.dispose();
   }
@@ -216,7 +243,8 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
       Get.find<Controller>().verticalOffset.value = offsetVer;
     }
 
-    if (screenSize.height < 500 && screenSize.width > 500) {
+    if (screenSize.height < ScreenSizes.Mobile.height &&
+        screenSize.width > ScreenSizes.Mobile.width) {
       if (screenSize.width - screenSize.width * 0.3 / screenSize.height ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -261,6 +289,16 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                           height: Utils.getVideoScreenHeight(screenSizeMobile1),
                           child: Stack(
                             children: [
+                              _vehicleTransitionVideoPlaying
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile1),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile1),
+                                      child: VideoPlayer(
+                                          _vehicleTransitionVideoController),
+                                    )
+                                  : Container(),
                               _bankVideoPlaying
                                   ? SizedBox(
                                       width: Utils.getVideoScreenWidth(
@@ -328,6 +366,16 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                                           screenSizeMobile1),
                                       child:
                                           VideoPlayer(_fastFoodVideoController),
+                                    )
+                                  : Container(),
+                              _dairyBarnsVideoPlaying
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile1),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile1),
+                                      child: VideoPlayer(
+                                          _dairyBarnsVideoController),
                                     )
                                   : Container(),
                             ],
@@ -458,6 +506,15 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                                                 offsetVer: offsetVer,
                                               ));
                                           break;
+                                        // case Pages.dairyBarns:
+                                        //   customPushReplacement(
+                                        //       context,
+                                        //       DairyBarnsVideo(
+                                        //         from: Pages.buildings,
+                                        //         offsetHor: offsetHor,
+                                        //         offsetVer: offsetVer,
+                                        //       ));
+                                        //   break;
                                         default:
                                       }
                                       setState(() {
@@ -509,6 +566,10 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                               ? Container()
                               : fastFoodMobile(
                                   screenSize.width - screenSize.width * 0.3),
+                          show
+                              ? Container()
+                              : dairyBarnsMobile(
+                                  screenSize.width - screenSize.width * 0.3),
                         ],
                       ),
                     ),
@@ -519,7 +580,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
           ],
         ),
       );
-    } else if (screenSize.width < 500) {
+    } else if (screenSize.width < ScreenSizes.Mobile.width) {
       if (screenSize.width / screenSize.height - screenSize.height * 0.3 ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
@@ -565,6 +626,16 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                           height: Utils.getVideoScreenHeight(screenSizeMobile2),
                           child: Stack(
                             children: [
+                              _vehicleTransitionVideoPlaying
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile2),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile2),
+                                      child: VideoPlayer(
+                                          _vehicleTransitionVideoController),
+                                    )
+                                  : Container(),
                               _bankVideoPlaying
                                   ? SizedBox(
                                       width: Utils.getVideoScreenWidth(
@@ -632,6 +703,16 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                                           screenSizeMobile2),
                                       child:
                                           VideoPlayer(_fastFoodVideoController),
+                                    )
+                                  : Container(),
+                              _dairyBarnsVideoPlaying
+                                  ? SizedBox(
+                                      width: Utils.getVideoScreenWidth(
+                                          screenSizeMobile2),
+                                      height: Utils.getVideoScreenHeight(
+                                          screenSizeMobile2),
+                                      child: VideoPlayer(
+                                          _dairyBarnsVideoController),
                                     )
                                   : Container(),
                             ],
@@ -761,6 +842,15 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                                                 offsetVer: offsetVer,
                                               ));
                                           break;
+                                        // case Pages.dairyBarns:
+                                        //   customPushReplacement(
+                                        //       context,
+                                        //       DairyBarnsVideo(
+                                        //         from: Pages.buildings,
+                                        //         offsetHor: offsetHor,
+                                        //         offsetVer: offsetVer,
+                                        //       ));
+                                        //   break;
                                         default:
                                       }
                                       setState(() {
@@ -797,6 +887,9 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                               ? Container()
                               : groceryShopMobile(screenSize.width),
                           show ? Container() : fastFoodMobile(screenSize.width),
+                          show
+                              ? Container()
+                              : dairyBarnsMobile(screenSize.width),
                         ],
                       ),
                     ),
@@ -847,11 +940,20 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                   show ? Container() : warehouse(),
                   show ? Container() : groceryShop(),
                   show ? Container() : fastFood(),
+                  show ? Container() : dairyBarns(),
                   SizedBox(
                     width: Utils.getVideoScreenWidth(screenSize),
                     height: Utils.getVideoScreenHeight(screenSize),
                     child: Stack(
                       children: [
+                        _vehicleTransitionVideoPlaying
+                            ? SizedBox(
+                                width: Utils.getVideoScreenWidth(screenSize),
+                                height: Utils.getVideoScreenHeight(screenSize),
+                                child: VideoPlayer(
+                                    _vehicleTransitionVideoController),
+                              )
+                            : Container(),
                         _bankVideoPlaying
                             ? SizedBox(
                                 width: Utils.getVideoScreenWidth(screenSize),
@@ -899,6 +1001,13 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                                 width: Utils.getVideoScreenWidth(screenSize),
                                 height: Utils.getVideoScreenHeight(screenSize),
                                 child: VideoPlayer(_fastFoodVideoController),
+                              )
+                            : Container(),
+                        _dairyBarnsVideoPlaying
+                            ? SizedBox(
+                                width: Utils.getVideoScreenWidth(screenSize),
+                                height: Utils.getVideoScreenHeight(screenSize),
+                                child: VideoPlayer(_dairyBarnsVideoController),
                               )
                             : Container(),
                       ],
@@ -1091,7 +1200,26 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                   ),
                 )
               : Container(),
-          showNext && screenSize.width >= 500 && screenSize.height >= 500
+          // showTextAreaSmall && _dairyBarnsVideoPlaying
+          //     ? Padding(
+          //         padding: EdgeInsets.only(
+          //             bottom: Utils.getBottomPadding(screenSize, 200)),
+          //         child: Container(
+          //           alignment: Alignment.bottomLeft,
+          //           child: TextAreaSmallWithClip(
+          //             width: screenSize.width * 0.35,
+          //             screenSize: screenSize,
+          //             prefixText: TextsConstants
+          //                 .dairyBarnsTexts["TextAreaSmallWithClip"][0],
+          //             description: TextsConstants
+          //                 .dairyBarnsTexts["TextAreaSmallWithClip"][1],
+          //           ),
+          //         ),
+          //       )
+          //     : Container(),
+          showNext &&
+                  screenSize.width >= ScreenSizes.Mobile.width &&
+                  screenSize.height >= ScreenSizes.Mobile.height
               ? Positioned(
                   right: 0,
                   bottom: Utils.getBottomPadding(screenSize, 200),
@@ -1163,6 +1291,15 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                                   offsetVer: offsetVer,
                                 ));
                             break;
+                          // case Pages.dairyBarns:
+                          //   customPushReplacement(
+                          //       context,
+                          //       DairyBarnsVideo(
+                          //         from: Pages.buildings,
+                          //         offsetHor: offsetHor,
+                          //         offsetVer: offsetVer,
+                          //       ));
+                          //   break;
                           default:
                         }
                         setState(() {
@@ -1199,46 +1336,74 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
       child: Container(
         alignment: Alignment.topRight,
         height:
-            screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
-        width: screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
+            screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
+        width: screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
         child: GestureDetector(
           onTap: () async {
-            if (showQR) {
-              setState(() {
-                width = 0;
-              });
+            setShow();
+            setState(() {
+              timerOFF = true;
+            });
 
-              await Future.delayed(const Duration(milliseconds: 200));
-              setState(() {
-                showQR = false;
-              });
-              setShow();
-            } else {
-              setShow();
-              setState(() {
-                width = 0;
-                showQR = true;
-              });
+            _timerVideoController.pause();
 
-              await Future.delayed(const Duration(milliseconds: 200));
+            setState(() {
+              _vehicleTransitionVideoPlaying = true;
+            });
 
-              setState(() {
-                width = screenSize.width * 0.2;
-              });
-            }
+            setState(() {
+              width = 0;
+            });
+
+            _vehicleTransitionVideoController.play();
+
+            await Future.delayed(const Duration(milliseconds: 200));
+
+            setState(() {
+              width = screenSize.width * 0.25;
+            });
+            _vehicleTransitionVideoController.addListener(() {
+              final bool isPlaying =
+                  _vehicleTransitionVideoController.value.isPlaying;
+              print(isPlaying);
+              if (isPlaying != _isPlaying) {
+                setState(() {
+                  _isPlaying = isPlaying;
+                  setIndex(++index);
+                });
+                if (index > 1) {
+                  _vehicleTransitionVideoController.removeListener(() {});
+
+                  // setState(() {
+                  //   showNext = true;
+                  //   nextPage = Pages.sportscar;
+                  // });
+                  customPushReplacement(
+                      context,
+                      VechiclesHomeVideo(
+                        offsetHor: offsetHor,
+                        offsetVer: offsetVer,
+                      ));
+                }
+              }
+            });
           },
           child: Container(
             height: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             width: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: showQR
                     ? const AssetImage(homeImage)
-                    : const AssetImage(moreImage),
+                    : const AssetImage(vehiclesTransitionImage),
                 fit: BoxFit.cover,
               ),
             ),
@@ -2075,6 +2240,143 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                 showNext = true;
                 nextPage = Pages.fastfoods;
               });
+            }
+          }
+        });
+      },
+    );
+  }
+
+  Widget dairyBarns() {
+    var screenSize = MediaQuery.of(context).size;
+    return Positioned(
+        left: Utils.getVideoScreenWidth(screenSize) * 0.76,
+        top: Utils.getVideoScreenHeight(screenSize) * 0.38,
+        child: Stack(
+          children: [
+            InkWell(
+              onTap: () async {
+                setShow();
+                setState(() {
+                  timerOFF = true;
+                });
+
+                _timerVideoController.pause();
+
+                setState(() {
+                  _dairyBarnsVideoPlaying = true;
+                });
+
+                setState(() {
+                  width = 0;
+                });
+
+                _dairyBarnsVideoController.play();
+
+                // setState(() {
+                //   showTextAreaSmall = true;
+                // });
+
+                await Future.delayed(const Duration(milliseconds: 200));
+
+                setState(() {
+                  width = screenSize.width * 0.25;
+                });
+
+                _dairyBarnsVideoController.addListener(() {
+                  final bool isPlaying =
+                      _dairyBarnsVideoController.value.isPlaying;
+                  print(isPlaying);
+                  if (isPlaying != _isPlaying) {
+                    setState(() {
+                      _isPlaying = isPlaying;
+                      setIndex(++index);
+                    });
+                    if (index > 1) {
+                      _dairyBarnsVideoController.removeListener(() {});
+
+                      setState(() {
+                        //showNext = true;
+                        nextPage = Pages.dairyBarns;
+                      });
+
+                      customPushReplacement(
+                          context,
+                          DairyBarnsVideo(
+                            from: Pages.buildings,
+                            offsetHor: offsetHor,
+                            offsetVer: offsetVer,
+                          ));
+                    }
+                  }
+                });
+              },
+              child: CustomButtonLabelWithClip(
+                screenSize: screenSize,
+                text: TextsConstants.dairyBarnsTexts["topic"],
+                type: 0,
+              ),
+            ),
+          ],
+        ));
+  }
+
+  Widget dairyBarnsMobile(width) {
+    var screenSize = MediaQuery.of(context).size;
+    return CustomButtonLabelMobile(
+      width: width,
+      title: TextsConstants.dairyBarnsTexts["topic"],
+      onPressed: () async {
+        setShow();
+        setState(() {
+          timerOFF = true;
+        });
+
+        _timerVideoController.pause();
+
+        setState(() {
+          _dairyBarnsVideoPlaying = true;
+        });
+
+        setState(() {
+          width = 0;
+        });
+
+        _dairyBarnsVideoController.play();
+
+        // setState(() {
+        //   showTextAreaSmall = true;
+        // });
+
+        await Future.delayed(const Duration(milliseconds: 200));
+
+        setState(() {
+          width = screenSize.width * 0.2;
+        });
+
+        _dairyBarnsVideoController.addListener(() {
+          final bool isPlaying = _dairyBarnsVideoController.value.isPlaying;
+          print(isPlaying);
+          if (isPlaying != _isPlaying) {
+            setState(() {
+              _isPlaying = isPlaying;
+              setIndex(++index);
+            });
+            if (index > 1) {
+              _dairyBarnsVideoController.removeListener(() {});
+
+              setState(() {
+                // showNext = true;
+                nextPage = Pages.dairyBarns;
+              });
+
+              customPushReplacement(
+                  context,
+                  DairyBarnsVideo(
+                    from: Pages.buildings,
+                    offsetHor: offsetHor,
+                    offsetVer: offsetVer,
+                  ));
             }
           }
         });

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/screens/main_buildings/bank.dart';
+import 'package:interactive_map/screens/main_buildings/dairy_barns.dart';
 import 'package:interactive_map/screens/main_buildings/datacentre.dart';
 import 'package:interactive_map/screens/main_buildings/fastfood.dart';
 import 'package:interactive_map/screens/main_buildings/groceryshop.dart';
@@ -92,6 +93,12 @@ class _MotorState extends State<Motor> {
         offsetHor: offsetHor,
         offsetVer: offsetVer,
       );
+    } else if (from == Pages.dairyBarns) {
+      return DairyBarnsVideo(
+        from: current,
+        offsetHor: offsetHor,
+        offsetVer: offsetVer,
+      );
     }
   }
 
@@ -101,7 +108,7 @@ class _MotorState extends State<Motor> {
     nextIndex = false;
     show = false;
 
-    if (widget.from == Pages.dataCenter) {
+    if (widget.from == Pages.dataCenter || widget.from == Pages.dairyBarns) {
       url = 'assets/videos/buildings/TX_MAIN.mp4';
     } else {
       url = 'assets/videos/buildings/motor_MAIN.mp4';
@@ -115,7 +122,7 @@ class _MotorState extends State<Motor> {
             })
           });
     String back;
-    if (widget.from == Pages.dataCenter) {
+    if (widget.from == Pages.dataCenter || widget.from == Pages.dairyBarns) {
       back = 'assets/videos/buildings/datacentre_MOTOR.mp4';
     } else {
       back = 'assets/videos/buildings/school_MOTOR.mp4';
@@ -176,12 +183,13 @@ class _MotorState extends State<Motor> {
       Get.find<Controller>().verticalOffset.value = offsetVer;
     }
 
-    if (screenSize.height < 500 && screenSize.width > 500) {
-      if (screenSize.width - screenSize.width * 0.3 / screenSize.height ==
+    if (screenSize.height < ScreenSizes.Mobile.height &&
+        screenSize.width > ScreenSizes.Mobile.width) {
+      if (screenSize.width - screenSize.width * 0.1 / screenSize.height ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
         h = false;
-      } else if (screenSize.width - screenSize.width * 0.3 / screenSize.height <
+      } else if (screenSize.width - screenSize.width * 0.1 / screenSize.height <
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
         h = true;
@@ -190,7 +198,7 @@ class _MotorState extends State<Motor> {
         h = false;
       }
       var screenSizeMobile1 =
-          Size(screenSize.width - screenSize.width * 0.3, screenSize.height);
+          Size(screenSize.width - screenSize.width * 0.1, screenSize.height);
       return Scaffold(
         backgroundColor: Colors.black.withOpacity(0.5),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -198,7 +206,7 @@ class _MotorState extends State<Motor> {
         body: Row(
           children: [
             Container(
-              width: screenSize.width - screenSize.width * 0.3,
+              width: screenSize.width - screenSize.width * 0.1,
               height: screenSize.height,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -244,7 +252,7 @@ class _MotorState extends State<Motor> {
             Expanded(
               child: Container(
                 height: screenSize.height,
-                width: screenSize.width - screenSize.width * 0.3,
+                width: screenSize.width - screenSize.width * 0.1,
                 alignment: Alignment.topRight,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
@@ -252,7 +260,7 @@ class _MotorState extends State<Motor> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 0),
                     child: Container(
-                      width: screenSize.width - screenSize.width * 0.3,
+                      width: screenSize.width - screenSize.width * 0.1,
                       child: Column(
                         children: [
                           show ? nextButtonMobile() : Container(),
@@ -266,13 +274,13 @@ class _MotorState extends State<Motor> {
           ],
         ),
       );
-    } else if (screenSize.width < 500) {
-      if (screenSize.width / screenSize.height - screenSize.height * 0.3 ==
+    } else if (screenSize.width < ScreenSizes.Mobile.width) {
+      if (screenSize.width / screenSize.height - screenSize.height * 0.1 ==
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
         h = false;
       } else if (screenSize.width / screenSize.height -
-              screenSize.height * 0.3 <
+              screenSize.height * 0.1 <
           VideoAspectRatio.width / VideoAspectRatio.height) {
         v = false;
         h = true;
@@ -281,7 +289,7 @@ class _MotorState extends State<Motor> {
         h = false;
       }
       var screenSizeMobile2 =
-          Size(screenSize.width, screenSize.height - screenSize.height * 0.3);
+          Size(screenSize.width, screenSize.height - screenSize.height * 0.1);
       return Scaffold(
         backgroundColor: Colors.black.withOpacity(0.5),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -290,7 +298,7 @@ class _MotorState extends State<Motor> {
           children: [
             Container(
               width: screenSize.width,
-              height: screenSize.height - screenSize.height * 0.3,
+              height: screenSize.height - screenSize.height * 0.1,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 controller: _scrollControllerHrizontal,
@@ -334,7 +342,7 @@ class _MotorState extends State<Motor> {
             ),
             Expanded(
               child: Container(
-                height: screenSize.height * 0.3,
+                height: screenSize.height * 0.1,
                 width: screenSize.width,
                 alignment: Alignment.topCenter,
                 child: SingleChildScrollView(
@@ -421,7 +429,9 @@ class _MotorState extends State<Motor> {
         fit: StackFit.expand,
         children: [
           FullScreenButton(),
-          show && screenSize.width > 500 && screenSize.height > 500
+          show &&
+                  screenSize.width > ScreenSizes.Mobile.width &&
+                  screenSize.height > ScreenSizes.Mobile.height
               ? nextButton()
               : Container(),
           show ? menuButton() : Container(),
@@ -437,7 +447,8 @@ class _MotorState extends State<Motor> {
                     Padding(
                       padding: EdgeInsets.only(left: 25),
                       child: CustomTopic(
-                        topic: widget.from == Pages.dataCenter
+                        topic: widget.from == Pages.dataCenter ||
+                                widget.from == Pages.dairyBarns
                             ? "Smart Motor System - TX Series"
                             : "Smart Motor System - V Series",
                         subTopic:
@@ -458,9 +469,12 @@ class _MotorState extends State<Motor> {
                         ? TextAreaWithClip(
                             screenSize: screenSize,
                             texts: const [
-                              "Optimal efficiency switched reluctance motor",
-                              "Standerd NEMA dimensions",
-                              "Available in 1-10 HP",
+                              [
+                                "TEXT",
+                                "Optimal efficiency switched reluctance motor"
+                              ],
+                              ["TEXT", "Standerd NEMA dimensions"],
+                              ["TEXT", "Available in 1-10 HP"],
                             ],
                             topic: "",
                             description: "",
@@ -470,10 +484,16 @@ class _MotorState extends State<Motor> {
                     TextAreaWithClip(
                       screenSize: screenSize,
                       texts: const [
-                        "Slim design for space efficiency",
-                        "IE5-level motor efficiency",
-                        "Ultra-reliable performance across all speeds",
-                        "Provides diagnostics like torque, speed, and HP"
+                              ["TEXT", "Slim design for space efficiency"],
+                              ["TEXT", "IE5-level motor efficiency"],
+                              [
+                                "TEXT",
+                                "Ultra-reliable performance across all speeds"
+                              ],
+                              [
+                                "TEXT",
+                                "Provides diagnostics like torque, speed, and HP"
+                              ],
                       ],
                       topic: "",
                       description: "",
@@ -484,27 +504,39 @@ class _MotorState extends State<Motor> {
                           45 * (screenSize.height / VideoAspectRatio.height),
                     ),
                     nextIndex
-                        ? screenSize.width < 500 || screenSize.height < 500
+                        ? screenSize.width < ScreenSizes.Mobile.width ||
+                                screenSize.height < ScreenSizes.Mobile.height
                             ? Container()
                             : Container(
                                 width: screenSize.width *
-                                    0.25 *
+                                    0.38 *
                                     Utils.getMultiplier(screenSize.width),
-                                child: widget.from == Pages.dataCenter
-                                    ? Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                child: widget.from == Pages.dataCenter ||
+                                        widget.from == Pages.dairyBarns
+                                    ? Row(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Container(
-                                            width: screenSize.width *
-                                                0.25 *
-                                                Utils.getMultiplier(
-                                                    screenSize.width),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                            width: screenSize.width >= 2000
+                                                ? 312.5 * 2 + 35
+                                                : screenSize.width *
+                                                        0.15 *
+                                                        (screenSize.width /
+                                                            VideoAspectRatio
+                                                                .width) *
+                                                        Utils
+                                                            .getCustomTextContainerMultiplier(
+                                                                screenSize
+                                                                    .width) *
+                                                        2 +
+                                                    35,
+                                            child: Wrap(
+                                              runSpacing: 15,
+                                              spacing: 25,
+                                              alignment: WrapAlignment.center,
                                               children: [
                                                 CustomTextContainer(
                                                   screenSize: screenSize,
@@ -512,35 +544,12 @@ class _MotorState extends State<Motor> {
                                                   description:
                                                       "PEAK MOTOR EFFICIENCY",
                                                 ),
-                                                SizedBox(
-                                                  width: 25 *
-                                                      (screenSize.width /
-                                                          VideoAspectRatio
-                                                              .width),
-                                                ),
                                                 CustomTextContainer(
                                                   screenSize: screenSize,
                                                   topic: "0%",
                                                   description:
                                                       "RARE EARTH METALS",
                                                 ),
-                                              ],
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 25 *
-                                                (screenSize.height /
-                                                    VideoAspectRatio.height),
-                                          ),
-                                          Container(
-                                            width: screenSize.width *
-                                                0.25 *
-                                                Utils.getMultiplier(
-                                                    screenSize.width),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
                                                 CustomTextContainer(
                                                   screenSize: screenSize,
                                                   topic: "50%",
@@ -550,32 +559,36 @@ class _MotorState extends State<Motor> {
                                             ),
                                           ),
                                         ],
-                                      )
-                                    : Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                          )
+                                    : Row(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Container(
-                                            width: screenSize.width *
-                                                0.25 *
-                                                Utils.getMultiplier(
-                                                    screenSize.width),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                            width: screenSize.width >= 2000
+                                                ? 312.5 * 2 + 35
+                                                : screenSize.width *
+                                                        0.15 *
+                                                        (screenSize.width /
+                                                            VideoAspectRatio
+                                                                .width) *
+                                                        Utils
+                                                            .getCustomTextContainerMultiplier(
+                                                                screenSize
+                                                                    .width) *
+                                                        2 +
+                                                    35,
+                                            child: Wrap(
+                                              runSpacing: 15,
+                                              spacing: 25,
+                                              alignment: WrapAlignment.center,
                                               children: [
                                                 CustomTextContainer(
                                                   screenSize: screenSize,
                                                   topic: "IE5+",
                                                   description: "ACROSS MOST HP",
-                                                ),
-                                                SizedBox(
-                                                  width: 25 *
-                                                      (screenSize.width /
-                                                          VideoAspectRatio
-                                                              .width),
                                                 ),
                                                 CustomTextContainer(
                                                   screenSize: screenSize,
@@ -583,23 +596,6 @@ class _MotorState extends State<Motor> {
                                                   description:
                                                       "ETRA ENERGY SAVINGS OVER VFD",
                                                 ),
-                                              ],
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 25 *
-                                                (screenSize.height /
-                                                    VideoAspectRatio.height),
-                                          ),
-                                          Container(
-                                            width: screenSize.width *
-                                                0.25 *
-                                                Utils.getMultiplier(
-                                                    screenSize.width),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
                                                 CustomTextContainer(
                                                   screenSize: screenSize,
                                                   topic: "92%",
@@ -610,11 +606,13 @@ class _MotorState extends State<Motor> {
                                             ),
                                           ),
                                         ],
-                                      ),
-                              )
-                        : screenSize.width < 500 || screenSize.height < 500
+                                          )
+                                )
+                        : screenSize.width < ScreenSizes.Mobile.width ||
+                                screenSize.height < ScreenSizes.Mobile.height
                             ? Container()
-                            : widget.from == Pages.dataCenter
+                            : widget.from == Pages.dataCenter ||
+                                    widget.from == Pages.dairyBarns
                                 ? Container(
                                     width: screenSize.width *
                                         0.35 *
@@ -774,7 +772,8 @@ class _MotorState extends State<Motor> {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: GestureDetector(
         onTap: () {
-          if (screenSize.width < 500 || screenSize.height < 500) {
+          if (screenSize.width < ScreenSizes.Mobile.width ||
+              screenSize.height < ScreenSizes.Mobile.height) {
             setShow();
             _controller.pause();
             _controller.removeListener(() {});
@@ -813,12 +812,18 @@ class _MotorState extends State<Motor> {
   Widget menuButton() {
     var screenSize = MediaQuery.of(context).size;
     return Positioned(
-      right: Utils.getRightPadding(screenSize, 0),
+      right: screenSize.height < ScreenSizes.Mobile.height
+          ? screenSize.width * 0.1
+          : 0,
       child: Container(
-        alignment: Alignment.topRight,
+        alignment: Alignment.center,
         height:
-            screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
-        width: screenSize.width * 0.050 * Utils.getMultiplier(screenSize.width),
+            screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
+        width: screenSize.width *
+            0.050 *
+            Utils.getTopRightButtonMultiplier(screenSize.width),
         child: GestureDetector(
           onTap: () {
             _controller.pause();
@@ -841,10 +846,10 @@ class _MotorState extends State<Motor> {
           child: Container(
             height: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             width: screenSize.width *
                 0.050 *
-                Utils.getMultiplier(screenSize.width),
+                Utils.getTopRightButtonMultiplier(screenSize.width),
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(homeImage),
