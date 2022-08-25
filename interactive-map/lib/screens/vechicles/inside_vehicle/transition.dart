@@ -9,6 +9,7 @@ import 'package:interactive_map/screens/vechicles/train.dart';
 import 'package:interactive_map/screens/vechicles/truck.dart';
 import 'package:interactive_map/widgets/custom_text_container.dart';
 import 'package:interactive_map/widgets/custom_topic.dart';
+import 'package:interactive_map/widgets/qr_dialog_box.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 import 'package:interactive_map/utills/utils.dart';
@@ -28,6 +29,7 @@ class TransitionPage extends StatefulWidget {
     required this.subTopic,
     required this.descriptioTexts,
     required this.blocks,
+    this.hyperlink = "",
   })
       : super(key: key);
   final offsetHor;
@@ -39,6 +41,7 @@ class TransitionPage extends StatefulWidget {
   final subTopic;
   final descriptioTexts;
   final blocks;
+  final hyperlink;
   @override
   _TransitionPageState createState() => _TransitionPageState();
 }
@@ -516,231 +519,16 @@ class _TransitionPageState extends State<TransitionPage> {
                         ],
                       ),
                     ),
-                    // screenSize.width < ScreenSizes.Mobile.width || screenSize.height < ScreenSizes.Mobile.height
-                    //     ? Container()
-                    //     : Container(
-                    //         width: screenSize.width *
-                    //             0.25 *
-                    //             Utils.getMultiplier(screenSize.width),
-                    //         child: widget.from == Pages.avgNarm
-                    //             ? Column(
-                    //                 mainAxisAlignment: MainAxisAlignment.start,
-                    //                 crossAxisAlignment:
-                    //                     CrossAxisAlignment.center,
-                    //                 children: [
-                    //                   Container(
-                    //                     width: screenSize.width *
-                    //                         0.25 *
-                    //                         Utils.getMultiplier(
-                    //                             screenSize.width),
-                    //                     child: Row(
-                    //                       mainAxisAlignment:
-                    //                           MainAxisAlignment.center,
-                    //                       children: [
-                    //                         CustomTextContainer(
-                    //                           screenSize: screenSize,
-                    //                           topic: blocks["topic"],
-                    //                           description:
-                    //                               blocks["description"],
-                    //                         ),
-                    //                         SizedBox(
-                    //                           width: 25 *
-                    //                               (screenSize.width /
-                    //                                   VideoAspectRatio.width),
-                    //                         ),
-                    //                         CustomTextContainer(
-                    //                           screenSize: screenSize,
-                    //                           topic: blocks["topic"],
-                    //                           description:
-                    //                               blocks["description"],
-                    //                         ),
-                    //                       ],
-                    //                     ),
-                    //                   ),
-                    //                   SizedBox(
-                    //                     height: 25 *
-                    //                         (screenSize.height /
-                    //                             VideoAspectRatio.height),
-                    //                   ),
-                    //                   Container(
-                    //                     width: screenSize.width *
-                    //                         0.25 *
-                    //                         Utils.getMultiplier(
-                    //                             screenSize.width),
-                    //                     child: Row(
-                    //                       mainAxisAlignment:
-                    //                           MainAxisAlignment.center,
-                    //                       children: [
-                    //                         CustomTextContainer(
-                    //                           screenSize: screenSize,
-                    //                           topic: blocks["topic"],
-                    //                           description:
-                    //                               blocks["description"],
-                    //                         ),
-                    //                       ],
-                    //                     ),
-                    //                   ),
-                    //                 ],
-                    //               )
-                    //             : Column(
-                    //                 mainAxisAlignment: MainAxisAlignment.start,
-                    //                 crossAxisAlignment:
-                    //                     CrossAxisAlignment.center,
-                    //                 children: [
-                    //                   Container(
-                    //                     width: screenSize.width *
-                    //                         0.25 *
-                    //                         Utils.getMultiplier(
-                    //                             screenSize.width),
-                    //                     child: Row(
-                    //                       mainAxisAlignment:
-                    //                           MainAxisAlignment.center,
-                    //                       children: [
-                    //                         CustomTextContainer(
-                    //                           screenSize: screenSize,
-                    //                           topic: "IE5+",
-                    //                           description: "ACROSS MOST HP",
-                    //                         ),
-                    //                         SizedBox(
-                    //                           width: 25 *
-                    //                               (screenSize.width /
-                    //                                   VideoAspectRatio.width),
-                    //                         ),
-                    //                         CustomTextContainer(
-                    //                           screenSize: screenSize,
-                    //                           topic: "Up to 13%",
-                    //                           description:
-                    //                               "ETRA ENERGY SAVINGS OVER VFD",
-                    //                         ),
-                    //                       ],
-                    //                     ),
-                    //                   ),
-                    //                   SizedBox(
-                    //                     height: 25 *
-                    //                         (screenSize.height /
-                    //                             VideoAspectRatio.height),
-                    //                   ),
-                    //                   Container(
-                    //                     width: screenSize.width *
-                    //                         0.25 *
-                    //                         Utils.getMultiplier(
-                    //                             screenSize.width),
-                    //                     child: Row(
-                    //                       mainAxisAlignment:
-                    //                           MainAxisAlignment.center,
-                    //                       children: [
-                    //                         CustomTextContainer(
-                    //                           screenSize: screenSize,
-                    //                           topic: "92%",
-                    //                           description:
-                    //                               "PEAK EFFICIENCY AT 3 HP",
-                    //                         ),
-                    //                       ],
-                    //                     ),
-                    //                   ),
-                    //                 ],
-                    //               ),
-                    //       ),
-                    //  screenSize.width < ScreenSizes.Mobile.width || screenSize.height < ScreenSizes.Mobile.height
-                    //     ? Container()
-                    //     : widget.from == Pages.dataCenter
-                    //         ? Container(
-                    //             width: screenSize.width *
-                    //                 0.35 *
-                    //                 Utils.getMultiplier(screenSize.width),
-                    //             child: Row(
-                    //               children: [
-                    //                 Container(
-                    //                   width: screenSize.width *
-                    //                       0.13 *
-                    //                       Utils.getMultiplier(
-                    //                           screenSize.width),
-                    //                   height: screenSize.width *
-                    //                       0.15 *
-                    //                       Utils.getMultiplier(
-                    //                           screenSize.width),
-                    //                   decoration: const BoxDecoration(
-                    //                     image: DecorationImage(
-                    //                       image: AssetImage(
-                    //                           'assets/graphics/TX_front.png'),
-                    //                       fit: BoxFit.contain,
-                    //                     ),
-                    //                   ),
-                    //                 ),
-                    //                 Container(
-                    //                   width: screenSize.width *
-                    //                       0.13 *
-                    //                       Utils.getMultiplier(
-                    //                           screenSize.width),
-                    //                   height: screenSize.width *
-                    //                       0.15 *
-                    //                       Utils.getMultiplier(
-                    //                           screenSize.width),
-                    //                   padding: const EdgeInsets.all(1),
-                    //                   decoration: const BoxDecoration(
-                    //                     image: DecorationImage(
-                    //                       image: AssetImage(
-                    //                           'assets/graphics/TX_side.png'),
-                    //                       fit: BoxFit.contain,
-                    //                     ),
-                    //                   ),
-                    //                 ),
-                    //               ],
-                    //             ),
-                    //           )
-                    //         : Container(
-                    //             width: screenSize.width *
-                    //                 0.35 *
-                    //                 Utils.getMultiplier(screenSize.width),
-                    //             child: Stack(
-                    //               children: [
-                    //                 Container(
-                    //                   width: screenSize.width *
-                    //                       0.20 *
-                    //                       Utils.getMultiplier(
-                    //                           screenSize.width),
-                    //                   height: screenSize.width *
-                    //                       0.15 *
-                    //                       Utils.getMultiplier(
-                    //                           screenSize.width),
-                    //                   decoration: const BoxDecoration(
-                    //                     image: DecorationImage(
-                    //                       image: AssetImage(
-                    //                           'assets/graphics/router.png'),
-                    //                       fit: BoxFit.contain,
-                    //                     ),
-                    //                   ),
-                    //                 ),
-                    //                 Positioned(
-                    //                   left: screenSize.width *
-                    //                       0.1 *
-                    //                       Utils.getMultiplier(
-                    //                           screenSize.width),
-                    //                   child: Container(
-                    //                     width: screenSize.width *
-                    //                         0.15 *
-                    //                         Utils.getMultiplier(
-                    //                             screenSize.width),
-                    //                     height: screenSize.width *
-                    //                         0.1 *
-                    //                         Utils.getMultiplier(
-                    //                             screenSize.width),
-                    //                     padding: const EdgeInsets.all(1),
-                    //                     decoration: const BoxDecoration(
-                    //                       image: DecorationImage(
-                    //                         image: AssetImage(
-                    //                             'assets/graphics/Motor_controller.png'),
-                    //                         fit: BoxFit.contain,
-                    //                       ),
-                    //                     ),
-                    //                   ),
-                    //                 ),
-                    //               ],
-                    //             ),
-                    //           ),
                   ],
                 )
               : Container(),
+          Obx(
+            () => Get.find<Controller>().showQR.value
+                ? QRDialogBox(
+                    asset: widget.hyperlink,
+                  )
+                : Container(),
+          ),
         ],
       ),
     );

@@ -176,7 +176,8 @@ class TextsConstants {
         [
           "HYPERLINK",
           "Case Study Link",
-          "https://turntide.com/wp-content/uploads/2021/09/TT-Case-Study-Five-Guys_v04TL.pdf"
+          "https://turntide.com/wp-content/uploads/2021/09/TT-Case-Study-Five-Guys_v04TL.pdf",
+          "assets/graphics/QR.png"
         ],
       ],
       "topic": "Five Guys",
@@ -212,7 +213,8 @@ class TextsConstants {
         [
           "HYPERLINK",
           "Case Study Link",
-          "https://turntide.com/wp-content/uploads/2021/10/Case-Study-Fifth-Third-Bank_v07.pdf"
+          "https://turntide.com/wp-content/uploads/2021/10/Case-Study-Fifth-Third-Bank_v07.pdf",
+          "assets/graphics/QR.png"
         ],
       ],
       "topic": "Fifth Third",
@@ -250,7 +252,8 @@ class TextsConstants {
         [
           "HYPERLINK",
           "Case Study Link",
-          "https://turntide.com/wp-content/uploads/2022/08/Case-Study-Ivanhoe-Cambridge_v04.pdf"
+          "https://turntide.com/wp-content/uploads/2022/08/Case-Study-Ivanhoe-Cambridge_v04.pdf",
+          "assets/graphics/QR.png"
         ],
       ],
       "topic": "Wilko",
@@ -349,7 +352,8 @@ class TextsConstants {
         [
           "HYPERLINK",
           "Case Study Link",
-          "https://turntide.com/wp-content/uploads/2021/09/TT-Case-Study-Sprouts_v04TL.pdf"
+          "https://turntide.com/wp-content/uploads/2021/09/TT-Case-Study-Sprouts_v04TL.pdf",
+          "assets/graphics/QR.png"
         ],
       ],
       "topic": "Sprouts",
@@ -424,7 +428,8 @@ class TextsConstants {
           [
             "HYPERLINK",
             "Find out more...",
-            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Inverters.pdf"
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Inverters.pdf",
+            "assets/graphics/QR.png"
           ],
         ],
         "blocks": [
@@ -445,7 +450,8 @@ class TextsConstants {
           [
             "HYPERLINK",
             "Find out more...",
-            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Motors.pdf"
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Motors.pdf",
+            "assets/graphics/QR.png"
           ],
         ],
         "blocks": [
@@ -499,7 +505,8 @@ class TextsConstants {
           [
             "HYPERLINK",
             "Find out more...",
-            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Fans.pdf"
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Fans.pdf",
+            "assets/graphics/QR.png"
           ],
         ],
         "blocks": [
@@ -518,7 +525,8 @@ class TextsConstants {
           [
             "HYPERLINK",
             "Find out more...",
-            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Inverters.pdf"
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Inverters.pdf",
+            "assets/graphics/QR.png"
           ],
         ],
         "blocks": [
@@ -539,7 +547,8 @@ class TextsConstants {
           [
             "HYPERLINK",
             "Find out more...",
-            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Motors.pdf"
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Motors.pdf",
+            "assets/graphics/QR.png"
           ],
         ],
         "blocks": [
@@ -586,7 +595,8 @@ class TextsConstants {
           [
             "HYPERLINK",
             "Find out more...",
-            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Batteries.pdf"
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Batteries.pdf",
+            "assets/graphics/QR.png"
           ],
         ],
         "blocks": [
@@ -639,7 +649,8 @@ class TextsConstants {
           [
             "HYPERLINK",
             "Find out more...",
-            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Fans.pdf"
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Fans.pdf",
+            "assets/graphics/QR.png"
           ],
         ],
         "blocks": [
@@ -658,7 +669,8 @@ class TextsConstants {
           [
             "HYPERLINK",
             "Find out more...",
-            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Inverters.pdf"
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Inverters.pdf",
+            "assets/graphics/QR.png"
           ],
         ],
         "blocks": [
@@ -679,7 +691,8 @@ class TextsConstants {
           [
             "HYPERLINK",
             "Find out more...",
-            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Motors.pdf"
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Motors.pdf",
+            "assets/graphics/QR.png"
           ],
         ],
         "blocks": [
@@ -733,7 +746,8 @@ class TextsConstants {
           [
             "HYPERLINK",
             "Find out more...",
-            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Fans.pdf"
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Fans.pdf",
+            "assets/graphics/QR.png"
           ],
         ],
         "blocks": [
@@ -752,7 +766,8 @@ class TextsConstants {
           [
             "HYPERLINK",
             "Find out more...",
-            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Inverters.pdf"
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Inverters.pdf",
+            "assets/graphics/QR.png"
           ],
         ],
         "blocks": [
@@ -773,7 +788,8 @@ class TextsConstants {
           [
             "HYPERLINK",
             "Find out more...",
-            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Motors.pdf"
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Motors.pdf",
+            "assets/graphics/QR.png"
           ],
         ],
         "blocks": [
@@ -795,7 +811,8 @@ class TextsConstants {
         [
           "HYPERLINK",
           "Case study",
-          "https://turntide.com/wp-content/uploads/2022/08/Case-Study-Mini-Excavator_v07JCB-1.pdf"
+          "https://turntide.com/wp-content/uploads/2022/08/Case-Study-Mini-Excavator_v07JCB-1.pdf",
+          "assets/graphics/QR.png"
         ],
       ],
       "topic": "Turntide for Construction",
@@ -830,7 +847,8 @@ class TextsConstants {
           [
             "HYPERLINK",
             "Find out more...",
-            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Motors.pdf"
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Motors.pdf",
+            "assets/graphics/QR.png"
           ],
         ],
         "blocks": [
@@ -849,7 +867,8 @@ class TextsConstants {
           [
             "HYPERLINK",
             "Find out more...",
-            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Batteries.pdf"
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Batteries.pdf",
+            "assets/graphics/QR.png"
           ],
         ],
         "blocks": [
@@ -881,7 +900,8 @@ class TextsConstants {
           [
             "HYPERLINK",
             "Find out more...",
-            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-DCDCs.pdf"
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-DCDCs.pdf",
+            "assets/graphics/QR.png"
           ],
         ],
         "blocks": [
@@ -930,7 +950,8 @@ class TextsConstants {
           [
             "HYPERLINK",
             "Find out more...",
-            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Batteries.pdf"
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Batteries.pdf",
+            "assets/graphics/QR.png"
           ],
         ],
         "blocks": [

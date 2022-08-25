@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:interactive_map/constants/constants.dart';
+import 'package:interactive_map/controller/controller.dart';
 import 'package:interactive_map/utills/utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -32,50 +34,50 @@ class TextAreaTextRow extends StatelessWidget {
                       screenSize.height *
                       (10 / VideoAspectRatio.height))
               : EdgeInsets.symmetric(
-          vertical: Utils.getTextPaddingRatio(screenSize.width) *
-              screenSize.height *
-              (25 / VideoAspectRatio.height)),
+                  vertical: Utils.getTextPaddingRatio(screenSize.width) *
+                      screenSize.height *
+                      (25 / VideoAspectRatio.height)),
       //width: screenSize.width < 1565 ? 1565 * 0.25 : screenSize.width * 0.25,
       width: screenSize.width * ratio * Utils.getMultiplier(screenSize.width),
       child: text[0] == "TEXT"
           ? Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(
-                top: Utils.getIconTopPaddingRatio(screenSize.width) * 5),
-            child: Icon(
-              Icons.add,
-              color: AppColors.fern,
-              size: Utils.getIconResizeRatio(screenSize.width) *
-                  screenSize.height *
-                  (25 / VideoAspectRatio.height),
-            ),
-          ),
-          Container(
-            width: screenSize.width *
-                0.01 *
-                (screenSize.width / VideoAspectRatio.width),
-          ),
-          Expanded(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                      top: Utils.getIconTopPaddingRatio(screenSize.width) * 5),
+                  child: Icon(
+                    Icons.add,
+                    color: AppColors.fern,
+                    size: Utils.getIconResizeRatio(screenSize.width) *
+                        screenSize.height *
+                        (25 / VideoAspectRatio.height),
+                  ),
+                ),
+                Container(
+                  width: screenSize.width *
+                      0.01 *
+                      (screenSize.width / VideoAspectRatio.width),
+                ),
+                Expanded(
                   child: Text(
                     text[1],
-              style: GoogleFonts.barlow(
-                textStyle: TextStyle(
-                color: AppColors.white,
-                fontSize: fontSize *
-                    (screenSize.width / VideoAspectRatio.width) *
-                    Utils.getMultiplier(screenSize.width),
-                ),
-              ),
-              maxLines: 10,
-              softWrap: true,
-              overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.barlow(
+                      textStyle: TextStyle(
+                        color: AppColors.white,
+                        fontSize: fontSize *
+                            (screenSize.width / VideoAspectRatio.width) *
+                            Utils.getMultiplier(screenSize.width),
+                      ),
+                    ),
+                    maxLines: 10,
+                    softWrap: true,
+                    overflow: TextOverflow.ellipsis,
                   ),
-          ),
-        ],
+                ),
+              ],
             )
           : text[0] == "HYPERLINK"
               ? Row(
@@ -85,7 +87,10 @@ class TextAreaTextRow extends StatelessWidget {
                   children: [
                     Expanded(
                       child: InkWell(
-                        onTap: () => launch(text[2]),
+                        onTap: () {
+                          Get.find<Controller>().showQR.value =
+                              !Get.find<Controller>().showQR.value;
+                        },
                         child: Text(
                           text[1],
                           style: GoogleFonts.barlow(

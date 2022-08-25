@@ -565,6 +565,8 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
                             ["descriptioTexts"],
                     blocks: TextsConstants.sportsCarTexts["subTopicsInside"][0]
                         ["blocks"],
+                    hyperlink: TextsConstants.sportsCarTexts["subTopicsInside"]
+                        [0]["descriptioTexts"][3][3],
                   ));
             }
           }
@@ -614,6 +616,8 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
                             ["descriptioTexts"],
                     blocks: TextsConstants.sportsCarTexts["subTopicsInside"][1]
                         ["blocks"],
+                    hyperlink: TextsConstants.sportsCarTexts["subTopicsInside"]
+                        [1]["descriptioTexts"][3][3],
                   ));
             }
           }
@@ -725,6 +729,9 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
                                     [0]["descriptioTexts"],
                             blocks: TextsConstants
                                 .sportsCarTexts["subTopicsInside"][0]["blocks"],
+                            hyperlink:
+                                TextsConstants.sportsCarTexts["subTopicsInside"]
+                                    [0]["descriptioTexts"][3][3],
                           ));
                     }
                   }
@@ -786,6 +793,9 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
                                     [1]["descriptioTexts"],
                             blocks: TextsConstants
                                 .sportsCarTexts["subTopicsInside"][1]["blocks"],
+                            hyperlink:
+                                TextsConstants.sportsCarTexts["subTopicsInside"]
+                                    [1]["descriptioTexts"][3][3],
                           ));
                     }
                   }

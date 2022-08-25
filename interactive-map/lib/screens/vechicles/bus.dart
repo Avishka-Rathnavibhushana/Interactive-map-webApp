@@ -609,6 +609,8 @@ class _BusVideoState extends State<BusVideo> {
                         [0]["descriptioTexts"],
                     blocks: TextsConstants.busTexts["subTopicsInside"][0]
                         ["blocks"],
+                    hyperlink: TextsConstants.busTexts["subTopicsInside"][0]
+                        ["descriptioTexts"][2][3],
                   ));
             }
           }
@@ -657,6 +659,8 @@ class _BusVideoState extends State<BusVideo> {
                         [1]["descriptioTexts"],
                     blocks: TextsConstants.busTexts["subTopicsInside"][1]
                         ["blocks"],
+                    hyperlink: TextsConstants.busTexts["subTopicsInside"][1]
+                        ["descriptioTexts"][3][3],
                   ));
             }
           }
@@ -705,6 +709,8 @@ class _BusVideoState extends State<BusVideo> {
                         [2]["descriptioTexts"],
                     blocks: TextsConstants.busTexts["subTopicsInside"][2]
                         ["blocks"],
+                    hyperlink: TextsConstants.busTexts["subTopicsInside"][2]
+                        ["descriptioTexts"][3][3],
                   ));
             }
           }
@@ -815,6 +821,9 @@ class _BusVideoState extends State<BusVideo> {
                                     ["descriptioTexts"],
                             blocks: TextsConstants.busTexts["subTopicsInside"]
                                 [0]["blocks"],
+                            hyperlink:
+                                TextsConstants.busTexts["subTopicsInside"][0]
+                                    ["descriptioTexts"][2][3],
                           ));
                     }
                   }
@@ -875,6 +884,9 @@ class _BusVideoState extends State<BusVideo> {
                                     ["descriptioTexts"],
                             blocks: TextsConstants.busTexts["subTopicsInside"]
                                 [1]["blocks"],
+                            hyperlink:
+                                TextsConstants.busTexts["subTopicsInside"][1]
+                                    ["descriptioTexts"][3][3],
                           ));
                     }
                   }
@@ -935,6 +947,9 @@ class _BusVideoState extends State<BusVideo> {
                                     ["descriptioTexts"],
                             blocks: TextsConstants.busTexts["subTopicsInside"]
                                 [2]["blocks"],
+                            hyperlink:
+                                TextsConstants.busTexts["subTopicsInside"][2]
+                                    ["descriptioTexts"][3][3],
                           ));
                     }
                   }

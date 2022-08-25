@@ -609,6 +609,8 @@ class _TractorVideoState extends State<TractorVideo> {
                         .tractorTexts["subTopicsInside"][0]["descriptioTexts"],
                     blocks: TextsConstants.tractorTexts["subTopicsInside"][0]
                         ["blocks"],
+                    hyperlink: TextsConstants.tractorTexts["subTopicsInside"][0]
+                        ["descriptioTexts"][2][3],
                   ));
             }
           }
@@ -657,6 +659,8 @@ class _TractorVideoState extends State<TractorVideo> {
                         .tractorTexts["subTopicsInside"][1]["descriptioTexts"],
                     blocks: TextsConstants.tractorTexts["subTopicsInside"][1]
                         ["blocks"],
+                    hyperlink: TextsConstants.tractorTexts["subTopicsInside"][1]
+                        ["descriptioTexts"][3][3],
                   ));
             }
           }
@@ -705,6 +709,8 @@ class _TractorVideoState extends State<TractorVideo> {
                         .tractorTexts["subTopicsInside"][2]["descriptioTexts"],
                     blocks: TextsConstants.tractorTexts["subTopicsInside"][2]
                         ["blocks"],
+                    hyperlink: TextsConstants.tractorTexts["subTopicsInside"][2]
+                        ["descriptioTexts"][3][3],
                   ));
             }
           }
@@ -815,6 +821,9 @@ class _TractorVideoState extends State<TractorVideo> {
                                     [0]["descriptioTexts"],
                             blocks: TextsConstants
                                 .tractorTexts["subTopicsInside"][0]["blocks"],
+                            hyperlink:
+                                TextsConstants.tractorTexts["subTopicsInside"]
+                                    [0]["descriptioTexts"][2][3],
                           ));
                     }
                   }
@@ -875,6 +884,9 @@ class _TractorVideoState extends State<TractorVideo> {
                                     [1]["descriptioTexts"],
                             blocks: TextsConstants
                                 .tractorTexts["subTopicsInside"][1]["blocks"],
+                            hyperlink:
+                                TextsConstants.tractorTexts["subTopicsInside"]
+                                    [1]["descriptioTexts"][3][3],
                           ));
                     }
                   }
@@ -935,6 +947,9 @@ class _TractorVideoState extends State<TractorVideo> {
                                     [2]["descriptioTexts"],
                             blocks: TextsConstants
                                 .tractorTexts["subTopicsInside"][2]["blocks"],
+                            hyperlink:
+                                TextsConstants.tractorTexts["subTopicsInside"]
+                                    [2]["descriptioTexts"][3][3],
                           ));
                     }
                   }

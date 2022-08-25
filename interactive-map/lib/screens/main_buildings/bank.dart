@@ -5,6 +5,7 @@ import 'package:interactive_map/screens/main_buildings/inside_main_building/moto
 import 'package:interactive_map/screens/main_buildings/inside_main_building/map_main_screen.dart';
 import 'package:interactive_map/widgets/custom_button_label_mobile.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
+import 'package:interactive_map/widgets/qr_dialog_box.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
@@ -715,6 +716,15 @@ class _BankVideoState extends State<BankVideo> {
                 )
               : Container(),
           show ? menuButton() : Container(),
+          Obx(
+            () => Get.find<Controller>().showQR.value
+                ? QRDialogBox(
+                    asset:
+                        TextsConstants.bankTexts["TextAreaWithClipEnergySaving"]
+                            ["texts"][3][3],
+                  )
+                : Container(),
+          ),
         ],
       ),
     );

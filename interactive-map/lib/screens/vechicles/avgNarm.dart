@@ -518,6 +518,8 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
                         .avgNarmTexts["subTopicsInside"][0]["descriptioTexts"],
                     blocks: TextsConstants.avgNarmTexts["subTopicsInside"][0]
                         ["blocks"],
+                    hyperlink: TextsConstants.avgNarmTexts["subTopicsInside"][0]
+                        ["descriptioTexts"][3][3],
                   ));
             }
           }
@@ -628,6 +630,9 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
                                     [0]["descriptioTexts"],
                             blocks: TextsConstants
                                 .avgNarmTexts["subTopicsInside"][0]["blocks"],
+                            hyperlink:
+                                TextsConstants.avgNarmTexts["subTopicsInside"]
+                                    [0]["descriptioTexts"][3][3],
                           ));
                     }
                   }

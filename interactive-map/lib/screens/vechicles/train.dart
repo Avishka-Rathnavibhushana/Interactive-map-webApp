@@ -518,6 +518,8 @@ class _TrainVideoState extends State<TrainVideo> {
                         .trainTexts["subTopicsInside"][0]["descriptioTexts"],
                     blocks: TextsConstants.trainTexts["subTopicsInside"][0]
                         ["blocks"],
+                    hyperlink: TextsConstants.trainTexts["subTopicsInside"][0]
+                        ["descriptioTexts"][3][3],
                   ));
             }
           }
@@ -628,6 +630,9 @@ class _TrainVideoState extends State<TrainVideo> {
                                     ["descriptioTexts"],
                             blocks: TextsConstants.trainTexts["subTopicsInside"]
                                 [0]["blocks"],
+                            hyperlink:
+                                TextsConstants.trainTexts["subTopicsInside"][0]
+                                    ["descriptioTexts"][3][3],
                           ));
                     }
                   }

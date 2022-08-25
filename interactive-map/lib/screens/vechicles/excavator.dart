@@ -6,6 +6,7 @@ import 'package:interactive_map/screens/vechicles/inside_vehicle/transition.dart
 import 'package:interactive_map/screens/vechicles/vechicles_home.dart';
 import 'package:interactive_map/widgets/custom_button_label_mobile.dart';
 import 'package:interactive_map/widgets/custom_button_label_with_clip.dart';
+import 'package:interactive_map/widgets/qr_dialog_box.dart';
 import 'package:interactive_map/widgets/shared_widgets.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
@@ -612,6 +613,14 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                 )
               : Container(),
           show ? menuButton() : Container(),
+          Obx(
+            () => Get.find<Controller>().showQR.value
+                ? QRDialogBox(
+                    asset: TextsConstants.excavatorTexts["TextAreaWithClipMain"]
+                        ["texts"][0][3],
+                  )
+                : Container(),
+          ),
         ],
       ),
     );
@@ -658,6 +667,8 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                             ["descriptioTexts"],
                     blocks: TextsConstants.excavatorTexts["subTopicsInside"][0]
                         ["blocks"],
+                    hyperlink: TextsConstants.excavatorTexts["subTopicsInside"]
+                        [0]["descriptioTexts"][3][3],
                   ));
             }
           }
@@ -707,6 +718,8 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                             ["descriptioTexts"],
                     blocks: TextsConstants.excavatorTexts["subTopicsInside"][1]
                         ["blocks"],
+                    hyperlink: TextsConstants.excavatorTexts["subTopicsInside"]
+                        [1]["descriptioTexts"][3][3],
                   ));
             }
           }
@@ -804,6 +817,8 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                             ["descriptioTexts"],
                     blocks: TextsConstants.excavatorTexts["subTopicsInside"][3]
                         ["blocks"],
+                    hyperlink: TextsConstants.excavatorTexts["subTopicsInside"]
+                        [3]["descriptioTexts"][3][3],
                   ));
             }
           }
@@ -915,6 +930,9 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                                     [0]["descriptioTexts"],
                             blocks: TextsConstants
                                 .excavatorTexts["subTopicsInside"][0]["blocks"],
+                            hyperlink:
+                                TextsConstants.excavatorTexts["subTopicsInside"]
+                                    [0]["descriptioTexts"][3][3],
                           ));
                     }
                   }
@@ -976,6 +994,9 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                                     [1]["descriptioTexts"],
                             blocks: TextsConstants
                                 .excavatorTexts["subTopicsInside"][1]["blocks"],
+                            hyperlink:
+                                TextsConstants.excavatorTexts["subTopicsInside"]
+                                    [1]["descriptioTexts"][3][3],
                           ));
                     }
                   }
@@ -1098,6 +1119,9 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                                     [3]["descriptioTexts"],
                             blocks: TextsConstants
                                 .excavatorTexts["subTopicsInside"][3]["blocks"],
+                            hyperlink:
+                                TextsConstants.excavatorTexts["subTopicsInside"]
+                                    [3]["descriptioTexts"][3][3],
                           ));
                     }
                   }
