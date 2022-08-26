@@ -18,20 +18,19 @@ import 'package:interactive_map/controller/controller.dart';
 import 'package:interactive_map/widgets/full_screen_button.dart';
 
 class TransitionPage extends StatefulWidget {
-  const TransitionPage(
-      {Key? key,
-      this.from,
-      this.offsetHor,
-      this.offsetVer,
-      required this.url,
-      required this.back,
+  const TransitionPage({
+    Key? key,
+    this.from,
+    this.offsetHor,
+    this.offsetVer,
+    required this.url,
+    required this.back,
     required this.topic,
     required this.subTopic,
     required this.descriptioTexts,
     required this.blocks,
     this.hyperlink = "",
-  })
-      : super(key: key);
+  }) : super(key: key);
   final offsetHor;
   final offsetVer;
   final from;
@@ -107,7 +106,6 @@ class _TransitionPageState extends State<TransitionPage> {
         offsetVer: offsetVer,
       );
     }
-    
   }
 
   @override
@@ -118,7 +116,7 @@ class _TransitionPageState extends State<TransitionPage> {
       ..initialize().then((_) => {
             setState(() {
               _controller.setVolume(0);
-              _controller.play();
+
               show = true;
             })
           });
@@ -131,9 +129,14 @@ class _TransitionPageState extends State<TransitionPage> {
             })
           });
 
-    _controller.setLooping(true);
-
+    method();
     super.initState();
+  }
+
+  Future<void> method() async {
+    await Future.delayed(Duration(seconds: 1));
+    _controller.play();
+    _controller.setLooping(true);
   }
 
   @override
@@ -496,10 +499,9 @@ class _TransitionPageState extends State<TransitionPage> {
                                             VideoAspectRatio.width) *
                                         Utils.getCustomTextContainerMultiplier(
                                             screenSize.width) *
-                                    2 +
-                                35,
+                                        2 +
+                                    35,
                             child: Wrap(
-
                               runSpacing: 15,
                               spacing: 25,
                               alignment: WrapAlignment.center,
@@ -628,8 +630,7 @@ class _TransitionPageState extends State<TransitionPage> {
       right: Utils.getRightPadding(screenSize, 0),
       child: Container(
         alignment: Alignment.topRight,
-        height:
-            screenSize.width *
+        height: screenSize.width *
             0.050 *
             Utils.getTopRightButtonMultiplier(screenSize.width),
         width: screenSize.width *
