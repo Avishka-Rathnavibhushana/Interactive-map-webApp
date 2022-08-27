@@ -81,6 +81,17 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
 
   double width = 0;
 
+  double _currentOpacity = 0;
+  bool fading = false;
+  late String fadingImage;
+
+  method() async {
+    await Future.delayed(Duration(milliseconds: 1));
+    setState(() {
+      _currentOpacity = 1;
+    });
+  }
+
   setIndex(value) {
     index = value;
     setState(() {});
@@ -352,6 +363,22 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                                       height: Utils.getVideoScreenHeight(
                                           screenSizeMobile1),
                                       child: VideoPlayer(_truckVideoController),
+                                    )
+                                  : Container(),
+                              fading
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: Container(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile1),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile1),
+                                        child: Image.asset(
+                                          fadingImage,
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
                                     )
                                   : Container(),
                             ],
@@ -666,6 +693,22 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                                       child: VideoPlayer(_truckVideoController),
                                     )
                                   : Container(),
+                              fading
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: Container(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile2),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile2),
+                                        child: Image.asset(
+                                          fadingImage,
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                    )
+                                  : Container(),
                             ],
                           ),
                         ),
@@ -939,6 +982,21 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                                 width: Utils.getVideoScreenWidth(screenSize),
                                 height: Utils.getVideoScreenHeight(screenSize),
                                 child: VideoPlayer(_truckVideoController),
+                              )
+                            : Container(),
+                        fading
+                            ? AnimatedOpacity(
+                                opacity: _currentOpacity,
+                                duration: Duration(seconds: 1),
+                                child: Container(
+                                  width: Utils.getVideoScreenWidth(screenSize),
+                                  height:
+                                      Utils.getVideoScreenHeight(screenSize),
+                                  child: Image.asset(
+                                    fadingImage,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
                               )
                             : Container(),
                       ],
@@ -1337,6 +1395,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                 _timerVideoController.pause();
 
                 setState(() {
+                  fadingImage =
+                      "assets/tempory images/Vehicles_Transition_Stills/AGV_SELECTED.png";
+                  fading = true;
+                });
+
+                method();
+
+                await Future.delayed(Duration(seconds: 1));
+
+                setState(() {
+                  fading = false;
+                  _currentOpacity = 0;
                   _avgNarmVideoPlaying = true;
                 });
 
@@ -1407,6 +1477,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
         _timerVideoController.pause();
 
         setState(() {
+          fadingImage =
+              "assets/tempory images/Vehicles_Transition_Stills/AGV_SELECTED.png";
+          fading = true;
+        });
+
+        method();
+
+        await Future.delayed(Duration(seconds: 1));
+
+        setState(() {
+          fading = false;
+          _currentOpacity = 0;
           _avgNarmVideoPlaying = true;
         });
 
@@ -1473,6 +1555,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                   _timerVideoController.pause();
 
                   setState(() {
+                    fadingImage =
+                        "assets/tempory images/Vehicles_Transition_Stills/Train_SELECTED.png";
+                    fading = true;
+                  });
+
+                  method();
+
+                  await Future.delayed(Duration(seconds: 1));
+
+                  setState(() {
+                    fading = false;
+                    _currentOpacity = 0;
                     _trainVideoPlaying = true;
                   });
 
@@ -1544,6 +1638,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
         _timerVideoController.pause();
 
         setState(() {
+          fadingImage =
+              "assets/tempory images/Vehicles_Transition_Stills/Train_SELECTED.png";
+          fading = true;
+        });
+
+        method();
+
+        await Future.delayed(Duration(seconds: 1));
+
+        setState(() {
+          fading = false;
+          _currentOpacity = 0;
           _trainVideoPlaying = true;
         });
 
@@ -1609,6 +1715,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                 _timerVideoController.pause();
 
                 setState(() {
+                  fadingImage =
+                      "assets/tempory images/Vehicles_Transition_Stills/Car_SELECTED.png";
+                  fading = true;
+                });
+
+                method();
+
+                await Future.delayed(Duration(seconds: 1));
+
+                setState(() {
+                  fading = false;
+                  _currentOpacity = 0;
                   _sportsCarVideoPlaying = true;
                 });
 
@@ -1678,6 +1796,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
         _timerVideoController.pause();
 
         setState(() {
+          fadingImage =
+              "assets/tempory images/Vehicles_Transition_Stills/Car_SELECTED.png";
+          fading = true;
+        });
+
+        method();
+
+        await Future.delayed(Duration(seconds: 1));
+
+        setState(() {
+          fading = false;
+          _currentOpacity = 0;
           _sportsCarVideoPlaying = true;
         });
 
@@ -1742,6 +1872,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                 _timerVideoController.pause();
 
                 setState(() {
+                  fadingImage =
+                      "assets/tempory images/Vehicles_Transition_Stills/Tractor_SELECTED.png";
+                  fading = true;
+                });
+
+                method();
+
+                await Future.delayed(Duration(seconds: 1));
+
+                setState(() {
+                  fading = false;
+                  _currentOpacity = 0;
                   _tractorVideoPlaying = true;
                 });
 
@@ -1812,6 +1954,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
         _timerVideoController.pause();
 
         setState(() {
+          fadingImage =
+              "assets/tempory images/Vehicles_Transition_Stills/Tractor_SELECTED.png";
+          fading = true;
+        });
+
+        method();
+
+        await Future.delayed(Duration(seconds: 1));
+
+        setState(() {
+          fading = false;
+          _currentOpacity = 0;
           _tractorVideoPlaying = true;
         });
 
@@ -1878,6 +2032,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                 _timerVideoController.pause();
 
                 setState(() {
+                  fadingImage =
+                      "assets/tempory images/Vehicles_Transition_Stills/Bus_SELECTED.png";
+                  fading = true;
+                });
+
+                method();
+
+                await Future.delayed(Duration(seconds: 1));
+
+                setState(() {
+                  fading = false;
+                  _currentOpacity = 0;
                   _busVideoPlaying = true;
                 });
 
@@ -1947,6 +2113,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
         _timerVideoController.pause();
 
         setState(() {
+          fadingImage =
+              "assets/tempory images/Vehicles_Transition_Stills/Bus_SELECTED.png";
+          fading = true;
+        });
+
+        method();
+
+        await Future.delayed(Duration(seconds: 1));
+
+        setState(() {
+          fading = false;
+          _currentOpacity = 0;
           _busVideoPlaying = true;
         });
 
@@ -2012,6 +2190,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                 _timerVideoController.pause();
 
                 setState(() {
+                  fadingImage =
+                      "assets/tempory images/Vehicles_Transition_Stills/Exc_SELECTED.png";
+                  fading = true;
+                });
+
+                method();
+
+                await Future.delayed(Duration(seconds: 1));
+
+                setState(() {
+                  fading = false;
+                  _currentOpacity = 0;
                   _excavatorVideoPlaying = true;
                 });
 
@@ -2082,6 +2272,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
         _timerVideoController.pause();
 
         setState(() {
+          fadingImage =
+              "assets/tempory images/Vehicles_Transition_Stills/Exc_SELECTED.png";
+          fading = true;
+        });
+
+        method();
+
+        await Future.delayed(Duration(seconds: 1));
+
+        setState(() {
+          fading = false;
+          _currentOpacity = 0;
           _excavatorVideoPlaying = true;
         });
 
@@ -2147,6 +2349,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                 _timerVideoController.pause();
 
                 setState(() {
+                  fadingImage =
+                      "assets/tempory images/Vehicles_Transition_Stills/Truck_SELECTED.png";
+                  fading = true;
+                });
+
+                method();
+
+                await Future.delayed(Duration(seconds: 1));
+
+                setState(() {
+                  fading = false;
+                  _currentOpacity = 0;
                   _truckVideoPlaying = true;
                 });
 
@@ -2216,6 +2430,18 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
         _timerVideoController.pause();
 
         setState(() {
+          fadingImage =
+              "assets/tempory images/Vehicles_Transition_Stills/Truck_SELECTED.png";
+          fading = true;
+        });
+
+        method();
+
+        await Future.delayed(Duration(seconds: 1));
+
+        setState(() {
+          fading = false;
+          _currentOpacity = 0;
           _truckVideoPlaying = true;
         });
 
