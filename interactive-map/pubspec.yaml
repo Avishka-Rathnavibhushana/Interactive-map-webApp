@@ -74,6 +74,7 @@ flutter:
     - assets/tempory images/
     - assets/tempory images/Buildings_Transition_Stills/
     - assets/tempory images/Vehicles_Transition_Stills/
+    - assets/tempory images/QR/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see
