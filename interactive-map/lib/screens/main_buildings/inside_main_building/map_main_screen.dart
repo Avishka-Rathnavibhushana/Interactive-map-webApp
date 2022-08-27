@@ -547,9 +547,9 @@ class _MapMainScreensState extends State<MapMainScreens> {
                     child: TextAreaWithClip(
                       screenSize: screenSize,
                       texts: [],
-                      topic: "Trntide App for Mobile and Desktop",
+                      topic: "Turntide App for Mobile and Desktop",
                       description:
-                          "Remotely monitor and manage HVAC equipment and yor entire building",
+                          "Remotely monitor and manage HVAC equipment and your entire building",
                     ),
                   ),
                 )

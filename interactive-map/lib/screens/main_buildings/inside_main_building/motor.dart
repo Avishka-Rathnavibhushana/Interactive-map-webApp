@@ -10,6 +10,7 @@ import 'package:interactive_map/screens/main_buildings/school.dart';
 import 'package:interactive_map/screens/main_buildings/warehouse.dart';
 import 'package:interactive_map/widgets/custom_text_container.dart';
 import 'package:interactive_map/widgets/custom_topic.dart';
+import 'package:interactive_map/widgets/qr_dialog_box.dart';
 import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 import 'package:interactive_map/utills/utils.dart';
@@ -455,8 +456,8 @@ class _MotorState extends State<Motor> {
                       child: CustomTopic(
                         topic: widget.from == Pages.dataCenter ||
                                 widget.from == Pages.dairyBarns
-                            ? "Smart Motor System - TX Series"
-                            : "Smart Motor System - V Series",
+                            ? "Smart Motor System ™ - TX Series"
+                            : "Smart Motor System™ - V Series",
                         subTopic:
                             "Includes: Smart Motor, Motor Controller, and Hub",
                         screenSize: screenSize,
@@ -479,8 +480,14 @@ class _MotorState extends State<Motor> {
                                 "TEXT",
                                 "Optimal efficiency switched reluctance motor"
                               ],
-                              ["TEXT", "Standerd NEMA dimensions"],
+                              ["TEXT", "Standard NEMA dimensions"],
                               ["TEXT", "Available in 1-10 HP"],
+                              [
+                                "HYPERLINK",
+                                "Learn More >",
+                                "https://turntide.com/wp-content/uploads/2022/08/All-Buildings-Motors.pdf",
+                                "assets/tempory images/QR/VMotor_temp.png"
+                              ],
                             ],
                             topic: "",
                             description: "",
@@ -498,6 +505,12 @@ class _MotorState extends State<Motor> {
                               [
                                 "TEXT",
                                 "Provides diagnostics like torque, speed, and HP"
+                              ],
+                              [
+                                "HYPERLINK",
+                                "Learn More >",
+                                "https://turntide.com/wp-content/uploads/2021/11/Turntide-DataSheet-TX_v7.pdf",
+                                "assets/tempory images/QR/TXMotor_temp.png"
                               ],
                             ],
                             topic: "",
@@ -602,7 +615,7 @@ class _MotorState extends State<Motor> {
                                                       screenSize: screenSize,
                                                       topic: "Up to 13%",
                                                       description:
-                                                          "ETRA ENERGY SAVINGS OVER VFD",
+                                                          "EXTRA ENERGY SAVINGS OVER VFD",
                                                     ),
                                                     CustomTextContainer(
                                                       screenSize: screenSize,
@@ -717,6 +730,16 @@ class _MotorState extends State<Motor> {
                   ],
                 )
               : Container(),
+          Obx(
+            () => Get.find<Controller>().showQR.value
+                ? QRDialogBox(
+                    asset: widget.from == Pages.dataCenter ||
+                            widget.from == Pages.dairyBarns
+                        ? "assets/tempory images/QR/TXMotor_temp.png"
+                        : "assets/tempory images/QR/VMotor_temp.png",
+                  )
+                : Container(),
+          ),
         ],
       ),
     );

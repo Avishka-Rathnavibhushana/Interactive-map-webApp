@@ -120,7 +120,7 @@ class TextsConstants {
     "topic": "Schools",
     "TextAreaSmallWithClip": [
       "64%",
-      "of energy in school is used by HVAC and lighting",
+      "of energy in schools is consumed by HVAC and lighting",
     ],
     "TextAreaWithClipMain": {
       "texts": [
@@ -130,23 +130,20 @@ class TextsConstants {
       ],
       "topic": "Turntide for Schools",
       "description":
-          "Maximise energy efficiency and lower operating costs with smart equipment, controls, and insights",
+          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
         // ["TOPIC", "Energy savings", ":"],
-        [
-          "DECORATEDTEXT",
-          "Energy Savings:",
-          " 87% compared to baseline, 34% compared to VFD retrofit"
-        ],
+        ["DECORATEDTEXT", "Energy Savings:", " 87% baseline motor"],
+        ["DECORATEDTEXT", "Energy Savings:", " 34% VFD retrofits"],
         ["DECORATEDTEXT", "Time to payback:", " 3.1 years"],
       ],
       "topic": "Leading National University",
       "description": "School Gymnasium",
     },
     "subTopics": [
-      "Smart HVAC",
+      "Smart Motor System ™",
       "Case Study",
       "Turntide App",
     ],
@@ -155,7 +152,7 @@ class TextsConstants {
     "topic": "Quick Serve Restaurants",
     "TextAreaSmallWithClip": [
       "28%",
-      "of restaurant energy costs are from HVAC on average",
+      "HVAC represents 28% of a restaurant's energy costs on average",
     ],
     "TextAreaWithClipMain": {
       "texts": [
@@ -165,7 +162,7 @@ class TextsConstants {
       ],
       "topic": "Turntide for Restaurants",
       "description":
-          "Maximise energy efficiency and lower operating costs with smart equipment, controls, and insights",
+          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
@@ -175,7 +172,7 @@ class TextsConstants {
         ["DECORATEDTEXT", "Time to payback:", " 1.6 years"],
         [
           "HYPERLINK",
-          "Case Study Link",
+          "Read Case Study >",
           "https://turntide.com/wp-content/uploads/2021/09/TT-Case-Study-Five-Guys_v04TL.pdf",
           "assets/tempory images/QR/Restaurant_temp.png"
         ],
@@ -184,7 +181,7 @@ class TextsConstants {
       "description": "Quick Serve Restaurant",
     },
     "subTopics": [
-      "Smart HVAC",
+      "Smart Motor System ™",
       "Case Study",
       "Turntide App",
     ],
@@ -193,7 +190,7 @@ class TextsConstants {
     "topic": "Banks",
     "TextAreaSmallWithClip": [
       "40-60%",
-      "of energy in bank branches is used by HVAC and lighting",
+      "of energy in bank branches is consumed by HVAC and lighting",
     ],
     "TextAreaWithClipMain": {
       "texts": [
@@ -203,7 +200,7 @@ class TextsConstants {
       ],
       "topic": "Turntide for Banks",
       "description":
-          "Maximise energy efficiency and lower operating costs with smart equipment, controls, and insights",
+          "Maximize energy efficiency and lower operating costs with smart equipment, controls, and insights",
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
@@ -212,16 +209,16 @@ class TextsConstants {
         ["DECORATEDTEXT", "Annual savings:", " \$500k"],
         [
           "HYPERLINK",
-          "Case Study Link",
+          "Read Case Study >",
           "https://turntide.com/wp-content/uploads/2021/10/Case-Study-Fifth-Third-Bank_v07.pdf",
           "assets/tempory images/QR/Bank_temp.png"
         ],
       ],
-      "topic": "Fifth Third",
-      "description": "Bank",
+      "topic": "Fifth Third Bank",
+      "description": "Retail branch locations",
     },
     "subTopics": [
-      "Smart HVAC",
+      "Smart Motor System ™",
       "Case Study",
       "Turntide App",
     ],
@@ -230,7 +227,7 @@ class TextsConstants {
     "topic": "Retail Stores",
     "TextAreaSmallWithClip": [
       "70%",
-      "of energy in retail is used by HVAC and lighting",
+      "of energy in retail is consumed by HVAC and lighting",
     ],
     "TextAreaWithClipMain": {
       "texts": [
@@ -246,21 +243,21 @@ class TextsConstants {
       "texts": [
         ["DECORATEDTEXT", "Locations:", " 400+"],
         ["DECORATEDTEXT", "Energy reduction:", " 60% annually"],
-        ["DECORATEDTEXT", "Annual savings:", " \$K per location"],
-        ["DECORATEDTEXT", "Energy saved:", " KWH"],
+        // ["DECORATEDTEXT", "Annual savings:", " \$K per location"],
+        // ["DECORATEDTEXT", "Energy saved:", " KWH"],
         ["DECORATEDTEXT", "Time to payback:", " 3 years"],
-        [
-          "HYPERLINK",
-          "Case Study Link",
-          "https://turntide.com/wp-content/uploads/2022/08/Case-Study-Ivanhoe-Cambridge_v04.pdf",
-          "assets/tempory images/QR/Retail_temp.png"
-        ],
+        // [
+        //   "HYPERLINK",
+        //   "Case Study Link",
+        //   "https://turntide.com/wp-content/uploads/2022/08/Case-Study-Ivanhoe-Cambridge_v04.pdf",
+        //   "assets/tempory images/QR/Retail_temp.png"
+        // ],
       ],
       "topic": "Wilko",
       "description": "Retail Stores",
     },
     "subTopics": [
-      "Smart HVAC",
+      "Smart Motor System ™",
       "Case Study",
       "Turntide App",
     ],
@@ -269,7 +266,7 @@ class TextsConstants {
     "topic": "Warehouses",
     "TextAreaSmallWithClip": [
       "75%",
-      "of energy in warehouses is used by HVAC and lighting",
+      "of energy in warehouses and distribution centers is consumed by HVAC and lighting",
     ],
     "TextAreaWithClipMain": {
       "texts": [
@@ -283,15 +280,15 @@ class TextsConstants {
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
-        ["DECORATEDTEXT", "Placeholder:", " XXX"],
-        ["DECORATEDTEXT", "Placeholder:", " XXX"],
-        ["DECORATEDTEXT", "Placeholder:", " XXX"],
+        ["DECORATEDTEXT", "Motor energy savings:", " 78%"],
+        ["DECORATEDTEXT", "Energy saved annually:", " 224,162 KWH"],
+        ["DECORATEDTEXT", "Time to payback:", " 1.4 years"],
       ],
-      "topic": "Anonymous",
-      "description": "Warehouses",
+      "topic": "Ecommerce Warehouse",
+      "description": "Major Distribution and Fulfillment Center",
     },
     "subTopics": [
-      "Smart HVAC",
+      "Smart Motor System ™",
       "Case Study",
       "Turntide App",
     ],
@@ -300,7 +297,7 @@ class TextsConstants {
     "topic": "Data Centers",
     "TextAreaSmallWithClip": [
       "37%",
-      "of energy in data centers is used by HVAC and lighting",
+      "of energy in data centers is consumed by HVAC and lighting",
     ],
     "TextAreaWithClipMain": {
       "texts": [
@@ -314,16 +311,16 @@ class TextsConstants {
     },
     "TextAreaWithClipEnergySaving": {
       "texts": [
-        ["DECORATEDTEXT", "Placeholder:", " XXX"],
-        ["DECORATEDTEXT", "Placeholder:", " XXX"],
-        ["DECORATEDTEXT", "Placeholder:", " XXX"],
+        ["DECORATEDTEXT", "Fan energy savings:", " 25%"],
+        ["DECORATEDTEXT", "Energy savings:", " 1 Million+ KWH"],
+        ["DECORATEDTEXT", "Energy rebate: ", " Qualified for \$200K"],
       ],
-      "topic": "Anonymous",
-      "description": "Datacenter",
+      "topic": "Large Data Center",
+      "description": "Air-cooled hot/cold aisle design",
     },
     "subTopics": [
-      "Smart HVAC",
-      "Case Study",
+      "Smart Motor System ™",
+      "DairyBOS®",
       "Turntide App",
     ],
   };
@@ -331,7 +328,7 @@ class TextsConstants {
     "topic": "Grocery Stores",
     "TextAreaSmallWithClip": [
       "50%",
-      "of energy in grocery stores is used by HVAC and lighting",
+      "of energy in grocery stores is consumed by HVAC and lighting",
     ],
     "TextAreaWithClipMain": {
       "texts": [
@@ -351,7 +348,7 @@ class TextsConstants {
         ["DECORATEDTEXT", "Time to payback:", " 1.37 years"],
         [
           "HYPERLINK",
-          "Case Study Link",
+          "Read Case Study >",
           "https://turntide.com/wp-content/uploads/2021/09/TT-Case-Study-Sprouts_v04TL.pdf",
           "assets/tempory images/QR/Grocery_temp.png"
         ],
@@ -360,7 +357,7 @@ class TextsConstants {
       "description": "Grocery Store",
     },
     "subTopics": [
-      "Smart HVAC",
+      "Smart Motor System ™",
       "Case Study",
       "Turntide App",
     ],
@@ -384,7 +381,7 @@ class TextsConstants {
     },
     "subTopics": [
       "TX Motor",
-      "Intelligent Barn \npowered by DairyBOS",
+      "DairyBOS®",
       "Tractors",
     ],
   };
@@ -418,7 +415,7 @@ class TextsConstants {
     ],
     "subTopicsInside": [
       {
-        "topic": "High Voltage High Power Drives",
+        "topic": "High Voltage High Power Inverters",
         "subTopic":
             "Commercially available design for any automotive application",
         "descriptioTexts": [
@@ -433,9 +430,9 @@ class TextsConstants {
           ],
         ],
         "blocks": [
-          {"topic": "450V", "description": "MAXIMUM VOLTAGE"},
+          {"topic": "800V", "description": "MAXIMUM VOLTAGE"},
           {"topic": "35kW/l", "description": "PEAK POWER DENSITIES"},
-          {"topic": "150kW", "description": "PEAK POWER LEVEL"},
+          {"topic": "300kW", "description": "PEAK POWER LEVEL"},
           {"topic": "25kW/kg", "description": "POWER TO WEIGHT"},
         ],
       },
@@ -496,7 +493,7 @@ class TextsConstants {
         "descriptioTexts": [
           [
             "TEXT",
-            "Electric pump and fan assemblies, from 500W to 60kW cooling solutions for hybrid and electric buses"
+            "Electric pump and fan assemblies from 500W to 60kW cooling solutions for electrified powertrain"
           ],
           [
             "TEXT",
@@ -515,7 +512,7 @@ class TextsConstants {
         ],
       },
       {
-        "topic": "High Voltage High Power Drives",
+        "topic": "High Voltage High Power Inverters",
         "subTopic":
             "Commercially available design for any automotive application",
         "descriptioTexts": [
@@ -530,9 +527,9 @@ class TextsConstants {
           ],
         ],
         "blocks": [
-          {"topic": "450V", "description": "MAXIMUM VOLTAGE"},
+          {"topic": "800V", "description": "MAXIMUM VOLTAGE"},
           {"topic": "35kW/l", "description": "PEAK POWER DENSITIES"},
-          {"topic": "150kW", "description": "PEAK POWER LEVEL"},
+          {"topic": "300kW", "description": "PEAK POWER LEVEL"},
           {"topic": "25kW/kg", "description": "POWER TO WEIGHT"},
         ],
       },
@@ -569,7 +566,7 @@ class TextsConstants {
       "texts": [],
       "topic": "Turntide for Material Handling",
       "description":
-          "We offer electrification solutions to increase the productivity of warehouses and distribution centers and autonomous mobile robots (AMRs) and automatic guided vehicles (AGVs) by minimizing downtime and taking advantage of opportunity charging.",
+          "We offer Lithium-ion batteries to increase the productivity of your warehouse or distribution center material handling equipment by minimizing downtime and taking advantage of opportunity charging.",
     },
     // "TextAreaWithClipEnergySaving": {
     //   "texts": [
@@ -587,7 +584,7 @@ class TextsConstants {
     "subTopicsInside": [
       {
         "topic": "High Performance Lithium-ion NMB battery",
-        "subTopic": "With intelligent built-in Battery Management",
+        "subTopic": "With intelligent built-in battery management",
         "descriptioTexts": [
           ["TEXT", "High energy density"],
           ["TEXT", "Flexible & scalable modular design"],
@@ -616,7 +613,7 @@ class TextsConstants {
       "texts": [],
       "topic": "Turntide for Electric Trucks",
       "description":
-          "From last-mile delivery to Class8 40T trucks we offer a range of highly reliable electrification solutions from high power electrific traction drives to low power pumps, fans, and hotel loads to help you deliver your emissions targets.",
+          "From last-mile delivery to Class8 40T trucks, we offer a range of highly reliable electrification solutions from high power electrified traction motors and drives to low power pumps, fans, and hotel loads to help you deliver your emissions targets.",
     },
     // "TextAreaWithClipEnergySaving": {
     //   "texts": [
@@ -640,7 +637,7 @@ class TextsConstants {
         "descriptioTexts": [
           [
             "TEXT",
-            "Electric pump and fan assemblies, from 500W to 60kW cooling solutions for hybrid and electric buses"
+            "Electric pump and fan assemblies from 500W to 60kW cooling solutions for electrified powertrain"
           ],
           [
             "TEXT",
@@ -659,7 +656,7 @@ class TextsConstants {
         ],
       },
       {
-        "topic": "High Voltage High Power Drives",
+        "topic": "High Voltage High Power Inverters",
         "subTopic":
             "Commercially available design for any automotive application",
         "descriptioTexts": [
@@ -674,9 +671,9 @@ class TextsConstants {
           ],
         ],
         "blocks": [
-          {"topic": "450V", "description": "MAXIMUM VOLTAGE"},
+          {"topic": "800V", "description": "MAXIMUM VOLTAGE"},
           {"topic": "35kW/l", "description": "PEAK POWER DENSITIES"},
-          {"topic": "150kW", "description": "PEAK POWER LEVEL"},
+          {"topic": "300kW", "description": "PEAK POWER LEVEL"},
           {"topic": "25kW/kg", "description": "POWER TO WEIGHT"},
         ],
       },
@@ -737,7 +734,7 @@ class TextsConstants {
         "descriptioTexts": [
           [
             "TEXT",
-            "Electric pump and fan assemblies, from 500W to 60kW cooling solutions for hybrid and electric buses"
+            "Electric pump and fan assemblies from 500W to 60kW cooling solutions for electrified powertrain"
           ],
           [
             "TEXT",
@@ -756,7 +753,7 @@ class TextsConstants {
         ],
       },
       {
-        "topic": "High Voltage High Power Drives",
+        "topic": "High Voltage High Power Inverters",
         "subTopic":
             "Commercially available design for any automotive application",
         "descriptioTexts": [
@@ -771,9 +768,9 @@ class TextsConstants {
           ],
         ],
         "blocks": [
-          {"topic": "450V", "description": "MAXIMUM VOLTAGE"},
+          {"topic": "800V", "description": "MAXIMUM VOLTAGE"},
           {"topic": "35kW/l", "description": "PEAK POWER DENSITIES"},
-          {"topic": "150kW", "description": "PEAK POWER LEVEL"},
+          {"topic": "300kW", "description": "PEAK POWER LEVEL"},
           {"topic": "25kW/kg", "description": "POWER TO WEIGHT"},
         ],
       },
@@ -817,7 +814,7 @@ class TextsConstants {
       ],
       "topic": "Turntide for Construction",
       "description":
-          "Whether building excavators or backhoes, we'll help you electrify your construction vehicles and get to market quickly and easily with a fully scalable powertrain solution.",
+          "Designing and manufacturing construction equipment?  We'll help you electrify your excavators or backhoes and get you to market quickly and easily with a fully scalable electrified powertrain solution.",
     },
     // "TextAreaWithClipEnergySaving": {
     //   "texts": [
@@ -859,7 +856,7 @@ class TextsConstants {
       },
       {
         "topic": "High Performance Lithium-ion NMB battery",
-        "subTopic": "With intelligent built-in Battery Management",
+        "subTopic": "With intelligent built-in battery management",
         "descriptioTexts": [
           ["TEXT", "High energy density"],
           ["TEXT", "Flexible & scalable modular design"],
@@ -877,12 +874,17 @@ class TextsConstants {
         ],
       },
       {
-        "topic": "Low Voltage Drives",
-        "subTopic": "Powered mainstream EV's for over 10 years",
+        "topic": "Low Voltage Inverters",
+        "subTopic": "Powering mainstream EV's for over 10 years",
         "descriptioTexts": [
-          ["TEXT", "Proven reliability with almost 200,000 units shipped"],
           ["TEXT", "Supports a wide range of motor types"],
           ["TEXT", "Highly configurable operation & communications"],
+          [
+            "HYPERLINK",
+            "Find out more...",
+            "https://turntide.com/wp-content/uploads/2022/08/All-Vehicle-Inverters.pdf",
+            "assets/tempory images/QR/LVDrive_temp.png"
+          ],
         ],
         "blocks": [
           {"topic": "900A", "description": "PEAK CURRENT"},
@@ -906,8 +908,8 @@ class TextsConstants {
         ],
         "blocks": [
           {"topic": "12-14V", "description": "OUTPUT VOLTAGE"},
-          {"topic": "500-3.7kW", "description": "POWER OUTPUT"},
-          {"topic": "48 to 450V", "description": "OPERATING VOLTAGES"}
+          {"topic": "500kW", "description": "POWER OUTPUT"},
+          {"topic": "48 to 96V", "description": "OPERATING VOLTAGES"}
         ],
       },
     ],
