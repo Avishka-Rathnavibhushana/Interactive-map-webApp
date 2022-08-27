@@ -85,6 +85,17 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
 
   double width = 0;
 
+  double _currentOpacity = 0;
+  bool fading = false;
+  late String fadingImage;
+
+  method() async {
+    await Future.delayed(Duration(milliseconds: 1));
+    setState(() {
+      _currentOpacity = 1;
+    });
+  }
+
   setIndex(value) {
     index = value;
     setState(() {});
@@ -376,6 +387,22 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                                           screenSizeMobile1),
                                       child: VideoPlayer(
                                           _dairyBarnsVideoController),
+                                    )
+                                  : Container(),
+                              fading
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: Container(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile1),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile1),
+                                        child: Image.asset(
+                                          fadingImage,
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
                                     )
                                   : Container(),
                             ],
@@ -715,6 +742,22 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                                           _dairyBarnsVideoController),
                                     )
                                   : Container(),
+                              fading
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: Container(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile2),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile2),
+                                        child: Image.asset(
+                                          fadingImage,
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                    )
+                                  : Container(),
                             ],
                           ),
                         ),
@@ -1008,6 +1051,21 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                                 width: Utils.getVideoScreenWidth(screenSize),
                                 height: Utils.getVideoScreenHeight(screenSize),
                                 child: VideoPlayer(_dairyBarnsVideoController),
+                              )
+                            : Container(),
+                        fading
+                            ? AnimatedOpacity(
+                                opacity: _currentOpacity,
+                                duration: Duration(seconds: 1),
+                                child: Container(
+                                  width: Utils.getVideoScreenWidth(screenSize),
+                                  height:
+                                      Utils.getVideoScreenHeight(screenSize),
+                                  child: Image.asset(
+                                    fadingImage,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
                               )
                             : Container(),
                       ],
@@ -1335,8 +1393,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
       right: Utils.getRightPadding(screenSize, 0),
       child: Container(
         alignment: Alignment.topRight,
-        height:
-            screenSize.width *
+        height: screenSize.width *
             0.050 *
             Utils.getTopRightButtonMultiplier(screenSize.width),
         width: screenSize.width *
@@ -1430,6 +1487,18 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                 _timerVideoController.pause();
 
                 setState(() {
+                  fadingImage =
+                      "assets/tempory images/Buildings_Transition_Stills/school_SELECTED.png";
+                  fading = true;
+                });
+
+                method();
+
+                await Future.delayed(Duration(seconds: 1));
+
+                setState(() {
+                  fading = false;
+                  _currentOpacity = 0;
                   _schoolVideoPlaying = true;
                 });
 
@@ -1490,8 +1559,19 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         });
 
         _timerVideoController.pause();
+        setState(() {
+          fadingImage =
+              "assets/tempory images/Buildings_Transition_Stills/school_SELECTED.png";
+          fading = true;
+        });
+
+        method();
+
+        await Future.delayed(Duration(seconds: 1));
 
         setState(() {
+          fading = false;
+          _currentOpacity = 0;
           _schoolVideoPlaying = true;
         });
 
@@ -1549,8 +1629,19 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                   });
 
                   _timerVideoController.pause();
+                  setState(() {
+                    fadingImage =
+                        "assets/tempory images/Buildings_Transition_Stills/bank_SELECTED.png";
+                    fading = true;
+                  });
+
+                  method();
+
+                  await Future.delayed(Duration(seconds: 1));
 
                   setState(() {
+                    fading = false;
+                    _currentOpacity = 0;
                     _bankVideoPlaying = true;
                   });
 
@@ -1611,8 +1702,19 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         });
 
         _timerVideoController.pause();
+setState(() {
+          fadingImage =
+              "assets/tempory images/Buildings_Transition_Stills/bank_SELECTED.png";
+          fading = true;
+        });
+
+        method();
+
+        await Future.delayed(Duration(seconds: 1));
 
         setState(() {
+          fading = false;
+          _currentOpacity = 0;
           _bankVideoPlaying = true;
         });
 
@@ -1668,8 +1770,19 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                 });
 
                 _timerVideoController.pause();
+setState(() {
+                  fadingImage =
+                      "assets/tempory images/Buildings_Transition_Stills/datacentre_SELECTED.png";
+                  fading = true;
+                });
+
+                method();
+
+                await Future.delayed(Duration(seconds: 1));
 
                 setState(() {
+                  fading = false;
+                  _currentOpacity = 0;
                   _dataCentreVideoPlaying = true;
                 });
 
@@ -1729,8 +1842,19 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         });
 
         _timerVideoController.pause();
+setState(() {
+          fadingImage =
+              "assets/tempory images/Buildings_Transition_Stills/datacentre_SELECTED.png";
+          fading = true;
+        });
+
+        method();
+
+        await Future.delayed(Duration(seconds: 1));
 
         setState(() {
+          fading = false;
+          _currentOpacity = 0;
           _dataCentreVideoPlaying = true;
         });
 
@@ -1785,8 +1909,19 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                 });
 
                 _timerVideoController.pause();
+setState(() {
+                  fadingImage =
+                      "assets/tempory images/Buildings_Transition_Stills/warehouse_SELECTED.png";
+                  fading = true;
+                });
+
+                method();
+
+                await Future.delayed(Duration(seconds: 1));
 
                 setState(() {
+                  fading = false;
+                  _currentOpacity = 0;
                   _warehouseVideoPlaying = true;
                 });
 
@@ -1847,8 +1982,19 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         });
 
         _timerVideoController.pause();
+setState(() {
+          fadingImage =
+              "assets/tempory images/Buildings_Transition_Stills/warehouse_SELECTED.png";
+          fading = true;
+        });
+
+        method();
+
+        await Future.delayed(Duration(seconds: 1));
 
         setState(() {
+          fading = false;
+          _currentOpacity = 0;
           _warehouseVideoPlaying = true;
         });
 
@@ -1904,8 +2050,19 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                 });
 
                 _timerVideoController.pause();
+setState(() {
+                  fadingImage =
+                      "assets/tempory images/Buildings_Transition_Stills/retail_SELECTED.png";
+                  fading = true;
+                });
+
+                method();
+
+                await Future.delayed(Duration(seconds: 1));
 
                 setState(() {
+                  fading = false;
+                  _currentOpacity = 0;
                   _retailVideoPlaying = true;
                 });
 
@@ -1966,8 +2123,19 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         });
 
         _timerVideoController.pause();
+setState(() {
+          fadingImage =
+              "assets/tempory images/Buildings_Transition_Stills/retail_SELECTED.png";
+          fading = true;
+        });
+
+        method();
+
+        await Future.delayed(Duration(seconds: 1));
 
         setState(() {
+          fading = false;
+          _currentOpacity = 0;
           _retailVideoPlaying = true;
         });
 
@@ -2024,8 +2192,19 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                 });
 
                 _timerVideoController.pause();
+setState(() {
+                  fadingImage =
+                      "assets/tempory images/Buildings_Transition_Stills/groceryshop_SELECTED.png";
+                  fading = true;
+                });
+
+                method();
+
+                await Future.delayed(Duration(seconds: 1));
 
                 setState(() {
+                  fading = false;
+                  _currentOpacity = 0;
                   _groceryShopVideoPlaying = true;
                 });
 
@@ -2086,8 +2265,19 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         });
 
         _timerVideoController.pause();
+setState(() {
+          fadingImage =
+              "assets/tempory images/Buildings_Transition_Stills/groceryshop_SELECTED.png";
+          fading = true;
+        });
+
+        method();
+
+        await Future.delayed(Duration(seconds: 1));
 
         setState(() {
+          fading = false;
+          _currentOpacity = 0;
           _groceryShopVideoPlaying = true;
         });
 
@@ -2143,8 +2333,19 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                 });
 
                 _timerVideoController.pause();
+setState(() {
+                  fadingImage =
+                      "assets/tempory images/Buildings_Transition_Stills/fastfood_SELECTED.png";
+                  fading = true;
+                });
+
+                method();
+
+                await Future.delayed(Duration(seconds: 1));
 
                 setState(() {
+                  fading = false;
+                  _currentOpacity = 0;
                   _fastFoodVideoPlaying = true;
                 });
 
@@ -2205,8 +2406,19 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         });
 
         _timerVideoController.pause();
+setState(() {
+          fadingImage =
+              "assets/tempory images/Buildings_Transition_Stills/fastfood_SELECTED.png";
+          fading = true;
+        });
+
+        method();
+
+        await Future.delayed(Duration(seconds: 1));
 
         setState(() {
+          fading = false;
+          _currentOpacity = 0;
           _fastFoodVideoPlaying = true;
         });
 
@@ -2262,8 +2474,19 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                 });
 
                 _timerVideoController.pause();
+setState(() {
+                  fadingImage =
+                      "assets/tempory images/Buildings_Transition_Stills/barn_SELECTED.png";
+                  fading = true;
+                });
+
+                method();
+
+                await Future.delayed(Duration(seconds: 1));
 
                 setState(() {
+                  fading = false;
+                  _currentOpacity = 0;
                   _dairyBarnsVideoPlaying = true;
                 });
 
@@ -2333,8 +2556,19 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         });
 
         _timerVideoController.pause();
+setState(() {
+          fadingImage =
+              "assets/tempory images/Buildings_Transition_Stills/barn_SELECTED.png";
+          fading = true;
+        });
+
+        method();
+
+        await Future.delayed(Duration(seconds: 1));
 
         setState(() {
+          fading = false;
+          _currentOpacity = 0;
           _dairyBarnsVideoPlaying = true;
         });
 
