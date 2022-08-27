@@ -528,9 +528,9 @@ class _IpadScreenState extends State<IpadScreen> {
                         child: TextAreaWithClip(
                             screenSize: screenSize,
                             texts: const [],
-                            topic: "DairyBOS",
+                            topic: "DairyBOS®",
                             description:
-                                "Automate and control the ventilation, lighting and cooling to create an optimized, consistent, animal-centered environment."),
+                                "Automate and control the ventilation, lighting, and cooling to create an optimized consistent, animal-centered environment."),
                       ),
                     )
                   : nextIndex == 1
@@ -542,9 +542,9 @@ class _IpadScreenState extends State<IpadScreen> {
                             child: TextAreaWithClip(
                                 screenSize: screenSize,
                                 texts: const [],
-                                topic: "DairyBOS",
+                                topic: "DairyBOS®",
                                 description:
-                                    "Lorem Ipsum"),
+                                    "Address potential issues before they effect productivity and efficiency"),
                           ),
                         )
                       : nextIndex == 2
@@ -556,9 +556,9 @@ class _IpadScreenState extends State<IpadScreen> {
                                 child: TextAreaWithClip(
                                     screenSize: screenSize,
                                     texts: const [],
-                                    topic: "DairyBOS",
+                                    topic: "DairyBOS®",
                                     description:
-                                        "Lorem Ipsum"),
+                                        "Monitor barn performance to optimize animal well-being and drive operational efficiency"),
                               ),
                             )
                           : Padding(
@@ -569,9 +569,9 @@ class _IpadScreenState extends State<IpadScreen> {
                                 child: TextAreaWithClip(
                                     screenSize: screenSize,
                                     texts: const [],
-                                    topic: "DairyBOS",
+                                    topic: "DairyBOS®",
                                     description:
-                                        "Lorem Ipsum"),
+                                        "Control and modulate systems based on real-time conditions, significantly lowering electricity and water use while improving the overall environment"),
                               ),
                             )
               : Container(),
