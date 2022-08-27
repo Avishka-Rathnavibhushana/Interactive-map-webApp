@@ -430,7 +430,7 @@ class _ScreenRightState extends State<ScreenRight> {
                             texts: const [
                               [
                                 "TEXT",
-                                "Easily mange temparature setpoints and scheduling anytime, anywhere 24/7"
+                                "Easily manage temperature setpoints and scheduling anytime, anywhere, 24/7"
                               ],
                             ],
                             topic: "Smart HVAC",

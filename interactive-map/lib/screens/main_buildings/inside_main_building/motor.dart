@@ -117,7 +117,7 @@ class _MotorState extends State<Motor> {
       ..initialize().then((_) => {
             setState(() {
               _controller.setVolume(0);
-              _controller.play();
+
               show = true;
             })
           });
@@ -135,9 +135,15 @@ class _MotorState extends State<Motor> {
             })
           });
 
-    _controller.setLooping(true);
+    method();
 
     super.initState();
+  }
+
+  Future<void> method() async {
+    await Future.delayed(Duration(seconds: 1));
+    _controller.play();
+    _controller.setLooping(true);
   }
 
   @override
@@ -449,8 +455,8 @@ class _MotorState extends State<Motor> {
                       child: CustomTopic(
                         topic: widget.from == Pages.dataCenter ||
                                 widget.from == Pages.dairyBarns
-                            ? "Smart Motor System - TX Series"
-                            : "Smart Motor System - V Series",
+                            ? "Smart Motor System ™ - TX Series"
+                            : "Smart Motor System™ - V Series",
                         subTopic:
                             "Includes: Smart Motor, Motor Controller, and Hub",
                         screenSize: screenSize,
@@ -473,17 +479,22 @@ class _MotorState extends State<Motor> {
                                 "TEXT",
                                 "Optimal efficiency switched reluctance motor"
                               ],
-                              ["TEXT", "Standerd NEMA dimensions"],
+                              ["TEXT", "Standard NEMA dimensions"],
                               ["TEXT", "Available in 1-10 HP"],
+                              [
+                                "HYPERLINK",
+                                "Learn More >",
+                                "https://turntide.com/wp-content/uploads/2022/08/All-Buildings-Motors.pdf",
+                                "assets/tempory images/QR/VMotor_temp.png"
+                              ],
                             ],
                             topic: "",
                             description: "",
                             ratio: 0.38,
                           )
-                        :
-                    TextAreaWithClip(
-                      screenSize: screenSize,
-                      texts: const [
+                        : TextAreaWithClip(
+                            screenSize: screenSize,
+                            texts: const [
                               ["TEXT", "Slim design for space efficiency"],
                               ["TEXT", "IE5-level motor efficiency"],
                               [
@@ -494,9 +505,15 @@ class _MotorState extends State<Motor> {
                                 "TEXT",
                                 "Provides diagnostics like torque, speed, and HP"
                               ],
-                      ],
-                      topic: "",
-                      description: "",
+                              [
+                                "HYPERLINK",
+                                "Learn More >",
+                                "https://turntide.com/wp-content/uploads/2021/11/Turntide-DataSheet-TX_v7.pdf",
+                                "assets/tempory images/QR/TXMotor_temp.png"
+                              ],
+                            ],
+                            topic: "",
+                            description: "",
                             ratio: 0.38,
                           ),
                     SizedBox(
@@ -511,103 +528,105 @@ class _MotorState extends State<Motor> {
                                 width: screenSize.width *
                                     0.38 *
                                     Utils.getMultiplier(screenSize.width),
-                                child: widget.from == Pages.dataCenter ||
-                                        widget.from == Pages.dairyBarns
-                                    ? Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            width: screenSize.width >= 2000
-                                                ? 312.5 * 2 + 35
-                                                : screenSize.width *
-                                                        0.15 *
-                                                        (screenSize.width /
-                                                            VideoAspectRatio
-                                                                .width) *
-                                                        Utils
-                                                            .getCustomTextContainerMultiplier(
+                                child:
+                                    widget.from == Pages.dataCenter ||
+                                            widget.from == Pages.dairyBarns
+                                        ? Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                width: screenSize.width >= 2000
+                                                    ? 312.5 * 2 + 35
+                                                    : screenSize.width *
+                                                            0.15 *
+                                                            (screenSize.width /
+                                                                VideoAspectRatio
+                                                                    .width) *
+                                                            Utils.getCustomTextContainerMultiplier(
                                                                 screenSize
                                                                     .width) *
-                                                        2 +
-                                                    35,
-                                            child: Wrap(
-                                              runSpacing: 15,
-                                              spacing: 25,
-                                              alignment: WrapAlignment.center,
-                                              children: [
-                                                CustomTextContainer(
-                                                  screenSize: screenSize,
-                                                  topic: "93.2%",
-                                                  description:
-                                                      "PEAK MOTOR EFFICIENCY",
+                                                            2 +
+                                                        35,
+                                                child: Wrap(
+                                                  runSpacing: 15,
+                                                  spacing: 25,
+                                                  alignment:
+                                                      WrapAlignment.center,
+                                                  children: [
+                                                    CustomTextContainer(
+                                                      screenSize: screenSize,
+                                                      topic: "93.2%",
+                                                      description:
+                                                          "PEAK MOTOR EFFICIENCY",
+                                                    ),
+                                                    CustomTextContainer(
+                                                      screenSize: screenSize,
+                                                      topic: "0%",
+                                                      description:
+                                                          "RARE EARTH METALS",
+                                                    ),
+                                                    CustomTextContainer(
+                                                      screenSize: screenSize,
+                                                      topic: "50%",
+                                                      description:
+                                                          "LIGHTER WEIGHT",
+                                                    ),
+                                                  ],
                                                 ),
-                                                CustomTextContainer(
-                                                  screenSize: screenSize,
-                                                  topic: "0%",
-                                                  description:
-                                                      "RARE EARTH METALS",
-                                                ),
-                                                CustomTextContainer(
-                                                  screenSize: screenSize,
-                                                  topic: "50%",
-                                                  description: "LIGHTER WEIGHT",
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
+                                              ),
+                                            ],
                                           )
-                                    : Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            width: screenSize.width >= 2000
-                                                ? 312.5 * 2 + 35
-                                                : screenSize.width *
-                                                        0.15 *
-                                                        (screenSize.width /
-                                                            VideoAspectRatio
-                                                                .width) *
-                                                        Utils
-                                                            .getCustomTextContainerMultiplier(
+                                        : Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                width: screenSize.width >= 2000
+                                                    ? 312.5 * 2 + 35
+                                                    : screenSize.width *
+                                                            0.15 *
+                                                            (screenSize.width /
+                                                                VideoAspectRatio
+                                                                    .width) *
+                                                            Utils.getCustomTextContainerMultiplier(
                                                                 screenSize
                                                                     .width) *
-                                                        2 +
-                                                    35,
-                                            child: Wrap(
-                                              runSpacing: 15,
-                                              spacing: 25,
-                                              alignment: WrapAlignment.center,
-                                              children: [
-                                                CustomTextContainer(
-                                                  screenSize: screenSize,
-                                                  topic: "IE5+",
-                                                  description: "ACROSS MOST HP",
+                                                            2 +
+                                                        35,
+                                                child: Wrap(
+                                                  runSpacing: 15,
+                                                  spacing: 25,
+                                                  alignment:
+                                                      WrapAlignment.center,
+                                                  children: [
+                                                    CustomTextContainer(
+                                                      screenSize: screenSize,
+                                                      topic: "IE5+",
+                                                      description:
+                                                          "ACROSS MOST HP",
+                                                    ),
+                                                    CustomTextContainer(
+                                                      screenSize: screenSize,
+                                                      topic: "Up to 13%",
+                                                      description:
+                                                          "EXTRA ENERGY SAVINGS OVER VFD",
+                                                    ),
+                                                    CustomTextContainer(
+                                                      screenSize: screenSize,
+                                                      topic: "92%",
+                                                      description:
+                                                          "PEAK EFFICIENCY AT 3 HP",
+                                                    ),
+                                                  ],
                                                 ),
-                                                CustomTextContainer(
-                                                  screenSize: screenSize,
-                                                  topic: "Up to 13%",
-                                                  description:
-                                                      "ETRA ENERGY SAVINGS OVER VFD",
-                                                ),
-                                                CustomTextContainer(
-                                                  screenSize: screenSize,
-                                                  topic: "92%",
-                                                  description:
-                                                      "PEAK EFFICIENCY AT 3 HP",
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                          )
-                                )
+                                              ),
+                                            ],
+                                          ))
                         : screenSize.width < ScreenSizes.Mobile.width ||
                                 screenSize.height < ScreenSizes.Mobile.height
                             ? Container()
@@ -817,8 +836,7 @@ class _MotorState extends State<Motor> {
           : 0,
       child: Container(
         alignment: Alignment.center,
-        height:
-            screenSize.width *
+        height: screenSize.width *
             0.050 *
             Utils.getTopRightButtonMultiplier(screenSize.width),
         width: screenSize.width *
