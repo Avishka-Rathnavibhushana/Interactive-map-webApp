@@ -25,8 +25,8 @@ class QRDialogBox extends StatelessWidget {
           ),
         ),
         Container(
-          width: 200,
-          height: 200,
+          width: 400,
+          height: 400,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(asset),
