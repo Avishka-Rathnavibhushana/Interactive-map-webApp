@@ -1,5 +1,9 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:interactive_map/constants/constants.dart';
+import 'package:interactive_map/controller/controller.dart';
 
 class Utils {
   static double getVideoScreenWidth(Size screenSize) {
@@ -151,4 +155,23 @@ class Utils {
         padding * (screenSize.height / VideoAspectRatio.height);
     return transformedPadding;
   }
+
+    static void enterFullScreenMode() {
+    document.documentElement?.requestFullscreen();
+  }
+
+  // static void screenListner() {
+  //   document.documentElement?.onFullscreenChange.listen((event) {
+  //     print("change");
+  //     if (document.fullscreenElement == null) {
+  //       if (Get.find<Controller>().isFullScreen.value) {
+  //         Get.find<Controller>().isFullScreen.value =
+  //             !Get.find<Controller>().isFullScreen.value;
+  //       }
+  //       print("object 1");
+  //     } else {
+  //       print("object 2");
+  //     }
+  //   });
+  // }
 }

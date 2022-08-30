@@ -5,4 +5,5 @@ class Controller extends GetxController {
   var horizontalOffset = 0.0.obs;
 
   var showQR = false.obs;
+  var isFullScreen = false.obs;
 }
