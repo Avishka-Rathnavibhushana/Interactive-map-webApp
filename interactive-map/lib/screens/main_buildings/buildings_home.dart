@@ -300,22 +300,22 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                           height: Utils.getVideoScreenHeight(screenSizeMobile1),
                           child: Stack(
                             children: [
-                              fading
-                                  ? AnimatedOpacity(
-                                      opacity: _currentOpacity,
-                                      duration: Duration(seconds: 1),
-                                      child: Container(
-                                        width: Utils.getVideoScreenWidth(
-                                            screenSizeMobile1),
-                                        height: Utils.getVideoScreenHeight(
-                                            screenSizeMobile1),
-                                        child: Image.asset(
-                                          fadingImage,
-                                          fit: BoxFit.fill,
-                                        ),
-                                      ),
-                                    )
-                                  : Container(),
+                              // fading
+                              //     ? AnimatedOpacity(
+                              //         opacity: _currentOpacity,
+                              //         duration: Duration(seconds: 1),
+                              //         child: Container(
+                              //           width: Utils.getVideoScreenWidth(
+                              //               screenSizeMobile1),
+                              //           height: Utils.getVideoScreenHeight(
+                              //               screenSizeMobile1),
+                              //           child: Image.asset(
+                              //             fadingImage,
+                              //             fit: BoxFit.fill,
+                              //           ),
+                              //         ),
+                              //       )
+                              //     : Container(),
                               _vehicleTransitionVideoPlaying
                                   ? SizedBox(
                                       width: Utils.getVideoScreenWidth(
@@ -346,13 +346,17 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                                     )
                                   : Container(),
                               _schoolVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile1),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile1),
-                                      child:
-                                          VideoPlayer(_schoolVideoController),
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile1),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile1),
+                                        child:
+                                            VideoPlayer(_schoolVideoController),
+                                      ),
                                     )
                                   : Container(),
                               _retailVideoPlaying
@@ -654,22 +658,22 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                           height: Utils.getVideoScreenHeight(screenSizeMobile2),
                           child: Stack(
                             children: [
-                              fading
-                                  ? AnimatedOpacity(
-                                      opacity: _currentOpacity,
-                                      duration: Duration(seconds: 1),
-                                      child: Container(
-                                        width: Utils.getVideoScreenWidth(
-                                            screenSizeMobile2),
-                                        height: Utils.getVideoScreenHeight(
-                                            screenSizeMobile2),
-                                        child: Image.asset(
-                                          fadingImage,
-                                          fit: BoxFit.fill,
-                                        ),
-                                      ),
-                                    )
-                                  : Container(),
+                              // fading
+                              //     ? AnimatedOpacity(
+                              //         opacity: _currentOpacity,
+                              //         duration: Duration(seconds: 1),
+                              //         child: Container(
+                              //           width: Utils.getVideoScreenWidth(
+                              //               screenSizeMobile2),
+                              //           height: Utils.getVideoScreenHeight(
+                              //               screenSizeMobile2),
+                              //           child: Image.asset(
+                              //             fadingImage,
+                              //             fit: BoxFit.fill,
+                              //           ),
+                              //         ),
+                              //       )
+                              //     : Container(),
                               _vehicleTransitionVideoPlaying
                                   ? SizedBox(
                                       width: Utils.getVideoScreenWidth(
@@ -700,13 +704,17 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                                     )
                                   : Container(),
                               _schoolVideoPlaying
-                                  ? SizedBox(
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
                                       width: Utils.getVideoScreenWidth(
                                           screenSizeMobile2),
                                       height: Utils.getVideoScreenHeight(
                                           screenSizeMobile2),
                                       child:
                                           VideoPlayer(_schoolVideoController),
+                                      ),
                                     )
                                   : Container(),
                               _retailVideoPlaying
@@ -991,21 +999,21 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                     height: Utils.getVideoScreenHeight(screenSize),
                     child: Stack(
                       children: [
-                        fading
-                            ? AnimatedOpacity(
-                                opacity: _currentOpacity,
-                                duration: Duration(seconds: 1),
-                                child: Container(
-                                  width: Utils.getVideoScreenWidth(screenSize),
-                                  height:
-                                      Utils.getVideoScreenHeight(screenSize),
-                                  child: Image.asset(
-                                    fadingImage,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                              )
-                            : Container(),
+                        // fading
+                        //     ? AnimatedOpacity(
+                        //         opacity: _currentOpacity,
+                        //         duration: Duration(seconds: 1),
+                        //         child: Container(
+                        //           width: Utils.getVideoScreenWidth(screenSize),
+                        //           height:
+                        //               Utils.getVideoScreenHeight(screenSize),
+                        //           child: Image.asset(
+                        //             fadingImage,
+                        //             fit: BoxFit.fill,
+                        //           ),
+                        //         ),
+                        //       )
+                        //     : Container(),
                         _vehicleTransitionVideoPlaying
                             ? SizedBox(
                                 width: Utils.getVideoScreenWidth(screenSize),
@@ -1029,10 +1037,15 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                               )
                             : Container(),
                         _schoolVideoPlaying
-                            ? SizedBox(
-                                width: Utils.getVideoScreenWidth(screenSize),
-                                height: Utils.getVideoScreenHeight(screenSize),
-                                child: VideoPlayer(_schoolVideoController),
+                            ? AnimatedOpacity(
+                                opacity: _currentOpacity,
+                                duration: Duration(seconds: 1),
+                                child: SizedBox(
+                                  width: Utils.getVideoScreenWidth(screenSize),
+                                  height:
+                                      Utils.getVideoScreenHeight(screenSize),
+                                  child: VideoPlayer(_schoolVideoController),
+                                ),
                               )
                             : Container(),
                         _retailVideoPlaying
@@ -1494,16 +1507,13 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                       "assets/tempory images/Buildings_Transition_Stills/school_SELECTED.png";
                   fading = true;
                 });
-
-                method();
-
-                
-
-                await Future.delayed(Duration(milliseconds: 900));
                 setState(() {
                   _schoolVideoPlaying = true;
                 });
-                await Future.delayed(Duration(milliseconds: 100));
+
+                method();
+
+                await Future.delayed(Duration(milliseconds: 1000));
 
                 
 
@@ -1573,13 +1583,13 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
               "assets/tempory images/Buildings_Transition_Stills/school_SELECTED.png";
           fading = true;
         });
-
-        method();
-        await Future.delayed(Duration(milliseconds: 900));
-        setState(() {
+setState(() {
           _schoolVideoPlaying = true;
         });
-        await Future.delayed(Duration(milliseconds: 100));
+        method();
+        // await Future.delayed(Duration(milliseconds: 900));
+
+        await Future.delayed(Duration(milliseconds: 1000));
 
         setState(() {
           fading = false;
