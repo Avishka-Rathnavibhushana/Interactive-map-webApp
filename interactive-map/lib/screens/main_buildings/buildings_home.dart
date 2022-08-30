@@ -1393,8 +1393,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
       right: Utils.getRightPadding(screenSize, 0),
       child: Container(
         alignment: Alignment.topRight,
-        height:
-            screenSize.width *
+        height: screenSize.width *
             0.050 *
             Utils.getTopRightButtonMultiplier(screenSize.width),
         width: screenSize.width *
@@ -1591,23 +1590,41 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         setState(() {
           width = screenSize.width * 0.2;
         });
-
+        //_schoolVideoController.
         _schoolVideoController.addListener(() {
-          final bool isPlaying = _schoolVideoController.value.isPlaying;
-          print(isPlaying);
+          bool isPlaying = _schoolVideoController.value.isPlaying;
+          // print("a " + isPlaying.toString());
+          // print("b " +
+          //     _schoolVideoController.value.duration.inMilliseconds.toString() +
+          //     " b " +
+          //     _schoolVideoController.value.position.inMilliseconds.toString());
+          // print("c " +
+          //     (_schoolVideoController.value.duration.inMilliseconds -
+          //             _schoolVideoController.value.position.inMilliseconds)
+          //         .toString());
+          if (_schoolVideoController.value.duration.inMilliseconds -
+                      _schoolVideoController.value.position.inMilliseconds <=
+                  10 &&
+              _schoolVideoController.value.isPlaying) {
+            print("paussing");
+            _schoolVideoController.pause();
+            isPlaying = false;
+          }
           if (isPlaying != _isPlaying) {
-            setState(() {
-              _isPlaying = isPlaying;
-              setIndex(++index);
-            });
-            if (index > 1) {
-              _schoolVideoController.removeListener(() {});
+            print("playing");
+            _schoolVideoController.removeListener(() {});
 
-              setState(() {
-                showNext = true;
-                nextPage = Pages.school;
-              });
-            }
+            setState(() {
+              showNext = true;
+              nextPage = Pages.school;
+            });
+            // setState(() {
+            //   _isPlaying = isPlaying;
+            //   setIndex(++index);
+            // });
+            // if (index > 1) {
+
+            // }
           }
         });
       },
@@ -1666,17 +1683,18 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                     final bool isPlaying = _bankVideoController.value.isPlaying;
                     print(isPlaying);
                     if (isPlaying != _isPlaying) {
+                      _bankVideoController.removeListener(() {});
                       setState(() {
-                        _isPlaying = isPlaying;
-                        setIndex(++index);
+                        showNext = true;
+                        nextPage = Pages.bank;
                       });
-                      if (index > 1) {
-                        _bankVideoController.removeListener(() {});
-                        setState(() {
-                          showNext = true;
-                          nextPage = Pages.bank;
-                        });
-                      }
+                      // setState(() {
+                      //   _isPlaying = isPlaying;
+                      //   setIndex(++index);
+                      // });
+                      // if (index > 1) {
+
+                      // }
                     }
                   });
                 },
@@ -1736,20 +1754,29 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         });
 
         _bankVideoController.addListener(() {
-          final bool isPlaying = _bankVideoController.value.isPlaying;
+          bool isPlaying = _bankVideoController.value.isPlaying;
+          if (_bankVideoController.value.duration.inMilliseconds -
+                      _bankVideoController.value.position.inMilliseconds <=
+                  10 &&
+              _bankVideoController.value.isPlaying) {
+            print("paussing");
+            _bankVideoController.pause();
+            isPlaying = false;
+          }
           print(isPlaying);
           if (isPlaying != _isPlaying) {
+            _bankVideoController.removeListener(() {});
             setState(() {
-              _isPlaying = isPlaying;
-              setIndex(++index);
+              showNext = true;
+              nextPage = Pages.bank;
             });
-            if (index > 1) {
-              _bankVideoController.removeListener(() {});
-              setState(() {
-                showNext = true;
-                nextPage = Pages.bank;
-              });
-            }
+            // setState(() {
+            //   _isPlaying = isPlaying;
+            //   setIndex(++index);
+            // });
+            // if (index > 1) {
+
+            // }
           }
         });
       },
