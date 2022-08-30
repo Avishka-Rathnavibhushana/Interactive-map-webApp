@@ -317,7 +317,7 @@ class TextsConstants {
     },
     "subTopics": [
       "Smart Motor System ™",
-      "DairyBOS®",
+      "Case Study",
       "Turntide App",
     ],
   };
@@ -377,7 +377,7 @@ class TextsConstants {
     },
     "subTopics": [
       "TX Motor",
-      "Intelligent Barn \npowered by DairyBOS",
+      "DairyBOS®",
       "Tractors",
     ],
   };
