@@ -486,7 +486,7 @@ class _MotorState extends State<Motor> {
                                 "HYPERLINK",
                                 "Learn More >",
                                 "https://turntide.com/wp-content/uploads/2022/08/All-Buildings-Motors.pdf",
-                                "assets/tempory images/QR/VMotor_temp.png"
+                                "assets/tempory images/QR/VMotor.png"
                               ],
                             ],
                             topic: "",
@@ -510,7 +510,7 @@ class _MotorState extends State<Motor> {
                                 "HYPERLINK",
                                 "Learn More >",
                                 "https://turntide.com/wp-content/uploads/2021/11/Turntide-DataSheet-TX_v7.pdf",
-                                "assets/tempory images/QR/TXMotor_temp.png"
+                                "assets/tempory images/QR/TXMotor.png"
                               ],
                             ],
                             topic: "",
@@ -735,8 +735,8 @@ class _MotorState extends State<Motor> {
                 ? QRDialogBox(
                     asset: widget.from == Pages.dataCenter ||
                             widget.from == Pages.dairyBarns
-                        ? "assets/tempory images/QR/TXMotor_temp.png"
-                        : "assets/tempory images/QR/VMotor_temp.png",
+                        ? "assets/tempory images/QR/TXMotor.png"
+                        : "assets/tempory images/QR/VMotor.png",
                   )
                 : Container(),
           ),
