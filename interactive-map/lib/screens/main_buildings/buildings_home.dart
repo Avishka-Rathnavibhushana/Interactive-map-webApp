@@ -1494,11 +1494,13 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
 
                 method();
 
-                await Future.delayed(Duration(seconds: 1));
-
                 setState(() {
                   _schoolVideoPlaying = true;
                 });
+
+                await Future.delayed(Duration(seconds: 1));
+
+                
 
                 setState(() {
                   fading = false;
@@ -1568,13 +1570,14 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         });
 
         method();
+        setState(() {
+          _schoolVideoPlaying = true;
+        });
 
         await Future.delayed(Duration(seconds: 1));
 
         setState(() {
           fading = false;
-          _currentOpacity = 0;
-          _schoolVideoPlaying = true;
         });
 
         setState(() {
