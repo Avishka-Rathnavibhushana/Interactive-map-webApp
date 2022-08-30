@@ -493,7 +493,12 @@ class _TransitionPageState extends State<TransitionPage> {
                           Container(
                             width: screenSize.width >= 2000
                                 ? 312.5 * 2 + 35
-                                : screenSize.width *
+                                : screenSize.width <= 250
+                                    ? 45 * 2 + 35
+                                    : screenSize.width <= 900
+                                        ? 60 * 2 + 35
+                                    
+                                        : screenSize.width *
                                         0.15 *
                                         (screenSize.width /
                                             VideoAspectRatio.width) *
