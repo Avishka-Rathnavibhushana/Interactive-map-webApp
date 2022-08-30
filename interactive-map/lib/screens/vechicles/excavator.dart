@@ -768,6 +768,8 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                             ["descriptioTexts"],
                     blocks: TextsConstants.excavatorTexts["subTopicsInside"][2]
                         ["blocks"],
+                    hyperlink: TextsConstants.excavatorTexts["subTopicsInside"]
+                        [2]["descriptioTexts"][2][3],
                   ));
             }
           }
@@ -1058,6 +1060,9 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                                     [2]["descriptioTexts"],
                             blocks: TextsConstants
                                 .excavatorTexts["subTopicsInside"][2]["blocks"],
+                            hyperlink:
+                                TextsConstants.excavatorTexts["subTopicsInside"]
+                                    [2]["descriptioTexts"][2][3],
                           ));
                     }
                   }
