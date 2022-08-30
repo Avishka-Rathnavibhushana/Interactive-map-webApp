@@ -20,13 +20,19 @@ class CustomTextContainer extends StatelessWidget {
     return Container(
       width: screenSize.width >= 2000
           ? 312.5
-          : screenSize.width *
-              0.15 *
-              (screenSize.width / VideoAspectRatio.width) *
-              Utils.getCustomTextContainerMultiplier(screenSize.width),
+          : screenSize.width <= 250
+              ? 45
+              : screenSize.width <= 900
+                  ? 60
+                  : screenSize.width *
+                      0.15 *
+                      (screenSize.width / VideoAspectRatio.width) *
+                      Utils.getCustomTextContainerMultiplier(screenSize.width),
       //height: 125 * (screenSize.height / VideoAspectRatio.height),
       color: AppColors.fern,
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      padding: EdgeInsets.symmetric(
+          vertical: 10,
+          horizontal: 10 * (screenSize.width / VideoAspectRatio.width)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,

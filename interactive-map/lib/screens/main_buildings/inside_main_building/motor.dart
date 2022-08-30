@@ -521,211 +521,208 @@ class _MotorState extends State<Motor> {
                           45 * (screenSize.height / VideoAspectRatio.height),
                     ),
                     nextIndex
-                        ? screenSize.width < ScreenSizes.Mobile.width ||
-                                screenSize.height < ScreenSizes.Mobile.height
-                            ? Container()
+                        ?
+                        // screenSize.width < ScreenSizes.Mobile.width ||
+                        //         screenSize.height < ScreenSizes.Mobile.height
+                        //     ? Container()
+                        //     :
+                        Container(
+                            width: screenSize.width *
+                                0.38 *
+                                Utils.getMultiplier(screenSize.width),
+                            child: widget.from == Pages.dataCenter ||
+                                    widget.from == Pages.dairyBarns
+                                ? Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        width: screenSize.width >= 2000
+                                            ? 312.5 * 2 + 35
+                                            : screenSize.width <= 250
+                                                ? 45 * 2 + 35
+                                                : screenSize.width <= 900
+                                                    ? 60 * 2 + 35
+                                                    : screenSize.width *
+                                                            0.15 *
+                                                            (screenSize.width /
+                                                                VideoAspectRatio
+                                                                    .width) *
+                                                            Utils.getCustomTextContainerMultiplier(
+                                                                screenSize
+                                                                    .width) *
+                                                            2 +
+                                                        35,
+                                        child: Wrap(
+                                          runSpacing: 15,
+                                          spacing: 25,
+                                          alignment: WrapAlignment.center,
+                                          children: [
+                                            CustomTextContainer(
+                                              screenSize: screenSize,
+                                              topic: "93.2%",
+                                              description:
+                                                  "PEAK MOTOR EFFICIENCY",
+                                            ),
+                                            CustomTextContainer(
+                                              screenSize: screenSize,
+                                              topic: "0%",
+                                              description: "RARE EARTH METALS",
+                                            ),
+                                            CustomTextContainer(
+                                              screenSize: screenSize,
+                                              topic: "50%",
+                                              description: "LIGHTER WEIGHT",
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                : Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        width: screenSize.width >= 2000
+                                            ? 312.5 * 2 + 35
+                                            : screenSize.width <= 250
+                                                ? 45 * 2 + 35
+                                                : screenSize.width <= 900
+                                                    ? 60 * 2 + 35
+                                                    : screenSize.width *
+                                                            0.15 *
+                                                            (screenSize.width /
+                                                                VideoAspectRatio
+                                                                    .width) *
+                                                            Utils.getCustomTextContainerMultiplier(
+                                                                screenSize
+                                                                    .width) *
+                                                            2 +
+                                                        35,
+                                        child: Wrap(
+                                          runSpacing: 15,
+                                          spacing: 25,
+                                          alignment: WrapAlignment.center,
+                                          children: [
+                                            CustomTextContainer(
+                                              screenSize: screenSize,
+                                              topic: "IE5+",
+                                              description: "ACROSS MOST HP",
+                                            ),
+                                            CustomTextContainer(
+                                              screenSize: screenSize,
+                                              topic: "Up to 13%",
+                                              description:
+                                                  "EXTRA ENERGY SAVINGS OVER VFD",
+                                            ),
+                                            CustomTextContainer(
+                                              screenSize: screenSize,
+                                              topic: "92%",
+                                              description:
+                                                  "PEAK EFFICIENCY AT 3 HP",
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ))
+                        :
+                        // screenSize.width < ScreenSizes.Mobile.width ||
+                        //         screenSize.height < ScreenSizes.Mobile.height
+                        //     ? Container()
+                        //     :
+                        widget.from == Pages.dataCenter ||
+                                widget.from == Pages.dairyBarns
+                            ? Container(
+                                width: screenSize.width *
+                                    0.35 *
+                                    Utils.getMultiplier(screenSize.width),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: screenSize.width *
+                                          0.13 *
+                                          Utils.getMultiplier(screenSize.width),
+                                      height: screenSize.width *
+                                          0.15 *
+                                          Utils.getMultiplier(screenSize.width),
+                                      decoration: const BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                              'assets/graphics/TX_front.png'),
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: screenSize.width *
+                                          0.13 *
+                                          Utils.getMultiplier(screenSize.width),
+                                      height: screenSize.width *
+                                          0.15 *
+                                          Utils.getMultiplier(screenSize.width),
+                                      padding: const EdgeInsets.all(1),
+                                      decoration: const BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                              'assets/graphics/TX_side.png'),
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
                             : Container(
                                 width: screenSize.width *
-                                    0.38 *
+                                    0.35 *
                                     Utils.getMultiplier(screenSize.width),
-                                child:
-                                    widget.from == Pages.dataCenter ||
-                                            widget.from == Pages.dairyBarns
-                                        ? Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                width: screenSize.width >= 2000
-                                                    ? 312.5 * 2 + 35
-                                                    : screenSize.width *
-                                                            0.15 *
-                                                            (screenSize.width /
-                                                                VideoAspectRatio
-                                                                    .width) *
-                                                            Utils.getCustomTextContainerMultiplier(
-                                                                screenSize
-                                                                    .width) *
-                                                            2 +
-                                                        35,
-                                                child: Wrap(
-                                                  runSpacing: 15,
-                                                  spacing: 25,
-                                                  alignment:
-                                                      WrapAlignment.center,
-                                                  children: [
-                                                    CustomTextContainer(
-                                                      screenSize: screenSize,
-                                                      topic: "93.2%",
-                                                      description:
-                                                          "PEAK MOTOR EFFICIENCY",
-                                                    ),
-                                                    CustomTextContainer(
-                                                      screenSize: screenSize,
-                                                      topic: "0%",
-                                                      description:
-                                                          "RARE EARTH METALS",
-                                                    ),
-                                                    CustomTextContainer(
-                                                      screenSize: screenSize,
-                                                      topic: "50%",
-                                                      description:
-                                                          "LIGHTER WEIGHT",
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          )
-                                        : Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                width: screenSize.width >= 2000
-                                                    ? 312.5 * 2 + 35
-                                                    : screenSize.width *
-                                                            0.15 *
-                                                            (screenSize.width /
-                                                                VideoAspectRatio
-                                                                    .width) *
-                                                            Utils.getCustomTextContainerMultiplier(
-                                                                screenSize
-                                                                    .width) *
-                                                            2 +
-                                                        35,
-                                                child: Wrap(
-                                                  runSpacing: 15,
-                                                  spacing: 25,
-                                                  alignment:
-                                                      WrapAlignment.center,
-                                                  children: [
-                                                    CustomTextContainer(
-                                                      screenSize: screenSize,
-                                                      topic: "IE5+",
-                                                      description:
-                                                          "ACROSS MOST HP",
-                                                    ),
-                                                    CustomTextContainer(
-                                                      screenSize: screenSize,
-                                                      topic: "Up to 13%",
-                                                      description:
-                                                          "EXTRA ENERGY SAVINGS OVER VFD",
-                                                    ),
-                                                    CustomTextContainer(
-                                                      screenSize: screenSize,
-                                                      topic: "92%",
-                                                      description:
-                                                          "PEAK EFFICIENCY AT 3 HP",
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ))
-                        : screenSize.width < ScreenSizes.Mobile.width ||
-                                screenSize.height < ScreenSizes.Mobile.height
-                            ? Container()
-                            : widget.from == Pages.dataCenter ||
-                                    widget.from == Pages.dairyBarns
-                                ? Container(
-                                    width: screenSize.width *
-                                        0.35 *
-                                        Utils.getMultiplier(screenSize.width),
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          width: screenSize.width *
-                                              0.13 *
-                                              Utils.getMultiplier(
-                                                  screenSize.width),
-                                          height: screenSize.width *
-                                              0.15 *
-                                              Utils.getMultiplier(
-                                                  screenSize.width),
-                                          decoration: const BoxDecoration(
-                                            image: DecorationImage(
-                                              image: AssetImage(
-                                                  'assets/graphics/TX_front.png'),
-                                              fit: BoxFit.contain,
-                                            ),
-                                          ),
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                      width: screenSize.width *
+                                          0.20 *
+                                          Utils.getMultiplier(screenSize.width),
+                                      height: screenSize.width *
+                                          0.15 *
+                                          Utils.getMultiplier(screenSize.width),
+                                      decoration: const BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                              'assets/graphics/router.png'),
+                                          fit: BoxFit.contain,
                                         ),
-                                        Container(
-                                          width: screenSize.width *
-                                              0.13 *
-                                              Utils.getMultiplier(
-                                                  screenSize.width),
-                                          height: screenSize.width *
-                                              0.15 *
-                                              Utils.getMultiplier(
-                                                  screenSize.width),
-                                          padding: const EdgeInsets.all(1),
-                                          decoration: const BoxDecoration(
-                                            image: DecorationImage(
-                                              image: AssetImage(
-                                                  'assets/graphics/TX_side.png'),
-                                              fit: BoxFit.contain,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
+                                      ),
                                     ),
-                                  )
-                                : Container(
-                                    width: screenSize.width *
-                                        0.35 *
-                                        Utils.getMultiplier(screenSize.width),
-                                    child: Stack(
-                                      children: [
-                                        Container(
-                                          width: screenSize.width *
-                                              0.20 *
-                                              Utils.getMultiplier(
-                                                  screenSize.width),
-                                          height: screenSize.width *
-                                              0.15 *
-                                              Utils.getMultiplier(
-                                                  screenSize.width),
-                                          decoration: const BoxDecoration(
-                                            image: DecorationImage(
-                                              image: AssetImage(
-                                                  'assets/graphics/router.png'),
-                                              fit: BoxFit.contain,
-                                            ),
+                                    Positioned(
+                                      left: screenSize.width *
+                                          0.1 *
+                                          Utils.getMultiplier(screenSize.width),
+                                      child: Container(
+                                        width: screenSize.width *
+                                            0.15 *
+                                            Utils.getMultiplier(
+                                                screenSize.width),
+                                        height: screenSize.width *
+                                            0.1 *
+                                            Utils.getMultiplier(
+                                                screenSize.width),
+                                        padding: const EdgeInsets.all(1),
+                                        decoration: const BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(
+                                                'assets/graphics/Motor_controller.png'),
+                                            fit: BoxFit.contain,
                                           ),
                                         ),
-                                        Positioned(
-                                          left: screenSize.width *
-                                              0.1 *
-                                              Utils.getMultiplier(
-                                                  screenSize.width),
-                                          child: Container(
-                                            width: screenSize.width *
-                                                0.15 *
-                                                Utils.getMultiplier(
-                                                    screenSize.width),
-                                            height: screenSize.width *
-                                                0.1 *
-                                                Utils.getMultiplier(
-                                                    screenSize.width),
-                                            padding: const EdgeInsets.all(1),
-                                            decoration: const BoxDecoration(
-                                              image: DecorationImage(
-                                                image: AssetImage(
-                                                    'assets/graphics/Motor_controller.png'),
-                                                fit: BoxFit.contain,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
+                                  ],
+                                ),
+                              ),
                   ],
                 )
               : Container(),
@@ -791,8 +788,7 @@ class _MotorState extends State<Motor> {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: GestureDetector(
         onTap: () {
-          if (screenSize.width < ScreenSizes.Mobile.width ||
-              screenSize.height < ScreenSizes.Mobile.height) {
+          if (nextIndex) {
             setShow();
             _controller.pause();
             _controller.removeListener(() {});
@@ -810,6 +806,10 @@ class _MotorState extends State<Motor> {
                 ),
               ),
             );
+          } else {
+            setState(() {
+              nextIndex = true;
+            });
           }
         },
         child: Container(
