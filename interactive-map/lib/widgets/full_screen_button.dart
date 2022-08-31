@@ -17,19 +17,19 @@ class _FullScreenButtonState extends State<FullScreenButton> {
   @override
   void initState() {
     // method();
-    window.onKeyData = (final keyData) {
-      if (keyData.logical == LogicalKeyboardKey.escape.keyId) {
-        print("change");
-        if (isfullscreen) {
-          isfullscreen = false;
-        }
-        return true;
-      }
-      print("change 2");
+    // window.onKeyData = (final keyData) {
+    //   if (keyData.logical == LogicalKeyboardKey.escape.keyId) {
+    //     print("change");
+    //     if (isfullscreen) {
+    //       isfullscreen = false;
+    //     }
+    //     return true;
+    //   }
+    //   print("change 2");
 
-      /// Let event pass to other focuses if it is not the key we looking for
-      return false;
-    };
+    //   /// Let event pass to other focuses if it is not the key we looking for
+    //   return false;
+    // };
   }
 
   bool isfullscreen = false;
@@ -60,54 +60,56 @@ class _FullScreenButtonState extends State<FullScreenButton> {
     // window.onKeyPress.listen((KeyboardEvent e) {
     //   print(e.charCode.toString() + " " + new String.fromCharCode(e.charCode));
     // });
-    return isfullscreen
-        ? Container()
-        : Align(
-            alignment: Alignment.bottomLeft,
-            child: GestureDetector(
-              onTap: () async {
-                // SystemChrome.setEnabledSystemUIOverlays([]);
-                // document.documentElement?.requestFullscreen();
-                Utils.enterFullScreenMode();
-                setState(() {
-                  isfullscreen = true;
-                });
-                // print("c " + isfullscreen.toString());
-                // bool isfullscreen = false;
-                // print(isfullscreen);
-                // isfullscreen = (await FullScreen
-                //     .isFullScreen)!; //check current screen mode
-                // print(isfullscreen);
-                // if (isfullscreen) {
-                //   await FullScreen.exitFullScreen();
-                // } else {
-                //   await FullScreen.enterFullScreen(
-                //       FullScreenMode.EMERSIVE_STICKY);
-                // }
-                // await FullScreen.enterFullScreen(
-                //     FullScreenMode.EMERSIVE_STICKY);
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 10,
-                  bottom: 10,
-                ),
-                child: Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.7),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Center(
-                    child: Icon(
-                      Icons.fullscreen_sharp,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
+    return
+        // isfullscreen
+        //     ? Container()
+        //     :
+        Align(
+      alignment: Alignment.bottomLeft,
+      child: GestureDetector(
+        onTap: () async {
+          // SystemChrome.setEnabledSystemUIOverlays([]);
+          // document.documentElement?.requestFullscreen();
+          Utils.enterFullScreenMode();
+          // setState(() {
+          //   isfullscreen = true;
+          // });
+          // print("c " + isfullscreen.toString());
+          // bool isfullscreen = false;
+          // print(isfullscreen);
+          // isfullscreen = (await FullScreen
+          //     .isFullScreen)!; //check current screen mode
+          // print(isfullscreen);
+          // if (isfullscreen) {
+          //   await FullScreen.exitFullScreen();
+          // } else {
+          //   await FullScreen.enterFullScreen(
+          //       FullScreenMode.EMERSIVE_STICKY);
+          // }
+          // await FullScreen.enterFullScreen(
+          //     FullScreenMode.EMERSIVE_STICKY);
+        },
+        child: Padding(
+          padding: const EdgeInsets.only(
+            left: 10,
+            bottom: 10,
+          ),
+          child: Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.7),
+              shape: BoxShape.circle,
+            ),
+            child: Center(
+              child: Icon(
+                Icons.fullscreen_sharp,
+                color: Colors.white,
               ),
             ),
-          );
+          ),
+        ),
+      ),
+    );
   }
 }
