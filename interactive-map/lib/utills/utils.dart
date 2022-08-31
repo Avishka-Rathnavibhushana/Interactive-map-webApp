@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
 
@@ -150,5 +152,9 @@ class Utils {
     double transformedPadding =
         padding * (screenSize.height / VideoAspectRatio.height);
     return transformedPadding;
+  }
+
+  static void enterFullScreenMode() {
+    document.documentElement?.requestFullscreen();
   }
 }

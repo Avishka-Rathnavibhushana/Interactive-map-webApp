@@ -786,11 +786,13 @@ class _BankVideoState extends State<BankVideo> {
           final bool isPlaying = _mapVideoController.value.isPlaying;
           print(isPlaying);
           if (isPlaying != _isPlaying) {
+            
             setState(() {
               _isPlaying = isPlaying;
               setIndex(++index);
             });
             if (index > 1) {
+
               customPushReplacement(
                   context,
                   MapMainScreens(
