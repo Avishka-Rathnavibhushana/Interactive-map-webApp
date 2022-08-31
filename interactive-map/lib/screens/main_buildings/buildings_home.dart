@@ -87,7 +87,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
 
   double _currentOpacity = 0;
   bool fading = false;
-  late String fadingImage;
+  //late String fadingImage;
 
   method() async {
     await Future.delayed(Duration(milliseconds: 1));
@@ -311,100 +311,133 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                                     )
                                   : Container(),
                               _bankVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile1),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile1),
-                                      child: VideoPlayer(_bankVideoController),
-                                    )
-                                  : Container(),
-                              _dataCentreVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile1),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile1),
-                                      child: VideoPlayer(
-                                          _dataCentreVideoController),
-                                    )
-                                  : Container(),
-                              _schoolVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile1),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile1),
-                                      child:
-                                          VideoPlayer(_schoolVideoController),
-                                    )
-                                  : Container(),
-                              _retailVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile1),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile1),
-                                      child:
-                                          VideoPlayer(_retailVideoController),
-                                    )
-                                  : Container(),
-                              _warehouseVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile1),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile1),
-                                      child: VideoPlayer(
-                                          _warehouseVideoController),
-                                    )
-                                  : Container(),
-                              _groceryShopVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile1),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile1),
-                                      child: VideoPlayer(
-                                          _groceryShopVideoController),
-                                    )
-                                  : Container(),
-                              _fastFoodVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile1),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile1),
-                                      child:
-                                          VideoPlayer(_fastFoodVideoController),
-                                    )
-                                  : Container(),
-                              _dairyBarnsVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile1),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile1),
-                                      child: VideoPlayer(
-                                          _dairyBarnsVideoController),
-                                    )
-                                  : Container(),
-                              fading
                                   ? AnimatedOpacity(
                                       opacity: _currentOpacity,
                                       duration: Duration(seconds: 1),
-                                      child: Container(
+                                      child: SizedBox(
                                         width: Utils.getVideoScreenWidth(
                                             screenSizeMobile1),
                                         height: Utils.getVideoScreenHeight(
                                             screenSizeMobile1),
-                                        child: Image.asset(
-                                          fadingImage,
-                                          fit: BoxFit.fill,
-                                        ),
+                                        child:
+                                            VideoPlayer(_bankVideoController),
                                       ),
                                     )
                                   : Container(),
+                              _dataCentreVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile1),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile1),
+                                        child: VideoPlayer(
+                                            _dataCentreVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              _schoolVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile1),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile1),
+                                        child:
+                                            VideoPlayer(_schoolVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              _retailVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile1),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile1),
+                                        child:
+                                            VideoPlayer(_retailVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              _warehouseVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile1),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile1),
+                                        child: VideoPlayer(
+                                            _warehouseVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              _groceryShopVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile1),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile1),
+                                        child: VideoPlayer(
+                                            _groceryShopVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              _fastFoodVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile1),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile1),
+                                        child: VideoPlayer(
+                                            _fastFoodVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              _dairyBarnsVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile1),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile1),
+                                        child: VideoPlayer(
+                                            _dairyBarnsVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              // fading
+                              //     ? AnimatedOpacity(
+                              //         opacity: _currentOpacity,
+                              //         duration: Duration(seconds: 1),
+                              //         child: Container(
+                              //           width: Utils.getVideoScreenWidth(
+                              //               screenSizeMobile1),
+                              //           height: Utils.getVideoScreenHeight(
+                              //               screenSizeMobile1),
+                              //           child: Image.asset(
+                              //             fadingImage,
+                              //             fit: BoxFit.fill,
+                              //           ),
+                              //         ),
+                              //       )
+                              //     : Container(),
                             ],
                           ),
                         ),
@@ -664,100 +697,133 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                                     )
                                   : Container(),
                               _bankVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile2),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile2),
-                                      child: VideoPlayer(_bankVideoController),
-                                    )
-                                  : Container(),
-                              _dataCentreVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile2),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile2),
-                                      child: VideoPlayer(
-                                          _dataCentreVideoController),
-                                    )
-                                  : Container(),
-                              _schoolVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile2),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile2),
-                                      child:
-                                          VideoPlayer(_schoolVideoController),
-                                    )
-                                  : Container(),
-                              _retailVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile2),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile2),
-                                      child:
-                                          VideoPlayer(_retailVideoController),
-                                    )
-                                  : Container(),
-                              _warehouseVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile2),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile2),
-                                      child: VideoPlayer(
-                                          _warehouseVideoController),
-                                    )
-                                  : Container(),
-                              _groceryShopVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile2),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile2),
-                                      child: VideoPlayer(
-                                          _groceryShopVideoController),
-                                    )
-                                  : Container(),
-                              _fastFoodVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile2),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile2),
-                                      child:
-                                          VideoPlayer(_fastFoodVideoController),
-                                    )
-                                  : Container(),
-                              _dairyBarnsVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile2),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile2),
-                                      child: VideoPlayer(
-                                          _dairyBarnsVideoController),
-                                    )
-                                  : Container(),
-                              fading
                                   ? AnimatedOpacity(
                                       opacity: _currentOpacity,
                                       duration: Duration(seconds: 1),
-                                      child: Container(
+                                      child: SizedBox(
                                         width: Utils.getVideoScreenWidth(
                                             screenSizeMobile2),
                                         height: Utils.getVideoScreenHeight(
                                             screenSizeMobile2),
-                                        child: Image.asset(
-                                          fadingImage,
-                                          fit: BoxFit.fill,
-                                        ),
+                                        child:
+                                            VideoPlayer(_bankVideoController),
                                       ),
                                     )
                                   : Container(),
+                              _dataCentreVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile2),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile2),
+                                        child: VideoPlayer(
+                                            _dataCentreVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              _schoolVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile2),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile2),
+                                        child:
+                                            VideoPlayer(_schoolVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              _retailVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile2),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile2),
+                                        child:
+                                            VideoPlayer(_retailVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              _warehouseVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile2),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile2),
+                                        child: VideoPlayer(
+                                            _warehouseVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              _groceryShopVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile2),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile2),
+                                        child: VideoPlayer(
+                                            _groceryShopVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              _fastFoodVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile2),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile2),
+                                        child: VideoPlayer(
+                                            _fastFoodVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              _dairyBarnsVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile2),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile2),
+                                        child: VideoPlayer(
+                                            _dairyBarnsVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              // fading
+                              //     ? AnimatedOpacity(
+                              //         opacity: _currentOpacity,
+                              //         duration: Duration(seconds: 1),
+                              //         child: Container(
+                              //           width: Utils.getVideoScreenWidth(
+                              //               screenSizeMobile2),
+                              //           height: Utils.getVideoScreenHeight(
+                              //               screenSizeMobile2),
+                              //           child: Image.asset(
+                              //             fadingImage,
+                              //             fit: BoxFit.fill,
+                              //           ),
+                              //         ),
+                              //       )
+                              //     : Container(),
                             ],
                           ),
                         ),
@@ -998,76 +1064,119 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                               )
                             : Container(),
                         _bankVideoPlaying
-                            ? SizedBox(
-                                width: Utils.getVideoScreenWidth(screenSize),
-                                height: Utils.getVideoScreenHeight(screenSize),
-                                child: VideoPlayer(_bankVideoController),
-                              )
-                            : Container(),
-                        _dataCentreVideoPlaying
-                            ? SizedBox(
-                                width: Utils.getVideoScreenWidth(screenSize),
-                                height: Utils.getVideoScreenHeight(screenSize),
-                                child: VideoPlayer(_dataCentreVideoController),
-                              )
-                            : Container(),
-                        _schoolVideoPlaying
-                            ? SizedBox(
-                                width: Utils.getVideoScreenWidth(screenSize),
-                                height: Utils.getVideoScreenHeight(screenSize),
-                                child: VideoPlayer(_schoolVideoController),
-                              )
-                            : Container(),
-                        _retailVideoPlaying
-                            ? SizedBox(
-                                width: Utils.getVideoScreenWidth(screenSize),
-                                height: Utils.getVideoScreenHeight(screenSize),
-                                child: VideoPlayer(_retailVideoController),
-                              )
-                            : Container(),
-                        _warehouseVideoPlaying
-                            ? SizedBox(
-                                width: Utils.getVideoScreenWidth(screenSize),
-                                height: Utils.getVideoScreenHeight(screenSize),
-                                child: VideoPlayer(_warehouseVideoController),
-                              )
-                            : Container(),
-                        _groceryShopVideoPlaying
-                            ? SizedBox(
-                                width: Utils.getVideoScreenWidth(screenSize),
-                                height: Utils.getVideoScreenHeight(screenSize),
-                                child: VideoPlayer(_groceryShopVideoController),
-                              )
-                            : Container(),
-                        _fastFoodVideoPlaying
-                            ? SizedBox(
-                                width: Utils.getVideoScreenWidth(screenSize),
-                                height: Utils.getVideoScreenHeight(screenSize),
-                                child: VideoPlayer(_fastFoodVideoController),
-                              )
-                            : Container(),
-                        _dairyBarnsVideoPlaying
-                            ? SizedBox(
-                                width: Utils.getVideoScreenWidth(screenSize),
-                                height: Utils.getVideoScreenHeight(screenSize),
-                                child: VideoPlayer(_dairyBarnsVideoController),
-                              )
-                            : Container(),
-                        fading
                             ? AnimatedOpacity(
                                 opacity: _currentOpacity,
                                 duration: Duration(seconds: 1),
-                                child: Container(
+                                child: SizedBox(
                                   width: Utils.getVideoScreenWidth(screenSize),
                                   height:
                                       Utils.getVideoScreenHeight(screenSize),
-                                  child: Image.asset(
-                                    fadingImage,
-                                    fit: BoxFit.fill,
-                                  ),
+                                  child: VideoPlayer(_bankVideoController),
                                 ),
                               )
                             : Container(),
+                        _dataCentreVideoPlaying
+                            ? AnimatedOpacity(
+                                opacity: _currentOpacity,
+                                duration: Duration(seconds: 1),
+                                child: SizedBox(
+                                  width: Utils.getVideoScreenWidth(screenSize),
+                                  height:
+                                      Utils.getVideoScreenHeight(screenSize),
+                                  child:
+                                      VideoPlayer(_dataCentreVideoController),
+                                ),
+                              )
+                            : Container(),
+                        _schoolVideoPlaying
+                            ? AnimatedOpacity(
+                                opacity: _currentOpacity,
+                                duration: Duration(seconds: 1),
+                                child: SizedBox(
+                                  width: Utils.getVideoScreenWidth(screenSize),
+                                  height:
+                                      Utils.getVideoScreenHeight(screenSize),
+                                  child: VideoPlayer(_schoolVideoController),
+                                ),
+                              )
+                            : Container(),
+                        _retailVideoPlaying
+                            ? AnimatedOpacity(
+                                opacity: _currentOpacity,
+                                duration: Duration(seconds: 1),
+                                child: SizedBox(
+                                  width: Utils.getVideoScreenWidth(screenSize),
+                                  height:
+                                      Utils.getVideoScreenHeight(screenSize),
+                                  child: VideoPlayer(_retailVideoController),
+                                ),
+                              )
+                            : Container(),
+                        _warehouseVideoPlaying
+                            ? AnimatedOpacity(
+                                opacity: _currentOpacity,
+                                duration: Duration(seconds: 1),
+                                child: SizedBox(
+                                  width: Utils.getVideoScreenWidth(screenSize),
+                                  height:
+                                      Utils.getVideoScreenHeight(screenSize),
+                                  child: VideoPlayer(_warehouseVideoController),
+                                ),
+                              )
+                            : Container(),
+                        _groceryShopVideoPlaying
+                            ? AnimatedOpacity(
+                                opacity: _currentOpacity,
+                                duration: Duration(seconds: 1),
+                                child: SizedBox(
+                                  width: Utils.getVideoScreenWidth(screenSize),
+                                  height:
+                                      Utils.getVideoScreenHeight(screenSize),
+                                  child:
+                                      VideoPlayer(_groceryShopVideoController),
+                                ),
+                              )
+                            : Container(),
+                        _fastFoodVideoPlaying
+                            ? AnimatedOpacity(
+                                opacity: _currentOpacity,
+                                duration: Duration(seconds: 1),
+                                child: SizedBox(
+                                  width: Utils.getVideoScreenWidth(screenSize),
+                                  height:
+                                      Utils.getVideoScreenHeight(screenSize),
+                                  child: VideoPlayer(_fastFoodVideoController),
+                                ),
+                              )
+                            : Container(),
+                        _dairyBarnsVideoPlaying
+                            ? AnimatedOpacity(
+                                opacity: _currentOpacity,
+                                duration: Duration(seconds: 1),
+                                child: SizedBox(
+                                  width: Utils.getVideoScreenWidth(screenSize),
+                                  height:
+                                      Utils.getVideoScreenHeight(screenSize),
+                                  child:
+                                      VideoPlayer(_dairyBarnsVideoController),
+                                ),
+                              )
+                            : Container(),
+                        // fading
+                        //     ? AnimatedOpacity(
+                        //         opacity: _currentOpacity,
+                        //         duration: Duration(seconds: 1),
+                        //         child: Container(
+                        //           width: Utils.getVideoScreenWidth(screenSize),
+                        //           height:
+                        //               Utils.getVideoScreenHeight(screenSize),
+                        //           child: Image.asset(
+                        //             fadingImage,
+                        //             fit: BoxFit.fill,
+                        //           ),
+                        //         ),
+                        //       )
+                        //     : Container(),
                       ],
                     ),
                   ),
@@ -1486,21 +1595,26 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
 
                 _timerVideoController.pause();
 
+                        
+                //         setState(() {
+                //   fadingImage =
+                //       "assets/tempory images/Buildings_Transition_Stills/school_SELECTED.png";
+                //   fading = true;
+                // });
+                
                 setState(() {
-                  fadingImage =
-                      "assets/tempory images/Buildings_Transition_Stills/school_SELECTED.png";
-                  fading = true;
+                  _schoolVideoPlaying = true;
                 });
 
                 method();
 
                 await Future.delayed(Duration(seconds: 1));
 
-                setState(() {
-                  fading = false;
-                  _currentOpacity = 0;
-                  _schoolVideoPlaying = true;
-                });
+                // setState(() {
+                //   fading = false;
+                //   _currentOpacity = 0;
+                //   _schoolVideoPlaying = true;
+                // });
 
                 setState(() {
                   width = 0;
@@ -1559,21 +1673,26 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         });
 
         _timerVideoController.pause();
+                
+        //         setState(() {
+        //   fadingImage =
+        //       "assets/tempory images/Buildings_Transition_Stills/school_SELECTED.png";
+        //   fading = true;
+        // });
+        
         setState(() {
-          fadingImage =
-              "assets/tempory images/Buildings_Transition_Stills/school_SELECTED.png";
-          fading = true;
+          _schoolVideoPlaying = true;
         });
 
         method();
 
         await Future.delayed(Duration(seconds: 1));
 
-        setState(() {
-          fading = false;
-          _currentOpacity = 0;
-          _schoolVideoPlaying = true;
-        });
+        // setState(() {
+        //   fading = false;
+        //   _currentOpacity = 0;
+        //   _schoolVideoPlaying = true;
+        // });
 
         setState(() {
           width = 0;
@@ -1629,21 +1748,26 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                   });
 
                   _timerVideoController.pause();
+                          
+                  //         setState(() {
+                  //   fadingImage =
+                  //       "assets/tempory images/Buildings_Transition_Stills/bank_SELECTED.png";
+                  //   fading = true;
+                  // });
+                  
                   setState(() {
-                    fadingImage =
-                        "assets/tempory images/Buildings_Transition_Stills/bank_SELECTED.png";
-                    fading = true;
+                    _bankVideoPlaying = true;
                   });
 
                   method();
 
                   await Future.delayed(Duration(seconds: 1));
 
-                  setState(() {
-                    fading = false;
-                    _currentOpacity = 0;
-                    _bankVideoPlaying = true;
-                  });
+                  // setState(() {
+                  //   fading = false;
+                  //   _currentOpacity = 0;
+                  //   _bankVideoPlaying = true;
+                  // });
 
                   setState(() {
                     width = 0;
@@ -1702,21 +1826,26 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         });
 
         _timerVideoController.pause();
-setState(() {
-          fadingImage =
-              "assets/tempory images/Buildings_Transition_Stills/bank_SELECTED.png";
-          fading = true;
+        
+        // setState(() {
+        //   fadingImage =
+        //       "assets/tempory images/Buildings_Transition_Stills/bank_SELECTED.png";
+        //   fading = true;
+        // });
+        
+        setState(() {
+          _bankVideoPlaying = true;
         });
 
         method();
 
         await Future.delayed(Duration(seconds: 1));
 
-        setState(() {
-          fading = false;
-          _currentOpacity = 0;
-          _bankVideoPlaying = true;
-        });
+        // setState(() {
+        //   fading = false;
+        //   _currentOpacity = 0;
+        //   _bankVideoPlaying = true;
+        // });
 
         setState(() {
           width = 0;
@@ -1770,21 +1899,26 @@ setState(() {
                 });
 
                 _timerVideoController.pause();
-setState(() {
-                  fadingImage =
-                      "assets/tempory images/Buildings_Transition_Stills/datacentre_SELECTED.png";
-                  fading = true;
+        
+                // setState(() {
+                //           fadingImage =
+                //               "assets/tempory images/Buildings_Transition_Stills/datacentre_SELECTED.png";
+                //           fading = true;
+                //         });
+        
+                setState(() {
+                  _dataCentreVideoPlaying = true;
                 });
 
                 method();
 
                 await Future.delayed(Duration(seconds: 1));
 
-                setState(() {
-                  fading = false;
-                  _currentOpacity = 0;
-                  _dataCentreVideoPlaying = true;
-                });
+                // setState(() {
+                //   fading = false;
+                //   _currentOpacity = 0;
+                //   _dataCentreVideoPlaying = true;
+                // });
 
                 setState(() {
                   width = 0;
@@ -1842,21 +1976,26 @@ setState(() {
         });
 
         _timerVideoController.pause();
-setState(() {
-          fadingImage =
-              "assets/tempory images/Buildings_Transition_Stills/datacentre_SELECTED.png";
-          fading = true;
+        
+        // setState(() {
+        //   fadingImage =
+        //       "assets/tempory images/Buildings_Transition_Stills/datacentre_SELECTED.png";
+        //   fading = true;
+        // });
+        
+        setState(() {
+          _dataCentreVideoPlaying = true;
         });
 
         method();
 
         await Future.delayed(Duration(seconds: 1));
 
-        setState(() {
-          fading = false;
-          _currentOpacity = 0;
-          _dataCentreVideoPlaying = true;
-        });
+        // setState(() {
+        //   fading = false;
+        //   _currentOpacity = 0;
+        //   _dataCentreVideoPlaying = true;
+        // });
 
         setState(() {
           width = 0;
@@ -1909,21 +2048,26 @@ setState(() {
                 });
 
                 _timerVideoController.pause();
-setState(() {
-                  fadingImage =
-                      "assets/tempory images/Buildings_Transition_Stills/warehouse_SELECTED.png";
-                  fading = true;
+        
+                // setState(() {
+                //           fadingImage =
+                //               "assets/tempory images/Buildings_Transition_Stills/warehouse_SELECTED.png";
+                //           fading = true;
+                //         });
+        
+                setState(() {
+                  _warehouseVideoPlaying = true;
                 });
 
                 method();
 
                 await Future.delayed(Duration(seconds: 1));
 
-                setState(() {
-                  fading = false;
-                  _currentOpacity = 0;
-                  _warehouseVideoPlaying = true;
-                });
+                // setState(() {
+                //   fading = false;
+                //   _currentOpacity = 0;
+                //   _warehouseVideoPlaying = true;
+                // });
 
                 setState(() {
                   width = 0;
@@ -1982,21 +2126,26 @@ setState(() {
         });
 
         _timerVideoController.pause();
-setState(() {
-          fadingImage =
-              "assets/tempory images/Buildings_Transition_Stills/warehouse_SELECTED.png";
-          fading = true;
+        
+        // setState(() {
+        //   fadingImage =
+        //       "assets/tempory images/Buildings_Transition_Stills/warehouse_SELECTED.png";
+        //   fading = true;
+        // });
+        
+        setState(() {
+          _warehouseVideoPlaying = true;
         });
 
         method();
 
         await Future.delayed(Duration(seconds: 1));
 
-        setState(() {
-          fading = false;
-          _currentOpacity = 0;
-          _warehouseVideoPlaying = true;
-        });
+        // setState(() {
+        //   fading = false;
+        //   _currentOpacity = 0;
+        //   _warehouseVideoPlaying = true;
+        // });
 
         setState(() {
           width = 0;
@@ -2050,21 +2199,26 @@ setState(() {
                 });
 
                 _timerVideoController.pause();
-setState(() {
-                  fadingImage =
-                      "assets/tempory images/Buildings_Transition_Stills/retail_SELECTED.png";
-                  fading = true;
+        
+                // setState(() {
+                //           fadingImage =
+                //               "assets/tempory images/Buildings_Transition_Stills/retail_SELECTED.png";
+                //           fading = true;
+                //         });
+        
+                setState(() {
+                  _retailVideoPlaying = true;
                 });
 
                 method();
 
                 await Future.delayed(Duration(seconds: 1));
 
-                setState(() {
-                  fading = false;
-                  _currentOpacity = 0;
-                  _retailVideoPlaying = true;
-                });
+                // setState(() {
+                //   fading = false;
+                //   _currentOpacity = 0;
+                //   _retailVideoPlaying = true;
+                // });
 
                 setState(() {
                   width = 0;
@@ -2123,21 +2277,26 @@ setState(() {
         });
 
         _timerVideoController.pause();
-setState(() {
-          fadingImage =
-              "assets/tempory images/Buildings_Transition_Stills/retail_SELECTED.png";
-          fading = true;
+        
+        // setState(() {
+        //   fadingImage =
+        //       "assets/tempory images/Buildings_Transition_Stills/retail_SELECTED.png";
+        //   fading = true;
+        // });
+        
+        setState(() {
+          _retailVideoPlaying = true;
         });
 
         method();
 
         await Future.delayed(Duration(seconds: 1));
 
-        setState(() {
-          fading = false;
-          _currentOpacity = 0;
-          _retailVideoPlaying = true;
-        });
+        // setState(() {
+        //   fading = false;
+        //   _currentOpacity = 0;
+        //   _retailVideoPlaying = true;
+        // });
 
         setState(() {
           width = 0;
@@ -2192,21 +2351,26 @@ setState(() {
                 });
 
                 _timerVideoController.pause();
-setState(() {
-                  fadingImage =
-                      "assets/tempory images/Buildings_Transition_Stills/groceryshop_SELECTED.png";
-                  fading = true;
+        
+                // setState(() {
+                //           fadingImage =
+                //               "assets/tempory images/Buildings_Transition_Stills/groceryshop_SELECTED.png";
+                //           fading = true;
+                //         });
+        
+                setState(() {
+                  _groceryShopVideoPlaying = true;
                 });
 
                 method();
 
                 await Future.delayed(Duration(seconds: 1));
 
-                setState(() {
-                  fading = false;
-                  _currentOpacity = 0;
-                  _groceryShopVideoPlaying = true;
-                });
+                // setState(() {
+                //   fading = false;
+                //   _currentOpacity = 0;
+                //   _groceryShopVideoPlaying = true;
+                // });
 
                 setState(() {
                   width = 0;
@@ -2265,21 +2429,26 @@ setState(() {
         });
 
         _timerVideoController.pause();
-setState(() {
-          fadingImage =
-              "assets/tempory images/Buildings_Transition_Stills/groceryshop_SELECTED.png";
-          fading = true;
+        
+        // setState(() {
+        //   fadingImage =
+        //       "assets/tempory images/Buildings_Transition_Stills/groceryshop_SELECTED.png";
+        //   fading = true;
+        // });
+        
+        setState(() {
+          _groceryShopVideoPlaying = true;
         });
 
         method();
 
         await Future.delayed(Duration(seconds: 1));
 
-        setState(() {
-          fading = false;
-          _currentOpacity = 0;
-          _groceryShopVideoPlaying = true;
-        });
+        // setState(() {
+        //   fading = false;
+        //   _currentOpacity = 0;
+        //   _groceryShopVideoPlaying = true;
+        // });
 
         setState(() {
           width = 0;
@@ -2333,21 +2502,26 @@ setState(() {
                 });
 
                 _timerVideoController.pause();
-setState(() {
-                  fadingImage =
-                      "assets/tempory images/Buildings_Transition_Stills/fastfood_SELECTED.png";
-                  fading = true;
+        
+                // setState(() {
+                //           fadingImage =
+                //               "assets/tempory images/Buildings_Transition_Stills/fastfood_SELECTED.png";
+                //           fading = true;
+                //         });
+        
+                setState(() {
+                  _fastFoodVideoPlaying = true;
                 });
 
                 method();
 
                 await Future.delayed(Duration(seconds: 1));
 
-                setState(() {
-                  fading = false;
-                  _currentOpacity = 0;
-                  _fastFoodVideoPlaying = true;
-                });
+                // setState(() {
+                //   fading = false;
+                //   _currentOpacity = 0;
+                //   _fastFoodVideoPlaying = true;
+                // });
 
                 setState(() {
                   width = 0;
@@ -2406,21 +2580,26 @@ setState(() {
         });
 
         _timerVideoController.pause();
-setState(() {
-          fadingImage =
-              "assets/tempory images/Buildings_Transition_Stills/fastfood_SELECTED.png";
-          fading = true;
+        
+        // setState(() {
+        //   fadingImage =
+        //       "assets/tempory images/Buildings_Transition_Stills/fastfood_SELECTED.png";
+        //   fading = true;
+        // });
+        
+        setState(() {
+          _fastFoodVideoPlaying = true;
         });
 
         method();
 
         await Future.delayed(Duration(seconds: 1));
 
-        setState(() {
-          fading = false;
-          _currentOpacity = 0;
-          _fastFoodVideoPlaying = true;
-        });
+        // setState(() {
+        //   fading = false;
+        //   _currentOpacity = 0;
+        //   _fastFoodVideoPlaying = true;
+        // });
 
         setState(() {
           width = 0;
@@ -2474,21 +2653,26 @@ setState(() {
                 });
 
                 _timerVideoController.pause();
-setState(() {
-                  fadingImage =
-                      "assets/tempory images/Buildings_Transition_Stills/barn_SELECTED.png";
-                  fading = true;
+        
+                // setState(() {
+                //           fadingImage =
+                //               "assets/tempory images/Buildings_Transition_Stills/barn_SELECTED.png";
+                //           fading = true;
+                //         });
+        
+                setState(() {
+                  _dairyBarnsVideoPlaying = true;
                 });
 
                 method();
 
                 await Future.delayed(Duration(seconds: 1));
 
-                setState(() {
-                  fading = false;
-                  _currentOpacity = 0;
-                  _dairyBarnsVideoPlaying = true;
-                });
+                // setState(() {
+                //   fading = false;
+                //   _currentOpacity = 0;
+                //   _dairyBarnsVideoPlaying = true;
+                // });
 
                 setState(() {
                   width = 0;
@@ -2556,21 +2740,26 @@ setState(() {
         });
 
         _timerVideoController.pause();
-setState(() {
-          fadingImage =
-              "assets/tempory images/Buildings_Transition_Stills/barn_SELECTED.png";
-          fading = true;
+        
+        // setState(() {
+        //   fadingImage =
+        //       "assets/tempory images/Buildings_Transition_Stills/barn_SELECTED.png";
+        //   fading = true;
+        // });
+        
+        setState(() {
+          _dairyBarnsVideoPlaying = true;
         });
 
         method();
 
         await Future.delayed(Duration(seconds: 1));
 
-        setState(() {
-          fading = false;
-          _currentOpacity = 0;
-          _dairyBarnsVideoPlaying = true;
-        });
+        // setState(() {
+        //   fading = false;
+        //   _currentOpacity = 0;
+        //   _dairyBarnsVideoPlaying = true;
+        // });
 
         setState(() {
           width = 0;

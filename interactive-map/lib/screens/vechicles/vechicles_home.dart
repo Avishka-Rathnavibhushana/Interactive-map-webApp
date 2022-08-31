@@ -83,7 +83,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
 
   double _currentOpacity = 0;
   bool fading = false;
-  late String fadingImage;
+  // late String fadingImage;
 
   method() async {
     await Future.delayed(Duration(milliseconds: 1));
@@ -299,88 +299,118 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                                     )
                                   : Container(),
                               _trainVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile1),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile1),
-                                      child: VideoPlayer(_trainVideoController),
-                                    )
-                                  : Container(),
-                              _sportsCarVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile1),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile1),
-                                      child: VideoPlayer(
-                                          _sportsCarVideoController),
-                                    )
-                                  : Container(),
-                              _avgNarmVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile1),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile1),
-                                      child:
-                                          VideoPlayer(_avgNarmVideoController),
-                                    )
-                                  : Container(),
-                              _busVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile1),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile1),
-                                      child: VideoPlayer(_busVideoController),
-                                    )
-                                  : Container(),
-                              _tractorVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile1),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile1),
-                                      child:
-                                          VideoPlayer(_tractorVideoController),
-                                    )
-                                  : Container(),
-                              _excavatorVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile1),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile1),
-                                      child: VideoPlayer(
-                                          _excavatorVideoController),
-                                    )
-                                  : Container(),
-                              _truckVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile1),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile1),
-                                      child: VideoPlayer(_truckVideoController),
-                                    )
-                                  : Container(),
-                              fading
                                   ? AnimatedOpacity(
                                       opacity: _currentOpacity,
                                       duration: Duration(seconds: 1),
-                                      child: Container(
+                                      child: SizedBox(
                                         width: Utils.getVideoScreenWidth(
                                             screenSizeMobile1),
                                         height: Utils.getVideoScreenHeight(
                                             screenSizeMobile1),
-                                        child: Image.asset(
-                                          fadingImage,
-                                          fit: BoxFit.fill,
-                                        ),
+                                        child:
+                                            VideoPlayer(_trainVideoController),
                                       ),
                                     )
                                   : Container(),
+                              _sportsCarVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile1),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile1),
+                                        child: VideoPlayer(
+                                            _sportsCarVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              _avgNarmVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile1),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile1),
+                                        child: VideoPlayer(
+                                            _avgNarmVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              _busVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile1),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile1),
+                                        child: VideoPlayer(_busVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              _tractorVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile1),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile1),
+                                        child: VideoPlayer(
+                                            _tractorVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              _excavatorVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile1),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile1),
+                                        child: VideoPlayer(
+                                            _excavatorVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              _truckVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile1),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile1),
+                                        child:
+                                            VideoPlayer(_truckVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              // fading
+                              //     ? AnimatedOpacity(
+                              //         opacity: _currentOpacity,
+                              //         duration: Duration(seconds: 1),
+                              //         child: Container(
+                              //           width: Utils.getVideoScreenWidth(
+                              //               screenSizeMobile1),
+                              //           height: Utils.getVideoScreenHeight(
+                              //               screenSizeMobile1),
+                              //           child: Image.asset(
+                              //             fadingImage,
+                              //             fit: BoxFit.fill,
+                              //           ),
+                              //         ),
+                              //       )
+                              //     : Container(),
                             ],
                           ),
                         ),
@@ -627,88 +657,118 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                                     )
                                   : Container(),
                               _trainVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile2),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile2),
-                                      child: VideoPlayer(_trainVideoController),
-                                    )
-                                  : Container(),
-                              _sportsCarVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile2),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile2),
-                                      child: VideoPlayer(
-                                          _sportsCarVideoController),
-                                    )
-                                  : Container(),
-                              _avgNarmVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile2),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile2),
-                                      child:
-                                          VideoPlayer(_avgNarmVideoController),
-                                    )
-                                  : Container(),
-                              _busVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile2),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile2),
-                                      child: VideoPlayer(_busVideoController),
-                                    )
-                                  : Container(),
-                              _tractorVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile2),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile2),
-                                      child:
-                                          VideoPlayer(_tractorVideoController),
-                                    )
-                                  : Container(),
-                              _excavatorVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile2),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile2),
-                                      child: VideoPlayer(
-                                          _excavatorVideoController),
-                                    )
-                                  : Container(),
-                              _truckVideoPlaying
-                                  ? SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile2),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile2),
-                                      child: VideoPlayer(_truckVideoController),
-                                    )
-                                  : Container(),
-                              fading
                                   ? AnimatedOpacity(
                                       opacity: _currentOpacity,
                                       duration: Duration(seconds: 1),
-                                      child: Container(
+                                      child: SizedBox(
                                         width: Utils.getVideoScreenWidth(
                                             screenSizeMobile2),
                                         height: Utils.getVideoScreenHeight(
                                             screenSizeMobile2),
-                                        child: Image.asset(
-                                          fadingImage,
-                                          fit: BoxFit.fill,
-                                        ),
+                                        child:
+                                            VideoPlayer(_trainVideoController),
                                       ),
                                     )
                                   : Container(),
+                              _sportsCarVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile2),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile2),
+                                        child: VideoPlayer(
+                                            _sportsCarVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              _avgNarmVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile2),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile2),
+                                        child: VideoPlayer(
+                                            _avgNarmVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              _busVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile2),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile2),
+                                        child: VideoPlayer(_busVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              _tractorVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile2),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile2),
+                                        child: VideoPlayer(
+                                            _tractorVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              _excavatorVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile2),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile2),
+                                        child: VideoPlayer(
+                                            _excavatorVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              _truckVideoPlaying
+                                  ? AnimatedOpacity(
+                                      opacity: _currentOpacity,
+                                      duration: Duration(seconds: 1),
+                                      child: SizedBox(
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile2),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile2),
+                                        child:
+                                            VideoPlayer(_truckVideoController),
+                                      ),
+                                    )
+                                  : Container(),
+                              // fading
+                              //     ? AnimatedOpacity(
+                              //         opacity: _currentOpacity,
+                              //         duration: Duration(seconds: 1),
+                              //         child: Container(
+                              //           width: Utils.getVideoScreenWidth(
+                              //               screenSizeMobile2),
+                              //           height: Utils.getVideoScreenHeight(
+                              //               screenSizeMobile2),
+                              //           child: Image.asset(
+                              //             fadingImage,
+                              //             fit: BoxFit.fill,
+                              //           ),
+                              //         ),
+                              //       )
+                              //     : Container(),
                             ],
                           ),
                         ),
@@ -936,69 +996,104 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                               )
                             : Container(),
                         _trainVideoPlaying
-                            ? SizedBox(
-                                width: Utils.getVideoScreenWidth(screenSize),
-                                height: Utils.getVideoScreenHeight(screenSize),
-                                child: VideoPlayer(_trainVideoController),
-                              )
-                            : Container(),
-                        _sportsCarVideoPlaying
-                            ? SizedBox(
-                                width: Utils.getVideoScreenWidth(screenSize),
-                                height: Utils.getVideoScreenHeight(screenSize),
-                                child: VideoPlayer(_sportsCarVideoController),
-                              )
-                            : Container(),
-                        _avgNarmVideoPlaying
-                            ? SizedBox(
-                                width: Utils.getVideoScreenWidth(screenSize),
-                                height: Utils.getVideoScreenHeight(screenSize),
-                                child: VideoPlayer(_avgNarmVideoController),
-                              )
-                            : Container(),
-                        _busVideoPlaying
-                            ? SizedBox(
-                                width: Utils.getVideoScreenWidth(screenSize),
-                                height: Utils.getVideoScreenHeight(screenSize),
-                                child: VideoPlayer(_busVideoController),
-                              )
-                            : Container(),
-                        _tractorVideoPlaying
-                            ? SizedBox(
-                                width: Utils.getVideoScreenWidth(screenSize),
-                                height: Utils.getVideoScreenHeight(screenSize),
-                                child: VideoPlayer(_tractorVideoController),
-                              )
-                            : Container(),
-                        _excavatorVideoPlaying
-                            ? SizedBox(
-                                width: Utils.getVideoScreenWidth(screenSize),
-                                height: Utils.getVideoScreenHeight(screenSize),
-                                child: VideoPlayer(_excavatorVideoController),
-                              )
-                            : Container(),
-                        _truckVideoPlaying
-                            ? SizedBox(
-                                width: Utils.getVideoScreenWidth(screenSize),
-                                height: Utils.getVideoScreenHeight(screenSize),
-                                child: VideoPlayer(_truckVideoController),
-                              )
-                            : Container(),
-                        fading
                             ? AnimatedOpacity(
                                 opacity: _currentOpacity,
                                 duration: Duration(seconds: 1),
-                                child: Container(
+                                child: SizedBox(
                                   width: Utils.getVideoScreenWidth(screenSize),
                                   height:
                                       Utils.getVideoScreenHeight(screenSize),
-                                  child: Image.asset(
-                                    fadingImage,
-                                    fit: BoxFit.fill,
-                                  ),
+                                  child: VideoPlayer(_trainVideoController),
                                 ),
                               )
                             : Container(),
+                        _sportsCarVideoPlaying
+                            ? AnimatedOpacity(
+                                opacity: _currentOpacity,
+                                duration: Duration(seconds: 1),
+                                child: SizedBox(
+                                  width: Utils.getVideoScreenWidth(screenSize),
+                                  height:
+                                      Utils.getVideoScreenHeight(screenSize),
+                                  child: VideoPlayer(_sportsCarVideoController),
+                                ),
+                              )
+                            : Container(),
+                        _avgNarmVideoPlaying
+                            ? AnimatedOpacity(
+                                opacity: _currentOpacity,
+                                duration: Duration(seconds: 1),
+                                child: SizedBox(
+                                  width: Utils.getVideoScreenWidth(screenSize),
+                                  height:
+                                      Utils.getVideoScreenHeight(screenSize),
+                                  child: VideoPlayer(_avgNarmVideoController),
+                                ),
+                              )
+                            : Container(),
+                        _busVideoPlaying
+                            ? AnimatedOpacity(
+                                opacity: _currentOpacity,
+                                duration: Duration(seconds: 1),
+                                child: SizedBox(
+                                  width: Utils.getVideoScreenWidth(screenSize),
+                                  height:
+                                      Utils.getVideoScreenHeight(screenSize),
+                                  child: VideoPlayer(_busVideoController),
+                                ),
+                              )
+                            : Container(),
+                        _tractorVideoPlaying
+                            ? AnimatedOpacity(
+                                opacity: _currentOpacity,
+                                duration: Duration(seconds: 1),
+                                child: SizedBox(
+                                  width: Utils.getVideoScreenWidth(screenSize),
+                                  height:
+                                      Utils.getVideoScreenHeight(screenSize),
+                                  child: VideoPlayer(_tractorVideoController),
+                                ),
+                              )
+                            : Container(),
+                        _excavatorVideoPlaying
+                            ? AnimatedOpacity(
+                                opacity: _currentOpacity,
+                                duration: Duration(seconds: 1),
+                                child: SizedBox(
+                                  width: Utils.getVideoScreenWidth(screenSize),
+                                  height:
+                                      Utils.getVideoScreenHeight(screenSize),
+                                  child: VideoPlayer(_excavatorVideoController),
+                                ),
+                              )
+                            : Container(),
+                        _truckVideoPlaying
+                            ? AnimatedOpacity(
+                                opacity: _currentOpacity,
+                                duration: Duration(seconds: 1),
+                                child: SizedBox(
+                                  width: Utils.getVideoScreenWidth(screenSize),
+                                  height:
+                                      Utils.getVideoScreenHeight(screenSize),
+                                  child: VideoPlayer(_truckVideoController),
+                                ),
+                              )
+                            : Container(),
+                        // fading
+                        //     ? AnimatedOpacity(
+                        //         opacity: _currentOpacity,
+                        //         duration: Duration(seconds: 1),
+                        //         child: Container(
+                        //           width: Utils.getVideoScreenWidth(screenSize),
+                        //           height:
+                        //               Utils.getVideoScreenHeight(screenSize),
+                        //           child: Image.asset(
+                        //             fadingImage,
+                        //             fit: BoxFit.fill,
+                        //           ),
+                        //         ),
+                        //       )
+                        //     : Container(),
                       ],
                     ),
                   ),
@@ -1394,21 +1489,25 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
 
                 _timerVideoController.pause();
 
+                // setState(() {
+                //   fadingImage =
+                //       "assets/tempory images/Vehicles_Transition_Stills/AGV_SELECTED.png";
+                //   fading = true;
+                // });
+
                 setState(() {
-                  fadingImage =
-                      "assets/tempory images/Vehicles_Transition_Stills/AGV_SELECTED.png";
-                  fading = true;
+                  _avgNarmVideoPlaying = true;
                 });
 
                 method();
 
                 await Future.delayed(Duration(seconds: 1));
 
-                setState(() {
-                  fading = false;
-_currentOpacity = 0;
-                  _avgNarmVideoPlaying = true;
-                });
+                // setState(() {
+                //   fading = false;
+                //   _currentOpacity = 0;
+                //   _avgNarmVideoPlaying = true;
+                // });
 
                 setState(() {
                   width = 0;
@@ -1476,21 +1575,25 @@ _currentOpacity = 0;
 
         _timerVideoController.pause();
 
+        // setState(() {
+        //   fadingImage =
+        //       "assets/tempory images/Vehicles_Transition_Stills/AGV_SELECTED.png";
+        //   fading = true;
+        // });
+
         setState(() {
-          fadingImage =
-              "assets/tempory images/Vehicles_Transition_Stills/AGV_SELECTED.png";
-          fading = true;
+          _avgNarmVideoPlaying = true;
         });
 
         method();
 
         await Future.delayed(Duration(seconds: 1));
 
-        setState(() {
-          fading = false;
-_currentOpacity = 0;
-          _avgNarmVideoPlaying = true;
-        });
+        // setState(() {
+        //   fading = false;
+        //   _currentOpacity = 0;
+        //   _avgNarmVideoPlaying = true;
+        // });
 
         setState(() {
           width = 0;
@@ -1554,21 +1657,25 @@ _currentOpacity = 0;
 
                   _timerVideoController.pause();
 
+                  // setState(() {
+                  //   fadingImage =
+                  //       "assets/tempory images/Vehicles_Transition_Stills/Train_SELECTED.png";
+                  //   fading = true;
+                  // });
+
                   setState(() {
-                    fadingImage =
-                        "assets/tempory images/Vehicles_Transition_Stills/Train_SELECTED.png";
-                    fading = true;
+                    _trainVideoPlaying = true;
                   });
 
                   method();
 
                   await Future.delayed(Duration(seconds: 1));
 
-                  setState(() {
-                    fading = false;
-_currentOpacity = 0;
-                    _trainVideoPlaying = true;
-                  });
+                  // setState(() {
+                  //   fading = false;
+                  //   _currentOpacity = 0;
+                  //   _trainVideoPlaying = true;
+                  // });
 
                   setState(() {
                     width = 0;
@@ -1637,21 +1744,25 @@ _currentOpacity = 0;
 
         _timerVideoController.pause();
 
+        // setState(() {
+        //   fadingImage =
+        //       "assets/tempory images/Vehicles_Transition_Stills/Train_SELECTED.png";
+        //   fading = true;
+        // });
+
         setState(() {
-          fadingImage =
-              "assets/tempory images/Vehicles_Transition_Stills/Train_SELECTED.png";
-          fading = true;
+          _trainVideoPlaying = true;
         });
 
         method();
 
         await Future.delayed(Duration(seconds: 1));
 
-        setState(() {
-          fading = false;
-_currentOpacity = 0;
-          _trainVideoPlaying = true;
-        });
+        // setState(() {
+        //   fading = false;
+        //   _currentOpacity = 0;
+        //   _trainVideoPlaying = true;
+        // });
 
         setState(() {
           width = 0;
@@ -1714,21 +1825,25 @@ _currentOpacity = 0;
 
                 _timerVideoController.pause();
 
+                // setState(() {
+                //   fadingImage =
+                //       "assets/tempory images/Vehicles_Transition_Stills/Car_SELECTED.png";
+                //   fading = true;
+                // });
+
                 setState(() {
-                  fadingImage =
-                      "assets/tempory images/Vehicles_Transition_Stills/Car_SELECTED.png";
-                  fading = true;
+                  _sportsCarVideoPlaying = true;
                 });
 
                 method();
 
                 await Future.delayed(Duration(seconds: 1));
 
-                setState(() {
-                  fading = false;
-_currentOpacity = 0;
-                  _sportsCarVideoPlaying = true;
-                });
+                // setState(() {
+                //   fading = false;
+                //   _currentOpacity = 0;
+                //   _sportsCarVideoPlaying = true;
+                // });
 
                 setState(() {
                   width = 0;
@@ -1795,21 +1910,25 @@ _currentOpacity = 0;
 
         _timerVideoController.pause();
 
+        // setState(() {
+        //   fadingImage =
+        //       "assets/tempory images/Vehicles_Transition_Stills/Car_SELECTED.png";
+        //   fading = true;
+        // });
+
         setState(() {
-          fadingImage =
-              "assets/tempory images/Vehicles_Transition_Stills/Car_SELECTED.png";
-          fading = true;
+          _sportsCarVideoPlaying = true;
         });
 
         method();
 
         await Future.delayed(Duration(seconds: 1));
 
-        setState(() {
-          fading = false;
-_currentOpacity = 0;
-          _sportsCarVideoPlaying = true;
-        });
+        // setState(() {
+        //   fading = false;
+        //   _currentOpacity = 0;
+        //   _sportsCarVideoPlaying = true;
+        // });
 
         setState(() {
           width = 0;
@@ -1871,21 +1990,25 @@ _currentOpacity = 0;
 
                 _timerVideoController.pause();
 
+                // setState(() {
+                //   fadingImage =
+                //       "assets/tempory images/Vehicles_Transition_Stills/Tractor_SELECTED.png";
+                //   fading = true;
+                // });
+
                 setState(() {
-                  fadingImage =
-                      "assets/tempory images/Vehicles_Transition_Stills/Tractor_SELECTED.png";
-                  fading = true;
+                  _tractorVideoPlaying = true;
                 });
 
                 method();
 
                 await Future.delayed(Duration(seconds: 1));
 
-                setState(() {
-                  fading = false;
-_currentOpacity = 0;
-                  _tractorVideoPlaying = true;
-                });
+                // setState(() {
+                //   fading = false;
+                //   _currentOpacity = 0;
+                //   _tractorVideoPlaying = true;
+                // });
 
                 setState(() {
                   width = 0;
@@ -1953,21 +2076,25 @@ _currentOpacity = 0;
 
         _timerVideoController.pause();
 
+        // setState(() {
+        //   fadingImage =
+        //       "assets/tempory images/Vehicles_Transition_Stills/Tractor_SELECTED.png";
+        //   fading = true;
+        // });
+
         setState(() {
-          fadingImage =
-              "assets/tempory images/Vehicles_Transition_Stills/Tractor_SELECTED.png";
-          fading = true;
+          _tractorVideoPlaying = true;
         });
 
         method();
 
         await Future.delayed(Duration(seconds: 1));
 
-        setState(() {
-          fading = false;
-_currentOpacity = 0;
-          _tractorVideoPlaying = true;
-        });
+        // setState(() {
+        //   fading = false;
+        //   _currentOpacity = 0;
+        //   _tractorVideoPlaying = true;
+        // });
 
         setState(() {
           width = 0;
@@ -2031,21 +2158,25 @@ _currentOpacity = 0;
 
                 _timerVideoController.pause();
 
+                // setState(() {
+                //   fadingImage =
+                //       "assets/tempory images/Vehicles_Transition_Stills/Bus_SELECTED.png";
+                //   fading = true;
+                // });
+
                 setState(() {
-                  fadingImage =
-                      "assets/tempory images/Vehicles_Transition_Stills/Bus_SELECTED.png";
-                  fading = true;
+                  _busVideoPlaying = true;
                 });
 
                 method();
 
                 await Future.delayed(Duration(seconds: 1));
 
-                setState(() {
-                  fading = false;
-_currentOpacity = 0;
-                  _busVideoPlaying = true;
-                });
+                // setState(() {
+                //   fading = false;
+                //   _currentOpacity = 0;
+                //   _busVideoPlaying = true;
+                // });
 
                 setState(() {
                   width = 0;
@@ -2112,21 +2243,25 @@ _currentOpacity = 0;
 
         _timerVideoController.pause();
 
+        // setState(() {
+        //   fadingImage =
+        //       "assets/tempory images/Vehicles_Transition_Stills/Bus_SELECTED.png";
+        //   fading = true;
+        // });
+
         setState(() {
-          fadingImage =
-              "assets/tempory images/Vehicles_Transition_Stills/Bus_SELECTED.png";
-          fading = true;
+          _busVideoPlaying = true;
         });
 
         method();
 
         await Future.delayed(Duration(seconds: 1));
 
-        setState(() {
-          fading = false;
-_currentOpacity = 0;
-          _busVideoPlaying = true;
-        });
+        // setState(() {
+        //   fading = false;
+        //   _currentOpacity = 0;
+        //   _busVideoPlaying = true;
+        // });
 
         setState(() {
           width = 0;
@@ -2189,21 +2324,25 @@ _currentOpacity = 0;
 
                 _timerVideoController.pause();
 
+                // setState(() {
+                //   fadingImage =
+                //       "assets/tempory images/Vehicles_Transition_Stills/Exc_SELECTED.png";
+                //   fading = true;
+                // });
+
                 setState(() {
-                  fadingImage =
-                      "assets/tempory images/Vehicles_Transition_Stills/Exc_SELECTED.png";
-                  fading = true;
+                  _excavatorVideoPlaying = true;
                 });
 
                 method();
 
                 await Future.delayed(Duration(seconds: 1));
 
-                setState(() {
-                  fading = false;
-_currentOpacity = 0;
-                  _excavatorVideoPlaying = true;
-                });
+                // setState(() {
+                //   fading = false;
+                //   _currentOpacity = 0;
+                //   _excavatorVideoPlaying = true;
+                // });
 
                 setState(() {
                   width = 0;
@@ -2271,21 +2410,25 @@ _currentOpacity = 0;
 
         _timerVideoController.pause();
 
+        // setState(() {
+        //   fadingImage =
+        //       "assets/tempory images/Vehicles_Transition_Stills/Exc_SELECTED.png";
+        //   fading = true;
+        // });
+
         setState(() {
-          fadingImage =
-              "assets/tempory images/Vehicles_Transition_Stills/Exc_SELECTED.png";
-          fading = true;
+          _excavatorVideoPlaying = true;
         });
 
         method();
 
         await Future.delayed(Duration(seconds: 1));
 
-        setState(() {
-          fading = false;
-_currentOpacity = 0;
-          _excavatorVideoPlaying = true;
-        });
+        // setState(() {
+        //   fading = false;
+        //   _currentOpacity = 0;
+        //   _excavatorVideoPlaying = true;
+        // });
 
         setState(() {
           width = 0;
@@ -2348,21 +2491,25 @@ _currentOpacity = 0;
 
                 _timerVideoController.pause();
 
+                // setState(() {
+                //   fadingImage =
+                //       "assets/tempory images/Vehicles_Transition_Stills/Truck_SELECTED.png";
+                //   fading = true;
+                // });
+
                 setState(() {
-                  fadingImage =
-                      "assets/tempory images/Vehicles_Transition_Stills/Truck_SELECTED.png";
-                  fading = true;
+                  _truckVideoPlaying = true;
                 });
 
                 method();
 
                 await Future.delayed(Duration(seconds: 1));
 
-                setState(() {
-                  fading = false;
-_currentOpacity = 0;
-                  _truckVideoPlaying = true;
-                });
+                // setState(() {
+                //   fading = false;
+                //   _currentOpacity = 0;
+                //   _truckVideoPlaying = true;
+                // });
 
                 setState(() {
                   width = 0;
@@ -2429,21 +2576,25 @@ _currentOpacity = 0;
 
         _timerVideoController.pause();
 
+        // setState(() {
+        //   fadingImage =
+        //       "assets/tempory images/Vehicles_Transition_Stills/Truck_SELECTED.png";
+        //   fading = true;
+        // });
+
         setState(() {
-          fadingImage =
-              "assets/tempory images/Vehicles_Transition_Stills/Truck_SELECTED.png";
-          fading = true;
+          _truckVideoPlaying = true;
         });
 
         method();
 
         await Future.delayed(Duration(seconds: 1));
 
-        setState(() {
-          fading = false;
-_currentOpacity = 0;
-          _truckVideoPlaying = true;
-        });
+        // setState(() {
+        //   fading = false;
+        //   _currentOpacity = 0;
+        //   _truckVideoPlaying = true;
+        // });
 
         setState(() {
           width = 0;
