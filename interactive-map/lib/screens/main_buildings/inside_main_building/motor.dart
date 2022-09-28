@@ -109,11 +109,13 @@ class _MotorState extends State<Motor> {
     show = false;
 
     if (widget.from == Pages.dataCenter || widget.from == Pages.dairyBarns) {
-      url = 'assets/videos/buildings/TX_MAIN.mp4';
+      url = BASE_URL + 'TX_MAIN.mp4';
+      //https://cdnapisec.kaltura.com/p/4645543/sp/464554300/playManifest/entryId/1_8ar0j89c/format/download/protocol/https/flavorParamIds/0
+      print(url);
     } else {
       url = 'assets/videos/buildings/motor_MAIN.mp4';
     }
-    _controller = VideoPlayerController.asset(url)
+    _controller = VideoPlayerController.network(url)
       ..initialize().then((_) => {
             setState(() {
               _controller.setVolume(0);

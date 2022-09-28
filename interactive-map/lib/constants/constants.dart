@@ -48,6 +48,9 @@ const vehiclesTransitionImage = 'assets/graphics/Vehicles.png';
 const dataAnimationGif = 'assets/animations/Data_animation_512.gif';
 const dataCenterAirFlowGif = 'assets/animations/Data_Center_airflow.gif';
 
+const BASE_URL =
+    'https://storage.cloud.google.com/pm-im-co-uk.appspot.com/assets/2022-09-23/';
+
 //pages
 class Pages {
   static const home = 'home';
