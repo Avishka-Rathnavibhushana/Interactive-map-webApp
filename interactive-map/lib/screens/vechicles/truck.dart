@@ -76,6 +76,13 @@ class _TruckVideoState extends State<TruckVideo> {
       offsetHor = widget.offsetHor;
       offsetVer = widget.offsetVer;
     });
+    loadText();
+  }
+
+  late final Map<String, dynamic> truckTexts;
+
+  Future<void> loadText() async {
+    truckTexts = await Utils.readJson("assets/data/truckTexts.json");
   }
 
   videoHandler() async {
@@ -554,12 +561,12 @@ class _TruckVideoState extends State<TruckVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: TextsConstants.truckTexts["TextAreaWithClipMain"]
+                      texts: truckTexts["TextAreaWithClipMain"]
                           ["texts"],
-                      topic: TextsConstants.truckTexts["TextAreaWithClipMain"]
+                      topic: truckTexts["TextAreaWithClipMain"]
                           ["topic"],
-                      description: TextsConstants
-                          .truckTexts["TextAreaWithClipMain"]["description"],
+                      description: truckTexts["TextAreaWithClipMain"]
+                          ["description"],
                     ),
                   ),
                 )
@@ -574,7 +581,7 @@ class _TruckVideoState extends State<TruckVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.truckTexts["subTopics"][0],
+      title: truckTexts["subTopics"][0],
       onPressed: () async {
         setShow();
         setState(() {
@@ -601,13 +608,13 @@ class _TruckVideoState extends State<TruckVideo> {
                     url: "assets/videos/vehicles/Product_loops/Fan_Loop.mp4",
                     back:
                         "assets/videos/vehicles/Product_transition/Truck_To_Fan.mp4",
-                    topic: TextsConstants.truckTexts["subTopicsInside"][0]
+                    topic: truckTexts["subTopicsInside"][0]
                         ["topic"],
-                    subTopic: TextsConstants.truckTexts["subTopicsInside"][0]
+                    subTopic: truckTexts["subTopicsInside"][0]
                         ["subTopic"],
-                    descriptioTexts: TextsConstants
-                        .truckTexts["subTopicsInside"][0]["descriptioTexts"],
-                    blocks: TextsConstants.truckTexts["subTopicsInside"][0]
+                    descriptioTexts: truckTexts["subTopicsInside"][0]
+                        ["descriptioTexts"],
+                    blocks: truckTexts["subTopicsInside"][0]
                         ["blocks"],
                   ));
             }
@@ -621,7 +628,7 @@ class _TruckVideoState extends State<TruckVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.truckTexts["subTopics"][1],
+      title: truckTexts["subTopics"][1],
       onPressed: () async {
         setShow();
         setState(() {
@@ -649,13 +656,13 @@ class _TruckVideoState extends State<TruckVideo> {
                         "assets/videos/vehicles/Product_loops/Inverter_Loop.mp4",
                     back:
                         "assets/videos/vehicles/Product_transition/Truck_To_Inverter.mp4",
-                    topic: TextsConstants.truckTexts["subTopicsInside"][1]
+                    topic: truckTexts["subTopicsInside"][1]
                         ["topic"],
-                    subTopic: TextsConstants.truckTexts["subTopicsInside"][1]
+                    subTopic: truckTexts["subTopicsInside"][1]
                         ["subTopic"],
-                    descriptioTexts: TextsConstants
-                        .truckTexts["subTopicsInside"][1]["descriptioTexts"],
-                    blocks: TextsConstants.truckTexts["subTopicsInside"][1]
+                    descriptioTexts: truckTexts["subTopicsInside"][1]
+                        ["descriptioTexts"],
+                    blocks: truckTexts["subTopicsInside"][1]
                         ["blocks"],
                   ));
             }
@@ -669,7 +676,7 @@ class _TruckVideoState extends State<TruckVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.truckTexts["subTopics"][2],
+      title: truckTexts["subTopics"][2],
       onPressed: () async {
         setShow();
         setState(() {
@@ -697,13 +704,13 @@ class _TruckVideoState extends State<TruckVideo> {
                         "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
                     back:
                         "assets/videos/vehicles/Product_transition/Truck_To_HDMotor.mp4",
-                    topic: TextsConstants.truckTexts["subTopicsInside"][2]
+                    topic: truckTexts["subTopicsInside"][2]
                         ["topic"],
-                    subTopic: TextsConstants.truckTexts["subTopicsInside"][2]
+                    subTopic: truckTexts["subTopicsInside"][2]
                         ["subTopic"],
-                    descriptioTexts: TextsConstants
-                        .truckTexts["subTopicsInside"][2]["descriptioTexts"],
-                    blocks: TextsConstants.truckTexts["subTopicsInside"][2]
+                    descriptioTexts: truckTexts["subTopicsInside"][2]
+                        ["descriptioTexts"],
+                    blocks: truckTexts["subTopicsInside"][2]
                         ["blocks"],
                   ));
             }
@@ -806,14 +813,15 @@ class _TruckVideoState extends State<TruckVideo> {
                                 "assets/videos/vehicles/Product_loops/Fan_Loop.mp4",
                             back:
                                 "assets/videos/vehicles/Product_transition/Truck_To_Fan.mp4",
-                            topic: TextsConstants.truckTexts["subTopicsInside"]
+                            topic: truckTexts["subTopicsInside"]
                                 [0]["topic"],
-                            subTopic: TextsConstants
-                                .truckTexts["subTopicsInside"][0]["subTopic"],
+                            subTopic: truckTexts["subTopicsInside"][0]
+                                ["subTopic"],
                             descriptioTexts:
-                                TextsConstants.truckTexts["subTopicsInside"][0]
+                                
+                                truckTexts["subTopicsInside"][0]
                                     ["descriptioTexts"],
-                            blocks: TextsConstants.truckTexts["subTopicsInside"]
+                            blocks: truckTexts["subTopicsInside"]
                                 [0]["blocks"],
                           ));
                     }
@@ -822,7 +830,7 @@ class _TruckVideoState extends State<TruckVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.truckTexts["subTopics"][0],
+                text: truckTexts["subTopics"][0],
                 type: 1,
               ),
             ),
@@ -866,14 +874,15 @@ class _TruckVideoState extends State<TruckVideo> {
                                 "assets/videos/vehicles/Product_loops/Inverter_Loop.mp4",
                             back:
                                 "assets/videos/vehicles/Product_transition/Truck_To_Inverter.mp4",
-                            topic: TextsConstants.truckTexts["subTopicsInside"]
+                            topic: truckTexts["subTopicsInside"]
                                 [1]["topic"],
-                            subTopic: TextsConstants
-                                .truckTexts["subTopicsInside"][1]["subTopic"],
+                            subTopic: truckTexts["subTopicsInside"][1]
+                                ["subTopic"],
                             descriptioTexts:
-                                TextsConstants.truckTexts["subTopicsInside"][1]
+                                
+                                truckTexts["subTopicsInside"][1]
                                     ["descriptioTexts"],
-                            blocks: TextsConstants.truckTexts["subTopicsInside"]
+                            blocks: truckTexts["subTopicsInside"]
                                 [1]["blocks"],
                           ));
                     }
@@ -882,7 +891,7 @@ class _TruckVideoState extends State<TruckVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.truckTexts["subTopics"][1],
+                text: truckTexts["subTopics"][1],
                 type: 2,
               ),
             ),
@@ -926,14 +935,15 @@ class _TruckVideoState extends State<TruckVideo> {
                                 "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
                             back:
                                 "assets/videos/vehicles/Product_transition/Truck_To_HDMotor.mp4",
-                            topic: TextsConstants.truckTexts["subTopicsInside"]
+                            topic: truckTexts["subTopicsInside"]
                                 [2]["topic"],
-                            subTopic: TextsConstants
-                                .truckTexts["subTopicsInside"][2]["subTopic"],
+                            subTopic: truckTexts["subTopicsInside"][2]
+                                ["subTopic"],
                             descriptioTexts:
-                                TextsConstants.truckTexts["subTopicsInside"][2]
+                                
+                                truckTexts["subTopicsInside"][2]
                                     ["descriptioTexts"],
-                            blocks: TextsConstants.truckTexts["subTopicsInside"]
+                            blocks: truckTexts["subTopicsInside"]
                                 [2]["blocks"],
                           ));
                     }
@@ -942,7 +952,7 @@ class _TruckVideoState extends State<TruckVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.truckTexts["subTopics"][2],
+                text: truckTexts["subTopics"][2],
                 type: 3,
               ),
             ),

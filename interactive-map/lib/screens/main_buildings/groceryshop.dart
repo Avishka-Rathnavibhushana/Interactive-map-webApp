@@ -78,6 +78,14 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
       offsetHor = widget.offsetHor;
       offsetVer = widget.offsetVer;
     });
+    loadText();
+  }
+
+  late final Map<String, dynamic> groceryShopTexts;
+
+  Future<void> loadText() async {
+    groceryShopTexts =
+        await Utils.readJson("assets/data/groceryShopTexts.json");
   }
 
   videoHandler() async {
@@ -654,12 +662,9 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: TextsConstants
-                          .groceryShopTexts["TextAreaWithClipMain"]["texts"],
-                      topic: TextsConstants
-                          .groceryShopTexts["TextAreaWithClipMain"]["topic"],
-                      description: TextsConstants
-                              .groceryShopTexts["TextAreaWithClipMain"]
+                      texts: groceryShopTexts["TextAreaWithClipMain"]["texts"],
+                      topic: groceryShopTexts["TextAreaWithClipMain"]["topic"],
+                      description: groceryShopTexts["TextAreaWithClipMain"]
                           ["description"],
                     ),
                   ),
@@ -673,14 +678,12 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: TextsConstants
-                              .groceryShopTexts["TextAreaWithClipEnergySaving"]
+                      texts: groceryShopTexts["TextAreaWithClipEnergySaving"]
                           ["texts"],
-                      topic: TextsConstants
-                              .groceryShopTexts["TextAreaWithClipEnergySaving"]
+                      topic: groceryShopTexts["TextAreaWithClipEnergySaving"]
                           ["topic"],
-                      description: TextsConstants
-                              .groceryShopTexts["TextAreaWithClipEnergySaving"]
+                      description:
+                          groceryShopTexts["TextAreaWithClipEnergySaving"]
                           ["description"],
                     ),
                   ),
@@ -729,7 +732,7 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.groceryShopTexts["subTopics"][0],
+      title: groceryShopTexts["subTopics"][0],
       onPressed: () async {
         setShow();
         setState(() {
@@ -765,7 +768,7 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.groceryShopTexts["subTopics"][1],
+      title: groceryShopTexts["subTopics"][1],
       onPressed: () async {
         setShow();
         setState(() {
@@ -779,7 +782,7 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.groceryShopTexts["subTopics"][1],
+      title: groceryShopTexts["subTopics"][1],
       onPressed: () async {
         setShow();
         setState(() {
@@ -905,7 +908,7 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.groceryShopTexts["subTopics"][0],
+                text: groceryShopTexts["subTopics"][0],
                 type: 2,
               ),
             ),
@@ -929,7 +932,7 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.groceryShopTexts["subTopics"][1],
+                text: groceryShopTexts["subTopics"][1],
                 type: 1,
               ),
             ),
@@ -974,7 +977,7 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.groceryShopTexts["subTopics"][2],
+                text: groceryShopTexts["subTopics"][2],
                 type: 3,
               ),
             ),

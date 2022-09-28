@@ -72,6 +72,13 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
       offsetHor = widget.offsetHor;
       offsetVer = widget.offsetVer;
     });
+    loadText();
+  }
+
+  late final Map<String, dynamic> sportsCarTexts;
+
+  Future<void> loadText() async {
+    sportsCarTexts = await Utils.readJson("assets/data/sportsCarTexts.json");
   }
 
   videoHandler() async {
@@ -507,12 +514,10 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: TextsConstants
-                          .sportsCarTexts["TextAreaWithClipMain"]["texts"],
-                      topic: TextsConstants
-                          .sportsCarTexts["TextAreaWithClipMain"]["topic"],
+                      texts: sportsCarTexts["TextAreaWithClipMain"]["texts"],
+                      topic: sportsCarTexts["TextAreaWithClipMain"]["topic"],
                       description:
-                          TextsConstants.sportsCarTexts["TextAreaWithClipMain"]
+                          sportsCarTexts["TextAreaWithClipMain"]
                               ["description"],
                     ),
                   ),
@@ -528,7 +533,7 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.sportsCarTexts["subTopics"][0],
+      title: sportsCarTexts["subTopics"][0],
       onPressed: () async {
         setShow();
         setState(() {
@@ -556,14 +561,14 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
                         "assets/videos/vehicles/Product_loops/Inverter_Loop.mp4",
                     back:
                         "assets/videos/vehicles/Product_transition/Car_To_Inverter.mp4",
-                    topic: TextsConstants.sportsCarTexts["subTopicsInside"][0]
+                    topic: sportsCarTexts["subTopicsInside"][0]
                         ["topic"],
-                    subTopic: TextsConstants.sportsCarTexts["subTopicsInside"]
+                    subTopic: sportsCarTexts["subTopicsInside"]
                         [0]["subTopic"],
                     descriptioTexts:
-                        TextsConstants.sportsCarTexts["subTopicsInside"][0]
+                        sportsCarTexts["subTopicsInside"][0]
                             ["descriptioTexts"],
-                    blocks: TextsConstants.sportsCarTexts["subTopicsInside"][0]
+                    blocks: sportsCarTexts["subTopicsInside"][0]
                         ["blocks"],
                   ));
             }
@@ -577,7 +582,7 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.sportsCarTexts["subTopics"][1],
+      title: sportsCarTexts["subTopics"][1],
       onPressed: () async {
         setShow();
         setState(() {
@@ -605,14 +610,14 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
                         "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
                     back:
                         "assets/videos/vehicles/Product_transition/Car_To_HDMotor.mp4",
-                    topic: TextsConstants.sportsCarTexts["subTopicsInside"][1]
+                    topic: sportsCarTexts["subTopicsInside"][1]
                         ["topic"],
-                    subTopic: TextsConstants.sportsCarTexts["subTopicsInside"]
+                    subTopic: sportsCarTexts["subTopicsInside"]
                         [1]["subTopic"],
                     descriptioTexts:
-                        TextsConstants.sportsCarTexts["subTopicsInside"][1]
+                        sportsCarTexts["subTopicsInside"][1]
                             ["descriptioTexts"],
-                    blocks: TextsConstants.sportsCarTexts["subTopicsInside"][1]
+                    blocks: sportsCarTexts["subTopicsInside"][1]
                         ["blocks"],
                   ));
             }
@@ -715,16 +720,16 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
                                 "assets/videos/vehicles/Product_loops/Inverter_Loop.mp4",
                             back:
                                 "assets/videos/vehicles/Product_transition/Car_To_Inverter.mp4",
-                            topic: TextsConstants
-                                .sportsCarTexts["subTopicsInside"][0]["topic"],
+                            topic: sportsCarTexts["subTopicsInside"][0]
+                                ["topic"],
                             subTopic:
-                                TextsConstants.sportsCarTexts["subTopicsInside"]
+                                sportsCarTexts["subTopicsInside"]
                                     [0]["subTopic"],
                             descriptioTexts:
-                                TextsConstants.sportsCarTexts["subTopicsInside"]
+                                sportsCarTexts["subTopicsInside"]
                                     [0]["descriptioTexts"],
-                            blocks: TextsConstants
-                                .sportsCarTexts["subTopicsInside"][0]["blocks"],
+                            blocks: sportsCarTexts["subTopicsInside"][0]
+                                ["blocks"],
                           ));
                     }
                   }
@@ -732,7 +737,7 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.sportsCarTexts["subTopics"][0],
+                text: sportsCarTexts["subTopics"][0],
                 type: 1,
               ),
             ),
@@ -776,16 +781,16 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
                                 "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
                             back:
                                 "assets/videos/vehicles/Product_transition/Car_To_HDMotor.mp4",
-                            topic: TextsConstants
-                                .sportsCarTexts["subTopicsInside"][1]["topic"],
+                            topic: sportsCarTexts["subTopicsInside"][1]
+                                ["topic"],
                             subTopic:
-                                TextsConstants.sportsCarTexts["subTopicsInside"]
+                                sportsCarTexts["subTopicsInside"]
                                     [1]["subTopic"],
                             descriptioTexts:
-                                TextsConstants.sportsCarTexts["subTopicsInside"]
+                                sportsCarTexts["subTopicsInside"]
                                     [1]["descriptioTexts"],
-                            blocks: TextsConstants
-                                .sportsCarTexts["subTopicsInside"][1]["blocks"],
+                            blocks: sportsCarTexts["subTopicsInside"][1]
+                                ["blocks"],
                           ));
                     }
                   }
@@ -793,7 +798,7 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.sportsCarTexts["subTopics"][1],
+                text: sportsCarTexts["subTopics"][1],
                 type: 2,
               ),
             ),

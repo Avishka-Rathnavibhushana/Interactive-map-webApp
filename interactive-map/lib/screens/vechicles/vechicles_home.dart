@@ -115,6 +115,25 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
     videoHandler();
 
     super.initState();
+    loadText();
+  }
+
+  late final Map<String, dynamic> avgNarmTexts;
+  late final Map<String, dynamic> trainTexts;
+  late final Map<String, dynamic> sportsCarTexts;
+  late final Map<String, dynamic> tractorTexts;
+  late final Map<String, dynamic> busTexts;
+  late final Map<String, dynamic> excavatorTexts;
+  late final Map<String, dynamic> truckTexts;
+
+  Future<void> loadText() async {
+    avgNarmTexts = await Utils.readJson("assets/data/avgNarmTexts.json");
+    trainTexts = await Utils.readJson("assets/data/trainTexts.json");
+    sportsCarTexts = await Utils.readJson("assets/data/sportsCarTexts.json");
+    tractorTexts = await Utils.readJson("assets/data/tractorTexts.json");
+    busTexts = await Utils.readJson("assets/data/busTexts.json");
+    excavatorTexts = await Utils.readJson("assets/data/excavatorTexts.json");
+    truckTexts = await Utils.readJson("assets/data/truckTexts.json");
   }
 
   videoHandler() async {
@@ -1554,7 +1573,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.avgNarmTexts["topic"],
+                text: avgNarmTexts["topic"],
                 type: 0,
               ),
             ),
@@ -1566,7 +1585,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.avgNarmTexts["topic"],
+      title: avgNarmTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -1722,7 +1741,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                 },
                 child: CustomButtonLabelWithClip(
                   screenSize: screenSize,
-                  text: TextsConstants.trainTexts["topic"],
+                  text: trainTexts["topic"],
                   type: 0,
                 ),
               ),
@@ -1735,7 +1754,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.trainTexts["topic"],
+      title: trainTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -1889,7 +1908,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.sportsCarTexts["topic"],
+                text: sportsCarTexts["topic"],
                 type: 0,
               ),
             ),
@@ -1901,7 +1920,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.sportsCarTexts["topic"],
+      title: sportsCarTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -2055,7 +2074,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.tractorTexts["topic"],
+                text: tractorTexts["topic"],
                 type: 0,
               ),
             ),
@@ -2067,7 +2086,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.tractorTexts["topic"],
+      title: tractorTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -2222,7 +2241,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.busTexts["topic"],
+                text: busTexts["topic"],
                 type: 0,
               ),
             ),
@@ -2234,7 +2253,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.busTexts["topic"],
+      title: busTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -2389,7 +2408,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.excavatorTexts["topic"],
+                text: excavatorTexts["topic"],
                 type: 0,
               ),
             ),
@@ -2401,7 +2420,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.excavatorTexts["topic"],
+      title: excavatorTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -2555,7 +2574,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.truckTexts["topic"],
+                text: truckTexts["topic"],
                 type: 0,
               ),
             ),
@@ -2567,7 +2586,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.truckTexts["topic"],
+      title: truckTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {

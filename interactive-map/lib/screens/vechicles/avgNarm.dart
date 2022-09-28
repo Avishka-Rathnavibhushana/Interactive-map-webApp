@@ -68,6 +68,13 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
       offsetHor = widget.offsetHor;
       offsetVer = widget.offsetVer;
     });
+    loadText();
+  }
+
+  late final Map<String, dynamic> avgNarmTexts;
+
+  Future<void> loadText() async {
+    avgNarmTexts = await Utils.readJson("assets/data/avgNarmTexts.json");
   }
 
   videoHandler() async {
@@ -462,12 +469,12 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: TextsConstants.avgNarmTexts["TextAreaWithClipMain"]
+                      texts: avgNarmTexts["TextAreaWithClipMain"]
                           ["texts"],
-                      topic: TextsConstants.avgNarmTexts["TextAreaWithClipMain"]
+                      topic: avgNarmTexts["TextAreaWithClipMain"]
                           ["topic"],
-                      description: TextsConstants
-                          .avgNarmTexts["TextAreaWithClipMain"]["description"],
+                      description: avgNarmTexts["TextAreaWithClipMain"]
+                          ["description"],
                     ),
                   ),
                 )
@@ -482,7 +489,7 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.avgNarmTexts["subTopics"][0],
+      title: avgNarmTexts["subTopics"][0],
       onPressed: () async {
         setShow();
         setState(() {
@@ -510,13 +517,13 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
                         "assets/videos/vehicles/Product_loops/Battery_Loop.mp4",
                     back:
                         "assets/videos/vehicles/Product_transition/AGV_To_Battery.mp4",
-                    topic: TextsConstants.avgNarmTexts["subTopicsInside"][0]
+                    topic: avgNarmTexts["subTopicsInside"][0]
                         ["topic"],
-                    subTopic: TextsConstants.avgNarmTexts["subTopicsInside"][0]
+                    subTopic: avgNarmTexts["subTopicsInside"][0]
                         ["subTopic"],
-                    descriptioTexts: TextsConstants
-                        .avgNarmTexts["subTopicsInside"][0]["descriptioTexts"],
-                    blocks: TextsConstants.avgNarmTexts["subTopicsInside"][0]
+                    descriptioTexts: avgNarmTexts["subTopicsInside"][0]
+                        ["descriptioTexts"],
+                    blocks: avgNarmTexts["subTopicsInside"][0]
                         ["blocks"],
                   ));
             }
@@ -619,15 +626,14 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
                                 "assets/videos/vehicles/Product_loops/Battery_Loop.mp4",
                             back:
                                 "assets/videos/vehicles/Product_transition/AGV_To_Battery.mp4",
-                            topic: TextsConstants
-                                .avgNarmTexts["subTopicsInside"][0]["topic"],
-                            subTopic: TextsConstants
-                                .avgNarmTexts["subTopicsInside"][0]["subTopic"],
+                            topic: avgNarmTexts["subTopicsInside"][0]["topic"],
+                            subTopic: avgNarmTexts["subTopicsInside"][0]
+                                ["subTopic"],
                             descriptioTexts:
-                                TextsConstants.avgNarmTexts["subTopicsInside"]
+                                avgNarmTexts["subTopicsInside"]
                                     [0]["descriptioTexts"],
-                            blocks: TextsConstants
-                                .avgNarmTexts["subTopicsInside"][0]["blocks"],
+                            blocks: avgNarmTexts["subTopicsInside"][0]
+                                ["blocks"],
                           ));
                     }
                   }
@@ -635,7 +641,7 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.avgNarmTexts["subTopics"][0],
+                text: avgNarmTexts["subTopics"][0],
                 type: 1,
               ),
             ),

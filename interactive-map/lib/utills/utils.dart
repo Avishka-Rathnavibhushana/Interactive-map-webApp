@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:interactive_map/constants/constants.dart';
 
 class Utils {
@@ -156,5 +158,12 @@ class Utils {
 
   static void enterFullScreenMode() {
     document.documentElement?.requestFullscreen();
+  }
+
+  static Future<Map<String, dynamic>> readJson(String fileName) async {
+    final String response = await rootBundle.loadString(fileName);
+    final data = await json.decode(response);
+
+    return data;
   }
 }

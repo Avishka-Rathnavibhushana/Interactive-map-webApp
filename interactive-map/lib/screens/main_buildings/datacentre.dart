@@ -74,6 +74,13 @@ class _DataCentreVideoState extends State<DataCentreVideo> {
     videoHandler();
 
     super.initState();
+    loadText();
+  }
+
+  late final Map<String, dynamic> dataCentreTexts;
+
+  Future<void> loadText() async {
+    dataCentreTexts = await Utils.readJson("assets/data/dataCentreTexts.json");
   }
 
   videoHandler() async {
@@ -717,12 +724,10 @@ class _DataCentreVideoState extends State<DataCentreVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: TextsConstants
-                          .dataCentreTexts["TextAreaWithClipMain"]["texts"],
-                      topic: TextsConstants
-                          .dataCentreTexts["TextAreaWithClipMain"]["topic"],
+                      texts: dataCentreTexts["TextAreaWithClipMain"]["texts"],
+                      topic: dataCentreTexts["TextAreaWithClipMain"]["topic"],
                       description:
-                          TextsConstants.dataCentreTexts["TextAreaWithClipMain"]
+                          dataCentreTexts["TextAreaWithClipMain"]
                               ["description"],
                     ),
                   ),
@@ -736,14 +741,12 @@ class _DataCentreVideoState extends State<DataCentreVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: TextsConstants
-                              .dataCentreTexts["TextAreaWithClipEnergySaving"]
+                      texts: dataCentreTexts["TextAreaWithClipEnergySaving"]
                           ["texts"],
-                      topic: TextsConstants
-                              .dataCentreTexts["TextAreaWithClipEnergySaving"]
+                      topic: dataCentreTexts["TextAreaWithClipEnergySaving"]
                           ["topic"],
-                      description: TextsConstants
-                              .dataCentreTexts["TextAreaWithClipEnergySaving"]
+                      description:
+                          dataCentreTexts["TextAreaWithClipEnergySaving"]
                           ["description"],
                     ),
                   ),
@@ -792,7 +795,7 @@ class _DataCentreVideoState extends State<DataCentreVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.dataCentreTexts["subTopics"][0],
+      title: dataCentreTexts["subTopics"][0],
       onPressed: () async {
         setShow();
         setState(() {
@@ -828,7 +831,7 @@ class _DataCentreVideoState extends State<DataCentreVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.dataCentreTexts["subTopics"][1],
+      title: dataCentreTexts["subTopics"][1],
       onPressed: () async {
         setShow();
         setState(() {
@@ -842,7 +845,7 @@ class _DataCentreVideoState extends State<DataCentreVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.dataCentreTexts["subTopics"][2],
+      title: dataCentreTexts["subTopics"][2],
       onPressed: () async {
         setShow();
         setState(() {
@@ -968,7 +971,7 @@ class _DataCentreVideoState extends State<DataCentreVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.dataCentreTexts["subTopics"][0],
+                text: dataCentreTexts["subTopics"][0],
                 type: 2,
               ),
             ),
@@ -992,7 +995,7 @@ class _DataCentreVideoState extends State<DataCentreVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.dataCentreTexts["subTopics"][1],
+                text: dataCentreTexts["subTopics"][1],
                 type: 1,
               ),
             ),
@@ -1037,7 +1040,7 @@ class _DataCentreVideoState extends State<DataCentreVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.dataCentreTexts["subTopics"][2],
+                text: dataCentreTexts["subTopics"][2],
                 type: 3,
               ),
             ),

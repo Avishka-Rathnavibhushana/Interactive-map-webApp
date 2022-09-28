@@ -80,6 +80,13 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
       offsetHor = widget.offsetHor;
       offsetVer = widget.offsetVer;
     });
+    loadText();
+  }
+
+  late final Map<String, dynamic> excavatorTexts;
+
+  Future<void> loadText() async {
+    excavatorTexts = await Utils.readJson("assets/data/excavatorTexts.json");
   }
 
   videoHandler() async {
@@ -600,12 +607,10 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: TextsConstants
-                          .excavatorTexts["TextAreaWithClipMain"]["texts"],
-                      topic: TextsConstants
-                          .excavatorTexts["TextAreaWithClipMain"]["topic"],
+                      texts: excavatorTexts["TextAreaWithClipMain"]["texts"],
+                      topic: excavatorTexts["TextAreaWithClipMain"]["topic"],
                       description:
-                          TextsConstants.excavatorTexts["TextAreaWithClipMain"]
+                          excavatorTexts["TextAreaWithClipMain"]
                               ["description"],
                     ),
                   ),
@@ -621,7 +626,7 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.excavatorTexts["subTopics"][0],
+      title: excavatorTexts["subTopics"][0],
       onPressed: () async {
         setShow();
         setState(() {
@@ -649,14 +654,14 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                         "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
                     back:
                         "assets/videos/vehicles/Product_transition/Exc_to_HDMotor.mp4",
-                    topic: TextsConstants.excavatorTexts["subTopicsInside"][0]
+                    topic: excavatorTexts["subTopicsInside"][0]
                         ["topic"],
-                    subTopic: TextsConstants.excavatorTexts["subTopicsInside"]
+                    subTopic: excavatorTexts["subTopicsInside"]
                         [0]["subTopic"],
                     descriptioTexts:
-                        TextsConstants.excavatorTexts["subTopicsInside"][0]
+                        excavatorTexts["subTopicsInside"][0]
                             ["descriptioTexts"],
-                    blocks: TextsConstants.excavatorTexts["subTopicsInside"][0]
+                    blocks: excavatorTexts["subTopicsInside"][0]
                         ["blocks"],
                   ));
             }
@@ -670,7 +675,7 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.excavatorTexts["subTopics"][1],
+      title: excavatorTexts["subTopics"][1],
       onPressed: () async {
         setShow();
         setState(() {
@@ -698,14 +703,14 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                         "assets/videos/vehicles/Product_loops/Battery_Loop.mp4",
                     back:
                         "assets/videos/vehicles/Product_transition/Exc_to_Battery.mp4",
-                    topic: TextsConstants.excavatorTexts["subTopicsInside"][1]
+                    topic: excavatorTexts["subTopicsInside"][1]
                         ["topic"],
-                    subTopic: TextsConstants.excavatorTexts["subTopicsInside"]
+                    subTopic: excavatorTexts["subTopicsInside"]
                         [1]["subTopic"],
                     descriptioTexts:
-                        TextsConstants.excavatorTexts["subTopicsInside"][1]
+                        excavatorTexts["subTopicsInside"][1]
                             ["descriptioTexts"],
-                    blocks: TextsConstants.excavatorTexts["subTopicsInside"][1]
+                    blocks: excavatorTexts["subTopicsInside"][1]
                         ["blocks"],
                   ));
             }
@@ -719,7 +724,7 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.excavatorTexts["subTopics"][2],
+      title: excavatorTexts["subTopics"][2],
       onPressed: () async {
         setShow();
         setState(() {
@@ -746,14 +751,14 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                     url: "assets/videos/vehicles/Product_loops/Drive_Loop.mp4",
                     back:
                         "assets/videos/vehicles/Product_transition/Exc_to_Drive.mp4",
-                    topic: TextsConstants.excavatorTexts["subTopicsInside"][2]
+                    topic: excavatorTexts["subTopicsInside"][2]
                         ["topic"],
-                    subTopic: TextsConstants.excavatorTexts["subTopicsInside"]
+                    subTopic: excavatorTexts["subTopicsInside"]
                         [2]["subTopic"],
                     descriptioTexts:
-                        TextsConstants.excavatorTexts["subTopicsInside"][2]
+                        excavatorTexts["subTopicsInside"][2]
                             ["descriptioTexts"],
-                    blocks: TextsConstants.excavatorTexts["subTopicsInside"][2]
+                    blocks: excavatorTexts["subTopicsInside"][2]
                         ["blocks"],
                   ));
             }
@@ -767,7 +772,7 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.excavatorTexts["subTopics"][3],
+      title: excavatorTexts["subTopics"][3],
       onPressed: () async {
         setShow();
         setState(() {
@@ -795,14 +800,14 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                         "assets/videos/vehicles/Product_loops/DCDC_Loop.mp4",
                     back:
                         "assets/videos/vehicles/Product_transition/Exc_to_DCDC.mp4",
-                    topic: TextsConstants.excavatorTexts["subTopicsInside"][3]
+                    topic: excavatorTexts["subTopicsInside"][3]
                         ["topic"],
-                    subTopic: TextsConstants.excavatorTexts["subTopicsInside"]
+                    subTopic: excavatorTexts["subTopicsInside"]
                         [3]["subTopic"],
                     descriptioTexts:
-                        TextsConstants.excavatorTexts["subTopicsInside"][3]
+                        excavatorTexts["subTopicsInside"][3]
                             ["descriptioTexts"],
-                    blocks: TextsConstants.excavatorTexts["subTopicsInside"][3]
+                    blocks: excavatorTexts["subTopicsInside"][3]
                         ["blocks"],
                   ));
             }
@@ -905,16 +910,16 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                                 "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
                             back:
                                 "assets/videos/vehicles/Product_transition/Exc_to_HDMotor.mp4",
-                            topic: TextsConstants
-                                .excavatorTexts["subTopicsInside"][0]["topic"],
+                            topic: excavatorTexts["subTopicsInside"][0]
+                                ["topic"],
                             subTopic:
-                                TextsConstants.excavatorTexts["subTopicsInside"]
+                                excavatorTexts["subTopicsInside"]
                                     [0]["subTopic"],
                             descriptioTexts:
-                                TextsConstants.excavatorTexts["subTopicsInside"]
+                                excavatorTexts["subTopicsInside"]
                                     [0]["descriptioTexts"],
-                            blocks: TextsConstants
-                                .excavatorTexts["subTopicsInside"][0]["blocks"],
+                            blocks: excavatorTexts["subTopicsInside"][0]
+                                ["blocks"],
                           ));
                     }
                   }
@@ -922,7 +927,7 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.excavatorTexts["subTopics"][0],
+                text: excavatorTexts["subTopics"][0],
                 type: 1,
               ),
             ),
@@ -966,16 +971,16 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                                 "assets/videos/vehicles/Product_loops/Battery_Loop.mp4",
                             back:
                                 "assets/videos/vehicles/Product_transition/Exc_to_Battery.mp4",
-                            topic: TextsConstants
-                                .excavatorTexts["subTopicsInside"][1]["topic"],
+                            topic: excavatorTexts["subTopicsInside"][1]
+                                ["topic"],
                             subTopic:
-                                TextsConstants.excavatorTexts["subTopicsInside"]
+                                excavatorTexts["subTopicsInside"]
                                     [1]["subTopic"],
                             descriptioTexts:
-                                TextsConstants.excavatorTexts["subTopicsInside"]
+                                excavatorTexts["subTopicsInside"]
                                     [1]["descriptioTexts"],
-                            blocks: TextsConstants
-                                .excavatorTexts["subTopicsInside"][1]["blocks"],
+                            blocks: excavatorTexts["subTopicsInside"][1]
+                                ["blocks"],
                           ));
                     }
                   }
@@ -983,7 +988,7 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.excavatorTexts["subTopics"][1],
+                text: excavatorTexts["subTopics"][1],
                 type: 2,
               ),
             ),
@@ -1027,16 +1032,16 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                                 "assets/videos/vehicles/Product_loops/Drive_Loop.mp4",
                             back:
                                 "assets/videos/vehicles/Product_transition/Exc_to_Drive.mp4",
-                            topic: TextsConstants
-                                .excavatorTexts["subTopicsInside"][2]["topic"],
+                            topic: excavatorTexts["subTopicsInside"][2]
+                                ["topic"],
                             subTopic:
-                                TextsConstants.excavatorTexts["subTopicsInside"]
+                                excavatorTexts["subTopicsInside"]
                                     [2]["subTopic"],
                             descriptioTexts:
-                                TextsConstants.excavatorTexts["subTopicsInside"]
+                                excavatorTexts["subTopicsInside"]
                                     [2]["descriptioTexts"],
-                            blocks: TextsConstants
-                                .excavatorTexts["subTopicsInside"][2]["blocks"],
+                            blocks: excavatorTexts["subTopicsInside"][2]
+                                ["blocks"],
                           ));
                     }
                   }
@@ -1044,7 +1049,7 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.excavatorTexts["subTopics"][2],
+                text: excavatorTexts["subTopics"][2],
                 type: 3,
               ),
             ),
@@ -1088,16 +1093,16 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
                                 "assets/videos/vehicles/Product_loops/DCDC_Loop.mp4",
                             back:
                                 "assets/videos/vehicles/Product_transition/Exc_to_DCDC.mp4",
-                            topic: TextsConstants
-                                .excavatorTexts["subTopicsInside"][3]["topic"],
+                            topic: excavatorTexts["subTopicsInside"][3]
+                                ["topic"],
                             subTopic:
-                                TextsConstants.excavatorTexts["subTopicsInside"]
+                                excavatorTexts["subTopicsInside"]
                                     [3]["subTopic"],
                             descriptioTexts:
-                                TextsConstants.excavatorTexts["subTopicsInside"]
+                                excavatorTexts["subTopicsInside"]
                                     [3]["descriptioTexts"],
-                            blocks: TextsConstants
-                                .excavatorTexts["subTopicsInside"][3]["blocks"],
+                            blocks: excavatorTexts["subTopicsInside"][3]
+                                ["blocks"],
                           ));
                     }
                   }
@@ -1105,7 +1110,7 @@ class _ExcavatorVideoState extends State<ExcavatorVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.excavatorTexts["subTopics"][3],
+                text: excavatorTexts["subTopics"][3],
                 type: 4,
               ),
             ),

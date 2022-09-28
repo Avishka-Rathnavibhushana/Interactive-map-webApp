@@ -76,6 +76,13 @@ class _TractorVideoState extends State<TractorVideo> {
       offsetHor = widget.offsetHor;
       offsetVer = widget.offsetVer;
     });
+    loadText();
+  }
+
+  late final Map<String, dynamic> tractorTexts;
+
+  Future<void> loadText() async {
+    tractorTexts = await Utils.readJson("assets/data/tractorTexts.json");
   }
 
   videoHandler() async {
@@ -554,12 +561,12 @@ class _TractorVideoState extends State<TractorVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: TextsConstants.tractorTexts["TextAreaWithClipMain"]
+                      texts: tractorTexts["TextAreaWithClipMain"]
                           ["texts"],
-                      topic: TextsConstants.tractorTexts["TextAreaWithClipMain"]
+                      topic: tractorTexts["TextAreaWithClipMain"]
                           ["topic"],
-                      description: TextsConstants
-                          .tractorTexts["TextAreaWithClipMain"]["description"],
+                      description: tractorTexts["TextAreaWithClipMain"]
+                          ["description"],
                     ),
                   ),
                 )
@@ -574,7 +581,7 @@ class _TractorVideoState extends State<TractorVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.tractorTexts["subTopics"][0],
+      title: tractorTexts["subTopics"][0],
       onPressed: () async {
         setShow();
         setState(() {
@@ -601,13 +608,13 @@ class _TractorVideoState extends State<TractorVideo> {
                     url: "assets/videos/vehicles/Product_loops/Fan_Loop.mp4",
                     back:
                         "assets/videos/vehicles/Product_transition/Tractor_To_Fan.mp4",
-                    topic: TextsConstants.tractorTexts["subTopicsInside"][0]
+                    topic: tractorTexts["subTopicsInside"][0]
                         ["topic"],
-                    subTopic: TextsConstants.tractorTexts["subTopicsInside"][0]
+                    subTopic: tractorTexts["subTopicsInside"][0]
                         ["subTopic"],
-                    descriptioTexts: TextsConstants
-                        .tractorTexts["subTopicsInside"][0]["descriptioTexts"],
-                    blocks: TextsConstants.tractorTexts["subTopicsInside"][0]
+                    descriptioTexts: tractorTexts["subTopicsInside"][0]
+                        ["descriptioTexts"],
+                    blocks: tractorTexts["subTopicsInside"][0]
                         ["blocks"],
                   ));
             }
@@ -621,7 +628,7 @@ class _TractorVideoState extends State<TractorVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.tractorTexts["subTopics"][1],
+      title: tractorTexts["subTopics"][1],
       onPressed: () async {
         setShow();
         setState(() {
@@ -649,13 +656,13 @@ class _TractorVideoState extends State<TractorVideo> {
                         "assets/videos/vehicles/Product_loops/Inverter_Loop.mp4",
                     back:
                         "assets/videos/vehicles/Product_transition/Tractor_To_Inverter.mp4",
-                    topic: TextsConstants.tractorTexts["subTopicsInside"][1]
+                    topic: tractorTexts["subTopicsInside"][1]
                         ["topic"],
-                    subTopic: TextsConstants.tractorTexts["subTopicsInside"][1]
+                    subTopic: tractorTexts["subTopicsInside"][1]
                         ["subTopic"],
-                    descriptioTexts: TextsConstants
-                        .tractorTexts["subTopicsInside"][1]["descriptioTexts"],
-                    blocks: TextsConstants.tractorTexts["subTopicsInside"][1]
+                    descriptioTexts: tractorTexts["subTopicsInside"][1]
+                        ["descriptioTexts"],
+                    blocks: tractorTexts["subTopicsInside"][1]
                         ["blocks"],
                   ));
             }
@@ -669,7 +676,7 @@ class _TractorVideoState extends State<TractorVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.tractorTexts["subTopics"][2],
+      title: tractorTexts["subTopics"][2],
       onPressed: () async {
         setShow();
         setState(() {
@@ -697,13 +704,13 @@ class _TractorVideoState extends State<TractorVideo> {
                         "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
                     back:
                         "assets/videos/vehicles/Product_transition/Tractor_To_HDMotor.mp4",
-                    topic: TextsConstants.tractorTexts["subTopicsInside"][2]
+                    topic: tractorTexts["subTopicsInside"][2]
                         ["topic"],
-                    subTopic: TextsConstants.tractorTexts["subTopicsInside"][2]
+                    subTopic: tractorTexts["subTopicsInside"][2]
                         ["subTopic"],
-                    descriptioTexts: TextsConstants
-                        .tractorTexts["subTopicsInside"][2]["descriptioTexts"],
-                    blocks: TextsConstants.tractorTexts["subTopicsInside"][2]
+                    descriptioTexts: tractorTexts["subTopicsInside"][2]
+                        ["descriptioTexts"],
+                    blocks: tractorTexts["subTopicsInside"][2]
                         ["blocks"],
                   ));
             }
@@ -806,15 +813,14 @@ class _TractorVideoState extends State<TractorVideo> {
                                 "assets/videos/vehicles/Product_loops/Fan_Loop.mp4",
                             back:
                                 "assets/videos/vehicles/Product_transition/Tractor_To_Fan.mp4",
-                            topic: TextsConstants
-                                .tractorTexts["subTopicsInside"][0]["topic"],
-                            subTopic: TextsConstants
-                                .tractorTexts["subTopicsInside"][0]["subTopic"],
+                            topic: tractorTexts["subTopicsInside"][0]["topic"],
+                            subTopic: tractorTexts["subTopicsInside"][0]
+                                ["subTopic"],
                             descriptioTexts:
-                                TextsConstants.tractorTexts["subTopicsInside"]
+                                tractorTexts["subTopicsInside"]
                                     [0]["descriptioTexts"],
-                            blocks: TextsConstants
-                                .tractorTexts["subTopicsInside"][0]["blocks"],
+                            blocks: tractorTexts["subTopicsInside"][0]
+                                ["blocks"],
                           ));
                     }
                   }
@@ -822,7 +828,7 @@ class _TractorVideoState extends State<TractorVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.tractorTexts["subTopics"][0],
+                text: tractorTexts["subTopics"][0],
                 type: 1,
               ),
             ),
@@ -866,15 +872,14 @@ class _TractorVideoState extends State<TractorVideo> {
                                 "assets/videos/vehicles/Product_loops/Inverter_Loop.mp4",
                             back:
                                 "assets/videos/vehicles/Product_transition/Tractor_To_Inverter.mp4",
-                            topic: TextsConstants
-                                .tractorTexts["subTopicsInside"][1]["topic"],
-                            subTopic: TextsConstants
-                                .tractorTexts["subTopicsInside"][1]["subTopic"],
+                            topic: tractorTexts["subTopicsInside"][1]["topic"],
+                            subTopic: tractorTexts["subTopicsInside"][1]
+                                ["subTopic"],
                             descriptioTexts:
-                                TextsConstants.tractorTexts["subTopicsInside"]
+                                tractorTexts["subTopicsInside"]
                                     [1]["descriptioTexts"],
-                            blocks: TextsConstants
-                                .tractorTexts["subTopicsInside"][1]["blocks"],
+                            blocks: tractorTexts["subTopicsInside"][1]
+                                ["blocks"],
                           ));
                     }
                   }
@@ -882,7 +887,7 @@ class _TractorVideoState extends State<TractorVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.tractorTexts["subTopics"][1],
+                text: tractorTexts["subTopics"][1],
                 type: 2,
               ),
             ),
@@ -926,15 +931,14 @@ class _TractorVideoState extends State<TractorVideo> {
                                 "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
                             back:
                                 "assets/videos/vehicles/Product_transition/Tractor_To_HDMotor.mp4",
-                            topic: TextsConstants
-                                .tractorTexts["subTopicsInside"][2]["topic"],
-                            subTopic: TextsConstants
-                                .tractorTexts["subTopicsInside"][2]["subTopic"],
+                            topic: tractorTexts["subTopicsInside"][2]["topic"],
+                            subTopic: tractorTexts["subTopicsInside"][2]
+                                ["subTopic"],
                             descriptioTexts:
-                                TextsConstants.tractorTexts["subTopicsInside"]
+                                tractorTexts["subTopicsInside"]
                                     [2]["descriptioTexts"],
-                            blocks: TextsConstants
-                                .tractorTexts["subTopicsInside"][2]["blocks"],
+                            blocks: tractorTexts["subTopicsInside"][2]
+                                ["blocks"],
                           ));
                     }
                   }
@@ -942,7 +946,7 @@ class _TractorVideoState extends State<TractorVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.tractorTexts["subTopics"][2],
+                text: tractorTexts["subTopics"][2],
                 type: 3,
               ),
             ),

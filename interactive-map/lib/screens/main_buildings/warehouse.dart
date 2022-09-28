@@ -78,6 +78,13 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
       offsetHor = widget.offsetHor;
       offsetVer = widget.offsetVer;
     });
+    loadText();
+  }
+
+  late final Map<String, dynamic> warehouseTexts;
+
+  Future<void> loadText() async {
+    warehouseTexts = await Utils.readJson("assets/data/warehouseTexts.json");
   }
 
   videoHandler() async {
@@ -654,12 +661,10 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: TextsConstants
-                          .warehouseTexts["TextAreaWithClipMain"]["texts"],
-                      topic: TextsConstants
-                          .warehouseTexts["TextAreaWithClipMain"]["topic"],
+                      texts: warehouseTexts["TextAreaWithClipMain"]["texts"],
+                      topic: warehouseTexts["TextAreaWithClipMain"]["topic"],
                       description:
-                          TextsConstants.warehouseTexts["TextAreaWithClipMain"]
+                          warehouseTexts["TextAreaWithClipMain"]
                               ["description"],
                     ),
                   ),
@@ -673,14 +678,12 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: TextsConstants
-                              .warehouseTexts["TextAreaWithClipEnergySaving"]
+                      texts: warehouseTexts["TextAreaWithClipEnergySaving"]
                           ["texts"],
-                      topic: TextsConstants
-                              .warehouseTexts["TextAreaWithClipEnergySaving"]
+                      topic: warehouseTexts["TextAreaWithClipEnergySaving"]
                           ["topic"],
-                      description: TextsConstants
-                              .warehouseTexts["TextAreaWithClipEnergySaving"]
+                      description:
+                          warehouseTexts["TextAreaWithClipEnergySaving"]
                           ["description"],
                     ),
                   ),
@@ -729,7 +732,7 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.warehouseTexts["subTopics"][0],
+      title: warehouseTexts["subTopics"][0],
       onPressed: () async {
         setShow();
         setState(() {
@@ -765,7 +768,7 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.warehouseTexts["subTopics"][1],
+      title: warehouseTexts["subTopics"][1],
       onPressed: () async {
         setShow();
         setState(() {
@@ -779,7 +782,7 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.warehouseTexts["subTopics"][2],
+      title: warehouseTexts["subTopics"][2],
       onPressed: () async {
         setShow();
         setState(() {
@@ -905,7 +908,7 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.warehouseTexts["subTopics"][0],
+                text: warehouseTexts["subTopics"][0],
                 type: 2,
               ),
             ),
@@ -929,7 +932,7 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.warehouseTexts["subTopics"][1],
+                text: warehouseTexts["subTopics"][1],
                 type: 1,
               ),
             ),
@@ -974,7 +977,7 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.warehouseTexts["subTopics"][2],
+                text: warehouseTexts["subTopics"][2],
                 type: 3,
               ),
             ),

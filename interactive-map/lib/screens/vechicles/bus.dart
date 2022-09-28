@@ -76,6 +76,13 @@ class _BusVideoState extends State<BusVideo> {
       offsetHor = widget.offsetHor;
       offsetVer = widget.offsetVer;
     });
+    loadText();
+  }
+
+  late final Map<String, dynamic> busTexts;
+
+  Future<void> loadText() async {
+    busTexts = await Utils.readJson("assets/data/busTexts.json");
   }
 
   videoHandler() async {
@@ -554,12 +561,12 @@ class _BusVideoState extends State<BusVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: TextsConstants.busTexts["TextAreaWithClipMain"]
+                      texts: busTexts["TextAreaWithClipMain"]
                           ["texts"],
-                      topic: TextsConstants.busTexts["TextAreaWithClipMain"]
+                      topic: busTexts["TextAreaWithClipMain"]
                           ["topic"],
-                      description: TextsConstants
-                          .busTexts["TextAreaWithClipMain"]["description"],
+                      description: busTexts["TextAreaWithClipMain"]
+                          ["description"],
                     ),
                   ),
                 )
@@ -574,7 +581,7 @@ class _BusVideoState extends State<BusVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.busTexts["subTopics"][0],
+      title: busTexts["subTopics"][0],
       onPressed: () async {
         setShow();
         setState(() {
@@ -601,13 +608,13 @@ class _BusVideoState extends State<BusVideo> {
                     url: "assets/videos/vehicles/Product_loops/Fan_Loop.mp4",
                     back:
                         "assets/videos/vehicles/Product_transition/Bus_To_Fan.mp4",
-                    topic: TextsConstants.busTexts["subTopicsInside"][0]
+                    topic: busTexts["subTopicsInside"][0]
                         ["topic"],
-                    subTopic: TextsConstants.busTexts["subTopicsInside"][0]
+                    subTopic: busTexts["subTopicsInside"][0]
                         ["subTopic"],
-                    descriptioTexts: TextsConstants.busTexts["subTopicsInside"]
+                    descriptioTexts: busTexts["subTopicsInside"]
                         [0]["descriptioTexts"],
-                    blocks: TextsConstants.busTexts["subTopicsInside"][0]
+                    blocks: busTexts["subTopicsInside"][0]
                         ["blocks"],
                   ));
             }
@@ -621,7 +628,7 @@ class _BusVideoState extends State<BusVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.busTexts["subTopics"][1],
+      title: busTexts["subTopics"][1],
       onPressed: () async {
         setShow();
         setState(() {
@@ -649,13 +656,13 @@ class _BusVideoState extends State<BusVideo> {
                         "assets/videos/vehicles/Product_loops/Inverter_Loop.mp4",
                     back:
                         "assets/videos/vehicles/Product_transition/Bus_To_Inverter.mp4",
-                    topic: TextsConstants.busTexts["subTopicsInside"][1]
+                    topic: busTexts["subTopicsInside"][1]
                         ["topic"],
-                    subTopic: TextsConstants.busTexts["subTopicsInside"][1]
+                    subTopic: busTexts["subTopicsInside"][1]
                         ["subTopic"],
-                    descriptioTexts: TextsConstants.busTexts["subTopicsInside"]
+                    descriptioTexts: busTexts["subTopicsInside"]
                         [1]["descriptioTexts"],
-                    blocks: TextsConstants.busTexts["subTopicsInside"][1]
+                    blocks: busTexts["subTopicsInside"][1]
                         ["blocks"],
                   ));
             }
@@ -669,7 +676,7 @@ class _BusVideoState extends State<BusVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.busTexts["subTopics"][2],
+      title: busTexts["subTopics"][2],
       onPressed: () async {
         setShow();
         setState(() {
@@ -697,13 +704,13 @@ class _BusVideoState extends State<BusVideo> {
                         "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
                     back:
                         "assets/videos/vehicles/Product_transition/Bus_To_HDMotor.mp4",
-                    topic: TextsConstants.busTexts["subTopicsInside"][2]
+                    topic: busTexts["subTopicsInside"][2]
                         ["topic"],
-                    subTopic: TextsConstants.busTexts["subTopicsInside"][2]
+                    subTopic: busTexts["subTopicsInside"][2]
                         ["subTopic"],
-                    descriptioTexts: TextsConstants.busTexts["subTopicsInside"]
+                    descriptioTexts: busTexts["subTopicsInside"]
                         [2]["descriptioTexts"],
-                    blocks: TextsConstants.busTexts["subTopicsInside"][2]
+                    blocks: busTexts["subTopicsInside"][2]
                         ["blocks"],
                   ));
             }
@@ -806,14 +813,14 @@ class _BusVideoState extends State<BusVideo> {
                                 "assets/videos/vehicles/Product_loops/Fan_Loop.mp4",
                             back:
                                 "assets/videos/vehicles/Product_transition/Bus_To_Fan.mp4",
-                            topic: TextsConstants.busTexts["subTopicsInside"][0]
+                            topic: busTexts["subTopicsInside"][0]
                                 ["topic"],
-                            subTopic: TextsConstants.busTexts["subTopicsInside"]
+                            subTopic: busTexts["subTopicsInside"]
                                 [0]["subTopic"],
                             descriptioTexts:
-                                TextsConstants.busTexts["subTopicsInside"][0]
+                                busTexts["subTopicsInside"][0]
                                     ["descriptioTexts"],
-                            blocks: TextsConstants.busTexts["subTopicsInside"]
+                            blocks: busTexts["subTopicsInside"]
                                 [0]["blocks"],
                           ));
                     }
@@ -822,7 +829,7 @@ class _BusVideoState extends State<BusVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.busTexts["subTopics"][0],
+                text: busTexts["subTopics"][0],
                 type: 1,
               ),
             ),
@@ -866,14 +873,14 @@ class _BusVideoState extends State<BusVideo> {
                                 "assets/videos/vehicles/Product_loops/Inverter_Loop.mp4",
                             back:
                                 "assets/videos/vehicles/Product_transition/Bus_To_Inverter.mp4",
-                            topic: TextsConstants.busTexts["subTopicsInside"][1]
+                            topic: busTexts["subTopicsInside"][1]
                                 ["topic"],
-                            subTopic: TextsConstants.busTexts["subTopicsInside"]
+                            subTopic: busTexts["subTopicsInside"]
                                 [1]["subTopic"],
                             descriptioTexts:
-                                TextsConstants.busTexts["subTopicsInside"][1]
+                                busTexts["subTopicsInside"][1]
                                     ["descriptioTexts"],
-                            blocks: TextsConstants.busTexts["subTopicsInside"]
+                            blocks: busTexts["subTopicsInside"]
                                 [1]["blocks"],
                           ));
                     }
@@ -882,7 +889,7 @@ class _BusVideoState extends State<BusVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.busTexts["subTopics"][1],
+                text: busTexts["subTopics"][1],
                 type: 2,
               ),
             ),
@@ -926,14 +933,14 @@ class _BusVideoState extends State<BusVideo> {
                                 "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
                             back:
                                 "assets/videos/vehicles/Product_transition/Bus_To_HDMotor.mp4",
-                            topic: TextsConstants.busTexts["subTopicsInside"][2]
+                            topic: busTexts["subTopicsInside"][2]
                                 ["topic"],
-                            subTopic: TextsConstants.busTexts["subTopicsInside"]
+                            subTopic: busTexts["subTopicsInside"]
                                 [2]["subTopic"],
                             descriptioTexts:
-                                TextsConstants.busTexts["subTopicsInside"][2]
+                                busTexts["subTopicsInside"][2]
                                     ["descriptioTexts"],
-                            blocks: TextsConstants.busTexts["subTopicsInside"]
+                            blocks: busTexts["subTopicsInside"]
                                 [2]["blocks"],
                           ));
                     }
@@ -942,7 +949,7 @@ class _BusVideoState extends State<BusVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.busTexts["subTopics"][2],
+                text: busTexts["subTopics"][2],
                 type: 3,
               ),
             ),

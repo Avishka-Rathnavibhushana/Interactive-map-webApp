@@ -77,6 +77,13 @@ class _RetailVideoState extends State<RetailVideo> {
       offsetHor = widget.offsetHor;
       offsetVer = widget.offsetVer;
     });
+    loadText();
+  }
+
+  late final Map<String, dynamic> retailTexts;
+
+  Future<void> loadText() async {
+    retailTexts = await Utils.readJson("assets/data/retailTexts.json");
   }
 
   videoHandler() async {
@@ -652,12 +659,12 @@ class _RetailVideoState extends State<RetailVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: TextsConstants.retailTexts["TextAreaWithClipMain"]
+                      texts: retailTexts["TextAreaWithClipMain"]
                           ["texts"],
-                      topic: TextsConstants.retailTexts["TextAreaWithClipMain"]
+                      topic: retailTexts["TextAreaWithClipMain"]
                           ["topic"],
-                      description: TextsConstants
-                          .retailTexts["TextAreaWithClipMain"]["description"],
+                      description: retailTexts["TextAreaWithClipMain"]
+                          ["description"],
                     ),
                   ),
                 )
@@ -670,12 +677,11 @@ class _RetailVideoState extends State<RetailVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: TextsConstants
-                          .retailTexts["TextAreaWithClipEnergySaving"]["texts"],
-                      topic: TextsConstants
-                          .retailTexts["TextAreaWithClipEnergySaving"]["topic"],
-                      description: TextsConstants
-                              .retailTexts["TextAreaWithClipEnergySaving"]
+                      texts: retailTexts["TextAreaWithClipEnergySaving"]
+                          ["texts"],
+                      topic: retailTexts["TextAreaWithClipEnergySaving"]
+                          ["topic"],
+                      description: retailTexts["TextAreaWithClipEnergySaving"]
                           ["description"],
                     ),
                   ),
@@ -724,7 +730,7 @@ class _RetailVideoState extends State<RetailVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.retailTexts["subTopics"][0],
+      title: retailTexts["subTopics"][0],
       onPressed: () async {
         setShow();
         setState(() {
@@ -760,7 +766,7 @@ class _RetailVideoState extends State<RetailVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.retailTexts["subTopics"][1],
+      title: retailTexts["subTopics"][1],
       onPressed: () async {
         setShow();
         setState(() {
@@ -774,7 +780,7 @@ class _RetailVideoState extends State<RetailVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.retailTexts["subTopics"][2],
+      title: retailTexts["subTopics"][2],
       onPressed: () async {
         setShow();
         setState(() {
@@ -900,7 +906,7 @@ class _RetailVideoState extends State<RetailVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.retailTexts["subTopics"][0],
+                text: retailTexts["subTopics"][0],
                 type: 2,
               ),
             ),
@@ -924,7 +930,7 @@ class _RetailVideoState extends State<RetailVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.retailTexts["subTopics"][1],
+                text: retailTexts["subTopics"][1],
                 type: 1,
               ),
             ),
@@ -969,7 +975,7 @@ class _RetailVideoState extends State<RetailVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.retailTexts["subTopics"][2],
+                text: retailTexts["subTopics"][2],
                 type: 3,
               ),
             ),

@@ -77,6 +77,13 @@ class _DairyBarnsVideoState extends State<DairyBarnsVideo> {
       offsetHor = widget.offsetHor;
       offsetVer = widget.offsetVer;
     });
+    loadText();
+  }
+
+  late final Map<String, dynamic> dairyBarnsTexts;
+
+  Future<void> loadText() async {
+    dairyBarnsTexts = await Utils.readJson("assets/data/dairyBarnsTexts.json");
   }
 
   videoHandler() async {
@@ -535,12 +542,10 @@ class _DairyBarnsVideoState extends State<DairyBarnsVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: TextsConstants
-                          .dairyBarnsTexts["TextAreaWithClipMain"]["texts"],
-                      topic: TextsConstants
-                          .dairyBarnsTexts["TextAreaWithClipMain"]["topic"],
+                      texts: dairyBarnsTexts["TextAreaWithClipMain"]["texts"],
+                      topic: dairyBarnsTexts["TextAreaWithClipMain"]["topic"],
                       description:
-                          TextsConstants.dairyBarnsTexts["TextAreaWithClipMain"]
+                          dairyBarnsTexts["TextAreaWithClipMain"]
                               ["description"],
                     ),
                   ),
@@ -556,7 +561,7 @@ class _DairyBarnsVideoState extends State<DairyBarnsVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.dairyBarnsTexts["subTopics"][0],
+      title: dairyBarnsTexts["subTopics"][0],
       onPressed: () async {
         setShow();
         setState(() {
@@ -592,7 +597,7 @@ class _DairyBarnsVideoState extends State<DairyBarnsVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.dairyBarnsTexts["subTopics"][1],
+      title: dairyBarnsTexts["subTopics"][1],
       onPressed: () async {
         setShow();
         setState(() {
@@ -626,7 +631,7 @@ class _DairyBarnsVideoState extends State<DairyBarnsVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.dairyBarnsTexts["subTopics"][2],
+      title: dairyBarnsTexts["subTopics"][2],
       onPressed: () async {
         setShow();
         setState(() {
@@ -752,7 +757,7 @@ class _DairyBarnsVideoState extends State<DairyBarnsVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.dairyBarnsTexts["subTopics"][0],
+                text: dairyBarnsTexts["subTopics"][0],
                 type: 1,
               ),
             ),
@@ -796,7 +801,7 @@ class _DairyBarnsVideoState extends State<DairyBarnsVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.dairyBarnsTexts["subTopics"][1],
+                text: dairyBarnsTexts["subTopics"][1],
                 type: 2,
               ),
             ),
@@ -842,7 +847,7 @@ class _DairyBarnsVideoState extends State<DairyBarnsVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.dairyBarnsTexts["subTopics"][2],
+                text: dairyBarnsTexts["subTopics"][2],
                 type: 3,
               ),
             ),

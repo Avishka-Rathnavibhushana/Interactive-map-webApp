@@ -77,6 +77,13 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
       offsetHor = widget.offsetHor;
       offsetVer = widget.offsetVer;
     });
+    loadText();
+  }
+
+  late final Map<String, dynamic> fastFoodTexts;
+
+  Future<void> loadText() async {
+    fastFoodTexts = await Utils.readJson("assets/data/fastFoodTexts.json");
   }
 
   videoHandler() async {
@@ -652,12 +659,10 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: TextsConstants
-                          .fastFoodTexts["TextAreaWithClipMain"]["texts"],
-                      topic: TextsConstants
-                          .fastFoodTexts["TextAreaWithClipMain"]["topic"],
-                      description: TextsConstants
-                          .fastFoodTexts["TextAreaWithClipMain"]["description"],
+                      texts: fastFoodTexts["TextAreaWithClipMain"]["texts"],
+                      topic: fastFoodTexts["TextAreaWithClipMain"]["topic"],
+                      description: fastFoodTexts["TextAreaWithClipMain"]
+                          ["description"],
                     ),
                   ),
                 )
@@ -670,14 +675,11 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: TextsConstants
-                              .fastFoodTexts["TextAreaWithClipEnergySaving"]
+                      texts: fastFoodTexts["TextAreaWithClipEnergySaving"]
                           ["texts"],
-                      topic: TextsConstants
-                              .fastFoodTexts["TextAreaWithClipEnergySaving"]
+                      topic: fastFoodTexts["TextAreaWithClipEnergySaving"]
                           ["topic"],
-                      description: TextsConstants
-                              .fastFoodTexts["TextAreaWithClipEnergySaving"]
+                      description: fastFoodTexts["TextAreaWithClipEnergySaving"]
                           ["description"],
                     ),
                   ),
@@ -726,7 +728,7 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.fastFoodTexts["subTopics"][0],
+      title: fastFoodTexts["subTopics"][0],
       onPressed: () async {
         setShow();
         setState(() {
@@ -762,7 +764,7 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.fastFoodTexts["subTopics"][1],
+      title: fastFoodTexts["subTopics"][1],
       onPressed: () async {
         setShow();
         setState(() {
@@ -776,7 +778,7 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.fastFoodTexts["subTopics"][2],
+      title: fastFoodTexts["subTopics"][2],
       onPressed: () async {
         setShow();
         setState(() {
@@ -902,7 +904,7 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.fastFoodTexts["subTopics"][0],
+                text: fastFoodTexts["subTopics"][0],
                 type: 2,
               ),
             ),
@@ -926,7 +928,7 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.fastFoodTexts["subTopics"][1],
+                text: fastFoodTexts["subTopics"][1],
                 type: 1,
               ),
             ),
@@ -971,7 +973,7 @@ class _FastFoodVideoState extends State<FastFoodVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.fastFoodTexts["subTopics"][2],
+                text: fastFoodTexts["subTopics"][2],
                 type: 3,
               ),
             ),

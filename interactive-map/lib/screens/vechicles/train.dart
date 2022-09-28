@@ -68,6 +68,13 @@ class _TrainVideoState extends State<TrainVideo> {
       offsetHor = widget.offsetHor;
       offsetVer = widget.offsetVer;
     });
+    loadText();
+  }
+
+  late final Map<String, dynamic> trainTexts;
+
+  Future<void> loadText() async {
+    trainTexts = await Utils.readJson("assets/data/trainTexts.json");
   }
 
   videoHandler() async {
@@ -462,12 +469,12 @@ class _TrainVideoState extends State<TrainVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: TextsConstants.trainTexts["TextAreaWithClipMain"]
+                      texts: trainTexts["TextAreaWithClipMain"]
                           ["texts"],
-                      topic: TextsConstants.trainTexts["TextAreaWithClipMain"]
+                      topic: trainTexts["TextAreaWithClipMain"]
                           ["topic"],
-                      description: TextsConstants
-                          .trainTexts["TextAreaWithClipMain"]["description"],
+                      description: trainTexts["TextAreaWithClipMain"]
+                          ["description"],
                     ),
                   ),
                 )
@@ -482,7 +489,7 @@ class _TrainVideoState extends State<TrainVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.trainTexts["subTopics"][0],
+      title: trainTexts["subTopics"][0],
       onPressed: () async {
         setShow();
         setState(() {
@@ -510,13 +517,13 @@ class _TrainVideoState extends State<TrainVideo> {
                         "assets/videos/vehicles/Product_loops/Train_Battery_Loop.mp4",
                     back:
                         "assets/videos/vehicles/Product_transition/Train_To_Battery.mp4",
-                    topic: TextsConstants.trainTexts["subTopicsInside"][0]
+                    topic: trainTexts["subTopicsInside"][0]
                         ["topic"],
-                    subTopic: TextsConstants.trainTexts["subTopicsInside"][0]
+                    subTopic: trainTexts["subTopicsInside"][0]
                         ["subTopic"],
-                    descriptioTexts: TextsConstants
-                        .trainTexts["subTopicsInside"][0]["descriptioTexts"],
-                    blocks: TextsConstants.trainTexts["subTopicsInside"][0]
+                    descriptioTexts: trainTexts["subTopicsInside"][0]
+                        ["descriptioTexts"],
+                    blocks: trainTexts["subTopicsInside"][0]
                         ["blocks"],
                   ));
             }
@@ -619,14 +626,14 @@ class _TrainVideoState extends State<TrainVideo> {
                                 "assets/videos/vehicles/Product_loops/Train_Battery_Loop.mp4",
                             back:
                                 "assets/videos/vehicles/Product_transition/Train_To_Battery.mp4",
-                            topic: TextsConstants.trainTexts["subTopicsInside"]
+                            topic: trainTexts["subTopicsInside"]
                                 [0]["topic"],
-                            subTopic: TextsConstants
-                                .trainTexts["subTopicsInside"][0]["subTopic"],
+                            subTopic: trainTexts["subTopicsInside"][0]
+                                ["subTopic"],
                             descriptioTexts:
-                                TextsConstants.trainTexts["subTopicsInside"][0]
+                                trainTexts["subTopicsInside"][0]
                                     ["descriptioTexts"],
-                            blocks: TextsConstants.trainTexts["subTopicsInside"]
+                            blocks: trainTexts["subTopicsInside"]
                                 [0]["blocks"],
                           ));
                     }
@@ -635,7 +642,7 @@ class _TrainVideoState extends State<TrainVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.trainTexts["subTopics"][0],
+                text: trainTexts["subTopics"][0],
                 type: 1,
               ),
             ),

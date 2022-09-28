@@ -77,7 +77,15 @@ class _SchoolVideoState extends State<SchoolVideo> {
       offsetHor = widget.offsetHor;
       offsetVer = widget.offsetVer;
     });
+    loadText();
   }
+
+  late final Map<String, dynamic> schoolTexts;
+
+  Future<void> loadText() async {
+    schoolTexts = await Utils.readJson("assets/data/schoolTexts.json");
+  }
+
 
   videoHandler() async {
     _controller = VideoPlayerController.asset(url);
@@ -664,12 +672,12 @@ class _SchoolVideoState extends State<SchoolVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: TextsConstants.schoolTexts["TextAreaWithClipMain"]
+                      texts: schoolTexts["TextAreaWithClipMain"]
                           ["texts"],
-                      topic: TextsConstants.schoolTexts["TextAreaWithClipMain"]
+                      topic: schoolTexts["TextAreaWithClipMain"]
                           ["topic"],
-                      description: TextsConstants
-                          .schoolTexts["TextAreaWithClipMain"]["description"],
+                      description: schoolTexts["TextAreaWithClipMain"]
+                          ["description"],
                     ),
                   ),
                 )
@@ -682,12 +690,11 @@ class _SchoolVideoState extends State<SchoolVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: TextsConstants
-                          .schoolTexts["TextAreaWithClipEnergySaving"]["texts"],
-                      topic: TextsConstants
-                          .schoolTexts["TextAreaWithClipEnergySaving"]["topic"],
-                      description: TextsConstants
-                              .schoolTexts["TextAreaWithClipEnergySaving"]
+                      texts: schoolTexts["TextAreaWithClipEnergySaving"]
+                          ["texts"],
+                      topic: schoolTexts["TextAreaWithClipEnergySaving"]
+                          ["topic"],
+                      description: schoolTexts["TextAreaWithClipEnergySaving"]
                           ["description"],
                     ),
                   ),
@@ -736,7 +743,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.schoolTexts["subTopics"][0],
+      title: schoolTexts["subTopics"][0],
       onPressed: () async {
         setShow();
         setState(() {
@@ -772,7 +779,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.schoolTexts["subTopics"][1],
+      title: schoolTexts["subTopics"][1],
       onPressed: () async {
         setShow();
         setState(() {
@@ -786,7 +793,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.schoolTexts["subTopics"][2],
+      title: schoolTexts["subTopics"][2],
       onPressed: () async {
         setShow();
         setState(() {
@@ -912,7 +919,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.schoolTexts["subTopics"][0],
+                text: schoolTexts["subTopics"][0],
                 type: 2,
               ),
             ),
@@ -936,7 +943,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.schoolTexts["subTopics"][1],
+                text: schoolTexts["subTopics"][1],
                 type: 1,
               ),
             ),
@@ -981,7 +988,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.schoolTexts["subTopics"][2],
+                text: schoolTexts["subTopics"][2],
                 type: 3,
               ),
             ),

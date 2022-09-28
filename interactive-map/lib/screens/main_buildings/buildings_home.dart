@@ -119,6 +119,29 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
     videoHandler();
 
     super.initState();
+
+    loadText();
+  }
+
+  late final Map<String, dynamic> schoolTexts;
+  late final Map<String, dynamic> fastFoodTexts;
+  late final Map<String, dynamic> bankTexts;
+  late final Map<String, dynamic> retailTexts;
+  late final Map<String, dynamic> warehouseTexts;
+  late final Map<String, dynamic> dataCentreTexts;
+  late final Map<String, dynamic> groceryShopTexts;
+  late final Map<String, dynamic> dairyBarnsTexts;
+
+  Future<void> loadText() async {
+    schoolTexts = await Utils.readJson("assets/data/schoolTexts.json");
+    fastFoodTexts = await Utils.readJson("assets/data/fastFoodTexts.json");
+    bankTexts = await Utils.readJson("assets/data/bankTexts.json");
+    retailTexts = await Utils.readJson("assets/data/retailTexts.json");
+    warehouseTexts = await Utils.readJson("assets/data/warehouseTexts.json");
+    dataCentreTexts = await Utils.readJson("assets/data/dataCentreTexts.json");
+    groceryShopTexts =
+        await Utils.readJson("assets/data/groceryShopTexts.json");
+    dairyBarnsTexts = await Utils.readJson("assets/data/dairyBarnsTexts.json");
   }
 
   videoHandler() async {
@@ -438,7 +461,6 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                                       ),
                                     )
                                   : Container(),
-                              
                             ],
                           ),
                         ),
@@ -746,12 +768,12 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                                       opacity: _currentOpacity,
                                       duration: Duration(seconds: 1),
                                       child: SizedBox(
-                                      width: Utils.getVideoScreenWidth(
-                                          screenSizeMobile2),
-                                      height: Utils.getVideoScreenHeight(
-                                          screenSizeMobile2),
-                                      child:
-                                          VideoPlayer(_schoolVideoController),
+                                        width: Utils.getVideoScreenWidth(
+                                            screenSizeMobile2),
+                                        height: Utils.getVideoScreenHeight(
+                                            screenSizeMobile2),
+                                        child:
+                                            VideoPlayer(_schoolVideoController),
                                       ),
                                     )
                                   : Container(),
@@ -825,7 +847,6 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                                       ),
                                     )
                                   : Container(),
-                              
                             ],
                           ),
                         ),
@@ -1179,7 +1200,6 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                                 ),
                               )
                             : Container(),
-                        
                       ],
                     ),
                   ),
@@ -1260,10 +1280,8 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                     child: TextAreaSmallWithClip(
                       width: screenSize.width * 0.35,
                       screenSize: screenSize,
-                      prefixText: TextsConstants
-                          .schoolTexts["TextAreaSmallWithClip"][0],
-                      description: TextsConstants
-                          .schoolTexts["TextAreaSmallWithClip"][1],
+                      prefixText: schoolTexts["TextAreaSmallWithClip"][0],
+                      description: schoolTexts["TextAreaSmallWithClip"][1],
                     ),
                   ),
                 )
@@ -1277,10 +1295,8 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                     child: TextAreaSmallWithClip(
                       width: screenSize.width * 0.35,
                       screenSize: screenSize,
-                      prefixText: TextsConstants
-                          .fastFoodTexts["TextAreaSmallWithClip"][0],
-                      description: TextsConstants
-                          .fastFoodTexts["TextAreaSmallWithClip"][1],
+                      prefixText: fastFoodTexts["TextAreaSmallWithClip"][0],
+                      description: fastFoodTexts["TextAreaSmallWithClip"][1],
                     ),
                   ),
                 )
@@ -1295,9 +1311,9 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                       width: screenSize.width * 0.35,
                       screenSize: screenSize,
                       prefixText:
-                          TextsConstants.bankTexts["TextAreaSmallWithClip"][0],
+                          bankTexts["TextAreaSmallWithClip"][0],
                       description:
-                          TextsConstants.bankTexts["TextAreaSmallWithClip"][1],
+                          bankTexts["TextAreaSmallWithClip"][1],
                     ),
                   ),
                 )
@@ -1311,10 +1327,8 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                     child: TextAreaSmallWithClip(
                       width: screenSize.width * 0.35,
                       screenSize: screenSize,
-                      prefixText: TextsConstants
-                          .retailTexts["TextAreaSmallWithClip"][0],
-                      description: TextsConstants
-                          .retailTexts["TextAreaSmallWithClip"][1],
+                      prefixText: retailTexts["TextAreaSmallWithClip"][0],
+                      description: retailTexts["TextAreaSmallWithClip"][1],
                     ),
                   ),
                 )
@@ -1328,10 +1342,8 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                     child: TextAreaSmallWithClip(
                       width: screenSize.width * 0.35,
                       screenSize: screenSize,
-                      prefixText: TextsConstants
-                          .warehouseTexts["TextAreaSmallWithClip"][0],
-                      description: TextsConstants
-                          .warehouseTexts["TextAreaSmallWithClip"][1],
+                      prefixText: warehouseTexts["TextAreaSmallWithClip"][0],
+                      description: warehouseTexts["TextAreaSmallWithClip"][1],
                     ),
                   ),
                 )
@@ -1345,10 +1357,8 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                     child: TextAreaSmallWithClip(
                       width: screenSize.width * 0.35,
                       screenSize: screenSize,
-                      prefixText: TextsConstants
-                          .dataCentreTexts["TextAreaSmallWithClip"][0],
-                      description: TextsConstants
-                          .dataCentreTexts["TextAreaSmallWithClip"][1],
+                      prefixText: dataCentreTexts["TextAreaSmallWithClip"][0],
+                      description: dataCentreTexts["TextAreaSmallWithClip"][1],
                     ),
                   ),
                 )
@@ -1362,10 +1372,8 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                     child: TextAreaSmallWithClip(
                       width: screenSize.width * 0.35,
                       screenSize: screenSize,
-                      prefixText: TextsConstants
-                          .groceryShopTexts["TextAreaSmallWithClip"][0],
-                      description: TextsConstants
-                          .groceryShopTexts["TextAreaSmallWithClip"][1],
+                      prefixText: groceryShopTexts["TextAreaSmallWithClip"][0],
+                      description: groceryShopTexts["TextAreaSmallWithClip"][1],
                     ),
                   ),
                 )
@@ -1603,7 +1611,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                 //       "assets/tempory images/Buildings_Transition_Stills/school_SELECTED.png";
                 //   fading = true;
                 // });
-                
+
                 setState(() {
                   _schoolVideoPlaying = true;
                 });
@@ -1653,7 +1661,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.schoolTexts["topic"],
+                text: schoolTexts["topic"],
                 type: 0,
               ),
             ),
@@ -1665,7 +1673,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.schoolTexts["topic"],
+      title: schoolTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -1746,7 +1754,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                   });
 
                   _timerVideoController.pause();
-                  
+
                   // setState(() {
                   //   fadingImage =
                   //       "assets/tempory images/Buildings_Transition_Stills/bank_SELECTED.png";
@@ -1802,7 +1810,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                 },
                 child: CustomButtonLabelWithClip(
                   screenSize: screenSize,
-                  text: TextsConstants.bankTexts["topic"],
+                  text: bankTexts["topic"],
                   type: 0,
                 ),
               ),
@@ -1815,7 +1823,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.bankTexts["topic"],
+      title: bankTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -1823,7 +1831,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         });
 
         _timerVideoController.pause();
-        
+
         // setState(() {
         //   fadingImage =
         //       "assets/tempory images/Buildings_Transition_Stills/bank_SELECTED.png";
@@ -1898,7 +1906,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                 });
 
                 _timerVideoController.pause();
-                
+
                 // setState(() {
                 //   fadingImage =
                 //       "assets/tempory images/Buildings_Transition_Stills/datacentre_SELECTED.png";
@@ -1955,7 +1963,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.dataCentreTexts["topic"],
+                text: dataCentreTexts["topic"],
                 type: 0,
               ),
             ),
@@ -1967,7 +1975,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.dataCentreTexts["topic"],
+      title: dataCentreTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -1975,7 +1983,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         });
 
         _timerVideoController.pause();
-        
+
         // setState(() {
         //   fadingImage =
         //       "assets/tempory images/Buildings_Transition_Stills/datacentre_SELECTED.png";
@@ -2047,7 +2055,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                 });
 
                 _timerVideoController.pause();
-                
+
                 // setState(() {
                 //   fadingImage =
                 //       "assets/tempory images/Buildings_Transition_Stills/warehouse_SELECTED.png";
@@ -2105,7 +2113,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.warehouseTexts["topic"],
+                text: warehouseTexts["topic"],
                 type: 0,
               ),
             ),
@@ -2117,7 +2125,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.warehouseTexts["topic"],
+      title: warehouseTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -2125,7 +2133,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         });
 
         _timerVideoController.pause();
-        
+
         // setState(() {
         //   fadingImage =
         //       "assets/tempory images/Buildings_Transition_Stills/warehouse_SELECTED.png";
@@ -2198,7 +2206,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                 });
 
                 _timerVideoController.pause();
-                
+
                 // setState(() {
                 //   fadingImage =
                 //       "assets/tempory images/Buildings_Transition_Stills/retail_SELECTED.png";
@@ -2256,7 +2264,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.retailTexts["topic"],
+                text: retailTexts["topic"],
                 type: 0,
               ),
             ),
@@ -2268,7 +2276,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.retailTexts["topic"],
+      title: retailTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -2276,7 +2284,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         });
 
         _timerVideoController.pause();
-        
+
         // setState(() {
         //   fadingImage =
         //       "assets/tempory images/Buildings_Transition_Stills/retail_SELECTED.png";
@@ -2350,7 +2358,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                 });
 
                 _timerVideoController.pause();
-                
+
                 // setState(() {
                 //   fadingImage =
                 //       "assets/tempory images/Buildings_Transition_Stills/groceryshop_SELECTED.png";
@@ -2408,7 +2416,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.groceryShopTexts["topic"],
+                text: groceryShopTexts["topic"],
                 type: 0,
               ),
             ),
@@ -2420,7 +2428,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.groceryShopTexts["topic"],
+      title: groceryShopTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -2428,7 +2436,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         });
 
         _timerVideoController.pause();
-        
+
         // setState(() {
         //   fadingImage =
         //       "assets/tempory images/Buildings_Transition_Stills/groceryshop_SELECTED.png";
@@ -2501,7 +2509,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                 });
 
                 _timerVideoController.pause();
-                
+
                 // setState(() {
                 //   fadingImage =
                 //       "assets/tempory images/Buildings_Transition_Stills/fastfood_SELECTED.png";
@@ -2559,7 +2567,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.fastFoodTexts["topic"],
+                text: fastFoodTexts["topic"],
                 type: 0,
               ),
             ),
@@ -2571,7 +2579,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.fastFoodTexts["topic"],
+      title: fastFoodTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -2579,7 +2587,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         });
 
         _timerVideoController.pause();
-        
+
         // setState(() {
         //   fadingImage =
         //       "assets/tempory images/Buildings_Transition_Stills/fastfood_SELECTED.png";
@@ -2652,7 +2660,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                 });
 
                 _timerVideoController.pause();
-                
+
                 // setState(() {
                 //   fadingImage =
                 //       "assets/tempory images/Buildings_Transition_Stills/barn_SELECTED.png";
@@ -2719,7 +2727,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.dairyBarnsTexts["topic"],
+                text: dairyBarnsTexts["topic"],
                 type: 0,
               ),
             ),
@@ -2731,7 +2739,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.dairyBarnsTexts["topic"],
+      title: dairyBarnsTexts["topic"],
       onPressed: () async {
         setShow();
         setState(() {
@@ -2739,7 +2747,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         });
 
         _timerVideoController.pause();
-        
+
         // setState(() {
         //   fadingImage =
         //       "assets/tempory images/Buildings_Transition_Stills/barn_SELECTED.png";

@@ -77,6 +77,13 @@ class _BankVideoState extends State<BankVideo> {
       offsetHor = widget.offsetHor;
       offsetVer = widget.offsetVer;
     });
+    loadText();
+  }
+
+  late final Map<String, dynamic> bankTexts;
+
+  Future<void> loadText() async {
+    bankTexts = await Utils.readJson("assets/data/bankTexts.json");
   }
 
   videoHandler() async {
@@ -652,12 +659,12 @@ class _BankVideoState extends State<BankVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: TextsConstants.bankTexts["TextAreaWithClipMain"]
+                      texts: bankTexts["TextAreaWithClipMain"]
                           ["texts"],
-                      topic: TextsConstants.bankTexts["TextAreaWithClipMain"]
+                      topic: bankTexts["TextAreaWithClipMain"]
                           ["topic"],
-                      description: TextsConstants
-                          .bankTexts["TextAreaWithClipMain"]["description"],
+                      description: bankTexts["TextAreaWithClipMain"]
+                          ["description"],
                     ),
                   ),
                 )
@@ -670,12 +677,9 @@ class _BankVideoState extends State<BankVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: TextsConstants
-                          .bankTexts["TextAreaWithClipEnergySaving"]["texts"],
-                      topic: TextsConstants
-                          .bankTexts["TextAreaWithClipEnergySaving"]["topic"],
-                      description: TextsConstants
-                              .bankTexts["TextAreaWithClipEnergySaving"]
+                      texts: bankTexts["TextAreaWithClipEnergySaving"]["texts"],
+                      topic: bankTexts["TextAreaWithClipEnergySaving"]["topic"],
+                      description: bankTexts["TextAreaWithClipEnergySaving"]
                           ["description"],
                     ),
                   ),
@@ -724,7 +728,7 @@ class _BankVideoState extends State<BankVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.bankTexts["subTopics"][0],
+      title: bankTexts["subTopics"][0],
       onPressed: () async {
         setShow();
         setState(() {
@@ -760,7 +764,7 @@ class _BankVideoState extends State<BankVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.bankTexts["subTopics"][1],
+      title: bankTexts["subTopics"][1],
       onPressed: () async {
         setShow();
         setState(() {
@@ -774,7 +778,7 @@ class _BankVideoState extends State<BankVideo> {
     var screenSize = MediaQuery.of(context).size;
     return CustomButtonLabelMobile(
       width: width,
-      title: TextsConstants.bankTexts["subTopics"][2],
+      title: bankTexts["subTopics"][2],
       onPressed: () async {
         setShow();
         setState(() {
@@ -902,7 +906,7 @@ class _BankVideoState extends State<BankVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.bankTexts["subTopics"][0],
+                text: bankTexts["subTopics"][0],
                 type: 2,
               ),
             ),
@@ -926,7 +930,7 @@ class _BankVideoState extends State<BankVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.bankTexts["subTopics"][1],
+                text: bankTexts["subTopics"][1],
                 type: 1,
               ),
             ),
@@ -971,7 +975,7 @@ class _BankVideoState extends State<BankVideo> {
               },
               child: CustomButtonLabelWithClip(
                 screenSize: screenSize,
-                text: TextsConstants.bankTexts["subTopics"][2],
+                text: bankTexts["subTopics"][2],
                 type: 3,
               ),
             ),
