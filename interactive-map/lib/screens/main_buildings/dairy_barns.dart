@@ -39,11 +39,11 @@ class _DairyBarnsVideoState extends State<DairyBarnsVideo> {
   bool show = false;
   bool _isPlaying = false;
 
-  final String url = 'assets/videos/buildings/barn_REV.mp4';
+  // final String url = 'assets/videos/buildings/barn_REV.mp4';
 
-  final String motorVideo = 'assets/videos/buildings/barn_to_TXMotor.mp4';
-  final String tractorVideo = 'assets/videos/buildings/barn_To_Tractor.mp4';
-  final String ipadVideo = 'assets/videos/buildings/barn_ipad.mp4';
+  // final String motorVideo = 'assets/videos/buildings/barn_to_TXMotor.mp4';
+  // final String tractorVideo = 'assets/videos/buildings/barn_To_Tractor.mp4';
+  // final String ipadVideo = 'assets/videos/buildings/barn_ipad.mp4';
 
   final String barnImage = 'assets/tempory images/barn_Plain.png';
   final String ipadScreenImage = 'assets/tempory images/screen_MAIN.png';
@@ -87,7 +87,7 @@ class _DairyBarnsVideoState extends State<DairyBarnsVideo> {
   }
 
   videoHandler() async {
-    _controller = VideoPlayerController.asset(url);
+    _controller = VideoPlayerController.network(barn_REV);
     await _controller.initialize();
     setState(() {
       _controller.setVolume(0);
@@ -121,21 +121,21 @@ class _DairyBarnsVideoState extends State<DairyBarnsVideo> {
       setShow();
     }
 
-    _motorVideoController = VideoPlayerController.asset(motorVideo)
+    _motorVideoController = VideoPlayerController.network(barn_to_TXMotor)
       ..initialize().then((_) => {
             setState(() {
               _motorVideoController.setVolume(0);
               _motorVideoController.setLooping(false);
             })
           });
-    _tractorVideoController = VideoPlayerController.asset(tractorVideo)
+    _tractorVideoController = VideoPlayerController.network(barn_To_Tractor)
       ..initialize().then((_) => {
             setState(() {
               _tractorVideoController.setVolume(0);
               _tractorVideoController.setLooping(false);
             })
           });
-    _ipadVideoController = VideoPlayerController.asset(ipadVideo)
+    _ipadVideoController = VideoPlayerController.network(barn_ipad)
       ..initialize().then((_) => {
             setState(() {
               _ipadVideoController.setVolume(0);

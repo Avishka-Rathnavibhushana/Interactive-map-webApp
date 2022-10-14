@@ -102,6 +102,61 @@ const Veh_To_Truck =
 const Vehicles_To_Buildings =
     "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fvehicles%2Fvehicle%20home%2FVehicles_To_Buildings.mp4?alt=media&token=1c7b1276-b39f-4b10-b5ad-7b64f5221bbb";
 
+//bank screen
+const bank_REV =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fbank_REV.mp4?alt=media&token=b0ece572-68f5-4ea5-80a3-ec42c0fb622c";
+const bank_MOTOR =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fbank_MOTOR.mp4?alt=media&token=94d2111c-ac91-4229-80b7-899a0891c19e";
+const bank_MAP =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fbank_MAP.mp4?alt=media&token=5cfb6c12-7239-42d2-8d05-4617203c33d8";
+
+//dairy barns screen
+const barn_REV =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fbarn_REV.mp4?alt=media&token=202218f4-a202-4f65-a758-e64517ba0b02";
+const barn_to_TXMotor =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fbarn_to_TXMotor.mp4?alt=media&token=bd75d294-7677-43eb-83df-5b0a023e6b17";
+const barn_To_Tractor =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fbarn_To_Tractor.mp4?alt=media&token=4de0f6fc-2a69-47f1-80da-31a3bcd66bb0";
+const barn_ipad =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fbarn_ipad.mp4?alt=media&token=7c2de2aa-2cd5-46c0-9358-eb93971f5da8";
+
+// //bank screen
+// const bank_REV = "";
+
+// //bank screen
+// const bank_REV = "";
+
+// //bank screen
+// const bank_REV = "";
+
+// //bank screen
+// const bank_REV = "";
+
+// //bank screen
+// const bank_REV = "";
+
+// //bank screen
+// const bank_REV = "";
+
+// //bank screen
+// const bank_REV = "";
+
+//avg nrm screen
+const Veh_To_AGV_REV =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fvehicles%2FVeh_To_AGV_REV.mp4?alt=media&token=538c0c05-9fb6-47e3-8ad9-cc1b477da1fc";
+const AGV_To_Battery =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fvehicles%2FProduct_transition%2FAGV_To_Battery.mp4?alt=media&token=b6bfac4d-c398-4b8f-97bd-3bc2b9b71c99";
+
+//bus screen
+const Veh_To_Bus_REV =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fvehicles%2FVeh_To_Bus_REV.mp4?alt=media&token=99d42a4b-f2f9-4021-8937-c2a5648382a7";
+const Bus_To_Fan =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fvehicles%2FProduct_transition%2FBus_To_Fan.mp4?alt=media&token=903def28-d4bd-40e8-b948-1e88f1532373";
+const Bus_To_Inverter =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fvehicles%2FProduct_transition%2FBus_To_Inverter.mp4?alt=media&token=50c69c68-6d58-4ac7-a9d7-ca2ed4f5a881";
+const Bus_To_HDMotor =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fvehicles%2FProduct_transition%2FBus_To_HDMotor.mp4?alt=media&token=9e367ef7-2049-4334-8747-3aaa5d27826b";
+
 //pages
 class Pages {
   static const home = 'home';

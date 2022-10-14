@@ -58,23 +58,9 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
   int index = 0;
   bool show = false;
 
-  // final String timerVideoUrl = 'assets/videos/buildings/Buildings_Main.mp4';
-
-  // final String bankVideoUrl = 'assets/videos/buildings/bank.mp4';
-  // final String dataCentreVideoUrl = 'assets/videos/buildings/datacentre.mp4';
-  // final String schoolVideoUrl = 'assets/videos/buildings/school.mp4';
-  // final String retailVideoUrl = 'assets/videos/buildings/retail.mp4';
-  // final String warehouseVideoUrl = 'assets/videos/buildings/warehouse.mp4';
-  // final String groceryShopVideoUrl = 'assets/videos/buildings/groceryshop.mp4';
-  // final String fastFoodVideoUrl = 'assets/videos/buildings/fastfood.mp4';
-  // final String dairyBarnsVideoUrl = 'assets/videos/buildings/barn.mp4';
-
   final String buildingImage = 'assets/tempory images/Buildings_menu_still.png';
   final String qrBackgroundImage =
       'assets/tempory images/Buildings_menu_QR.png';
-
-  // final String buildingTransitionVideoUrl =
-  //     'assets/videos/Buildings_To_Vehicles.mp4';
 
   bool timerOFF = false;
 

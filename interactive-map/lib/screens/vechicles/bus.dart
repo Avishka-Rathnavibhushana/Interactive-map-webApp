@@ -36,14 +36,14 @@ class _BusVideoState extends State<BusVideo> {
   bool show = false;
   bool _isPlaying = false;
 
-  final String url = 'assets/videos/vehicles/Veh_To_Bus_REV.mp4';
+  // final String url = 'assets/videos/vehicles/Veh_To_Bus_REV.mp4';
 
-  final String transition1Video =
-      'assets/videos/vehicles/Product_transition/Bus_To_Fan.mp4';
-  final String transition2Video =
-      'assets/videos/vehicles/Product_transition/Bus_To_Inverter.mp4';
-  final String transition3Video =
-      'assets/videos/vehicles/Product_transition/Bus_To_HDMotor.mp4';
+  // final String transition1Video =
+  //     'assets/videos/vehicles/Product_transition/Bus_To_Fan.mp4';
+  // final String transition2Video =
+  //     'assets/videos/vehicles/Product_transition/Bus_To_Inverter.mp4';
+  // final String transition3Video =
+  //     'assets/videos/vehicles/Product_transition/Bus_To_HDMotor.mp4';
 
   // final String schoolImage = 'assets/tempory images/School_Plain.png';
 
@@ -86,7 +86,7 @@ class _BusVideoState extends State<BusVideo> {
   }
 
   videoHandler() async {
-    _controller = VideoPlayerController.asset(url);
+    _controller = VideoPlayerController.network(Veh_To_Bus_REV);
     await _controller.initialize();
     setState(() {
       _controller.setVolume(0);
@@ -120,21 +120,21 @@ class _BusVideoState extends State<BusVideo> {
       setShow();
     }
 
-    _transition1VideoController = VideoPlayerController.asset(transition1Video)
+    _transition1VideoController = VideoPlayerController.network(Bus_To_Fan)
       ..initialize().then((_) => {
             setState(() {
               _transition1VideoController.setVolume(0);
               _transition1VideoController.setLooping(false);
             })
           });
-    _transition2VideoController = VideoPlayerController.asset(transition2Video)
+    _transition2VideoController = VideoPlayerController.network(Bus_To_Inverter)
       ..initialize().then((_) => {
             setState(() {
               _transition2VideoController.setVolume(0);
               _transition2VideoController.setLooping(false);
             })
           });
-    _transition3VideoController = VideoPlayerController.asset(transition3Video)
+    _transition3VideoController = VideoPlayerController.network(Bus_To_HDMotor)
       ..initialize().then((_) => {
             setState(() {
               _transition3VideoController.setVolume(0);

@@ -32,10 +32,10 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
   bool show = false;
   bool _isPlaying = false;
 
-  final String url = 'assets/videos/vehicles/Veh_To_AGV_REV.mp4';
+  // final String url = 'assets/videos/vehicles/Veh_To_AGV_REV.mp4';
 
-  final String transition1Video =
-      'assets/videos/vehicles/Product_transition/AGV_To_Battery.mp4';
+  // final String transition1Video =
+  //     'assets/videos/vehicles/Product_transition/AGV_To_Battery.mp4';
 
   // final String schoolImage = 'assets/tempory images/School_Plain.png';
 
@@ -78,7 +78,7 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
   }
 
   videoHandler() async {
-    _controller = VideoPlayerController.asset(url);
+    _controller = VideoPlayerController.network(Veh_To_AGV_REV);
     await _controller.initialize();
     setState(() {
       _controller.setVolume(0);
@@ -112,7 +112,7 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
       setShow();
     }
 
-    _transition1VideoController = VideoPlayerController.asset(transition1Video)
+    _transition1VideoController = VideoPlayerController.asset(AGV_To_Battery)
       ..initialize().then((_) => {
             setState(() {
               _transition1VideoController.setVolume(0);

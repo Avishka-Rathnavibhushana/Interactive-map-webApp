@@ -55,22 +55,9 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
   int index = 0;
   bool show = false;
 
-  // final String timerVideoUrl = 'assets/videos/vehicles/Vehicles_Main_Loop.mp4';
-
-  // final String trainVideoUrl = 'assets/videos/vehicles/Veh_To_Train.mp4';
-  // final String sportsCarVideoUrl = 'assets/videos/vehicles/Veh_To_Car.mp4';
-  // final String avgNarmVideoUrl = 'assets/videos/vehicles/Veh_To_AGV.mp4';
-  // final String busVideoUrl = 'assets/videos/vehicles/Veh_To_Bus.mp4';
-  // final String tractorVideoUrl = 'assets/videos/vehicles/Veh_To_Tractor.mp4';
-  // final String excavatorVideoUrl = 'assets/videos/vehicles/Veh_To_Exc.mp4';
-  // final String truckVideoUrl = 'assets/videos/vehicles/Veh_To_Truck.mp4';
-
   final String buildingImage = 'assets/videos/vehicles/Vehicles_Still.jpg';
   final String qrBackgroundImage =
       'assets/tempory images/Buildings_menu_QR.png';
-
-  // final String buildingTransitionVideoUrl =
-  //     'assets/videos/Vehicles_To_Buildings.mp4';
 
   bool timerOFF = false;
 

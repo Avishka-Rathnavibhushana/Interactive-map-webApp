@@ -34,11 +34,6 @@ class _HomeState extends State<Home> {
   int index = 0;
   bool show = false;
 
-  // final String timerVideoUrl = 'assets/videos/Intro_Loop.mp4';
-
-  // final String buildingsVideoUrl = 'assets/videos/Intro_to_Buildings.mp4';
-  // final String vechiclesVideoUrl = 'assets/videos/Intro_to_Vehicles.mp4';
-
   final String introImage = 'assets/videos/Intro_still.png';
 
   bool timerOFF = false;

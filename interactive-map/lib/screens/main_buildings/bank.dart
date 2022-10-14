@@ -37,11 +37,11 @@ class _BankVideoState extends State<BankVideo> {
   bool show = false;
   bool _isPlaying = false;
 
-  final String url = 'assets/videos/buildings/bank_REV.mp4';
+  // final String url = 'assets/videos/buildings/bank_REV.mp4';
 
-  final String motorVideo = 'assets/videos/buildings/bank_MOTOR.mp4';
-  final String energySavingVideo = 'assets/videos/buildings/bank_MOTOR.mp4';
-  final String mapVideo = 'assets/videos/buildings/bank_MAP.mp4';
+  // final String motorVideo = 'assets/videos/buildings/bank_MOTOR.mp4';
+  // final String energySavingVideo = 'assets/videos/buildings/bank_MOTOR.mp4';
+  // final String mapVideo = 'assets/videos/buildings/bank_MAP.mp4';
 
   final String bankImage = 'assets/tempory images/bank_Plain.png';
   final String mapScreenImage = 'assets/tempory images/screen_MAIN.png';
@@ -87,7 +87,7 @@ class _BankVideoState extends State<BankVideo> {
   }
 
   videoHandler() async {
-    _controller = VideoPlayerController.asset(url);
+    _controller = VideoPlayerController.network(bank_REV);
     await _controller.initialize();
     setState(() {
       _controller.setVolume(0);
@@ -121,7 +121,7 @@ class _BankVideoState extends State<BankVideo> {
       setShow();
     }
 
-    _motorVideoController = VideoPlayerController.asset(motorVideo)
+    _motorVideoController = VideoPlayerController.network(bank_MOTOR)
       ..initialize().then((_) => {
             setState(() {
               _motorVideoController.setVolume(0);
@@ -129,14 +129,14 @@ class _BankVideoState extends State<BankVideo> {
             })
           });
     _energySavingVideoController =
-        VideoPlayerController.asset(energySavingVideo)
+        VideoPlayerController.network(bank_MOTOR)
           ..initialize().then((_) => {
                 setState(() {
                   _energySavingVideoController.setVolume(0);
                   _energySavingVideoController.setLooping(false);
                 })
               });
-    _mapVideoController = VideoPlayerController.asset(mapVideo)
+    _mapVideoController = VideoPlayerController.network(bank_MAP)
       ..initialize().then((_) => {
             setState(() {
               _mapVideoController.setVolume(0);
