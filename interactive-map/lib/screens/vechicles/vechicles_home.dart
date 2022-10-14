@@ -55,22 +55,22 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
   int index = 0;
   bool show = false;
 
-  final String timerVideoUrl = 'assets/videos/vehicles/Vehicles_Main_Loop.mp4';
+  // final String timerVideoUrl = 'assets/videos/vehicles/Vehicles_Main_Loop.mp4';
 
-  final String trainVideoUrl = 'assets/videos/vehicles/Veh_To_Train.mp4';
-  final String sportsCarVideoUrl = 'assets/videos/vehicles/Veh_To_Car.mp4';
-  final String avgNarmVideoUrl = 'assets/videos/vehicles/Veh_To_AGV.mp4';
-  final String busVideoUrl = 'assets/videos/vehicles/Veh_To_Bus.mp4';
-  final String tractorVideoUrl = 'assets/videos/vehicles/Veh_To_Tractor.mp4';
-  final String excavatorVideoUrl = 'assets/videos/vehicles/Veh_To_Exc.mp4';
-  final String truckVideoUrl = 'assets/videos/vehicles/Veh_To_Truck.mp4';
+  // final String trainVideoUrl = 'assets/videos/vehicles/Veh_To_Train.mp4';
+  // final String sportsCarVideoUrl = 'assets/videos/vehicles/Veh_To_Car.mp4';
+  // final String avgNarmVideoUrl = 'assets/videos/vehicles/Veh_To_AGV.mp4';
+  // final String busVideoUrl = 'assets/videos/vehicles/Veh_To_Bus.mp4';
+  // final String tractorVideoUrl = 'assets/videos/vehicles/Veh_To_Tractor.mp4';
+  // final String excavatorVideoUrl = 'assets/videos/vehicles/Veh_To_Exc.mp4';
+  // final String truckVideoUrl = 'assets/videos/vehicles/Veh_To_Truck.mp4';
 
   final String buildingImage = 'assets/videos/vehicles/Vehicles_Still.jpg';
   final String qrBackgroundImage =
       'assets/tempory images/Buildings_menu_QR.png';
 
-  final String buildingTransitionVideoUrl =
-      'assets/videos/Vehicles_To_Buildings.mp4';
+  // final String buildingTransitionVideoUrl =
+  //     'assets/videos/Vehicles_To_Buildings.mp4';
 
   bool timerOFF = false;
 
@@ -137,7 +137,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
   }
 
   videoHandler() async {
-    _timerVideoController = VideoPlayerController.asset(timerVideoUrl);
+    _timerVideoController = VideoPlayerController.network(Vehicles_Main_Loop);
     await _timerVideoController.initialize();
     setState(() {
       _timerVideoController.setVolume(0);
@@ -147,56 +147,56 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
     });
 
     _buildingTransitionVideoController =
-        VideoPlayerController.asset(buildingTransitionVideoUrl)
+        VideoPlayerController.network(Vehicles_To_Buildings)
           ..initialize().then((_) => {
                 setState(() {
                   _buildingTransitionVideoController.setVolume(0);
                   _buildingTransitionVideoController.setLooping(false);
                 })
               });
-    _trainVideoController = VideoPlayerController.asset(trainVideoUrl)
+    _trainVideoController = VideoPlayerController.network(Veh_To_Train)
       ..initialize().then((_) => {
             setState(() {
               _trainVideoController.setVolume(0);
               _trainVideoController.setLooping(false);
             })
           });
-    _sportsCarVideoController = VideoPlayerController.asset(sportsCarVideoUrl)
+    _sportsCarVideoController = VideoPlayerController.network(Veh_To_Car)
       ..initialize().then((_) => {
             setState(() {
               _sportsCarVideoController.setVolume(0);
               _sportsCarVideoController.setLooping(false);
             })
           });
-    _avgNarmVideoController = VideoPlayerController.asset(avgNarmVideoUrl)
+    _avgNarmVideoController = VideoPlayerController.network(Veh_To_AGV)
       ..initialize().then((_) => {
             setState(() {
               _avgNarmVideoController.setVolume(0);
               _avgNarmVideoController.setLooping(false);
             })
           });
-    _busVideoController = VideoPlayerController.asset(busVideoUrl)
+    _busVideoController = VideoPlayerController.network(Veh_To_Bus)
       ..initialize().then((_) => {
             setState(() {
               _busVideoController.setVolume(0);
               _busVideoController.setLooping(false);
             })
           });
-    _tractorVideoController = VideoPlayerController.asset(tractorVideoUrl)
+    _tractorVideoController = VideoPlayerController.network(Veh_To_Tractor)
       ..initialize().then((_) => {
             setState(() {
               _tractorVideoController.setVolume(0);
               _tractorVideoController.setLooping(false);
             })
           });
-    _excavatorVideoController = VideoPlayerController.asset(excavatorVideoUrl)
+    _excavatorVideoController = VideoPlayerController.network(Veh_To_Exc)
       ..initialize().then((_) => {
             setState(() {
               _excavatorVideoController.setVolume(0);
               _excavatorVideoController.setLooping(false);
             })
           });
-    _truckVideoController = VideoPlayerController.asset(truckVideoUrl)
+    _truckVideoController = VideoPlayerController.network(Veh_To_Truck)
       ..initialize().then((_) => {
             setState(() {
               _truckVideoController.setVolume(0);

@@ -34,10 +34,10 @@ class _HomeState extends State<Home> {
   int index = 0;
   bool show = false;
 
-  final String timerVideoUrl = 'assets/videos/Intro_Loop.mp4';
+  // final String timerVideoUrl = 'assets/videos/Intro_Loop.mp4';
 
-  final String buildingsVideoUrl = 'assets/videos/Intro_to_Buildings.mp4';
-  final String vechiclesVideoUrl = 'assets/videos/Intro_to_Vehicles.mp4';
+  // final String buildingsVideoUrl = 'assets/videos/Intro_to_Buildings.mp4';
+  // final String vechiclesVideoUrl = 'assets/videos/Intro_to_Vehicles.mp4';
 
   final String introImage = 'assets/videos/Intro_still.png';
 
@@ -68,8 +68,9 @@ class _HomeState extends State<Home> {
     super.initState();
   }
 
+  
   videoHandler() async {
-    _timerVideoController = VideoPlayerController.asset(timerVideoUrl);
+    _timerVideoController = VideoPlayerController.network(Intro_Loop);
     await _timerVideoController.initialize();
     setState(() {
       _timerVideoController.setVolume(0);
@@ -78,14 +79,15 @@ class _HomeState extends State<Home> {
       setShow();
     });
 
-    _buildingsVideoController = VideoPlayerController.asset(buildingsVideoUrl)
-      ..initialize().then((_) => {
-            setState(() {
-              _buildingsVideoController.setVolume(0);
-              _buildingsVideoController.setLooping(false);
-            })
-          });
-    _vechiclesVideoController = VideoPlayerController.asset(vechiclesVideoUrl)
+    _buildingsVideoController =
+        VideoPlayerController.network(Intro_to_Buildings)
+          ..initialize().then((_) => {
+                setState(() {
+                  _buildingsVideoController.setVolume(0);
+                  _buildingsVideoController.setLooping(false);
+                })
+              });
+    _vechiclesVideoController = VideoPlayerController.network(Intro_to_Vehicles)
       ..initialize().then((_) => {
             setState(() {
               _vechiclesVideoController.setVolume(0);

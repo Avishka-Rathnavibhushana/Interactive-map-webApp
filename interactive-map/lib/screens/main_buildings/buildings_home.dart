@@ -58,23 +58,23 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
   int index = 0;
   bool show = false;
 
-  final String timerVideoUrl = 'assets/videos/buildings/Buildings_Main.mp4';
+  // final String timerVideoUrl = 'assets/videos/buildings/Buildings_Main.mp4';
 
-  final String bankVideoUrl = 'assets/videos/buildings/bank.mp4';
-  final String dataCentreVideoUrl = 'assets/videos/buildings/datacentre.mp4';
-  final String schoolVideoUrl = 'assets/videos/buildings/school.mp4';
-  final String retailVideoUrl = 'assets/videos/buildings/retail.mp4';
-  final String warehouseVideoUrl = 'assets/videos/buildings/warehouse.mp4';
-  final String groceryShopVideoUrl = 'assets/videos/buildings/groceryshop.mp4';
-  final String fastFoodVideoUrl = 'assets/videos/buildings/fastfood.mp4';
-  final String dairyBarnsVideoUrl = 'assets/videos/buildings/barn.mp4';
+  // final String bankVideoUrl = 'assets/videos/buildings/bank.mp4';
+  // final String dataCentreVideoUrl = 'assets/videos/buildings/datacentre.mp4';
+  // final String schoolVideoUrl = 'assets/videos/buildings/school.mp4';
+  // final String retailVideoUrl = 'assets/videos/buildings/retail.mp4';
+  // final String warehouseVideoUrl = 'assets/videos/buildings/warehouse.mp4';
+  // final String groceryShopVideoUrl = 'assets/videos/buildings/groceryshop.mp4';
+  // final String fastFoodVideoUrl = 'assets/videos/buildings/fastfood.mp4';
+  // final String dairyBarnsVideoUrl = 'assets/videos/buildings/barn.mp4';
 
   final String buildingImage = 'assets/tempory images/Buildings_menu_still.png';
   final String qrBackgroundImage =
       'assets/tempory images/Buildings_menu_QR.png';
 
-  final String buildingTransitionVideoUrl =
-      'assets/videos/Buildings_To_Vehicles.mp4';
+  // final String buildingTransitionVideoUrl =
+  //     'assets/videos/Buildings_To_Vehicles.mp4';
 
   bool timerOFF = false;
 
@@ -145,7 +145,7 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
   }
 
   videoHandler() async {
-    _timerVideoController = VideoPlayerController.asset(timerVideoUrl);
+    _timerVideoController = VideoPlayerController.network(Buildings_Main);
     await _timerVideoController.initialize();
     setState(() {
       _timerVideoController.setVolume(0);
@@ -155,42 +155,42 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
     });
 
     _vehicleTransitionVideoController =
-        VideoPlayerController.asset(buildingTransitionVideoUrl)
+        VideoPlayerController.network(Buildings_To_Vehicles)
           ..initialize().then((_) => {
                 setState(() {
                   _vehicleTransitionVideoController.setVolume(0);
                   _vehicleTransitionVideoController.setLooping(false);
                 })
               });
-    _bankVideoController = VideoPlayerController.asset(bankVideoUrl)
+    _bankVideoController = VideoPlayerController.network(bank_home)
       ..initialize().then((_) => {
             setState(() {
               _bankVideoController.setVolume(0);
               _bankVideoController.setLooping(false);
             })
           });
-    _dataCentreVideoController = VideoPlayerController.asset(dataCentreVideoUrl)
+    _dataCentreVideoController = VideoPlayerController.network(datacentre_home)
       ..initialize().then((_) => {
             setState(() {
               _dataCentreVideoController.setVolume(0);
               _dataCentreVideoController.setLooping(false);
             })
           });
-    _schoolVideoController = VideoPlayerController.asset(schoolVideoUrl)
+    _schoolVideoController = VideoPlayerController.network(school_home)
       ..initialize().then((_) => {
             setState(() {
               _schoolVideoController.setVolume(0);
               _schoolVideoController.setLooping(false);
             })
           });
-    _retailVideoController = VideoPlayerController.asset(retailVideoUrl)
+    _retailVideoController = VideoPlayerController.network(retail_home)
       ..initialize().then((_) => {
             setState(() {
               _retailVideoController.setVolume(0);
               _retailVideoController.setLooping(false);
             })
           });
-    _warehouseVideoController = VideoPlayerController.asset(warehouseVideoUrl)
+    _warehouseVideoController = VideoPlayerController.network(warehouse_home)
       ..initialize().then((_) => {
             setState(() {
               _warehouseVideoController.setVolume(0);
@@ -198,21 +198,21 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
             })
           });
     _groceryShopVideoController =
-        VideoPlayerController.asset(groceryShopVideoUrl)
+        VideoPlayerController.network(groceryshop_home)
           ..initialize().then((_) => {
                 setState(() {
                   _groceryShopVideoController.setVolume(0);
                   _groceryShopVideoController.setLooping(false);
                 })
               });
-    _fastFoodVideoController = VideoPlayerController.asset(fastFoodVideoUrl)
+    _fastFoodVideoController = VideoPlayerController.network(fastfood_home)
       ..initialize().then((_) => {
             setState(() {
               _fastFoodVideoController.setVolume(0);
               _fastFoodVideoController.setLooping(false);
             })
           });
-    _dairyBarnsVideoController = VideoPlayerController.asset(dairyBarnsVideoUrl)
+    _dairyBarnsVideoController = VideoPlayerController.network(barn_home)
       ..initialize().then((_) => {
             setState(() {
               _dairyBarnsVideoController.setVolume(0);

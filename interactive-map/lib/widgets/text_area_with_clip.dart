@@ -24,7 +24,6 @@ class TextAreaWithClip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(texts);
     return CustomPaint(
       //size: Size(700, 700),
       painter: SqureShapedCustomContainer(),

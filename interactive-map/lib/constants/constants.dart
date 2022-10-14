@@ -51,6 +51,57 @@ const dataCenterAirFlowGif = 'assets/animations/Data_Center_airflow.gif';
 const BASE_URL =
     'https://storage.cloud.google.com/pm-im-co-uk.appspot.com/assets/2022-09-23/';
 
+//video links
+//home screen
+const Intro_Loop =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2FIntro_Loop.mp4?alt=media&token=de146609-1578-4222-9d03-faed32cea9b4";
+const Intro_to_Buildings =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2FIntro_to_Buildings.mp4?alt=media&token=8a047807-c526-45e0-a294-3a85e1d4be26";
+const Intro_to_Vehicles =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2FIntro_to_Vehicles.mp4?alt=media&token=cf34c004-9f48-4e16-8090-0df01e6ffa3f";
+
+//building home screen
+const Buildings_Main =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fbuilding%20home%2FBuildings_Main.mp4?alt=media&token=9a092883-38a8-4934-961a-7535bf59e484";
+const bank_home =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fbuilding%20home%2Fbank.mp4?alt=media&token=621c5254-06a3-4417-a6bd-a190533edb2b";
+const datacentre_home =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fbuilding%20home%2Fdatacentre.mp4?alt=media&token=8f8b9681-66ae-4014-82ba-4d0c769fb41a";
+const school_home =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fbuilding%20home%2Fschool.mp4?alt=media&token=3030484b-81de-4e9a-a7b3-db255da2373d";
+const retail_home =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fbuilding%20home%2Fretail.mp4?alt=media&token=45fae3d4-9921-4f63-b092-5f6472bcd132";
+const warehouse_home =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fbuilding%20home%2Fwarehouse.mp4?alt=media&token=f66dcb93-17fc-4e38-934a-9d1f89bdc81e";
+const groceryshop_home =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fbuilding%20home%2Fgroceryshop.mp4?alt=media&token=0a9ff35a-cff4-459e-b760-1afaeea7258a";
+const fastfood_home =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fbuilding%20home%2Ffastfood.mp4?alt=media&token=970b8755-509f-4a34-8951-1a6b2bd024b4";
+const barn_home =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fbuilding%20home%2Fbarn.mp4?alt=media&token=9f83c68e-95f1-4722-bd33-9d5d46cce983";
+const Buildings_To_Vehicles =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fbuilding%20home%2FBuildings_To_Vehicles.mp4?alt=media&token=35671a38-c03d-4ce0-8ac0-19c71f1d423c";
+
+//building home screen
+const Vehicles_Main_Loop =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fvehicles%2Fvehicle%20home%2FVehicles_Main_Loop.mp4?alt=media&token=9b9b0149-ca17-464b-86e9-77e3e02078a7";
+const Veh_To_Train =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fvehicles%2Fvehicle%20home%2FVeh_To_Train.mp4?alt=media&token=86da575f-b328-496a-9c51-842c806406b8";
+const Veh_To_Car =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fvehicles%2Fvehicle%20home%2FVeh_To_Car.mp4?alt=media&token=70ea51af-c880-4764-ba00-4a2014f37cdd";
+const Veh_To_AGV =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fvehicles%2Fvehicle%20home%2FVeh_To_AGV.mp4?alt=media&token=8716ce5f-50b8-48df-b095-8bf0df9f0194";
+const Veh_To_Bus =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fvehicles%2Fvehicle%20home%2FVeh_To_Bus.mp4?alt=media&token=ad2991c0-7ab5-4aaf-8d49-86e34eb35837";
+const Veh_To_Tractor =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fvehicles%2Fvehicle%20home%2FVeh_To_Tractor.mp4?alt=media&token=fdbc8735-bdc7-4ee2-9f46-6f6482c35dfd";
+const Veh_To_Exc =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fvehicles%2Fvehicle%20home%2FVeh_To_Exc.mp4?alt=media&token=7a672edd-2555-4168-9741-78c6804c9f6e";
+const Veh_To_Truck =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fvehicles%2Fvehicle%20home%2FVeh_To_Truck.mp4?alt=media&token=c6af75df-1b57-488e-8471-a8d9f9ebdf59";
+const Vehicles_To_Buildings =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fvehicles%2Fvehicle%20home%2FVehicles_To_Buildings.mp4?alt=media&token=1c7b1276-b39f-4b10-b5ad-7b64f5221bbb";
+
 //pages
 class Pages {
   static const home = 'home';
