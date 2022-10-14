@@ -14,7 +14,7 @@ class TextAreaTextRow extends StatelessWidget {
   }) : super(key: key);
 
   final Size screenSize;
-  final List<String> text;
+  final List<dynamic> text;
   final double fontSize;
   final double ratio;
 
