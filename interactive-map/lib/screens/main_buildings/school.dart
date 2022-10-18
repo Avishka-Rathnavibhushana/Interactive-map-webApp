@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:interactive_map/constants/constants.dart';
@@ -12,6 +14,7 @@ import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 import 'package:interactive_map/utills/utils.dart';
 import 'package:interactive_map/widgets/full_screen_button.dart';
+import 'package:http/http.dart' as http;
 
 class SchoolVideo extends StatefulWidget {
   const SchoolVideo({Key? key, this.from, this.offsetHor, this.offsetVer})
@@ -36,15 +39,6 @@ class _SchoolVideoState extends State<SchoolVideo> {
   int index = 0;
   bool show = false;
   bool _isPlaying = false;
-
-  final String url = 'assets/videos/buildings/school_REV.mp4';
-
-  final String motorVideo = 'assets/videos/buildings/school_MOTOR.mp4';
-  final String energySavingVideo = 'assets/videos/buildings/school_MOTOR.mp4';
-  final String mapVideo = 'assets/videos/buildings/school_MAP.mp4';
-
-  final String schoolImage = 'assets/tempory images/School_Plain.png';
-  final String mapScreenImage = 'assets/tempory images/screen_MAIN.png';
 
   bool showEnergySaving = false;
 
@@ -83,12 +77,13 @@ class _SchoolVideoState extends State<SchoolVideo> {
   late final Map<String, dynamic> schoolTexts;
 
   Future<void> loadText() async {
-    schoolTexts = await Utils.readJson("assets/data/schoolTexts.json");
+    final response = await http.get(Uri.https(MOKIO_BASE_URL, SCHOOL_TEXT));
+    schoolTexts = json.decode(response.body);
   }
 
 
   videoHandler() async {
-    _controller = VideoPlayerController.asset(url);
+    _controller = VideoPlayerController.network(school_REV);
     await _controller.initialize();
     setState(() {
       _controller.setVolume(0);
@@ -122,7 +117,7 @@ class _SchoolVideoState extends State<SchoolVideo> {
       setShow();
     }
 
-    _motorVideoController = VideoPlayerController.asset(motorVideo)
+    _motorVideoController = VideoPlayerController.network(school_MOTOR)
       ..initialize().then((_) => {
             setState(() {
               _motorVideoController.setVolume(0);
@@ -130,14 +125,14 @@ class _SchoolVideoState extends State<SchoolVideo> {
             })
           });
     _energySavingVideoController =
-        VideoPlayerController.asset(energySavingVideo)
+        VideoPlayerController.network(school_MOTOR)
           ..initialize().then((_) => {
                 setState(() {
                   _energySavingVideoController.setVolume(0);
                   _energySavingVideoController.setLooping(false);
                 })
               });
-    _mapVideoController = VideoPlayerController.asset(mapVideo)
+    _mapVideoController = VideoPlayerController.network(school_MAP)
       ..initialize().then((_) => {
             setState(() {
               _mapVideoController.setVolume(0);
@@ -276,8 +271,8 @@ class _SchoolVideoState extends State<SchoolVideo> {
                                           screenSizeMobile1),
                                       height: Utils.getVideoScreenHeight(
                                           screenSizeMobile1),
-                                      child: Image.asset(
-                                        schoolImage,
+                                      child: Image.network(
+                                        School_Plain,
                                         fit: BoxFit.fill,
                                       ),
                                     )
@@ -458,8 +453,8 @@ class _SchoolVideoState extends State<SchoolVideo> {
                                           screenSizeMobile2),
                                       height: Utils.getVideoScreenHeight(
                                           screenSizeMobile2),
-                                      child: Image.asset(
-                                        schoolImage,
+                                      child: Image.network(
+                                        School_Plain,
                                         fit: BoxFit.fill,
                                       ),
                                     )
@@ -619,8 +614,8 @@ class _SchoolVideoState extends State<SchoolVideo> {
                             ? SizedBox(
                                 width: Utils.getVideoScreenWidth(screenSize),
                                 height: Utils.getVideoScreenHeight(screenSize),
-                                child: Image.asset(
-                                  schoolImage,
+                                child: Image.network(
+                                  School_Plain,
                                   fit: BoxFit.fill,
                                 ),
                               )

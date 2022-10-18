@@ -109,7 +109,7 @@ class _TransitionPageState extends State<TransitionPage> {
   void initState() {
     url = widget.url;
 
-    _controller = VideoPlayerController.asset(url)
+    _controller = VideoPlayerController.network(url)
       ..initialize().then((_) => {
             setState(() {
               _controller.setVolume(0);
@@ -118,7 +118,7 @@ class _TransitionPageState extends State<TransitionPage> {
             })
           });
 
-    _backVideoController = VideoPlayerController.asset(widget.back)
+    _backVideoController = VideoPlayerController.network(widget.back)
       ..initialize().then((_) => {
             setState(() {
               _backVideoController.setVolume(0);

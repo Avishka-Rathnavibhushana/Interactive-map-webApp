@@ -26,10 +26,6 @@ class _ScreenRightState extends State<ScreenRight> {
   bool show = false;
   bool _isPlaying = false;
   bool nextIndex = false;
-  String url = 'assets/videos/buildings/screen_RIGHT_REV.mp4';
-
-  String screenRightImage_1 = 'assets/tempory images/screen_RIGHT.png';
-  String screenRightImage_2 = 'assets/tempory images/screen_RIGHT_2.png';
 
   setIndex(value) {
     index = value;
@@ -47,7 +43,7 @@ class _ScreenRightState extends State<ScreenRight> {
     index = 0;
     show = false;
     nextIndex = false;
-    _controller = VideoPlayerController.asset(url)
+    _controller = VideoPlayerController.network(screen_RIGHT_REV)
       ..initialize().then((_) => {
             setState(() {
               _controller.setVolume(0);
@@ -156,8 +152,8 @@ class _ScreenRightState extends State<ScreenRight> {
                                               screenSizeMobile1),
                                           height: Utils.getVideoScreenHeight(
                                               screenSizeMobile1),
-                                          child: Image.asset(
-                                            screenRightImage_1,
+                                          child: Image.network(
+                                            screen_RIGHT,
                                             fit: BoxFit.fill,
                                           ),
                                         )
@@ -166,8 +162,8 @@ class _ScreenRightState extends State<ScreenRight> {
                                               screenSizeMobile1),
                                           height: Utils.getVideoScreenHeight(
                                               screenSizeMobile1),
-                                          child: Image.asset(
-                                            screenRightImage_2,
+                                          child: Image.network(
+                                            screen_RIGHT_2,
                                             fit: BoxFit.fill,
                                           ),
                                         )
@@ -261,8 +257,8 @@ class _ScreenRightState extends State<ScreenRight> {
                                               screenSizeMobile2),
                                           height: Utils.getVideoScreenHeight(
                                               screenSizeMobile2),
-                                          child: Image.asset(
-                                            screenRightImage_1,
+                                          child: Image.network(
+                                            screen_RIGHT,
                                             fit: BoxFit.fill,
                                           ),
                                         )
@@ -271,8 +267,8 @@ class _ScreenRightState extends State<ScreenRight> {
                                               screenSizeMobile2),
                                           height: Utils.getVideoScreenHeight(
                                               screenSizeMobile2),
-                                          child: Image.asset(
-                                            screenRightImage_2,
+                                          child: Image.network(
+                                            screen_RIGHT_2,
                                             fit: BoxFit.fill,
                                           ),
                                         )
@@ -355,8 +351,8 @@ class _ScreenRightState extends State<ScreenRight> {
                                         Utils.getVideoScreenWidth(screenSize),
                                     height:
                                         Utils.getVideoScreenHeight(screenSize),
-                                    child: Image.asset(
-                                      screenRightImage_1,
+                                    child: Image.network(
+                                      screen_RIGHT,
                                       fit: BoxFit.fill,
                                     ),
                                   )
@@ -365,8 +361,8 @@ class _ScreenRightState extends State<ScreenRight> {
                                         Utils.getVideoScreenWidth(screenSize),
                                     height:
                                         Utils.getVideoScreenHeight(screenSize),
-                                    child: Image.asset(
-                                      screenRightImage_2,
+                                    child: Image.network(
+                                      screen_RIGHT_2,
                                       fit: BoxFit.fill,
                                     ),
                                   )

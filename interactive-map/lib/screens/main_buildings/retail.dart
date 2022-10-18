@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/screens/main_buildings/buildings_home.dart';
@@ -12,6 +14,7 @@ import 'package:interactive_map/utills/utils.dart';
 import 'package:get/get.dart';
 import 'package:interactive_map/controller/controller.dart';
 import 'package:interactive_map/widgets/full_screen_button.dart';
+import 'package:http/http.dart' as http;
 
 class RetailVideo extends StatefulWidget {
   const RetailVideo({Key? key, this.from, this.offsetHor, this.offsetVer})
@@ -36,15 +39,6 @@ class _RetailVideoState extends State<RetailVideo> {
   int index = 0;
   bool show = false;
   bool _isPlaying = false;
-
-  final String url = 'assets/videos/buildings/retail_REV.mp4';
-
-  final String motorVideo = 'assets/videos/buildings/retail_MOTOR.mp4';
-  final String energySavingVideo = 'assets/videos/buildings/retail_MOTOR.mp4';
-  final String mapVideo = 'assets/videos/buildings/retail_MAP.mp4';
-
-  final String retailImage = 'assets/tempory images/retail_Plain.png';
-  final String mapScreenImage = 'assets/tempory images/screen_MAIN.png';
 
   bool showEnergySaving = false;
 
@@ -83,11 +77,12 @@ class _RetailVideoState extends State<RetailVideo> {
   late final Map<String, dynamic> retailTexts;
 
   Future<void> loadText() async {
-    retailTexts = await Utils.readJson("assets/data/retailTexts.json");
+    final response = await http.get(Uri.https(MOKIO_BASE_URL, RETAIL_TEXT));
+    retailTexts = json.decode(response.body);
   }
 
   videoHandler() async {
-    _controller = VideoPlayerController.asset(url);
+    _controller = VideoPlayerController.network(retail_REV);
     await _controller.initialize();
     setState(() {
       _controller.setVolume(0);
@@ -121,7 +116,7 @@ class _RetailVideoState extends State<RetailVideo> {
       setShow();
     }
 
-    _motorVideoController = VideoPlayerController.asset(motorVideo)
+    _motorVideoController = VideoPlayerController.network(retail_MOTOR)
       ..initialize().then((_) => {
             setState(() {
               _motorVideoController.setVolume(0);
@@ -129,14 +124,14 @@ class _RetailVideoState extends State<RetailVideo> {
             })
           });
     _energySavingVideoController =
-        VideoPlayerController.asset(energySavingVideo)
+        VideoPlayerController.network(retail_MOTOR)
           ..initialize().then((_) => {
                 setState(() {
                   _energySavingVideoController.setVolume(0);
                   _energySavingVideoController.setLooping(false);
                 })
               });
-    _mapVideoController = VideoPlayerController.asset(mapVideo)
+    _mapVideoController = VideoPlayerController.network(retail_MAP)
       ..initialize().then((_) => {
             setState(() {
               _mapVideoController.setVolume(0);
@@ -275,8 +270,8 @@ class _RetailVideoState extends State<RetailVideo> {
                                           screenSizeMobile1),
                                       height: Utils.getVideoScreenHeight(
                                           screenSizeMobile1),
-                                      child: Image.asset(
-                                        retailImage,
+                                      child: Image.network(
+                                        retail_Plain,
                                         fit: BoxFit.fill,
                                       ),
                                     )
@@ -457,8 +452,8 @@ class _RetailVideoState extends State<RetailVideo> {
                                           screenSizeMobile2),
                                       height: Utils.getVideoScreenHeight(
                                           screenSizeMobile2),
-                                      child: Image.asset(
-                                        retailImage,
+                                      child: Image.network(
+                                        retail_Plain,
                                         fit: BoxFit.fill,
                                       ),
                                     )
@@ -612,8 +607,8 @@ class _RetailVideoState extends State<RetailVideo> {
                       ? SizedBox(
                           width: Utils.getVideoScreenWidth(screenSize),
                           height: Utils.getVideoScreenHeight(screenSize),
-                          child: Image.asset(
-                            retailImage,
+                          child: Image.network(
+                            retail_Plain,
                             fit: BoxFit.fill,
                           ),
                         )

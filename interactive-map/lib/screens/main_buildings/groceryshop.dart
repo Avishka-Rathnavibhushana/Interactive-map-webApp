@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/screens/main_buildings/buildings_home.dart';
@@ -12,6 +14,7 @@ import 'package:interactive_map/utills/utils.dart';
 import 'package:get/get.dart';
 import 'package:interactive_map/controller/controller.dart';
 import 'package:interactive_map/widgets/full_screen_button.dart';
+import 'package:http/http.dart' as http;
 
 class GroceryShopVideo extends StatefulWidget {
   const GroceryShopVideo({Key? key, this.from, this.offsetHor, this.offsetVer})
@@ -36,16 +39,6 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
   int index = 0;
   bool show = false;
   bool _isPlaying = false;
-
-  final String url = 'assets/videos/buildings/groceryshop_REV.mp4';
-
-  final String motorVideo = 'assets/videos/buildings/groceryshop_MOTOR.mp4';
-  final String energySavingVideo =
-      'assets/videos/buildings/groceryshop_MOTOR.mp4';
-  final String mapVideo = 'assets/videos/buildings/groceryshop_MAP.mp4';
-
-  final String groceryshopImage = 'assets/tempory images/groceryshop_Plain.png';
-  final String mapScreenImage = 'assets/tempory images/screen_MAIN.png';
 
   bool showEnergySaving = false;
 
@@ -84,12 +77,13 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
   late final Map<String, dynamic> groceryShopTexts;
 
   Future<void> loadText() async {
-    groceryShopTexts =
-        await Utils.readJson("assets/data/groceryShopTexts.json");
+    final response =
+        await http.get(Uri.https(MOKIO_BASE_URL, GROCERYSHOP_TEXT));
+    groceryShopTexts = json.decode(response.body);
   }
 
   videoHandler() async {
-    _controller = VideoPlayerController.asset(url);
+    _controller = VideoPlayerController.network(groceryshop_REV);
     await _controller.initialize();
     setState(() {
       _controller.setVolume(0);
@@ -123,7 +117,7 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
       setShow();
     }
 
-    _motorVideoController = VideoPlayerController.asset(motorVideo)
+    _motorVideoController = VideoPlayerController.network(groceryshop_MOTOR)
       ..initialize().then((_) => {
             setState(() {
               _motorVideoController.setVolume(0);
@@ -131,14 +125,14 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
             })
           });
     _energySavingVideoController =
-        VideoPlayerController.asset(energySavingVideo)
+        VideoPlayerController.network(groceryshop_MOTOR)
           ..initialize().then((_) => {
                 setState(() {
                   _energySavingVideoController.setVolume(0);
                   _energySavingVideoController.setLooping(false);
                 })
               });
-    _mapVideoController = VideoPlayerController.asset(mapVideo)
+    _mapVideoController = VideoPlayerController.network(groceryshop_MAP)
       ..initialize().then((_) => {
             setState(() {
               _mapVideoController.setVolume(0);
@@ -277,8 +271,8 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
                                           screenSizeMobile1),
                                       height: Utils.getVideoScreenHeight(
                                           screenSizeMobile1),
-                                      child: Image.asset(
-                                        groceryshopImage,
+                                      child: Image.network(
+                                        groceryshop_Plain,
                                         fit: BoxFit.fill,
                                       ),
                                     )
@@ -459,8 +453,8 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
                                           screenSizeMobile2),
                                       height: Utils.getVideoScreenHeight(
                                           screenSizeMobile2),
-                                      child: Image.asset(
-                                        groceryshopImage,
+                                      child: Image.network(
+                                        groceryshop_Plain,
                                         fit: BoxFit.fill,
                                       ),
                                     )
@@ -614,8 +608,8 @@ class _GroceryShopVideoState extends State<GroceryShopVideo> {
                       ? SizedBox(
                           width: Utils.getVideoScreenWidth(screenSize),
                           height: Utils.getVideoScreenHeight(screenSize),
-                          child: Image.asset(
-                            groceryshopImage,
+                          child: Image.network(
+                            groceryshop_Plain,
                             fit: BoxFit.fill,
                           ),
                         )

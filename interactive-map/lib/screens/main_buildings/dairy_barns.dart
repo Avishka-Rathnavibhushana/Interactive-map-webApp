@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/screens/main_buildings/buildings_home.dart';
@@ -14,6 +16,7 @@ import 'package:interactive_map/utills/utils.dart';
 import 'package:get/get.dart';
 import 'package:interactive_map/controller/controller.dart';
 import 'package:interactive_map/widgets/full_screen_button.dart';
+import 'package:http/http.dart' as http;
 
 class DairyBarnsVideo extends StatefulWidget {
   const DairyBarnsVideo({Key? key, this.from, this.offsetHor, this.offsetVer})
@@ -38,15 +41,6 @@ class _DairyBarnsVideoState extends State<DairyBarnsVideo> {
   int index = 0;
   bool show = false;
   bool _isPlaying = false;
-
-  // final String url = 'assets/videos/buildings/barn_REV.mp4';
-
-  // final String motorVideo = 'assets/videos/buildings/barn_to_TXMotor.mp4';
-  // final String tractorVideo = 'assets/videos/buildings/barn_To_Tractor.mp4';
-  // final String ipadVideo = 'assets/videos/buildings/barn_ipad.mp4';
-
-  final String barnImage = 'assets/tempory images/barn_Plain.png';
-  final String ipadScreenImage = 'assets/tempory images/screen_MAIN.png';
 
   setIndex(value) {
     index = value;
@@ -83,7 +77,8 @@ class _DairyBarnsVideoState extends State<DairyBarnsVideo> {
   late final Map<String, dynamic> dairyBarnsTexts;
 
   Future<void> loadText() async {
-    dairyBarnsTexts = await Utils.readJson("assets/data/dairyBarnsTexts.json");
+    final response = await http.get(Uri.https(MOKIO_BASE_URL, DAIRYBARNS_TEXT));
+    dairyBarnsTexts = json.decode(response.body);
   }
 
   videoHandler() async {
@@ -274,8 +269,8 @@ class _DairyBarnsVideoState extends State<DairyBarnsVideo> {
                                           screenSizeMobile1),
                                       height: Utils.getVideoScreenHeight(
                                           screenSizeMobile1),
-                                      child: Image.asset(
-                                        barnImage,
+                                      child: Image.network(
+                                        barn_Plain,
                                         fit: BoxFit.fill,
                                       ),
                                     )
@@ -407,8 +402,8 @@ class _DairyBarnsVideoState extends State<DairyBarnsVideo> {
                                           screenSizeMobile2),
                                       height: Utils.getVideoScreenHeight(
                                           screenSizeMobile2),
-                                      child: Image.asset(
-                                        barnImage,
+                                      child: Image.network(
+                                        barn_Plain,
                                         fit: BoxFit.fill,
                                       ),
                                     )
@@ -511,8 +506,8 @@ class _DairyBarnsVideoState extends State<DairyBarnsVideo> {
                       ? SizedBox(
                           width: Utils.getVideoScreenWidth(screenSize),
                           height: Utils.getVideoScreenHeight(screenSize),
-                          child: Image.asset(
-                            barnImage,
+                          child: Image.network(
+                            barn_Plain,
                             fit: BoxFit.fill,
                           ),
                         )

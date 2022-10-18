@@ -26,12 +26,6 @@ class _IpadScreenState extends State<IpadScreen> {
   bool show = false;
   bool _isPlaying = false;
   int nextIndex = 0;
-  String url = 'assets/videos/buildings/barn_ipad_REV.mp4';
-
-  String Image_1 = 'assets/tempory images/barn_ipad_1.png';
-  String Image_2 = 'assets/tempory images/barn_ipad_2.png';
-  String Image_3 = 'assets/tempory images/barn_ipad_3.png';
-  String Image_4 = 'assets/tempory images/barn_ipad_4.png';
 
   setIndex(value) {
     index = value;
@@ -52,7 +46,7 @@ class _IpadScreenState extends State<IpadScreen> {
     index = 0;
     show = false;
     nextIndex = 0;
-    _controller = VideoPlayerController.asset(url)
+    _controller = VideoPlayerController.network(barn_ipad_REV)
       ..initialize().then((_) => {
             setState(() {
               _controller.setVolume(0);
@@ -166,8 +160,8 @@ class _IpadScreenState extends State<IpadScreen> {
                                                 height:
                                                     Utils.getVideoScreenHeight(
                                                         screenSizeMobile1),
-                                                child: Image.asset(
-                                                  Image_4,
+                                                child: Image.network(
+                                                  barn_ipad_4,
                                                   fit: BoxFit.fill,
                                                 ),
                                               )
@@ -180,8 +174,8 @@ class _IpadScreenState extends State<IpadScreen> {
                                                 height:
                                                     Utils.getVideoScreenHeight(
                                                         screenSizeMobile1),
-                                                child: Image.asset(
-                                                  Image_3,
+                                                child: Image.network(
+                                                  barn_ipad_3,
                                                   fit: BoxFit.fill,
                                                 ),
                                               )
@@ -194,8 +188,8 @@ class _IpadScreenState extends State<IpadScreen> {
                                                 height:
                                                     Utils.getVideoScreenHeight(
                                                         screenSizeMobile1),
-                                                child: Image.asset(
-                                                  Image_2,
+                                                child: Image.network(
+                                                  barn_ipad_2,
                                                   fit: BoxFit.fill,
                                                 ),
                                               )
@@ -208,8 +202,8 @@ class _IpadScreenState extends State<IpadScreen> {
                                                 height:
                                                     Utils.getVideoScreenHeight(
                                                         screenSizeMobile1),
-                                                child: Image.asset(
-                                                  Image_1,
+                                                child: Image.network(
+                                                  barn_ipad_1,
                                                   fit: BoxFit.fill,
                                                 ),
                                               )
@@ -313,8 +307,8 @@ class _IpadScreenState extends State<IpadScreen> {
                                                 height:
                                                     Utils.getVideoScreenHeight(
                                                         screenSizeMobile2),
-                                                child: Image.asset(
-                                                  Image_4,
+                                                child: Image.network(
+                                                  barn_ipad_4,
                                                   fit: BoxFit.fill,
                                                 ),
                                               )
@@ -327,8 +321,8 @@ class _IpadScreenState extends State<IpadScreen> {
                                                 height:
                                                     Utils.getVideoScreenHeight(
                                                         screenSizeMobile2),
-                                                child: Image.asset(
-                                                  Image_3,
+                                                child: Image.network(
+                                                  barn_ipad_3,
                                                   fit: BoxFit.fill,
                                                 ),
                                               )
@@ -341,8 +335,8 @@ class _IpadScreenState extends State<IpadScreen> {
                                                 height:
                                                     Utils.getVideoScreenHeight(
                                                         screenSizeMobile2),
-                                                child: Image.asset(
-                                                  Image_2,
+                                                child: Image.network(
+                                                  barn_ipad_2,
                                                   fit: BoxFit.fill,
                                                 ),
                                               )
@@ -355,8 +349,8 @@ class _IpadScreenState extends State<IpadScreen> {
                                                 height:
                                                     Utils.getVideoScreenHeight(
                                                         screenSizeMobile2),
-                                                child: Image.asset(
-                                                  Image_1,
+                                                child: Image.network(
+                                                  barn_ipad_1,
                                                   fit: BoxFit.fill,
                                                 ),
                                               )
@@ -447,8 +441,8 @@ class _IpadScreenState extends State<IpadScreen> {
                                               screenSize),
                                           height: Utils.getVideoScreenHeight(
                                               screenSize),
-                                          child: Image.asset(
-                                            Image_4,
+                                          child: Image.network(
+                                            barn_ipad_4,
                                             fit: BoxFit.fill,
                                           ),
                                         )
@@ -459,8 +453,8 @@ class _IpadScreenState extends State<IpadScreen> {
                                               screenSize),
                                           height: Utils.getVideoScreenHeight(
                                               screenSize),
-                                          child: Image.asset(
-                                            Image_3,
+                                          child: Image.network(
+                                            barn_ipad_3,
                                             fit: BoxFit.fill,
                                           ),
                                         )
@@ -471,8 +465,8 @@ class _IpadScreenState extends State<IpadScreen> {
                                               screenSize),
                                           height: Utils.getVideoScreenHeight(
                                               screenSize),
-                                          child: Image.asset(
-                                            Image_2,
+                                          child: Image.network(
+                                            barn_ipad_2,
                                             fit: BoxFit.fill,
                                           ),
                                         )
@@ -483,8 +477,8 @@ class _IpadScreenState extends State<IpadScreen> {
                                               screenSize),
                                           height: Utils.getVideoScreenHeight(
                                               screenSize),
-                                          child: Image.asset(
-                                            Image_1,
+                                          child: Image.network(
+                                            barn_ipad_1,
                                             fit: BoxFit.fill,
                                           ),
                                         )

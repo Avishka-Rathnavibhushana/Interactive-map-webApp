@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:interactive_map/constants/constants.dart';
@@ -11,6 +13,7 @@ import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 import 'package:interactive_map/utills/utils.dart';
 import 'package:interactive_map/widgets/full_screen_button.dart';
+import 'package:http/http.dart' as http;
 
 class AvgNArmVideo extends StatefulWidget {
   const AvgNArmVideo({Key? key, this.from, this.offsetHor, this.offsetVer})
@@ -31,13 +34,6 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
   int index = 0;
   bool show = false;
   bool _isPlaying = false;
-
-  // final String url = 'assets/videos/vehicles/Veh_To_AGV_REV.mp4';
-
-  // final String transition1Video =
-  //     'assets/videos/vehicles/Product_transition/AGV_To_Battery.mp4';
-
-  // final String schoolImage = 'assets/tempory images/School_Plain.png';
 
   setIndex(value) {
     index = value;
@@ -74,7 +70,8 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
   late final Map<String, dynamic> avgNarmTexts;
 
   Future<void> loadText() async {
-    avgNarmTexts = await Utils.readJson("assets/data/avgNarmTexts.json");
+    final response = await http.get(Uri.https(MOKIO_BASE_URL, AVGNRM_TEXT));
+    avgNarmTexts = json.decode(response.body);
   }
 
   videoHandler() async {
@@ -514,9 +511,9 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                     url:
-                        "assets/videos/vehicles/Product_loops/Battery_Loop.mp4",
+                        Battery_Loop,
                     back:
-                        "assets/videos/vehicles/Product_transition/AGV_To_Battery.mp4",
+                        AGV_To_Battery,
                     topic: avgNarmTexts["subTopicsInside"][0]
                         ["topic"],
                     subTopic: avgNarmTexts["subTopicsInside"][0]
@@ -623,9 +620,9 @@ class _AvgNArmVideoState extends State<AvgNArmVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/Battery_Loop.mp4",
+                                Battery_Loop,
                             back:
-                                "assets/videos/vehicles/Product_transition/AGV_To_Battery.mp4",
+                                AGV_To_Battery,
                             topic: avgNarmTexts["subTopicsInside"][0]["topic"],
                             subTopic: avgNarmTexts["subTopicsInside"][0]
                                 ["subTopic"],

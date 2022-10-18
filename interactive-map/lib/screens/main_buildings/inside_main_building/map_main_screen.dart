@@ -41,8 +41,6 @@ class _MapMainScreensState extends State<MapMainScreens> {
   bool show = false;
   String url = '';
 
-  String mapMainScreenImage = 'assets/tempory images/screen_MAIN.png';
-
   setIndex(value) {
     index = value;
     setState(() {});
@@ -124,23 +122,23 @@ class _MapMainScreensState extends State<MapMainScreens> {
 
   videoHandler() async {
     if (widget.from == Pages.school) {
-      url = 'assets/videos/buildings/school_REV.mp4';
+      url = school_REV;
     } else if (widget.from == Pages.bank) {
-      url = 'assets/videos/buildings/bank_REV.mp4';
+      url = bank_REV;
     } else if (widget.from == Pages.grocery) {
-      url = 'assets/videos/buildings/groceryshop_REV.mp4';
+      url = groceryshop_REV;
     } else if (widget.from == Pages.dataCenter) {
-      url = 'assets/videos/buildings/datacentre_REV.mp4';
+      url = datacentre_REV;
     } else if (widget.from == Pages.fastfoods) {
-      url = 'assets/videos/buildings/fastfood_REV.mp4';
+      url = fastfood_REV;
     } else if (widget.from == Pages.werehouse) {
-      url = 'assets/videos/buildings/warehouse_REV.mp4';
+      url = warehouse_REV;
     } else if (widget.from == Pages.retail) {
-      url = 'assets/videos/buildings/retail_REV.mp4';
+      url = retail_REV;
     } else if (widget.from == Pages.dairyBarns) {
-      url = 'assets/videos/buildings/barn_REV.mp4';
+      url = barn_REV;
     }
-    _controller = VideoPlayerController.asset(url);
+    _controller = VideoPlayerController.network(url);
     await _controller.initialize();
     setState(() {
       _controller.setVolume(0);
@@ -149,7 +147,7 @@ class _MapMainScreensState extends State<MapMainScreens> {
     });
 
     _leftScreenVideoController =
-        VideoPlayerController.asset("assets/videos/buildings/screen_LEFT.mp4")
+        VideoPlayerController.network(screen_LEFT)
           ..initialize().then((_) => {
                 setState(() {
                   _leftScreenVideoController.setVolume(0);
@@ -157,7 +155,7 @@ class _MapMainScreensState extends State<MapMainScreens> {
                 })
               });
     _rightScreenVideoController =
-        VideoPlayerController.asset("assets/videos/buildings/screen_RIGHT.mp4")
+        VideoPlayerController.network(screen_RIGHT)
           ..initialize().then((_) => {
                 setState(() {
                   _rightScreenVideoController.setVolume(0);
@@ -251,8 +249,8 @@ class _MapMainScreensState extends State<MapMainScreens> {
                                     screenSizeMobile1),
                                 height: Utils.getVideoScreenHeight(
                                     screenSizeMobile1),
-                                child: Image.asset(
-                                  mapMainScreenImage,
+                                child: Image.network(
+                                  screen_MAIN,
                                   fit: BoxFit.fill,
                                 ),
                               ),
@@ -282,8 +280,8 @@ class _MapMainScreensState extends State<MapMainScreens> {
                                           screenSizeMobile1),
                                       height: Utils.getVideoScreenHeight(
                                           screenSizeMobile1),
-                                      child: Image.asset(
-                                        mapMainScreenImage,
+                                      child: Image.network(
+                                        screen_MAIN,
                                         fit: BoxFit.fill,
                                       ),
                                     )
@@ -373,8 +371,8 @@ class _MapMainScreensState extends State<MapMainScreens> {
                               SizedBox(
                                 width: Utils.getVideoScreenWidth(screenSize),
                                 height: Utils.getVideoScreenHeight(screenSize),
-                                child: Image.asset(
-                                  mapMainScreenImage,
+                                child: Image.network(
+                                  screen_MAIN,
                                   fit: BoxFit.fill,
                                 ),
                               ),
@@ -404,8 +402,8 @@ class _MapMainScreensState extends State<MapMainScreens> {
                                           screenSizeMobile2),
                                       height: Utils.getVideoScreenHeight(
                                           screenSizeMobile2),
-                                      child: Image.asset(
-                                        mapMainScreenImage,
+                                      child: Image.network(
+                                        screen_MAIN,
                                         fit: BoxFit.fill,
                                       ),
                                     )
@@ -486,8 +484,8 @@ class _MapMainScreensState extends State<MapMainScreens> {
                         SizedBox(
                           width: Utils.getVideoScreenWidth(screenSize),
                           height: Utils.getVideoScreenHeight(screenSize),
-                          child: Image.asset(
-                            mapMainScreenImage,
+                          child: Image.network(
+                            screen_MAIN,
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -511,8 +509,8 @@ class _MapMainScreensState extends State<MapMainScreens> {
                             ? SizedBox(
                                 width: Utils.getVideoScreenWidth(screenSize),
                                 height: Utils.getVideoScreenHeight(screenSize),
-                                child: Image.asset(
-                                  mapMainScreenImage,
+                                child: Image.network(
+                                  screen_MAIN,
                                   fit: BoxFit.fill,
                                 ),
                               )

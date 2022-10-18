@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/screens/main_buildings/buildings_home.dart';
@@ -12,6 +14,7 @@ import 'package:interactive_map/utills/utils.dart';
 import 'package:get/get.dart';
 import 'package:interactive_map/controller/controller.dart';
 import 'package:interactive_map/widgets/full_screen_button.dart';
+import 'package:http/http.dart' as http;
 
 class BankVideo extends StatefulWidget {
   const BankVideo({Key? key, this.from, this.offsetHor, this.offsetVer})
@@ -36,15 +39,6 @@ class _BankVideoState extends State<BankVideo> {
   int index = 0;
   bool show = false;
   bool _isPlaying = false;
-
-  // final String url = 'assets/videos/buildings/bank_REV.mp4';
-
-  // final String motorVideo = 'assets/videos/buildings/bank_MOTOR.mp4';
-  // final String energySavingVideo = 'assets/videos/buildings/bank_MOTOR.mp4';
-  // final String mapVideo = 'assets/videos/buildings/bank_MAP.mp4';
-
-  final String bankImage = 'assets/tempory images/bank_Plain.png';
-  final String mapScreenImage = 'assets/tempory images/screen_MAIN.png';
 
   bool showEnergySaving = false;
 
@@ -83,7 +77,9 @@ class _BankVideoState extends State<BankVideo> {
   late final Map<String, dynamic> bankTexts;
 
   Future<void> loadText() async {
-    bankTexts = await Utils.readJson("assets/data/bankTexts.json");
+    final response = await http.get(Uri.https(MOKIO_BASE_URL, BANK_TEXT));
+    bankTexts = json.decode(response.body);
+
   }
 
   videoHandler() async {
@@ -128,14 +124,13 @@ class _BankVideoState extends State<BankVideo> {
               _motorVideoController.setLooping(false);
             })
           });
-    _energySavingVideoController =
-        VideoPlayerController.network(bank_MOTOR)
-          ..initialize().then((_) => {
-                setState(() {
-                  _energySavingVideoController.setVolume(0);
-                  _energySavingVideoController.setLooping(false);
-                })
-              });
+    _energySavingVideoController = VideoPlayerController.network(bank_MOTOR)
+      ..initialize().then((_) => {
+            setState(() {
+              _energySavingVideoController.setVolume(0);
+              _energySavingVideoController.setLooping(false);
+            })
+          });
     _mapVideoController = VideoPlayerController.network(bank_MAP)
       ..initialize().then((_) => {
             setState(() {
@@ -275,8 +270,8 @@ class _BankVideoState extends State<BankVideo> {
                                           screenSizeMobile1),
                                       height: Utils.getVideoScreenHeight(
                                           screenSizeMobile1),
-                                      child: Image.asset(
-                                        bankImage,
+                                      child: Image.network(
+                                        bank_Plain,
                                         fit: BoxFit.fill,
                                       ),
                                     )
@@ -457,8 +452,8 @@ class _BankVideoState extends State<BankVideo> {
                                           screenSizeMobile2),
                                       height: Utils.getVideoScreenHeight(
                                           screenSizeMobile2),
-                                      child: Image.asset(
-                                        bankImage,
+                                      child: Image.network(
+                                        bank_Plain,
                                         fit: BoxFit.fill,
                                       ),
                                     )
@@ -612,8 +607,8 @@ class _BankVideoState extends State<BankVideo> {
                       ? SizedBox(
                           width: Utils.getVideoScreenWidth(screenSize),
                           height: Utils.getVideoScreenHeight(screenSize),
-                          child: Image.asset(
-                            bankImage,
+                          child: Image.network(
+                            bank_Plain,
                             fit: BoxFit.fill,
                           ),
                         )
@@ -659,10 +654,8 @@ class _BankVideoState extends State<BankVideo> {
                     alignment: Alignment.topLeft,
                     child: TextAreaWithClip(
                       screenSize: screenSize,
-                      texts: bankTexts["TextAreaWithClipMain"]
-                          ["texts"],
-                      topic: bankTexts["TextAreaWithClipMain"]
-                          ["topic"],
+                      texts: bankTexts["TextAreaWithClipMain"]["texts"],
+                      topic: bankTexts["TextAreaWithClipMain"]["topic"],
                       description: bankTexts["TextAreaWithClipMain"]
                           ["description"],
                     ),
@@ -790,13 +783,11 @@ class _BankVideoState extends State<BankVideo> {
           final bool isPlaying = _mapVideoController.value.isPlaying;
           print(isPlaying);
           if (isPlaying != _isPlaying) {
-            
             setState(() {
               _isPlaying = isPlaying;
               setIndex(++index);
             });
             if (index > 1) {
-
               customPushReplacement(
                   context,
                   MapMainScreens(
@@ -817,8 +808,7 @@ class _BankVideoState extends State<BankVideo> {
       right: Utils.getRightPadding(screenSize, 0),
       child: Container(
         alignment: Alignment.topRight,
-        height:
-            screenSize.width *
+        height: screenSize.width *
             0.050 *
             Utils.getTopRightButtonMultiplier(screenSize.width),
         width: screenSize.width *

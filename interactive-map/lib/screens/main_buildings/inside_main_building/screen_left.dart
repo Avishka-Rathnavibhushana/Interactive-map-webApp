@@ -25,11 +25,6 @@ class _ScreenLeftState extends State<ScreenLeft> {
   bool show = false;
   bool _isPlaying = false;
   int nextIndex = 0;
-  String url = 'assets/videos/buildings/screen_LEFT_REV.mp4';
-
-  String screenLeftImage_1 = 'assets/tempory images/screen_LEFT.png';
-  String screenLeftImage_2 = 'assets/tempory images/screen_LEFT_2.png';
-  String screenLeftImage_3 = 'assets/tempory images/screen_LEFT_3.png';
 
   setIndex(value) {
     index = value;
@@ -50,7 +45,7 @@ class _ScreenLeftState extends State<ScreenLeft> {
     index = 0;
     show = false;
     nextIndex = 0;
-    _controller = VideoPlayerController.asset(url)
+    _controller = VideoPlayerController.network(screen_LEFT_REV)
       ..initialize().then((_) => {
             setState(() {
               _controller.setVolume(0);
@@ -158,8 +153,8 @@ class _ScreenLeftState extends State<ScreenLeft> {
                                               screenSizeMobile1),
                                           height: Utils.getVideoScreenHeight(
                                               screenSizeMobile1),
-                                          child: Image.asset(
-                                            screenLeftImage_1,
+                                          child: Image.network(
+                                            screen_LEFT,
                                             fit: BoxFit.fill,
                                           ),
                                         )
@@ -170,8 +165,8 @@ class _ScreenLeftState extends State<ScreenLeft> {
                                               height:
                                                   Utils.getVideoScreenHeight(
                                                       screenSizeMobile1),
-                                              child: Image.asset(
-                                                screenLeftImage_2,
+                                              child: Image.network(
+                                                screen_LEFT_2,
                                                 fit: BoxFit.fill,
                                               ),
                                             )
@@ -181,8 +176,8 @@ class _ScreenLeftState extends State<ScreenLeft> {
                                               height:
                                                   Utils.getVideoScreenHeight(
                                                       screenSizeMobile1),
-                                              child: Image.asset(
-                                                screenLeftImage_3,
+                                              child: Image.network(
+                                                screen_LEFT_3,
                                                 fit: BoxFit.fill,
                                               ),
                                             )
@@ -277,8 +272,8 @@ class _ScreenLeftState extends State<ScreenLeft> {
                                               screenSizeMobile2),
                                           height: Utils.getVideoScreenHeight(
                                               screenSizeMobile2),
-                                          child: Image.asset(
-                                            screenLeftImage_1,
+                                          child: Image.network(
+                                            screen_LEFT,
                                             fit: BoxFit.fill,
                                           ),
                                         )
@@ -289,8 +284,8 @@ class _ScreenLeftState extends State<ScreenLeft> {
                                               height:
                                                   Utils.getVideoScreenHeight(
                                                       screenSizeMobile2),
-                                              child: Image.asset(
-                                                screenLeftImage_2,
+                                              child: Image.network(
+                                                screen_LEFT_2,
                                                 fit: BoxFit.fill,
                                               ),
                                             )
@@ -300,8 +295,8 @@ class _ScreenLeftState extends State<ScreenLeft> {
                                               height:
                                                   Utils.getVideoScreenHeight(
                                                       screenSizeMobile2),
-                                              child: Image.asset(
-                                                screenLeftImage_3,
+                                              child: Image.network(
+                                                screen_LEFT_3,
                                                 fit: BoxFit.fill,
                                               ),
                                             )
@@ -385,8 +380,8 @@ class _ScreenLeftState extends State<ScreenLeft> {
                                         Utils.getVideoScreenWidth(screenSize),
                                     height:
                                         Utils.getVideoScreenHeight(screenSize),
-                                    child: Image.asset(
-                                      screenLeftImage_1,
+                                    child: Image.network(
+                                      screen_LEFT,
                                       fit: BoxFit.fill,
                                     ),
                                   )
@@ -396,8 +391,8 @@ class _ScreenLeftState extends State<ScreenLeft> {
                                             screenSize),
                                         height: Utils.getVideoScreenHeight(
                                             screenSize),
-                                        child: Image.asset(
-                                          screenLeftImage_2,
+                                        child: Image.network(
+                                          screen_LEFT_2,
                                           fit: BoxFit.fill,
                                         ),
                                       )
@@ -406,8 +401,8 @@ class _ScreenLeftState extends State<ScreenLeft> {
                                             screenSize),
                                         height: Utils.getVideoScreenHeight(
                                             screenSize),
-                                        child: Image.asset(
-                                          screenLeftImage_3,
+                                        child: Image.network(
+                                          screen_LEFT_3,
                                           fit: BoxFit.fill,
                                         ),
                                       )

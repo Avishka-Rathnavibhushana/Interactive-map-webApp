@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:get/get.dart';
@@ -18,6 +20,7 @@ import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
 import 'package:interactive_map/widgets/text_area_with_QR_with_clip.dart';
 import 'package:video_player/video_player.dart';
 import 'package:interactive_map/widgets/full_screen_button.dart';
+import 'package:http/http.dart' as http;
 
 class VechiclesHomeVideo extends StatefulWidget {
   const VechiclesHomeVideo({Key? key, this.offsetHor, this.offsetVer})
@@ -54,10 +57,6 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
   bool _isPlaying = false;
   int index = 0;
   bool show = false;
-
-  final String buildingImage = 'assets/videos/vehicles/Vehicles_Still.jpg';
-  final String qrBackgroundImage =
-      'assets/tempory images/Buildings_menu_QR.png';
 
   bool timerOFF = false;
 
@@ -114,15 +113,20 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
   late final Map<String, dynamic> truckTexts;
 
   Future<void> loadText() async {
-    avgNarmTexts = await Utils.readJson("assets/data/avgNarmTexts.json");
-    trainTexts = await Utils.readJson("assets/data/trainTexts.json");
-    sportsCarTexts = await Utils.readJson("assets/data/sportsCarTexts.json");
-    tractorTexts = await Utils.readJson("assets/data/tractorTexts.json");
-    busTexts = await Utils.readJson("assets/data/busTexts.json");
-    excavatorTexts = await Utils.readJson("assets/data/excavatorTexts.json");
-    truckTexts = await Utils.readJson("assets/data/truckTexts.json");
+    avgNarmTexts = await loadTextFromBucket(AVGNRM_TEXT);
+    trainTexts = await loadTextFromBucket(TRAIN_TEXT);
+    sportsCarTexts = await loadTextFromBucket(SPORTSCAR_TEXT);
+    tractorTexts = await loadTextFromBucket(TRACTOR_TEXT);
+    busTexts = await loadTextFromBucket(BUS_TEXT);
+    excavatorTexts = await loadTextFromBucket(EXCAVATOR_TEXT);
+    truckTexts = await loadTextFromBucket(TRUCK_TEXT);
   }
 
+  Future<dynamic> loadTextFromBucket(path) async {
+    final response = await http.get(Uri.https(MOKIO_BASE_URL, path));
+    return json.decode(response.body);
+  }
+  
   videoHandler() async {
     _timerVideoController = VideoPlayerController.network(Vehicles_Main_Loop);
     await _timerVideoController.initialize();
@@ -424,37 +428,13 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                             ? SizedBox(
                                 width: Utils.getVideoScreenWidth(screenSize),
                                 height: Utils.getVideoScreenHeight(screenSize),
-                                child: Image.asset(
-                                  buildingImage,
+                                child: Image.network(
+                                  Vehicles_Still,
                                   fit: BoxFit.fill,
                                 ),
                               )
                             : Container(),
-                        showQR
-                            ? GestureDetector(
-                                onTap: () async {
-                                  setState(() {
-                                    width = 0;
-                                  });
-
-                                  await Future.delayed(
-                                      const Duration(milliseconds: 200));
-                                  setState(() {
-                                    showQR = false;
-                                  });
-                                  setShow();
-                                },
-                                child: SizedBox(
-                                  width: Utils.getVideoScreenWidth(screenSize),
-                                  height:
-                                      Utils.getVideoScreenHeight(screenSize),
-                                  child: Image.asset(
-                                    qrBackgroundImage,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                              )
-                            : Container(),
+                       
                       ],
                     ),
                   ),
@@ -782,37 +762,13 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                             ? SizedBox(
                                 width: Utils.getVideoScreenWidth(screenSize),
                                 height: Utils.getVideoScreenHeight(screenSize),
-                                child: Image.asset(
-                                  buildingImage,
+                                child: Image.network(
+                                  Vehicles_Still,
                                   fit: BoxFit.fill,
                                 ),
                               )
                             : Container(),
-                        showQR
-                            ? GestureDetector(
-                                onTap: () async {
-                                  setState(() {
-                                    width = 0;
-                                  });
-
-                                  await Future.delayed(
-                                      const Duration(milliseconds: 200));
-                                  setState(() {
-                                    showQR = false;
-                                  });
-                                  setShow();
-                                },
-                                child: SizedBox(
-                                  width: Utils.getVideoScreenWidth(screenSize),
-                                  height:
-                                      Utils.getVideoScreenHeight(screenSize),
-                                  child: Image.asset(
-                                    qrBackgroundImage,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                              )
-                            : Container(),
+                      
                       ],
                     ),
                   ),
@@ -1107,36 +1063,13 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                       ? SizedBox(
                           width: Utils.getVideoScreenWidth(screenSize),
                           height: Utils.getVideoScreenHeight(screenSize),
-                          child: Image.asset(
-                            buildingImage,
+                          child: Image.network(
+                            Vehicles_Still,
                             fit: BoxFit.fill,
                           ),
                         )
                       : Container(),
-                  showQR
-                      ? GestureDetector(
-                          onTap: () async {
-                            setState(() {
-                              width = 0;
-                            });
-
-                            await Future.delayed(
-                                const Duration(milliseconds: 200));
-                            setState(() {
-                              showQR = false;
-                            });
-                            setShow();
-                          },
-                          child: SizedBox(
-                            width: Utils.getVideoScreenWidth(screenSize),
-                            height: Utils.getVideoScreenHeight(screenSize),
-                            child: Image.asset(
-                              qrBackgroundImage,
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                        )
-                      : Container(),
+                 
                 ],
               ),
             ),
@@ -1495,12 +1428,6 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
 
                 _timerVideoController.pause();
 
-                // setState(() {
-                //   fadingImage =
-                //       "assets/tempory images/Vehicles_Transition_Stills/AGV_SELECTED.png";
-                //   fading = true;
-                // });
-
                 setState(() {
                   _avgNarmVideoPlaying = true;
                 });
@@ -1581,12 +1508,6 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
 
         _timerVideoController.pause();
 
-        // setState(() {
-        //   fadingImage =
-        //       "assets/tempory images/Vehicles_Transition_Stills/AGV_SELECTED.png";
-        //   fading = true;
-        // });
-
         setState(() {
           _avgNarmVideoPlaying = true;
         });
@@ -1662,12 +1583,6 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                   });
 
                   _timerVideoController.pause();
-
-                  // setState(() {
-                  //   fadingImage =
-                  //       "assets/tempory images/Vehicles_Transition_Stills/Train_SELECTED.png";
-                  //   fading = true;
-                  // });
 
                   setState(() {
                     _trainVideoPlaying = true;
@@ -1750,12 +1665,6 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
 
         _timerVideoController.pause();
 
-        // setState(() {
-        //   fadingImage =
-        //       "assets/tempory images/Vehicles_Transition_Stills/Train_SELECTED.png";
-        //   fading = true;
-        // });
-
         setState(() {
           _trainVideoPlaying = true;
         });
@@ -1830,12 +1739,6 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                 });
 
                 _timerVideoController.pause();
-
-                // setState(() {
-                //   fadingImage =
-                //       "assets/tempory images/Vehicles_Transition_Stills/Car_SELECTED.png";
-                //   fading = true;
-                // });
 
                 setState(() {
                   _sportsCarVideoPlaying = true;
@@ -1916,12 +1819,6 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
 
         _timerVideoController.pause();
 
-        // setState(() {
-        //   fadingImage =
-        //       "assets/tempory images/Vehicles_Transition_Stills/Car_SELECTED.png";
-        //   fading = true;
-        // });
-
         setState(() {
           _sportsCarVideoPlaying = true;
         });
@@ -1995,12 +1892,6 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                 });
 
                 _timerVideoController.pause();
-
-                // setState(() {
-                //   fadingImage =
-                //       "assets/tempory images/Vehicles_Transition_Stills/Tractor_SELECTED.png";
-                //   fading = true;
-                // });
 
                 setState(() {
                   _tractorVideoPlaying = true;
@@ -2082,12 +1973,6 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
 
         _timerVideoController.pause();
 
-        // setState(() {
-        //   fadingImage =
-        //       "assets/tempory images/Vehicles_Transition_Stills/Tractor_SELECTED.png";
-        //   fading = true;
-        // });
-
         setState(() {
           _tractorVideoPlaying = true;
         });
@@ -2163,12 +2048,6 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                 });
 
                 _timerVideoController.pause();
-
-                // setState(() {
-                //   fadingImage =
-                //       "assets/tempory images/Vehicles_Transition_Stills/Bus_SELECTED.png";
-                //   fading = true;
-                // });
 
                 setState(() {
                   _busVideoPlaying = true;
@@ -2249,12 +2128,6 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
 
         _timerVideoController.pause();
 
-        // setState(() {
-        //   fadingImage =
-        //       "assets/tempory images/Vehicles_Transition_Stills/Bus_SELECTED.png";
-        //   fading = true;
-        // });
-
         setState(() {
           _busVideoPlaying = true;
         });
@@ -2329,12 +2202,6 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                 });
 
                 _timerVideoController.pause();
-
-                // setState(() {
-                //   fadingImage =
-                //       "assets/tempory images/Vehicles_Transition_Stills/Exc_SELECTED.png";
-                //   fading = true;
-                // });
 
                 setState(() {
                   _excavatorVideoPlaying = true;
@@ -2416,12 +2283,6 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
 
         _timerVideoController.pause();
 
-        // setState(() {
-        //   fadingImage =
-        //       "assets/tempory images/Vehicles_Transition_Stills/Exc_SELECTED.png";
-        //   fading = true;
-        // });
-
         setState(() {
           _excavatorVideoPlaying = true;
         });
@@ -2496,12 +2357,6 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
                 });
 
                 _timerVideoController.pause();
-
-                // setState(() {
-                //   fadingImage =
-                //       "assets/tempory images/Vehicles_Transition_Stills/Truck_SELECTED.png";
-                //   fading = true;
-                // });
 
                 setState(() {
                   _truckVideoPlaying = true;
@@ -2581,12 +2436,6 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
         });
 
         _timerVideoController.pause();
-
-        // setState(() {
-        //   fadingImage =
-        //       "assets/tempory images/Vehicles_Transition_Stills/Truck_SELECTED.png";
-        //   fading = true;
-        // });
 
         setState(() {
           _truckVideoPlaying = true;

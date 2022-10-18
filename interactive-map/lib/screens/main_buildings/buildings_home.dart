@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:get/get.dart';
@@ -19,6 +21,7 @@ import 'package:interactive_map/widgets/shared_widgets.dart';
 import 'package:interactive_map/widgets/text_area_small_with_clip.dart';
 import 'package:interactive_map/widgets/text_area_with_QR_with_clip.dart';
 import 'package:video_player/video_player.dart';
+import 'package:http/http.dart' as http;
 
 class BuildingsHomeVideo extends StatefulWidget {
   const BuildingsHomeVideo({Key? key, this.offsetHor, this.offsetVer})
@@ -58,9 +61,6 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
   int index = 0;
   bool show = false;
 
-  final String buildingImage = 'assets/tempory images/Buildings_menu_still.png';
-  final String qrBackgroundImage =
-      'assets/tempory images/Buildings_menu_QR.png';
 
   bool timerOFF = false;
 
@@ -119,15 +119,20 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
   late final Map<String, dynamic> dairyBarnsTexts;
 
   Future<void> loadText() async {
-    schoolTexts = await Utils.readJson("assets/data/schoolTexts.json");
-    fastFoodTexts = await Utils.readJson("assets/data/fastFoodTexts.json");
-    bankTexts = await Utils.readJson("assets/data/bankTexts.json");
-    retailTexts = await Utils.readJson("assets/data/retailTexts.json");
-    warehouseTexts = await Utils.readJson("assets/data/warehouseTexts.json");
-    dataCentreTexts = await Utils.readJson("assets/data/dataCentreTexts.json");
+    schoolTexts = await loadTextFromBucket(SCHOOL_TEXT);
+    fastFoodTexts = await loadTextFromBucket(FASTFOOD_TEXT);
+    bankTexts = await loadTextFromBucket(BANK_TEXT);
+    retailTexts = await loadTextFromBucket(RETAIL_TEXT);
+    warehouseTexts = await loadTextFromBucket(WAREHOUSE_TEXT);
+    dataCentreTexts = await loadTextFromBucket(DATACENTRE_TEXT);
     groceryShopTexts =
-        await Utils.readJson("assets/data/groceryShopTexts.json");
-    dairyBarnsTexts = await Utils.readJson("assets/data/dairyBarnsTexts.json");
+        await loadTextFromBucket(GROCERYSHOP_TEXT);
+    dairyBarnsTexts = await loadTextFromBucket(DAIRYBARNS_TEXT);
+  }
+
+  Future<dynamic> loadTextFromBucket(path) async {
+    final response = await http.get(Uri.https(MOKIO_BASE_URL, path));
+    return json.decode(response.body);
   }
 
   videoHandler() async {
@@ -454,37 +459,13 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                             ? SizedBox(
                                 width: Utils.getVideoScreenWidth(screenSize),
                                 height: Utils.getVideoScreenHeight(screenSize),
-                                child: Image.asset(
-                                  buildingImage,
+                                child: Image.network(
+                                  Buildings_menu_still,
                                   fit: BoxFit.fill,
                                 ),
                               )
                             : Container(),
-                        showQR
-                            ? GestureDetector(
-                                onTap: () async {
-                                  setState(() {
-                                    width = 0;
-                                  });
-
-                                  await Future.delayed(
-                                      const Duration(milliseconds: 200));
-                                  setState(() {
-                                    showQR = false;
-                                  });
-                                  setShow();
-                                },
-                                child: SizedBox(
-                                  width: Utils.getVideoScreenWidth(screenSize),
-                                  height:
-                                      Utils.getVideoScreenHeight(screenSize),
-                                  child: Image.asset(
-                                    qrBackgroundImage,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                              )
-                            : Container(),
+                        
                       ],
                     ),
                   ),
@@ -840,37 +821,13 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                             ? SizedBox(
                                 width: Utils.getVideoScreenWidth(screenSize),
                                 height: Utils.getVideoScreenHeight(screenSize),
-                                child: Image.asset(
-                                  buildingImage,
+                                child: Image.network(
+                                  Buildings_menu_still,
                                   fit: BoxFit.fill,
                                 ),
                               )
                             : Container(),
-                        showQR
-                            ? GestureDetector(
-                                onTap: () async {
-                                  setState(() {
-                                    width = 0;
-                                  });
-
-                                  await Future.delayed(
-                                      const Duration(milliseconds: 200));
-                                  setState(() {
-                                    showQR = false;
-                                  });
-                                  setShow();
-                                },
-                                child: SizedBox(
-                                  width: Utils.getVideoScreenWidth(screenSize),
-                                  height:
-                                      Utils.getVideoScreenHeight(screenSize),
-                                  child: Image.asset(
-                                    qrBackgroundImage,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                              )
-                            : Container(),
+                       
                       ],
                     ),
                   ),
@@ -1193,36 +1150,13 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                       ? SizedBox(
                           width: Utils.getVideoScreenWidth(screenSize),
                           height: Utils.getVideoScreenHeight(screenSize),
-                          child: Image.asset(
-                            buildingImage,
+                          child: Image.network(
+                            Buildings_menu_still,
                             fit: BoxFit.fill,
                           ),
                         )
                       : Container(),
-                  showQR
-                      ? GestureDetector(
-                          onTap: () async {
-                            setState(() {
-                              width = 0;
-                            });
-
-                            await Future.delayed(
-                                const Duration(milliseconds: 200));
-                            setState(() {
-                              showQR = false;
-                            });
-                            setShow();
-                          },
-                          child: SizedBox(
-                            width: Utils.getVideoScreenWidth(screenSize),
-                            height: Utils.getVideoScreenHeight(screenSize),
-                            child: Image.asset(
-                              qrBackgroundImage,
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                        )
-                      : Container(),
+               
                 ],
               ),
             ),
@@ -1296,10 +1230,8 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                     child: TextAreaSmallWithClip(
                       width: screenSize.width * 0.35,
                       screenSize: screenSize,
-                      prefixText:
-                          bankTexts["TextAreaSmallWithClip"][0],
-                      description:
-                          bankTexts["TextAreaSmallWithClip"][1],
+                      prefixText: bankTexts["TextAreaSmallWithClip"][0],
+                      description: bankTexts["TextAreaSmallWithClip"][1],
                     ),
                   ),
                 )
@@ -1592,12 +1524,6 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
 
                 _timerVideoController.pause();
 
-                // setState(() {
-                //   fadingImage =
-                //       "assets/tempory images/Buildings_Transition_Stills/school_SELECTED.png";
-                //   fading = true;
-                // });
-
                 setState(() {
                   _schoolVideoPlaying = true;
                 });
@@ -1668,12 +1594,6 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
 
         _timerVideoController.pause();
 
-        // setState(() {
-        //   fadingImage =
-        //       "assets/tempory images/Buildings_Transition_Stills/school_SELECTED.png";
-        //   fading = true;
-        // });
-
         setState(() {
           _schoolVideoPlaying = true;
         });
@@ -1740,12 +1660,6 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                   });
 
                   _timerVideoController.pause();
-
-                  // setState(() {
-                  //   fadingImage =
-                  //       "assets/tempory images/Buildings_Transition_Stills/bank_SELECTED.png";
-                  //   fading = true;
-                  // });
 
                   setState(() {
                     _bankVideoPlaying = true;
@@ -1818,12 +1732,6 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
 
         _timerVideoController.pause();
 
-        // setState(() {
-        //   fadingImage =
-        //       "assets/tempory images/Buildings_Transition_Stills/bank_SELECTED.png";
-        //   fading = true;
-        // });
-
         setState(() {
           _bankVideoPlaying = true;
         });
@@ -1892,12 +1800,6 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                 });
 
                 _timerVideoController.pause();
-
-                // setState(() {
-                //   fadingImage =
-                //       "assets/tempory images/Buildings_Transition_Stills/datacentre_SELECTED.png";
-                //   fading = true;
-                // });
 
                 setState(() {
                   _dataCentreVideoPlaying = true;
@@ -1970,12 +1872,6 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
 
         _timerVideoController.pause();
 
-        // setState(() {
-        //   fadingImage =
-        //       "assets/tempory images/Buildings_Transition_Stills/datacentre_SELECTED.png";
-        //   fading = true;
-        // });
-
         setState(() {
           _dataCentreVideoPlaying = true;
         });
@@ -2041,12 +1937,6 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                 });
 
                 _timerVideoController.pause();
-
-                // setState(() {
-                //   fadingImage =
-                //       "assets/tempory images/Buildings_Transition_Stills/warehouse_SELECTED.png";
-                //   fading = true;
-                // });
 
                 setState(() {
                   _warehouseVideoPlaying = true;
@@ -2120,12 +2010,6 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
 
         _timerVideoController.pause();
 
-        // setState(() {
-        //   fadingImage =
-        //       "assets/tempory images/Buildings_Transition_Stills/warehouse_SELECTED.png";
-        //   fading = true;
-        // });
-
         setState(() {
           _warehouseVideoPlaying = true;
         });
@@ -2192,12 +2076,6 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                 });
 
                 _timerVideoController.pause();
-
-                // setState(() {
-                //   fadingImage =
-                //       "assets/tempory images/Buildings_Transition_Stills/retail_SELECTED.png";
-                //   fading = true;
-                // });
 
                 setState(() {
                   _retailVideoPlaying = true;
@@ -2271,12 +2149,6 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
 
         _timerVideoController.pause();
 
-        // setState(() {
-        //   fadingImage =
-        //       "assets/tempory images/Buildings_Transition_Stills/retail_SELECTED.png";
-        //   fading = true;
-        // });
-
         setState(() {
           _retailVideoPlaying = true;
         });
@@ -2344,12 +2216,6 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                 });
 
                 _timerVideoController.pause();
-
-                // setState(() {
-                //   fadingImage =
-                //       "assets/tempory images/Buildings_Transition_Stills/groceryshop_SELECTED.png";
-                //   fading = true;
-                // });
 
                 setState(() {
                   _groceryShopVideoPlaying = true;
@@ -2423,12 +2289,6 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
 
         _timerVideoController.pause();
 
-        // setState(() {
-        //   fadingImage =
-        //       "assets/tempory images/Buildings_Transition_Stills/groceryshop_SELECTED.png";
-        //   fading = true;
-        // });
-
         setState(() {
           _groceryShopVideoPlaying = true;
         });
@@ -2495,12 +2355,6 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                 });
 
                 _timerVideoController.pause();
-
-                // setState(() {
-                //   fadingImage =
-                //       "assets/tempory images/Buildings_Transition_Stills/fastfood_SELECTED.png";
-                //   fading = true;
-                // });
 
                 setState(() {
                   _fastFoodVideoPlaying = true;
@@ -2574,12 +2428,6 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
 
         _timerVideoController.pause();
 
-        // setState(() {
-        //   fadingImage =
-        //       "assets/tempory images/Buildings_Transition_Stills/fastfood_SELECTED.png";
-        //   fading = true;
-        // });
-
         setState(() {
           _fastFoodVideoPlaying = true;
         });
@@ -2646,12 +2494,6 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
                 });
 
                 _timerVideoController.pause();
-
-                // setState(() {
-                //   fadingImage =
-                //       "assets/tempory images/Buildings_Transition_Stills/barn_SELECTED.png";
-                //   fading = true;
-                // });
 
                 setState(() {
                   _dairyBarnsVideoPlaying = true;
@@ -2733,12 +2575,6 @@ class _BuildingsHomeVideoState extends State<BuildingsHomeVideo> {
         });
 
         _timerVideoController.pause();
-
-        // setState(() {
-        //   fadingImage =
-        //       "assets/tempory images/Buildings_Transition_Stills/barn_SELECTED.png";
-        //   fading = true;
-        // });
 
         setState(() {
           _dairyBarnsVideoPlaying = true;

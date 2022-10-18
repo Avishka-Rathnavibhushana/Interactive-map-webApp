@@ -34,8 +34,6 @@ class _HomeState extends State<Home> {
   int index = 0;
   bool show = false;
 
-  final String introImage = 'assets/videos/Intro_still.png';
-
   bool timerOFF = false;
 
   setIndex(value) {
@@ -213,8 +211,8 @@ class _HomeState extends State<Home> {
                             ? SizedBox(
                                 width: Utils.getVideoScreenWidth(screenSize),
                                 height: Utils.getVideoScreenHeight(screenSize),
-                                child: Image.asset(
-                                  introImage,
+                                child: Image.network(
+                                  Intro_still,
                                   fit: BoxFit.fill,
                                 ),
                               )
@@ -330,8 +328,8 @@ class _HomeState extends State<Home> {
                             ? SizedBox(
                                 width: Utils.getVideoScreenWidth(screenSize),
                                 height: Utils.getVideoScreenHeight(screenSize),
-                                child: Image.asset(
-                                  introImage,
+                                child: Image.network(
+                                  Intro_still,
                                   fit: BoxFit.fill,
                                 ),
                               )
@@ -432,8 +430,8 @@ class _HomeState extends State<Home> {
                       ? SizedBox(
                           width: Utils.getVideoScreenWidth(screenSize),
                           height: Utils.getVideoScreenHeight(screenSize),
-                          child: Image.asset(
-                            introImage,
+                          child: Image.network(
+                            Intro_still,
                             fit: BoxFit.fill,
                           ),
                         )

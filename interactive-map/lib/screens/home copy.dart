@@ -128,13 +128,6 @@ class _HomeCopyState extends State<HomeCopy> {
   int index = 0;
   bool show = false;
 
-  final String timerVideoUrl = 'assets/videos/Intro_Loop.mp4';
-
-  final String buildingsVideoUrl = 'assets/videos/Intro_to_Buildings.mp4';
-  final String vechiclesVideoUrl = 'assets/videos/Intro_to_Vehicles.mp4';
-
-  final String introImage = 'assets/videos/Intro_still.png';
-
   late String endStillImage;
   bool showEndStill = false;
 
@@ -166,7 +159,7 @@ class _HomeCopyState extends State<HomeCopy> {
   }
 
   videoHandler() async {
-    _timerVideoController = VideoPlayerController.asset(timerVideoUrl);
+    _timerVideoController = VideoPlayerController.network(Intro_Loop);
     await _timerVideoController.initialize();
     setState(() {
       _timerVideoController.setVolume(0);
@@ -175,14 +168,15 @@ class _HomeCopyState extends State<HomeCopy> {
       setShow();
     });
 
-    _buildingsVideoController = VideoPlayerController.asset(buildingsVideoUrl)
+    _buildingsVideoController =
+        VideoPlayerController.network(Intro_to_Buildings)
       ..initialize().then((_) => {
             setState(() {
               _buildingsVideoController.setVolume(0);
               _buildingsVideoController.setLooping(false);
             })
           });
-    _vechiclesVideoController = VideoPlayerController.asset(vechiclesVideoUrl)
+    _vechiclesVideoController = VideoPlayerController.network(Intro_to_Vehicles)
       ..initialize().then((_) => {
             setState(() {
               _vechiclesVideoController.setVolume(0);
@@ -315,8 +309,8 @@ class _HomeCopyState extends State<HomeCopy> {
                             ? SizedBox(
                                 width: Utils.getVideoScreenWidth(screenSize),
                                 height: Utils.getVideoScreenHeight(screenSize),
-                                child: Image.asset(
-                                  introImage,
+                                child: Image.network(
+                                  Intro_still,
                                   fit: BoxFit.fill,
                                 ),
                               )
@@ -432,8 +426,8 @@ class _HomeCopyState extends State<HomeCopy> {
                             ? SizedBox(
                                 width: Utils.getVideoScreenWidth(screenSize),
                                 height: Utils.getVideoScreenHeight(screenSize),
-                                child: Image.asset(
-                                  introImage,
+                                child: Image.network(
+                                  Intro_still,
                                   fit: BoxFit.fill,
                                 ),
                               )
@@ -544,8 +538,8 @@ class _HomeCopyState extends State<HomeCopy> {
                       ? SizedBox(
                           width: Utils.getVideoScreenWidth(screenSize),
                           height: Utils.getVideoScreenHeight(screenSize),
-                          child: Image.asset(
-                            introImage,
+                          child: Image.network(
+                            Intro_still,
                             fit: BoxFit.fill,
                           ),
                         )

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:interactive_map/constants/constants.dart';
 import 'package:interactive_map/screens/main_buildings/buildings_home.dart';
@@ -12,6 +14,7 @@ import 'package:interactive_map/utills/utils.dart';
 import 'package:get/get.dart';
 import 'package:interactive_map/controller/controller.dart';
 import 'package:interactive_map/widgets/full_screen_button.dart';
+import 'package:http/http.dart' as http;
 
 class WarehouseVideo extends StatefulWidget {
   const WarehouseVideo({Key? key, this.from, this.offsetHor, this.offsetVer})
@@ -36,16 +39,6 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
   int index = 0;
   bool show = false;
   bool _isPlaying = false;
-
-  final String url = 'assets/videos/buildings/warehouse_REV.mp4';
-
-  final String motorVideo = 'assets/videos/buildings/warehouse_MOTOR.mp4';
-  final String energySavingVideo =
-      'assets/videos/buildings/warehouse_MOTOR.mp4';
-  final String mapVideo = 'assets/videos/buildings/warehouse_MAP.mp4';
-
-  final String warehouseImage = 'assets/tempory images/warehouse_Plain.png';
-  final String mapScreenImage = 'assets/tempory images/screen_MAIN.png';
 
   bool showEnergySaving = false;
 
@@ -84,11 +77,12 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
   late final Map<String, dynamic> warehouseTexts;
 
   Future<void> loadText() async {
-    warehouseTexts = await Utils.readJson("assets/data/warehouseTexts.json");
+    final response = await http.get(Uri.https(MOKIO_BASE_URL, WAREHOUSE_TEXT));
+    warehouseTexts = json.decode(response.body);
   }
 
   videoHandler() async {
-    _controller = VideoPlayerController.asset(url);
+    _controller = VideoPlayerController.network(warehouse_REV);
     await _controller.initialize();
     setState(() {
       _controller.setVolume(0);
@@ -122,7 +116,7 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
       setShow();
     }
 
-    _motorVideoController = VideoPlayerController.asset(motorVideo)
+    _motorVideoController = VideoPlayerController.network(warehouse_MOTOR)
       ..initialize().then((_) => {
             setState(() {
               _motorVideoController.setVolume(0);
@@ -130,14 +124,14 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
             })
           });
     _energySavingVideoController =
-        VideoPlayerController.asset(energySavingVideo)
+        VideoPlayerController.network(warehouse_MOTOR)
           ..initialize().then((_) => {
                 setState(() {
                   _energySavingVideoController.setVolume(0);
                   _energySavingVideoController.setLooping(false);
                 })
               });
-    _mapVideoController = VideoPlayerController.asset(mapVideo)
+    _mapVideoController = VideoPlayerController.network(warehouse_MAP)
       ..initialize().then((_) => {
             setState(() {
               _mapVideoController.setVolume(0);
@@ -276,8 +270,8 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
                                           screenSizeMobile1),
                                       height: Utils.getVideoScreenHeight(
                                           screenSizeMobile1),
-                                      child: Image.asset(
-                                        warehouseImage,
+                                      child: Image.network(
+                                        warehouse_Plain,
                                         fit: BoxFit.fill,
                                       ),
                                     )
@@ -458,8 +452,8 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
                                           screenSizeMobile2),
                                       height: Utils.getVideoScreenHeight(
                                           screenSizeMobile2),
-                                      child: Image.asset(
-                                        warehouseImage,
+                                      child: Image.network(
+                                        warehouse_Plain,
                                         fit: BoxFit.fill,
                                       ),
                                     )
@@ -613,8 +607,8 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
                       ? SizedBox(
                           width: Utils.getVideoScreenWidth(screenSize),
                           height: Utils.getVideoScreenHeight(screenSize),
-                          child: Image.asset(
-                            warehouseImage,
+                          child: Image.network(
+                            warehouse_Plain,
                             fit: BoxFit.fill,
                           ),
                         )

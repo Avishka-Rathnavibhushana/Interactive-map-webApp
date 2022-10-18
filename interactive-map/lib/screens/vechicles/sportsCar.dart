@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:interactive_map/constants/constants.dart';
@@ -11,6 +13,7 @@ import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 import 'package:interactive_map/utills/utils.dart';
 import 'package:interactive_map/widgets/full_screen_button.dart';
+import 'package:http/http.dart' as http;
 
 class SportsCarVideo extends StatefulWidget {
   const SportsCarVideo({Key? key, this.from, this.offsetHor, this.offsetVer})
@@ -33,15 +36,6 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
   int index = 0;
   bool show = false;
   bool _isPlaying = false;
-
-  final String url = 'assets/videos/vehicles/Veh_To_Car_REV.mp4';
-
-  final String transition1Video =
-      'assets/videos/vehicles/Product_transition/Car_To_Inverter.mp4';
-  final String transition2Video =
-      'assets/videos/vehicles/Product_transition/Car_To_HDMotor.mp4';
-
-  // final String schoolImage = 'assets/tempory images/School_Plain.png';
 
   setIndex(value) {
     index = value;
@@ -78,11 +72,12 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
   late final Map<String, dynamic> sportsCarTexts;
 
   Future<void> loadText() async {
-    sportsCarTexts = await Utils.readJson("assets/data/sportsCarTexts.json");
+    final response = await http.get(Uri.https(MOKIO_BASE_URL, SPORTSCAR_TEXT));
+    sportsCarTexts = json.decode(response.body);
   }
 
   videoHandler() async {
-    _controller = VideoPlayerController.asset(url);
+    _controller = VideoPlayerController.network(Veh_To_Car_REV);
     await _controller.initialize();
     setState(() {
       _controller.setVolume(0);
@@ -116,14 +111,14 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
       setShow();
     }
 
-    _transition1VideoController = VideoPlayerController.asset(transition1Video)
+    _transition1VideoController = VideoPlayerController.network(Car_To_Inverter)
       ..initialize().then((_) => {
             setState(() {
               _transition1VideoController.setVolume(0);
               _transition1VideoController.setLooping(false);
             })
           });
-    _transition2VideoController = VideoPlayerController.asset(transition2Video)
+    _transition2VideoController = VideoPlayerController.network(Car_To_HDMotor)
       ..initialize().then((_) => {
             setState(() {
               _transition2VideoController.setVolume(0);
@@ -558,9 +553,9 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                     url:
-                        "assets/videos/vehicles/Product_loops/Inverter_Loop.mp4",
+                        Inverter_Loop,
                     back:
-                        "assets/videos/vehicles/Product_transition/Car_To_Inverter.mp4",
+                        Car_To_Inverter,
                     topic: sportsCarTexts["subTopicsInside"][0]
                         ["topic"],
                     subTopic: sportsCarTexts["subTopicsInside"]
@@ -607,9 +602,9 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                     url:
-                        "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
+                        HDMotor_Loop,
                     back:
-                        "assets/videos/vehicles/Product_transition/Car_To_HDMotor.mp4",
+                        Car_To_HDMotor,
                     topic: sportsCarTexts["subTopicsInside"][1]
                         ["topic"],
                     subTopic: sportsCarTexts["subTopicsInside"]
@@ -717,9 +712,9 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/Inverter_Loop.mp4",
+                                Inverter_Loop,
                             back:
-                                "assets/videos/vehicles/Product_transition/Car_To_Inverter.mp4",
+                                Car_To_Inverter,
                             topic: sportsCarTexts["subTopicsInside"][0]
                                 ["topic"],
                             subTopic:
@@ -778,9 +773,9 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
+                                HDMotor_Loop,
                             back:
-                                "assets/videos/vehicles/Product_transition/Car_To_HDMotor.mp4",
+                                Car_To_HDMotor,
                             topic: sportsCarTexts["subTopicsInside"][1]
                                 ["topic"],
                             subTopic:

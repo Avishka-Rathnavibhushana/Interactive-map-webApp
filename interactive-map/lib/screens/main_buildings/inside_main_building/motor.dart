@@ -37,7 +37,7 @@ class _MotorState extends State<Motor> {
   int index = 0;
   bool nextIndex = false;
   bool show = false;
-  String url = 'assets/videos/buildings/motor_MAIN.mp4';
+  String url = motor_MAIN;
 
   setIndex(value) {
     index = value;
@@ -109,11 +109,9 @@ class _MotorState extends State<Motor> {
     show = false;
 
     if (widget.from == Pages.dataCenter || widget.from == Pages.dairyBarns) {
-      url = BASE_URL + 'TX_MAIN.mp4';
-      //https://cdnapisec.kaltura.com/p/4645543/sp/464554300/playManifest/entryId/1_8ar0j89c/format/download/protocol/https/flavorParamIds/0
-      print(url);
+      url = TX_MAIN;
     } else {
-      url = 'assets/videos/buildings/motor_MAIN.mp4';
+      url = motor_MAIN;
     }
     _controller = VideoPlayerController.network(url)
       ..initialize().then((_) => {
@@ -125,11 +123,11 @@ class _MotorState extends State<Motor> {
           });
     String back;
     if (widget.from == Pages.dataCenter || widget.from == Pages.dairyBarns) {
-      back = 'assets/videos/buildings/datacentre_MOTOR.mp4';
+      back = datacentre_MOTOR;
     } else {
-      back = 'assets/videos/buildings/school_MOTOR.mp4';
+      back = school_MOTOR;
     }
-    _backVideoController = VideoPlayerController.asset(back)
+    _backVideoController = VideoPlayerController.network(back)
       ..initialize().then((_) => {
             setState(() {
               _backVideoController.setVolume(0);
@@ -486,8 +484,7 @@ class _MotorState extends State<Motor> {
                               [
                                 "HYPERLINK",
                                 "Learn More >",
-                                "https://turntide.com/wp-content/uploads/2022/08/All-Buildings-Motors.pdf",
-                                "assets/tempory images/QR/VMotor_temp.png"
+                                "https://turntide.com/wp-content/uploads/2022/08/All-Buildings-Motors.pdf"
                               ],
                             ],
                             topic: "",
@@ -510,8 +507,7 @@ class _MotorState extends State<Motor> {
                               [
                                 "HYPERLINK",
                                 "Learn More >",
-                                "https://turntide.com/wp-content/uploads/2021/11/Turntide-DataSheet-TX_v7.pdf",
-                                "assets/tempory images/QR/TXMotor_temp.png"
+                                "https://turntide.com/wp-content/uploads/2021/11/Turntide-DataSheet-TX_v7.pdf"
                               ],
                             ],
                             topic: "",

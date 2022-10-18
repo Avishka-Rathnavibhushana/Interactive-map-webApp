@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:interactive_map/constants/constants.dart';
@@ -11,6 +13,7 @@ import 'package:interactive_map/widgets/text_area_with_clip.dart';
 import 'package:video_player/video_player.dart';
 import 'package:interactive_map/utills/utils.dart';
 import 'package:interactive_map/widgets/full_screen_button.dart';
+import 'package:http/http.dart' as http;
 
 class BusVideo extends StatefulWidget {
   const BusVideo({Key? key, this.from, this.offsetHor, this.offsetVer})
@@ -35,17 +38,6 @@ class _BusVideoState extends State<BusVideo> {
   int index = 0;
   bool show = false;
   bool _isPlaying = false;
-
-  // final String url = 'assets/videos/vehicles/Veh_To_Bus_REV.mp4';
-
-  // final String transition1Video =
-  //     'assets/videos/vehicles/Product_transition/Bus_To_Fan.mp4';
-  // final String transition2Video =
-  //     'assets/videos/vehicles/Product_transition/Bus_To_Inverter.mp4';
-  // final String transition3Video =
-  //     'assets/videos/vehicles/Product_transition/Bus_To_HDMotor.mp4';
-
-  // final String schoolImage = 'assets/tempory images/School_Plain.png';
 
   setIndex(value) {
     index = value;
@@ -82,7 +74,8 @@ class _BusVideoState extends State<BusVideo> {
   late final Map<String, dynamic> busTexts;
 
   Future<void> loadText() async {
-    busTexts = await Utils.readJson("assets/data/busTexts.json");
+    final response = await http.get(Uri.https(MOKIO_BASE_URL, BUS_TEXT));
+    busTexts = json.decode(response.body);
   }
 
   videoHandler() async {
@@ -605,9 +598,9 @@ class _BusVideoState extends State<BusVideo> {
                     from: Pages.bus,
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
-                    url: "assets/videos/vehicles/Product_loops/Fan_Loop.mp4",
+                    url: Fan_Loop,
                     back:
-                        "assets/videos/vehicles/Product_transition/Bus_To_Fan.mp4",
+                        Bus_To_Fan,
                     topic: busTexts["subTopicsInside"][0]
                         ["topic"],
                     subTopic: busTexts["subTopicsInside"][0]
@@ -653,9 +646,9 @@ class _BusVideoState extends State<BusVideo> {
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                     url:
-                        "assets/videos/vehicles/Product_loops/Inverter_Loop.mp4",
+                        Inverter_Loop,
                     back:
-                        "assets/videos/vehicles/Product_transition/Bus_To_Inverter.mp4",
+                        Bus_To_Inverter,
                     topic: busTexts["subTopicsInside"][1]
                         ["topic"],
                     subTopic: busTexts["subTopicsInside"][1]
@@ -701,9 +694,9 @@ class _BusVideoState extends State<BusVideo> {
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                     url:
-                        "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
+                        HDMotor_Loop,
                     back:
-                        "assets/videos/vehicles/Product_transition/Bus_To_HDMotor.mp4",
+                        Bus_To_HDMotor,
                     topic: busTexts["subTopicsInside"][2]
                         ["topic"],
                     subTopic: busTexts["subTopicsInside"][2]
@@ -810,9 +803,9 @@ class _BusVideoState extends State<BusVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/Fan_Loop.mp4",
+                                Fan_Loop,
                             back:
-                                "assets/videos/vehicles/Product_transition/Bus_To_Fan.mp4",
+                                Bus_To_Fan,
                             topic: busTexts["subTopicsInside"][0]
                                 ["topic"],
                             subTopic: busTexts["subTopicsInside"]
@@ -870,9 +863,9 @@ class _BusVideoState extends State<BusVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/Inverter_Loop.mp4",
+                                Inverter_Loop,
                             back:
-                                "assets/videos/vehicles/Product_transition/Bus_To_Inverter.mp4",
+                                Bus_To_Inverter,
                             topic: busTexts["subTopicsInside"][1]
                                 ["topic"],
                             subTopic: busTexts["subTopicsInside"]
@@ -930,9 +923,9 @@ class _BusVideoState extends State<BusVideo> {
                             offsetHor: offsetHor,
                             offsetVer: offsetVer,
                             url:
-                                "assets/videos/vehicles/Product_loops/HDMotor_Loop.mp4",
+                                HDMotor_Loop,
                             back:
-                                "assets/videos/vehicles/Product_transition/Bus_To_HDMotor.mp4",
+                                Bus_To_HDMotor,
                             topic: busTexts["subTopicsInside"][2]
                                 ["topic"],
                             subTopic: busTexts["subTopicsInside"]
