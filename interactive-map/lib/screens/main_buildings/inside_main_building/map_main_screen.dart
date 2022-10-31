@@ -147,7 +147,7 @@ class _MapMainScreensState extends State<MapMainScreens> {
     });
 
     _leftScreenVideoController =
-        VideoPlayerController.network(screen_LEFT)
+        VideoPlayerController.network(screen_LEFT_FW)
           ..initialize().then((_) => {
                 setState(() {
                   _leftScreenVideoController.setVolume(0);
@@ -155,7 +155,7 @@ class _MapMainScreensState extends State<MapMainScreens> {
                 })
               });
     _rightScreenVideoController =
-        VideoPlayerController.network(screen_RIGHT)
+        VideoPlayerController.network(screen_RIGHT_FW)
           ..initialize().then((_) => {
                 setState(() {
                   _rightScreenVideoController.setVolume(0);

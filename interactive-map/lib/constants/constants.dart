@@ -137,6 +137,10 @@ const screen_LEFT_REV =
     "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fscreen_RIGHT_REV.mp4?alt=media&token=4a796532-7634-41b8-a56d-b823128baa57";
 const screen_RIGHT_REV =
     "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fscreen_RIGHT_REV.mp4?alt=media&token=4a796532-7634-41b8-a56d-b823128baa57";
+const screen_LEFT_FW =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fscreen_LEFT.mp4?alt=media&token=37ab6120-07d6-4c4e-9ef9-41844ec9d7a2";
+const screen_RIGHT_FW =
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fscreen_RIGHT.mp4?alt=media&token=bb061e24-cdb4-458c-b818-0dcfeaaad65c";
 
 //building home screen
 const Buildings_Main =
