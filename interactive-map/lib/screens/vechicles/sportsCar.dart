@@ -81,6 +81,7 @@ class _SportsCarVideoState extends State<SportsCarVideo> {
     await _controller.initialize();
     setState(() {
       _controller.setVolume(0);
+      _controller.pause();
       _controller.setLooping(false);
     });
     if (widget.from == Pages.transitionPageToHome) {

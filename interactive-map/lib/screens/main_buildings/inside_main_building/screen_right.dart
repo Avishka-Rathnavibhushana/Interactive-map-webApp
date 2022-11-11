@@ -48,6 +48,7 @@ class _ScreenRightState extends State<ScreenRight> {
             setState(() {
               _controller.setVolume(0);
               show = true;
+              _controller.pause();
               _controller.setLooping(false);
             })
           });

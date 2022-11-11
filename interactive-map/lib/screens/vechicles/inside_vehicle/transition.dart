@@ -122,6 +122,7 @@ class _TransitionPageState extends State<TransitionPage> {
       ..initialize().then((_) => {
             setState(() {
               _backVideoController.setVolume(0);
+              _backVideoController.pause();
               _backVideoController.setLooping(false);
             })
           });

@@ -131,6 +131,7 @@ class _MotorState extends State<Motor> {
       ..initialize().then((_) => {
             setState(() {
               _backVideoController.setVolume(0);
+              _controller.pause();
               _backVideoController.setLooping(false);
             })
           });

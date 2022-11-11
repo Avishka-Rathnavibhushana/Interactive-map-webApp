@@ -50,6 +50,7 @@ class _ScreenLeftState extends State<ScreenLeft> {
             setState(() {
               _controller.setVolume(0);
               show = true;
+              _controller.pause();
               _controller.setLooping(false);
             })
           });

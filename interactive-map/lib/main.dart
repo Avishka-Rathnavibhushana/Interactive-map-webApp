@@ -43,10 +43,11 @@ class _InteractiveMapState extends State<InteractiveMap> {
       title: 'Turntide App',
       initialBinding: AppBinding(),
       scrollBehavior: MyCustomScrollBehavior(),
-      home: Theme.of(context).platform == TargetPlatform.iOS ||
-              Browser().browser == 'Safari'
-          ? EmptyScreen()
-          : Home(),
+      // home: Theme.of(context).platform == TargetPlatform.iOS ||
+      //         Browser().browser == 'Safari'
+      //     ? EmptyScreen()
+      //     : Home(),
+      home: Home(),
     );
   }
 }

@@ -82,6 +82,7 @@ class _DataCentreVideoState extends State<DataCentreVideo> {
     await _controller.initialize();
     setState(() {
       _controller.setVolume(0);
+      _controller.pause();
       _controller.setLooping(false);
     });
     if (widget.from == Pages.map || widget.from == Pages.motorToHome) {

@@ -51,6 +51,7 @@ class _IpadScreenState extends State<IpadScreen> {
             setState(() {
               _controller.setVolume(0);
               show = true;
+              _controller.pause();
               _controller.setLooping(false);
             })
           });

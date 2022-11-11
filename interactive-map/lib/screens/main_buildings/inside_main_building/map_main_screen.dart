@@ -142,6 +142,7 @@ class _MapMainScreensState extends State<MapMainScreens> {
     await _controller.initialize();
     setState(() {
       _controller.setVolume(0);
+      _controller.pause();
       _controller.setLooping(false);
       show = true;
     });
@@ -151,6 +152,7 @@ class _MapMainScreensState extends State<MapMainScreens> {
           ..initialize().then((_) => {
                 setState(() {
                   _leftScreenVideoController.setVolume(0);
+              _leftScreenVideoController.pause();
                   _leftScreenVideoController.setLooping(false);
                 })
               });
@@ -159,6 +161,7 @@ class _MapMainScreensState extends State<MapMainScreens> {
           ..initialize().then((_) => {
                 setState(() {
                   _rightScreenVideoController.setVolume(0);
+              _rightScreenVideoController.pause();
                   _rightScreenVideoController.setLooping(false);
                 })
               });
