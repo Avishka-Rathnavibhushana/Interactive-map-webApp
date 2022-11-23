@@ -797,7 +797,7 @@ class _WarehouseVideoState extends State<WarehouseVideo> {
               customPushReplacement(
                   context,
                   MapMainScreens(
-                    from: Pages.school,
+                    from: Pages.werehouse,
                     offsetHor: offsetHor,
                     offsetVer: offsetVer,
                   ));

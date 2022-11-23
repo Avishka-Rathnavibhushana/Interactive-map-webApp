@@ -134,7 +134,7 @@ const motor_MAIN =
 const TX_MAIN =
     "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2FTX_MAIN.mp4?alt=media&token=9d2c1fb9-6782-45bc-b579-1035da6eec2a";
 const screen_LEFT_REV =
-    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fscreen_RIGHT_REV.mp4?alt=media&token=4a796532-7634-41b8-a56d-b823128baa57";
+    "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fscreen_LEFT_REV.mp4?alt=media&token=98b46d01-2528-4b5e-9183-73754d7fb79e";
 const screen_RIGHT_REV =
     "https://firebasestorage.googleapis.com/v0/b/my-project-1-1c137.appspot.com/o/assets%2Fvideos%2Fbuildings%2Fscreen_RIGHT_REV.mp4?alt=media&token=4a796532-7634-41b8-a56d-b823128baa57";
 const screen_LEFT_FW =
