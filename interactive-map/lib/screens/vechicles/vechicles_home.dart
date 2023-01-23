@@ -195,7 +195,7 @@ class _VechiclesHomeVideoState extends State<VechiclesHomeVideo> {
             })
           });
 
-    //await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(milliseconds: pageDelay));
     _timerVideoController.play();
     setState(() {
       loading = false;

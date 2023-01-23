@@ -39,6 +39,8 @@ class AppColors {
   static const Color fog = Color(0xFFEFEFEF);
 }
 
+const pageDelay = 250;
+
 //assets links
 const homeImage = 'assets/graphics/HOME.png';
 const moreImage = 'assets/graphics/MORE.png';
