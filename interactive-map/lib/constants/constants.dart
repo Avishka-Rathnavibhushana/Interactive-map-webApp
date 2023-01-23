@@ -79,6 +79,8 @@ class Pages {
   static const truck = 'truck';
   static const tractor = 'tractor';
   static const bus = 'bus';
+
+  static const pageDelay = 250;
 }
 
 //fonts
